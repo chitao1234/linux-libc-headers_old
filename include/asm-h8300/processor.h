@@ -20,7 +20,6 @@
 #include <asm/segment.h>
 #include <asm/fpu.h>
 #include <asm/ptrace.h>
-#include <asm/current.h>
 
 extern inline unsigned long rdusp(void) {
 	extern unsigned int	sw_usp;
