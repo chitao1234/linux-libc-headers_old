@@ -36,10 +36,6 @@
 
 #endif
 
-#ifdef __KERNEL__
-#define	USER_HZ		HZ
-#define	CLOCKS_PER_SEC	(USER_HZ)
-#endif
 
 #define EXEC_PAGESIZE	4096
 

@@ -64,16 +64,5 @@ struct switch_stack {
 #define PTRACE_GETFPREGS          14
 #define PTRACE_SETFPREGS          15
 
-#ifdef __KERNEL__
-
-#ifndef PS_S
-#define PS_S  (0x2000)
-#define PS_M  (0x1000)
-#endif
-
-#define user_mode(regs) (!((regs)->sr & PS_S))
-#define instruction_pointer(regs) ((regs)->pc)
-extern void show_regs(struct pt_regs *);
-#endif /* __KERNEL__ */
 #endif /* __ASSEMBLY__ */
 #endif /* _M68K_PTRACE_H */

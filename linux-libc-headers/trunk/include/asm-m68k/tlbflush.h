@@ -3,7 +3,6 @@
 
 #ifndef CONFIG_SUN3
 
-#include <asm/current.h>
 
 static inline void flush_tlb_kernel_page(void *addr)
 {

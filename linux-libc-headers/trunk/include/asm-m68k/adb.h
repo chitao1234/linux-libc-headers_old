@@ -49,27 +49,4 @@
 #define CUDA_GET_DEVICE_LIST	0x1a
 #define CUDA_GET_SET_IIC	0x22
 
-#ifdef __KERNEL__
 
-struct adb_request {
-    unsigned char data[16];
-    int nbytes;
-    unsigned char reply[16];
-    int reply_len;
-    unsigned char reply_expected;
-    unsigned char sent;
-    unsigned char got_reply;
-    void (*done)(struct adb_request *);
-    void *arg;
-    struct adb_request *next;
-};
-
-void via_adb_init(void);
-int adb_request(struct adb_request *req,
-		 void (*done)(struct adb_request *), int nbytes, ...);
-int adb_send_request(struct adb_request *req);
-void adb_poll(void);
-int adb_register(int default_id,
-		 void (*handler)(unsigned char *, int, struct pt_regs *));
-
-#endif	/* __KERNEL */
