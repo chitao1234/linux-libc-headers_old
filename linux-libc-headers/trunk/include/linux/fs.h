@@ -51,7 +51,11 @@ struct inodes_stat_t {
 };
 extern struct inodes_stat_t inodes_stat;
 
-extern int leases_enable, dir_notify_enable, lease_break_time;
+extern int leases_enable, lease_break_time;
+
+#ifdef CONFIG_DNOTIFY
+extern int dir_notify_enable;
+#endif
 
 #define NR_FILE  8192	/* this can well be larger on a larger system */
 #define NR_RESERVED_FILES 10 /* reserved for root */

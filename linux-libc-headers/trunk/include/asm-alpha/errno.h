@@ -96,6 +96,11 @@
 #undef	EDQUOT
 #undef	ENOMEDIUM
 #undef	EMEDIUMTYPE
+#undef	ECANCELED
+#undef	ENOKEY
+#undef	EKEYEXPIRED
+#undef	EKEYREVOKED
+#undef	EKEYREJECTED
 
 #define	EDEADLK		11	/* Resource deadlock would occur */
 #define	EAGAIN		35	/* Try again */
@@ -201,5 +206,10 @@
 
 #define ENOMEDIUM	129	/* No medium found */
 #define EMEDIUMTYPE	130	/* Wrong medium type */
+#define	ECANCELED	131	/* Operation Cancelled */
+#define	ENOKEY		132	/* Required key not available */
+#define	EKEYEXPIRED	133	/* Key has expired */
+#define	EKEYREVOKED	134	/* Key has been revoked */
+#define	EKEYREJECTED	135	/* Key was rejected by service */
 
 #endif

@@ -1,4 +1,4 @@
-#ifndef _PPC64_IO_H
+ #ifndef _PPC64_IO_H
 #define _PPC64_IO_H
 
 /* 
@@ -31,6 +31,12 @@
 
 extern unsigned long isa_io_base;
 extern unsigned long pci_io_base;
+extern unsigned long io_page_mask;
+
+#define MAX_ISA_PORT 0x10000
+
+#define _IO_IS_VALID(port) ((port) >= MAX_ISA_PORT || (1 << (port>>PAGE_SHIFT)) \
+			    & io_page_mask)
 
 #ifdef CONFIG_PPC_ISERIES
 /* __raw_* accessors aren't supported on iSeries */
@@ -150,6 +156,8 @@ extern void _outsw_ns(volatile u16 *port, const void *buf, int ns);
 extern void _insl_ns(volatile u32 *port, void *buf, int nl);
 extern void _outsl_ns(volatile u32 *port, const void *buf, int nl);
 
+#define mmiowb()
+
 /*
  * output pause versions need a delay at least for the
  * w83c105 ide controller in a p610.
@@ -190,7 +198,7 @@ static inline void iosync(void)
  * and should not be used directly by device drivers.  Use inb/readb
  * instead.
  */
-static inline int in_8(volatile unsigned char *addr)
+static inline int in_8(const volatile unsigned char *addr)
 {
 	int ret;
 
@@ -205,7 +213,7 @@ static inline void out_8(volatile unsigned char *addr, int val)
 			     : "=m" (*addr) : "r" (val));
 }
 
-static inline int in_le16(volatile unsigned short *addr)
+static inline int in_le16(const volatile unsigned short *addr)
 {
 	int ret;
 
@@ -214,7 +222,7 @@ static inline int in_le16(volatile unsigned short *addr)
 	return ret;
 }
 
-static inline int in_be16(volatile unsigned short *addr)
+static inline int in_be16(const volatile unsigned short *addr)
 {
 	int ret;
 
@@ -235,7 +243,7 @@ static inline void out_be16(volatile unsigned short *addr, int val)
 			     : "=m" (*addr) : "r" (val));
 }
 
-static inline unsigned in_le32(volatile unsigned *addr)
+static inline unsigned in_le32(const volatile unsigned *addr)
 {
 	unsigned ret;
 
@@ -244,7 +252,7 @@ static inline unsigned in_le32(volatile unsigned *addr)
 	return ret;
 }
 
-static inline unsigned in_be32(volatile unsigned *addr)
+static inline unsigned in_be32(const volatile unsigned *addr)
 {
 	unsigned ret;
 
@@ -265,7 +273,7 @@ static inline void out_be32(volatile unsigned *addr, int val)
 			     : "=m" (*addr) : "r" (val));
 }
 
-static inline unsigned long in_le64(volatile unsigned long *addr)
+static inline unsigned long in_le64(const volatile unsigned long *addr)
 {
 	unsigned long tmp, ret;
 
@@ -284,7 +292,7 @@ static inline unsigned long in_le64(volatile unsigned long *addr)
 	return ret;
 }
 
-static inline unsigned long in_be64(volatile unsigned long *addr)
+static inline unsigned long in_be64(const volatile unsigned long *addr)
 {
 	unsigned long ret;
 

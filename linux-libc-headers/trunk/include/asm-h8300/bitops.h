@@ -6,7 +6,6 @@
  * Copyright 2002, Yoshinori Sato
  */
 
-#include <linux/kernel.h>
 #include <asm/byteorder.h>	/* swab32 */
 #include <asm/system.h>
 

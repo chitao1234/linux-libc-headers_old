@@ -10,6 +10,7 @@
 #ifndef __ASM_PPC64_FLOPPY_H
 #define __ASM_PPC64_FLOPPY_H
 
+#include <asm/machdep.h>
 
 #define fd_inb(port)			inb_p(port)
 #define fd_outb(value,port)		outb_p(value,port)

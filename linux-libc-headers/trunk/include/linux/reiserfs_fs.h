@@ -426,7 +426,7 @@ static inline void set_offset_v2_k_offset( struct offset_v2 *v2, loff_t offset )
 
 /* Key of an item determines its location in the S+tree, and
    is composed of 4 components */
-struct key {
+struct reiserfs_key {
     __u32 k_dir_id;    /* packing locality: by default parent
 			  directory object id */
     __u32 k_objectid;  /* object identifier */
@@ -438,7 +438,7 @@ struct key {
 
 
 struct cpu_key {
-    struct key on_disk_key;
+    struct reiserfs_key on_disk_key;
     int version;
     int key_length; /* 3 in all cases but direct2indirect and
 		       indirect2direct conversion */
@@ -458,7 +458,7 @@ struct cpu_key {
 #define KEY_FOUND 1
 #define KEY_NOT_FOUND 0
 
-#define KEY_SIZE (sizeof(struct key))
+#define KEY_SIZE (sizeof(struct reiserfs_key))
 #define SHORT_KEY_SIZE (sizeof (__u32) + sizeof (__u32))
 
 /* return values for search_by_key and clones */
@@ -491,7 +491,7 @@ struct item_head
 {
 	/* Everything in the tree is found by searching for it based on
 	 * its key.*/
-	struct key ih_key; 	
+	struct reiserfs_key ih_key;
 	union {
 		/* The free space in the last unformatted node of an
 		   indirect item if this is an indirect item.  This
@@ -590,7 +590,7 @@ static inline __u32 type2uniqueness (int type)
 // there is no way to get version of object from key, so, provide
 // version to these defines
 //
-static inline loff_t le_key_k_offset (int version, const struct key * key)
+static inline loff_t le_key_k_offset (int version, const struct reiserfs_key * key)
 {
     return (version == KEY_FORMAT_3_5) ?
         le32_to_cpu( key->u.k_offset_v1.k_offset ) :
@@ -602,7 +602,7 @@ static inline loff_t le_ih_k_offset (const struct item_head * ih)
     return le_key_k_offset (ih_version (ih), &(ih->ih_key));
 }
 
-static inline loff_t le_key_k_type (int version, const struct key * key)
+static inline loff_t le_key_k_type (int version, const struct reiserfs_key * key)
 {
     return (version == KEY_FORMAT_3_5) ?
         uniqueness2type( le32_to_cpu( key->u.k_offset_v1.k_uniqueness)) :
@@ -615,7 +615,7 @@ static inline loff_t le_ih_k_type (const struct item_head * ih)
 }
 
 
-static inline void set_le_key_k_offset (int version, struct key * key, loff_t offset)
+static inline void set_le_key_k_offset (int version, struct reiserfs_key * key, loff_t offset)
 {
     (version == KEY_FORMAT_3_5) ?
         (void)(key->u.k_offset_v1.k_offset = cpu_to_le32 (offset)) : /* jdm check */
@@ -629,7 +629,7 @@ static inline void set_le_ih_k_offset (struct item_head * ih, loff_t offset)
 }
 
 
-static inline void set_le_key_k_type (int version, struct key * key, int type)
+static inline void set_le_key_k_type (int version, struct reiserfs_key * key, int type)
 {
     (version == KEY_FORMAT_3_5) ?
         (void)(key->u.k_offset_v1.k_uniqueness = cpu_to_le32(type2uniqueness(type))):
@@ -726,7 +726,7 @@ static inline void cpu_key_k_offset_dec (struct cpu_key * key)
 /* object identifier for root dir */
 #define REISERFS_ROOT_OBJECTID 2
 #define REISERFS_ROOT_PARENT_OBJECTID 1
-extern struct key root_key;
+extern struct reiserfs_key root_key;
 
 
 
@@ -748,7 +748,7 @@ struct block_head {
   __u16 blk_free_space;   /* Block free space in bytes. */
   __u16 blk_reserved;
 				/* dump this in v4/planA */
-  struct key  blk_right_delim_key; /* kept only for compatibility */
+  struct reiserfs_key  blk_right_delim_key; /* kept only for compatibility */
 };
 
 #define BLKH_SIZE                     (sizeof(struct block_head))
@@ -1239,7 +1239,7 @@ znodes are the way! */
 #define UNFM_P_SHIFT 2
 
 // in in-core inode key is stored on le form
-#define INODE_PKEY(inode) ((struct key *)(REISERFS_I(inode)->i_key))
+#define INODE_PKEY(inode) ((struct reiserfs_key *)(REISERFS_I(inode)->i_key))
 
 #define MAX_UL_INT 0xffffffff
 #define MAX_INT    0x7ffffff
@@ -1404,7 +1404,7 @@ struct direntry_uarea {
 struct item_operations {
     int (*bytes_number) (struct item_head * ih, int block_size);
     void (*decrement_key) (struct cpu_key *);
-    int (*is_left_mergeable) (struct key * ih, unsigned long bsize);
+    int (*is_left_mergeable) (struct reiserfs_key * ih, unsigned long bsize);
     void (*print_item) (struct item_head *, char * item);
     void (*check_item) (struct item_head *, char * item);
 
@@ -1455,7 +1455,7 @@ extern struct item_operations * item_ops [TYPE_ANY + 1];
 #define B_N_PITEM_HEAD(bh,item_num) ( (struct item_head * )((bh)->b_data + BLKH_SIZE) + (item_num) )
 
 /* get key */
-#define B_N_PDELIM_KEY(bh,item_num) ( (struct key * )((bh)->b_data + BLKH_SIZE) + (item_num) )
+#define B_N_PDELIM_KEY(bh,item_num) ( (struct reiserfs_key * )((bh)->b_data + BLKH_SIZE) + (item_num) )
 
 /* get the key */
 #define B_N_PKEY(bh,item_num) ( &(B_N_PITEM_HEAD(bh,item_num)->ih_key) )
@@ -1639,7 +1639,7 @@ static inline int le_key_version (const struct key * key)
 }
 
 
-static inline void copy_key (struct key *to, const struct key *from)
+static inline void copy_key (struct reiserfs_key *to, const struct reiserfs_key *from)
 {
     memcpy (to, from, KEY_SIZE);
 }
@@ -1678,9 +1678,9 @@ int reiserfs_cut_from_item (struct reiserfs_transaction_handle *th,
 			    loff_t new_file_size);
 
 void reiserfs_delete_solid_item (struct reiserfs_transaction_handle *th,
-				 struct inode *inode, struct key * key);
-void reiserfs_delete_object (struct reiserfs_transaction_handle *th, struct inode * p_s_inode);
-void reiserfs_do_truncate (struct reiserfs_transaction_handle *th, 
+			struct inode *inode, struct reiserfs_key * key);
+int reiserfs_delete_object (struct reiserfs_transaction_handle *th, struct inode * p_s_inode);
+int reiserfs_do_truncate (struct reiserfs_transaction_handle *th,
 			   struct  inode * p_s_inode, struct page *, 
 			   int update_timestamps);
 
@@ -1694,7 +1694,7 @@ void reiserfs_do_truncate (struct reiserfs_transaction_handle *th,
 void padd_item (char * item, int total_length, int length);
 
 /* inode.c */
-void restart_transaction(struct reiserfs_transaction_handle *th, struct inode *inode, struct path *path);
+int restart_transaction(struct reiserfs_transaction_handle *th, struct inode *inode, struct path *path);
 void reiserfs_read_locked_inode(struct inode * inode, struct reiserfs_iget_args *args) ;
 int reiserfs_find_actor(struct inode * inode, void *p) ;
 int reiserfs_init_locked_inode(struct inode * inode, void *p) ;
@@ -1709,7 +1709,7 @@ int reiserfs_encode_fh( struct dentry *dentry, __u32 *data, int *lenp,
 						int connectable );
 
 int reiserfs_prepare_write(struct file *, struct page *, unsigned, unsigned) ;
-void reiserfs_truncate_file(struct inode *, int update_timestamps) ;
+int reiserfs_truncate_file(struct inode *, int update_timestamps) ;
 void make_cpu_key (struct cpu_key * cpu_key, struct inode * inode, loff_t offset,
 		   int type, int key_length);
 void make_le_item_head (struct item_head * ih, const struct cpu_key * key, 
@@ -1794,7 +1794,7 @@ int reiserfs_global_version_in_proc( char *buffer, char **start, off_t offset,
  struct __reiserfs_blocknr_hint {
      struct inode * inode;		/* inode passed to allocator, if we allocate unf. nodes */
      long block;			/* file offset, in blocks */
-     struct key key;
+     struct reiserfs_key key;
      struct path * path;		/* search path, used by allocator to deternine search_start by
 					 * various ways */
      struct reiserfs_transaction_handle * th; /* transaction handle is needed to log super blocks and

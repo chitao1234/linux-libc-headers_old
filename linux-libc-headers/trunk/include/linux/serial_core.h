@@ -18,6 +18,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  */
+#ifndef LINUX_SERIAL_CORE_H
+#define LINUX_SERIAL_CORE_H
 
 /*
  * The type definitions.  These are from Ted Ts'o's serial.h
@@ -90,3 +92,13 @@
 /* MPC52xx type numbers */
 #define PORT_MPC52xx	59
 
+/* IBM icom */
+#define PORT_ICOM	60
+
+/* Samsung S3C2440 SoC */
+#define PORT_S3C2440	61
+
+/* Motorola i.MX SoC */
+#define PORT_IMX	62
+
+#endif /* LINUX_SERIAL_CORE_H */

@@ -79,8 +79,12 @@ union ip_conntrack_expect_help {
 	union {
 		/* insert nat helper private data (expect) here */
 	} nat;
-#endif
+#endif /* CONFIG_IP_NF_NAT_NEEDED */
 };
+
+#if defined(CONFIG_IP_NF_CONNTRACK_MARK)
+	unsigned long mark;
+#endif
 
 /* per conntrack: application helper private data */
 union ip_conntrack_help {

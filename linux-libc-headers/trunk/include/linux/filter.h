@@ -5,6 +5,8 @@
 #ifndef __LINUX_FILTER_H__
 #define __LINUX_FILTER_H__
 
+#include <linux/types.h>
+
 /*
  * Current version of the filter code architecture.
  */

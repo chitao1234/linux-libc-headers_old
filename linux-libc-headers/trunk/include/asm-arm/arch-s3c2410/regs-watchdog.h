@@ -16,7 +16,7 @@
 
 
 #ifndef __ASM_ARCH_REGS_WATCHDOG_H
-#define __ASM_ARCH_REGS_WATCHDOG_H "$Id: regs-watchdog.h,v 1.1 2004/08/17 20:24:51 mmazur Exp $"
+#define __ASM_ARCH_REGS_WATCHDOG_H "$Id$"
 
 #define S3C2410_WDOGREG(x) ((x) + S3C2410_VA_WATCHDOG)
 
@@ -38,6 +38,7 @@
 #define S3C2410_WTCON_DIV128  (3<<3)
 
 #define S3C2410_WTCON_PRESCALE(x) ((x) << 8)
+#define S3C2410_WTCON_PRESCALE_MASK (0xff00)
 
 #endif /* __ASM_ARCH_REGS_WATCHDOG_H */
 
