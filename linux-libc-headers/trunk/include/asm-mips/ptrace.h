@@ -69,19 +69,4 @@ struct pt_regs {
 #include <asm/offset.h>
 #endif
 
-#ifdef __KERNEL__
-
-#ifndef __ASSEMBLY__
-/*
- * Does the process account for user or for system time?
- */
-#define user_mode(regs) (((regs)->cp0_status & KU_MASK) == KU_USER)
-
-#define instruction_pointer(regs) ((regs)->cp0_epc)
-
-extern void show_regs(struct pt_regs *);
-#endif /* !__ASSEMBLY__ */
-
-#endif
-
 #endif /* _ASM_PTRACE_H */

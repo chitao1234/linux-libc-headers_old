@@ -45,11 +45,4 @@ struct gfx_attach_board_args {
 	void        *vaddr;	/* address where the board registers should be mapped */
 };
 
-#ifdef __KERNEL__
-/* umap.c */
-extern void remove_mapping (struct vm_area_struct *vma, struct task_struct *, unsigned long, unsigned long);
-extern void *vmalloc_uncached (unsigned long size);
-extern int vmap_page_range (struct vm_area_struct *vma, unsigned long from, unsigned long size, unsigned long vaddr);
-#endif
-
 #endif /* _ASM_GFX_H */

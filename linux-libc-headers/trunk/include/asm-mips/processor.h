@@ -269,39 +269,6 @@ struct thread_struct {
 	MF_FIXADE, 0, 0 \
 }
 
-#ifdef __KERNEL__
-#ifndef __ASSEMBLY__
-
-struct task_struct;
-
-/* Free all resources held by a thread. */
-#define release_thread(thread) do { } while(0)
-
-/* Prepare to copy thread state - unlazy all lazy status */
-#define prepare_to_copy(tsk)	do { } while (0)
-
-extern long kernel_thread(int (*fn)(void *), void * arg, unsigned long flags);
-
-extern unsigned long thread_saved_pc(struct task_struct *tsk);
-
-/*
- * Do necessary setup to start up a newly executed thread.
- */
-extern void start_thread(struct pt_regs * regs, unsigned long pc, unsigned long sp);
-
-unsigned long get_wchan(struct task_struct *p);
-
-#define __PT_REG(reg) ((long)&((struct pt_regs *)0)->reg - sizeof(struct pt_regs))
-#define __KSTK_TOS(tsk) ((unsigned long)(tsk->thread_info) + THREAD_SIZE - 32)
-#define KSTK_EIP(tsk) (*(unsigned long *)(__KSTK_TOS(tsk) + __PT_REG(cp0_epc)))
-#define KSTK_ESP(tsk) (*(unsigned long *)(__KSTK_TOS(tsk) + __PT_REG(regs[29])))
-#define KSTK_STATUS(tsk) (*(unsigned long *)(__KSTK_TOS(tsk) + __PT_REG(cp0_status)))
-
-#define cpu_relax()	barrier()
-
-#endif /* !__ASSEMBLY__ */
-#endif /* __KERNEL__ */
-
 /*
  * Return_address is a replacement for __builtin_return_address(count)
  * which on certain architectures cannot reasonably be implemented in GCC

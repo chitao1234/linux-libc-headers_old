@@ -113,10 +113,6 @@ typedef struct flock {
 	__kernel_pid_t l_pid;
 } flock_t;
 
-#ifdef __KERNEL__
-#define flock64		flock
-#endif
-
 #endif
 
 #define F_LINUX_SPECIFIC_BASE	1024
