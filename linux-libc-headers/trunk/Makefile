@@ -6,6 +6,8 @@ all: release
 install:
 	mv release/${name}.tar.bz2 ~/www/linux-libc-headers/
 	chmod a+r ~/www/linux-libc-headers/${name}.tar.bz2
+	cp ChangeLog LICENSE README AUTHORS FAQ ~/www/linux-libc-headers/doc
+	chmod a+r ~/www/linux-libc-headers/doc/*
 
 release: VERSION
 	rm -rf .tmp
