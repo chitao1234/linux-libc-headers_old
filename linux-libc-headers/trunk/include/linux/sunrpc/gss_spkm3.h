@@ -7,8 +7,6 @@
  *  Andy Adamson   <andros@umich.edu>
  */
 
-#include <linux/sunrpc/auth_gss.h>
-#include <linux/sunrpc/gss_err.h>
 #include <linux/sunrpc/gss_asn1.h>
 
 struct spkm3_ctx {
