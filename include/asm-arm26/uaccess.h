@@ -5,7 +5,7 @@
  * User space memory access functions
  */
 #include <linux/sched.h>
-#include <asm/errno.h>
+#include <linux/errno.h>
 
 #define VERIFY_READ 0
 #define VERIFY_WRITE 1
