@@ -4,7 +4,8 @@
 #include <linux/types.h>
 #include <linux/buffer_head.h>
 #include <linux/string.h>
-#include <asm/byteorder.h>
+#include <endian.h>
+#include <byteswap.h>
 
 /* AmigaOS allows file names with up to 30 characters length.
  * Names longer than that will be silently truncated. If you
