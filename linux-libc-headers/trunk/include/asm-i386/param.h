@@ -2,8 +2,7 @@
 #define _ASMi386_PARAM_H
 
 #ifndef HZ
-#include <unistd.h>
-#define HZ sysconf(_SC_CLK_TCK)
+#define HZ 100
 #endif
 
 #define EXEC_PAGESIZE	4096
