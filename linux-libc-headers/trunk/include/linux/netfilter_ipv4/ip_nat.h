@@ -40,7 +40,7 @@ struct ip_nat_range
 };
 
 /* A range consists of an array of 1 or more ip_nat_range */
-struct ip_nat_multi_range
+struct ip_nat_multi_range_compat
 {
 	unsigned int rangesize;
 
