@@ -3,13 +3,13 @@
 
 #include <linux/types.h>
 #include <linux/version.h>
-#include <linux/device.h>
 
 #define HAVE_V4L2 1
 #include <linux/videodev2.h>
 
 #ifdef __KERNEL__
 
+#include <linux/device.h>
 #include <linux/poll.h>
 #include <linux/mm.h>
 

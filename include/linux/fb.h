@@ -2,9 +2,7 @@
 #define _LINUX_FB_H
 
 #include <linux/tty.h>
-#include <linux/workqueue.h>
 #include <asm/types.h>
-#include <asm/io.h>
 
 /* Definitions of frame buffers						*/
 
@@ -331,23 +329,12 @@ struct fb_cursor {
 #define FB_PIXMAP_IO      4     /* memory is iomapped       */
 #define FB_PIXMAP_SYNC    256   /* set if GPU can DMA       */
 
-struct fb_pixmap {
-        __u8  *addr;                      /* pointer to memory             */  
-	__u32 size;                       /* size of buffer in bytes       */
-	__u32 offset;                     /* current offset to buffer      */
-	__u32 buf_align;                  /* byte alignment of each bitmap */
-	__u32 scan_align;                 /* alignment per scanline        */
-	__u32 flags;                      /* see FB_PIXMAP_*               */
-					  /* access methods                */
-	void (*outbuf)(u8 *dst, u8 *addr, unsigned int size); 
-	u8   (*inbuf) (u8 *addr);
-	spinlock_t lock;                  /* spinlock                      */
-	atomic_t count;
-};
 #ifdef __KERNEL__
 
 #include <linux/fs.h>
 #include <linux/init.h>
+#include <linux/workqueue.h>
+#include <asm/io.h>
 
 struct fb_info;
 struct vm_area_struct;
@@ -393,6 +380,20 @@ struct fb_ops {
 		    unsigned long arg, struct fb_info *info);
     /* perform fb specific mmap */
     int (*fb_mmap)(struct fb_info *info, struct file *file, struct vm_area_struct *vma);
+};
+
+struct fb_pixmap {
+        __u8  *addr;                      /* pointer to memory             */  
+	__u32 size;                       /* size of buffer in bytes       */
+	__u32 offset;                     /* current offset to buffer      */
+	__u32 buf_align;                  /* byte alignment of each bitmap */
+	__u32 scan_align;                 /* alignment per scanline        */
+	__u32 flags;                      /* see FB_PIXMAP_*               */
+					  /* access methods                */
+	void (*outbuf)(u8 *dst, u8 *addr, unsigned int size); 
+	u8 (*inbuf) (u8 *addr);
+	spinlock_t lock;                  /* spinlock                      */
+	atomic_t count;
 };
 
 struct fb_info {
