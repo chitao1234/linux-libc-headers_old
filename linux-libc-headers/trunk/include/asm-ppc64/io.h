@@ -52,12 +52,12 @@ extern unsigned long pci_io_base;
 #define memcpy_fromio(a,b,c)	iSeries_memcpy_fromio((a), (b), (c))
 #define memcpy_toio(a,b,c)	iSeries_memcpy_toio((a), (b), (c))
 
-#define inb(addr)		readb(((void __iomem *)(long)(addr)))
-#define inw(addr)		readw(((void __iomem *)(long)(addr)))
-#define inl(addr)		readl(((void __iomem *)(long)(addr)))
-#define outb(data,addr)		writeb(data,((void __iomem *)(long)(addr)))
-#define outw(data,addr)		writew(data,((void __iomem *)(long)(addr)))
-#define outl(data,addr)		writel(data,((void __iomem *)(long)(addr)))
+#define inb(addr)		readb(((void *)(long)(addr)))
+#define inw(addr)		readw(((void *)(long)(addr)))
+#define inl(addr)		readl(((void *)(long)(addr)))
+#define outb(data,addr)		writeb(data,((void *)(long)(addr)))
+#define outw(data,addr)		writew(data,((void *)(long)(addr)))
+#define outl(data,addr)		writel(data,((void *)(long)(addr)))
 /*
  * The *_ns versions below don't do byte-swapping.
  * Neither do the standard versions now, these are just here
@@ -67,37 +67,37 @@ extern unsigned long pci_io_base;
 #define insl_ns(port, buf, nl)	_insl_ns((u32 *)((port)+pci_io_base), (buf), (nl))
 #else
 
-static inline unsigned char __raw_readb(const volatile void __iomem *addr)
+static inline unsigned char __raw_readb(const volatile void *addr)
 {
-	return *(volatile unsigned char __force *)addr;
+	return *(volatile unsigned char *)addr;
 }
-static inline unsigned short __raw_readw(const volatile void __iomem *addr)
+static inline unsigned short __raw_readw(const volatile void *addr)
 {
-	return *(volatile unsigned short __force *)addr;
+	return *(volatile unsigned short *)addr;
 }
-static inline unsigned int __raw_readl(const volatile void __iomem *addr)
+static inline unsigned int __raw_readl(const volatile void *addr)
 {
-	return *(volatile unsigned int __force *)addr;
+	return *(volatile unsigned int *)addr;
 }
-static inline unsigned long __raw_readq(const volatile void __iomem *addr)
+static inline unsigned long __raw_readq(const volatile void *addr)
 {
-	return *(volatile unsigned long __force *)addr;
+	return *(volatile unsigned long *)addr;
 }
-static inline void __raw_writeb(unsigned char v, volatile void __iomem *addr)
+static inline void __raw_writeb(unsigned char v, volatile void *addr)
 {
-	*(volatile unsigned char __force *)addr = v;
+	*(volatile unsigned char *)addr = v;
 }
-static inline void __raw_writew(unsigned short v, volatile void __iomem *addr)
+static inline void __raw_writew(unsigned short v, volatile void *addr)
 {
-	*(volatile unsigned short __force *)addr = v;
+	*(volatile unsigned short *)addr = v;
 }
-static inline void __raw_writel(unsigned int v, volatile void __iomem *addr)
+static inline void __raw_writel(unsigned int v, volatile void *addr)
 {
-	*(volatile unsigned int __force *)addr = v;
+	*(volatile unsigned int *)addr = v;
 }
-static inline void __raw_writeq(unsigned long v, volatile void __iomem *addr)
+static inline void __raw_writeq(unsigned long v, volatile void *addr)
 {
-	*(volatile unsigned long __force *)addr = v;
+	*(volatile unsigned long *)addr = v;
 }
 #define readb(addr)		eeh_readb(addr)
 #define readw(addr)		eeh_readw(addr)

@@ -1,4 +1,4 @@
-/* $Revision: 1.4 $$Date: 2004/10/22 15:56:17 $
+/* $Revision: 1.5 $$Date: 2004/10/24 16:29:31 $
  * linux/include/linux/cyclades.h
  *
  * This file was initially written by
@@ -7,6 +7,9 @@
  *
  * This file contains the general definitions for the cyclades.c driver
  *$Log: cyclades.h,v $
+ *Revision 1.5  2004/10/24 16:29:31  mmazur
+ *- remove __force and __iomem
+ *
  *Revision 1.4  2004/10/22 15:56:17  mmazur
  *- 2.6.9 update
  *
@@ -521,8 +524,8 @@ struct resource;
 struct cyclades_card {
     unsigned long base_phys;
     unsigned long ctl_phys;
-    void __iomem *base_addr;
-    void __iomem *ctl_addr;
+    void *base_addr;
+    void *ctl_addr;
     int irq;
     int num_chips;	/* 0 if card absent, -1 if Z/PCI, else Y */
     int first_line;	/* minor number of first channel on card */

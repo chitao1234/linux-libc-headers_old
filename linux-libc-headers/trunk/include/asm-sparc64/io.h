@@ -99,12 +99,12 @@ static __inline__ void _outl(u32 l, unsigned long addr)
 #define inl_p(__addr)		inl(__addr)
 #define outl_p(__l, __addr)	outl(__l, __addr)
 
-extern void outsb(void __iomem *addr, const void *src, unsigned long count);
-extern void outsw(void __iomem *addr, const void *src, unsigned long count);
-extern void outsl(void __iomem *addr, const void *src, unsigned long count);
-extern void insb(void __iomem *addr, void *dst, unsigned long count);
-extern void insw(void __iomem *addr, void *dst, unsigned long count);
-extern void insl(void __iomem *addr, void *dst, unsigned long count);
+extern void outsb(void *addr, const void *src, unsigned long count);
+extern void outsw(void *addr, const void *src, unsigned long count);
+extern void outsl(void *addr, const void *src, unsigned long count);
+extern void insb(void *addr, void *dst, unsigned long count);
+extern void insw(void *addr, void *dst, unsigned long count);
+extern void insl(void *addr, void *dst, unsigned long count);
 #define ioread8_rep(a,d,c)	insb(a,d,c)
 #define ioread16_rep(a,d,c)	insw(a,d,c)
 #define ioread32_rep(a,d,c)	insl(a,d,c)
@@ -113,7 +113,7 @@ extern void insl(void __iomem *addr, void *dst, unsigned long count);
 #define iowrite32_rep(a,s,c)	outsl(a,s,c)
 
 /* Memory functions, same as I/O accesses on Ultra. */
-static inline u8 _readb(void __iomem *addr)
+static inline u8 _readb(void *addr)
 {	u8 ret;
 
 	__asm__ __volatile__("lduba\t[%1] %2, %0\t/* pci_readb */"
@@ -122,7 +122,7 @@ static inline u8 _readb(void __iomem *addr)
 	return ret;
 }
 
-static inline u16 _readw(void __iomem *addr)
+static inline u16 _readw(void *addr)
 {	u16 ret;
 
 	__asm__ __volatile__("lduha\t[%1] %2, %0\t/* pci_readw */"
@@ -132,7 +132,7 @@ static inline u16 _readw(void __iomem *addr)
 	return ret;
 }
 
-static inline u32 _readl(void __iomem *addr)
+static inline u32 _readl(void *addr)
 {	u32 ret;
 
 	__asm__ __volatile__("lduwa\t[%1] %2, %0\t/* pci_readl */"
@@ -142,7 +142,7 @@ static inline u32 _readl(void __iomem *addr)
 	return ret;
 }
 
-static inline u64 _readq(void __iomem *addr)
+static inline u64 _readq(void *addr)
 {	u64 ret;
 
 	__asm__ __volatile__("ldxa\t[%1] %2, %0\t/* pci_readq */"
@@ -152,28 +152,28 @@ static inline u64 _readq(void __iomem *addr)
 	return ret;
 }
 
-static inline void _writeb(u8 b, void __iomem *addr)
+static inline void _writeb(u8 b, void *addr)
 {
 	__asm__ __volatile__("stba\t%r0, [%1] %2\t/* pci_writeb */"
 			     : /* no outputs */
 			     : "Jr" (b), "r" (addr), "i" (ASI_PHYS_BYPASS_EC_E_L));
 }
 
-static inline void _writew(u16 w, void __iomem *addr)
+static inline void _writew(u16 w, void *addr)
 {
 	__asm__ __volatile__("stha\t%r0, [%1] %2\t/* pci_writew */"
 			     : /* no outputs */
 			     : "Jr" (w), "r" (addr), "i" (ASI_PHYS_BYPASS_EC_E_L));
 }
 
-static inline void _writel(u32 l, void __iomem *addr)
+static inline void _writel(u32 l, void *addr)
 {
 	__asm__ __volatile__("stwa\t%r0, [%1] %2\t/* pci_writel */"
 			     : /* no outputs */
 			     : "Jr" (l), "r" (addr), "i" (ASI_PHYS_BYPASS_EC_E_L));
 }
 
-static inline void _writeq(u64 q, void __iomem *addr)
+static inline void _writeq(u64 q, void *addr)
 {
 	__asm__ __volatile__("stxa\t%r0, [%1] %2\t/* pci_writeq */"
 			     : /* no outputs */
@@ -283,7 +283,7 @@ static __inline__ void _raw_writeq(u64 q, unsigned long addr)
 /* Now, SBUS variants, only difference from PCI is that we do
  * not use little-endian ASIs.
  */
-static inline u8 _sbus_readb(void __iomem *addr)
+static inline u8 _sbus_readb(void *addr)
 {
 	u8 ret;
 
@@ -294,7 +294,7 @@ static inline u8 _sbus_readb(void __iomem *addr)
 	return ret;
 }
 
-static inline u16 _sbus_readw(void __iomem *addr)
+static inline u16 _sbus_readw(void *addr)
 {
 	u16 ret;
 
@@ -305,7 +305,7 @@ static inline u16 _sbus_readw(void __iomem *addr)
 	return ret;
 }
 
-static inline u32 _sbus_readl(void __iomem *addr)
+static inline u32 _sbus_readl(void *addr)
 {
 	u32 ret;
 
@@ -316,7 +316,7 @@ static inline u32 _sbus_readl(void __iomem *addr)
 	return ret;
 }
 
-static inline u64 _sbus_readq(void __iomem *addr)
+static inline u64 _sbus_readq(void *addr)
 {
 	u64 ret;
 
@@ -327,28 +327,28 @@ static inline u64 _sbus_readq(void __iomem *addr)
 	return ret;
 }
 
-static inline void _sbus_writeb(u8 b, void __iomem *addr)
+static inline void _sbus_writeb(u8 b, void *addr)
 {
 	__asm__ __volatile__("stba\t%r0, [%1] %2\t/* sbus_writeb */"
 			     : /* no outputs */
 			     : "Jr" (b), "r" (addr), "i" (ASI_PHYS_BYPASS_EC_E));
 }
 
-static inline void _sbus_writew(u16 w, void __iomem *addr)
+static inline void _sbus_writew(u16 w, void *addr)
 {
 	__asm__ __volatile__("stha\t%r0, [%1] %2\t/* sbus_writew */"
 			     : /* no outputs */
 			     : "Jr" (w), "r" (addr), "i" (ASI_PHYS_BYPASS_EC_E));
 }
 
-static inline void _sbus_writel(u32 l, void __iomem *addr)
+static inline void _sbus_writel(u32 l, void *addr)
 {
 	__asm__ __volatile__("stwa\t%r0, [%1] %2\t/* sbus_writel */"
 			     : /* no outputs */
 			     : "Jr" (l), "r" (addr), "i" (ASI_PHYS_BYPASS_EC_E));
 }
 
-static inline void _sbus_writeq(u64 l, void __iomem *addr)
+static inline void _sbus_writeq(u64 l, void *addr)
 {
 	__asm__ __volatile__("stxa\t%r0, [%1] %2\t/* sbus_writeq */"
 			     : /* no outputs */
@@ -364,7 +364,7 @@ static inline void _sbus_writeq(u64 l, void __iomem *addr)
 #define sbus_writel(__l, __addr)	_sbus_writel(__l, __addr)
 #define sbus_writeq(__l, __addr)	_sbus_writeq(__l, __addr)
 
-static inline void __iomem*_sbus_memset_io(void __iomem *dst, int c,
+static inline void *_sbus_memset_io(void *dst, int c,
 					   __kernel_size_t n)
 {
 	while(n--) {
@@ -376,10 +376,10 @@ static inline void __iomem*_sbus_memset_io(void __iomem *dst, int c,
 
 #define sbus_memset_io(d,c,sz)	_sbus_memset_io(d,c,sz)
 
-static inline void __iomem *
-_memset_io(void __iomem *dst, int c, __kernel_size_t n)
+static inline void *
+_memset_io(void *dst, int c, __kernel_size_t n)
 {
-	void __iomem *d = dst;
+	void *d = dst;
 
 	while (n--) {
 		writeb(c, d);
@@ -391,8 +391,8 @@ _memset_io(void __iomem *dst, int c, __kernel_size_t n)
 
 #define memset_io(d,c,sz)	_memset_io(d,c,sz)
 
-static inline void __iomem *
-_memcpy_fromio(void *dst, void __iomem *src, __kernel_size_t n)
+static inline void *
+_memcpy_fromio(void *dst, void *src, __kernel_size_t n)
 {
 	char *d = dst;
 
@@ -407,11 +407,11 @@ _memcpy_fromio(void *dst, void __iomem *src, __kernel_size_t n)
 
 #define memcpy_fromio(d,s,sz)	_memcpy_fromio(d,s,sz)
 
-static inline void __iomem *
-_memcpy_toio(void __iomem *dst, const void *src, __kernel_size_t n)
+static inline void *
+_memcpy_toio(void *dst, const void *src, __kernel_size_t n)
 {
 	const char *s = src;
-	void __iomem *d = dst;
+	void *d = dst;
 
 	while (n--) {
 		char tmp = *s++;
@@ -429,7 +429,7 @@ static inline int check_signature(unsigned long io_addr,
 {
 	int retval = 0;
 	do {
-		if (readb((void __iomem *)io_addr) != *signature++)
+		if (readb((void *)io_addr) != *signature++)
 			goto out;
 		io_addr++;
 	} while (--length);
