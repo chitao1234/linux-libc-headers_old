@@ -1,13 +1,7 @@
 #ifndef _linux_POSIX_TIMERS_H
 #define _linux_POSIX_TIMERS_H
 
-#include <linux/spinlock.h>
-#include <linux/list.h>
 
-struct k_clock_abs {
-	struct list_head list;
-	spinlock_t lock;
-};
 struct k_clock {
 	int res;		/* in nano seconds */
 	struct k_clock_abs *abs_struct;
