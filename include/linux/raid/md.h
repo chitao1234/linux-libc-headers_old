@@ -33,7 +33,6 @@
 #include <linux/random.h>
 #include <linux/kernel_stat.h>
 #include <asm/io.h>
-#include <linux/completion.h>
 #include <linux/mempool.h>
 #include <linux/reboot.h>
 #include <linux/blkpg.h>

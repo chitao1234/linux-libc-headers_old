@@ -16,7 +16,6 @@
 #include <linux/signal.h>
 #include <linux/securebits.h>
 #include <linux/fs.h>
-#include <linux/completion.h>
 #include <linux/pid.h>
 
 struct exec_domain;
