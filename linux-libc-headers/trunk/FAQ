@@ -31,4 +31,11 @@ A: Email the maintainer. Never assume something is broken because the
    maintainer wanted it that way. These headers are still *full* of possible
    errors and that won't change without user feedback.
 
+Q: What should I do with the scsi directory that comes with llh? Glibc has
+   one already.
+A: Not too sure on that one. There are some problems with glibc's scsi headers
+   (lack of functionality as usual) but I'm not certain if using llh's 
+   should be a preferred method. Best bet is to stick with glibc unless one
+   encounters some problems.
+
 
