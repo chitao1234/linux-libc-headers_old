@@ -239,7 +239,18 @@ struct ext3_inode {
 
 #define i_size_high	i_dir_acl
 
-#if defined(__GNU__)
+#if defined(__linux__)
+
+#define i_reserved1	osd1.linux1.l_i_reserved1
+#define i_frag		osd2.linux2.l_i_frag
+#define i_fsize		osd2.linux2.l_i_fsize
+#define i_uid_low	i_uid
+#define i_gid_low	i_gid
+#define i_uid_high	osd2.linux2.l_i_uid_high
+#define i_gid_high	osd2.linux2.l_i_gid_high
+#define i_reserved2	osd2.linux2.l_i_reserved2
+
+#elif defined(__GNU__)
 
 #define i_translator	osd1.hurd1.h_i_translator
 #define i_frag		osd2.hurd2.h_i_frag;
