@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_CURRENT_H
 #define _ASM_M32R_CURRENT_H
 
-/* $Id: current.h,v 1.1 2004/10/21 15:15:37 mmazur Exp $ */
+/* $Id$ */
 
 #include <linux/thread_info.h>
 

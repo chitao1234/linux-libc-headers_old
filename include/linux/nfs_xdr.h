@@ -90,9 +90,9 @@ struct nfs_pathconf {
 };
 
 struct nfs4_change_info {
-	u32			atomic;
-	u64			before;
-	u64			after;
+	__u32			atomic;
+	__u64			before;
+	__u64			after;
 };
 
 /*
@@ -112,7 +112,7 @@ struct nfs_openargs {
 	} u;
 	const struct qstr *	name;
 	const struct nfs_server *server;	 /* Needed for ID mapping */
-	const u32 *		bitmask;
+	const __u32 *		bitmask;
 	__u32			claim;
 };
 
@@ -160,7 +160,7 @@ struct nfs_closeres {
  *   */
 struct nfs_lowner {
 	__u64           clientid;
-	u32                     id;
+	__u32                     id;
 };
 
 struct nfs_open_to_lock {
@@ -323,7 +323,7 @@ struct nfs_setattrargs {
 	nfs4_stateid                    stateid;
 	struct iattr *                  iap;
 	const struct nfs_server *	server; /* Needed for name mapping */
-	const u32 *			bitmask;
+	const __u32 *			bitmask;
 };
 
 struct nfs_setattrres {
@@ -479,32 +479,32 @@ struct nfs3_readdirres {
 
 #ifdef CONFIG_NFS_V4
 
-typedef u64 clientid4;
+typedef __u64 clientid4;
 
 struct nfs4_accessargs {
 	const struct nfs_fh *		fh;
-	u32				access;
+	__u32				access;
 };
 
 struct nfs4_accessres {
-	u32				supported;
-	u32				access;
+	__u32				supported;
+	__u32				access;
 };
 
 struct nfs4_create_arg {
-	u32				ftype;
+	__u32				ftype;
 	union {
 		struct qstr *		symlink;    /* NF4LNK */
 		struct {
-			u32		specdata1;
-			u32		specdata2;
+			__u32		specdata1;
+			__u32		specdata2;
 		} device;    /* NF4BLK, NF4CHR */
 	} u;
 	const struct qstr *		name;
 	const struct nfs_server *	server;
 	const struct iattr *		attrs;
 	const struct nfs_fh *		dir_fh;
-	const u32 *			bitmask;
+	const __u32 *			bitmask;
 };
 
 struct nfs4_create_res {
@@ -516,12 +516,12 @@ struct nfs4_create_res {
 
 struct nfs4_fsinfo_arg {
 	const struct nfs_fh *		fh;
-	const u32 *			bitmask;
+	const __u32 *			bitmask;
 };
 
 struct nfs4_getattr_arg {
 	const struct nfs_fh *		fh;
-	const u32 *			bitmask;
+	const __u32 *			bitmask;
 };
 
 struct nfs4_getattr_res {
@@ -538,7 +538,7 @@ struct nfs4_link_arg {
 struct nfs4_lookup_arg {
 	const struct nfs_fh *		dir_fh;
 	const struct qstr *		name;
-	const u32 *			bitmask;
+	const __u32 *			bitmask;
 };
 
 struct nfs4_lookup_res {
@@ -548,19 +548,19 @@ struct nfs4_lookup_res {
 };
 
 struct nfs4_lookup_root_arg {
-	const u32 *			bitmask;
+	const __u32 *			bitmask;
 };
 
 struct nfs4_pathconf_arg {
 	const struct nfs_fh *		fh;
-	const u32 *			bitmask;
+	const __u32 *			bitmask;
 };
 
 struct nfs4_readdir_arg {
 	const struct nfs_fh *		fh;
-	u64				cookie;
+	__u64				cookie;
 	nfs4_verifier			verifier;
-	u32				count;
+	__u32				count;
 	struct page **			pages;	/* zero-copy data */
 	unsigned int			pgbase;	/* zero-copy data */
 };
@@ -598,24 +598,24 @@ struct nfs4_setclientid {
 	const nfs4_verifier *		sc_verifier;      /* request */
 	unsigned int			sc_name_len;
 	char				sc_name[32];	  /* request */
-	u32				sc_prog;          /* request */
+	__u32				sc_prog;          /* request */
 	unsigned int			sc_netid_len;
 	char				sc_netid[4];	  /* request */
 	unsigned int			sc_uaddr_len;
 	char				sc_uaddr[24];     /* request */
-	u32				sc_cb_ident;      /* request */
+	__u32				sc_cb_ident;      /* request */
 };
 
 struct nfs4_statfs_arg {
 	const struct nfs_fh *		fh;
-	const u32 *			bitmask;
+	const __u32 *			bitmask;
 };
 
 struct nfs4_server_caps_res {
-	u32				attr_bitmask[2];
-	u32				acl_bitmask;
-	u32				has_links;
-	u32				has_symlinks;
+	__u32				attr_bitmask[2];
+	__u32				acl_bitmask;
+	__u32				has_links;
+	__u32				has_symlinks;
 };
 
 #endif /* CONFIG_NFS_V4 */

@@ -24,14 +24,14 @@
 
 struct SpCommArea
 {
-	u32	xDesc;			// Descriptor (only in new formats)	000-003
-	u8	xFormat;		// Format (only in new formats)		004-004
-	u8	xRsvd1[11];		// Reserved				005-00F
-	u64	xRawTbAtIplStart;	// Raw HW TB value when IPL is started	010-017
-	u64	xRawTodAtIplStart;	// Raw HW TOD value when IPL is started	018-01F
-	u64	xBcdTimeAtIplStart;	// BCD time when IPL is started		020-027
-	u64	xBcdTimeAtOsStart;	// BCD time when OS passed control	028-02F
-	u8	xRsvd2[80];		// Reserved				030-07F
+	__u32	xDesc;			// Descriptor (only in new formats)	000-003
+	__u8	xFormat;		// Format (only in new formats)		004-004
+	__u8	xRsvd1[11];		// Reserved				005-00F
+	__u64	xRawTbAtIplStart;	// Raw HW TB value when IPL is started	010-017
+	__u64	xRawTodAtIplStart;	// Raw HW TOD value when IPL is started	018-01F
+	__u64	xBcdTimeAtIplStart;	// BCD time when IPL is started		020-027
+	__u64	xBcdTimeAtOsStart;	// BCD time when OS passed control	028-02F
+	__u8	xRsvd2[80];		// Reserved				030-07F
 };
 
 extern struct SpCommArea xSpCommArea;

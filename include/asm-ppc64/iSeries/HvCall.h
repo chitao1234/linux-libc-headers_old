@@ -133,12 +133,12 @@ static inline void		HvCall_setVirtualDecr(void)
 	HvCall0(HvCallBaseSetVirtualDecr);
 }
 //=====================================================================
-static inline void		HvCall_yieldProcessor(unsigned typeOfYield, u64 yieldParm)
+static inline void		HvCall_yieldProcessor(unsigned typeOfYield, __u64 yieldParm)
 {
 	HvCall2( HvCallBaseYieldProcessor, typeOfYield, yieldParm );
 }
 //=====================================================================
-static inline void		HvCall_setEnabledInterrupts(u64 enabledInterrupts)
+static inline void		HvCall_setEnabledInterrupts(__u64 enabledInterrupts)
 {
 	HvCall1(HvCallBaseSetEnabledInterrupts,enabledInterrupts);
 }
@@ -150,9 +150,9 @@ static inline void		HvCall_clearLogBuffer(HvLpIndex lpindex)
 }
 
 //=====================================================================
-static inline u32  		HvCall_getLogBufferCodePage(HvLpIndex lpindex)
+static inline __u32  		HvCall_getLogBufferCodePage(HvLpIndex lpindex)
 {
-	u32 retVal = HvCall1(HvCallBaseGetLogBufferCodePage,lpindex);
+	__u32 retVal = HvCall1(HvCallBaseGetLogBufferCodePage,lpindex);
 	return retVal;
 }
 
@@ -164,21 +164,21 @@ static inline int  		HvCall_getLogBufferFormat(HvLpIndex lpindex)
 }
 
 //=====================================================================
-static inline u32  		HvCall_getLogBufferLength(HvLpIndex lpindex)
+static inline __u32  		HvCall_getLogBufferLength(HvLpIndex lpindex)
 {
-	u32 retVal = HvCall1(HvCallBaseGetLogBufferLength,lpindex);
+	__u32 retVal = HvCall1(HvCallBaseGetLogBufferLength,lpindex);
 	return retVal;
 }
 
 //=====================================================================
-static inline void  		HvCall_setLogBufferFormatAndCodepage(int format, u32 codePage)
+static inline void  		HvCall_setLogBufferFormatAndCodepage(int format, __u32 codePage)
 {
 	HvCall2(HvCallBaseSetLogBufferFormatAndCodePage,format, codePage);
 }
 
 //=====================================================================
-int HvCall_readLogBuffer(HvLpIndex lpindex, void *buffer, u64 bufLen);
-void HvCall_writeLogBuffer(const void *buffer, u64 bufLen);
+int HvCall_readLogBuffer(HvLpIndex lpindex, void *buffer, __u64 bufLen);
+void HvCall_writeLogBuffer(const void *buffer, __u64 bufLen);
 
 //=====================================================================
 static inline void		HvCall_sendIPI(struct paca_struct * targetPaca)

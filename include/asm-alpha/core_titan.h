@@ -333,34 +333,34 @@ union TPAchipAGPERR {
 #define SCB_Q_PROCMCHK	0x670
 #define SCB_Q_SYSEVENT	0x680	/* environmental / system management */
 struct el_TITAN_sysdata_mcheck {
-	u64 summary;	/* 0x00 */
-	u64 c_dirx;	/* 0x08 */
-	u64 c_misc;	/* 0x10 */
-	u64 p0_serror;	/* 0x18 */
-	u64 p0_gperror; /* 0x20 */
-	u64 p0_aperror; /* 0x28 */
-	u64 p0_agperror;/* 0x30 */
-	u64 p1_serror;	/* 0x38 */
-	u64 p1_gperror; /* 0x40 */
-	u64 p1_aperror; /* 0x48 */
-	u64 p1_agperror;/* 0x50 */
+	__u64 summary;	/* 0x00 */
+	__u64 c_dirx;	/* 0x08 */
+	__u64 c_misc;	/* 0x10 */
+	__u64 p0_serror;	/* 0x18 */
+	__u64 p0_gperror; /* 0x20 */
+	__u64 p0_aperror; /* 0x28 */
+	__u64 p0_agperror;/* 0x30 */
+	__u64 p1_serror;	/* 0x38 */
+	__u64 p1_gperror; /* 0x40 */
+	__u64 p1_aperror; /* 0x48 */
+	__u64 p1_agperror;/* 0x50 */
 };
 
 /*
  * System area for a privateer 680 environmental/system management mcheck 
  */
 struct el_PRIVATEER_envdata_mcheck {
-	u64 summary;	/* 0x00 */
-	u64 c_dirx;	/* 0x08 */
-	u64 smir;	/* 0x10 */
-	u64 cpuir;	/* 0x18 */
-	u64 psir;	/* 0x20 */
-	u64 fault;	/* 0x28 */
-	u64 sys_doors;	/* 0x30 */
-	u64 temp_warn;	/* 0x38 */
-	u64 fan_ctrl;	/* 0x40 */
-	u64 code;	/* 0x48 */
-	u64 reserved;	/* 0x50 */
+	__u64 summary;	/* 0x00 */
+	__u64 c_dirx;	/* 0x08 */
+	__u64 smir;	/* 0x10 */
+	__u64 cpuir;	/* 0x18 */
+	__u64 psir;	/* 0x20 */
+	__u64 fault;	/* 0x28 */
+	__u64 sys_doors;	/* 0x30 */
+	__u64 temp_warn;	/* 0x38 */
+	__u64 fan_ctrl;	/* 0x40 */
+	__u64 code;	/* 0x48 */
+	__u64 reserved;	/* 0x50 */
 };
 
 #endif /* __ALPHA_TITAN__H__ */

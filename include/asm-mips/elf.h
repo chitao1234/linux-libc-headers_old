@@ -124,7 +124,7 @@ typedef elf_greg_t elf_gregset_t[ELF_NGREG];
 typedef double elf_fpreg_t;
 typedef elf_fpreg_t elf_fpregset_t[ELF_NFPREG];
 
-#ifdef CONFIG_MIPS32
+#ifndef __mips64
 
 /*
  * This is used to ensure we don't load something for the wrong architecture.
@@ -154,7 +154,7 @@ typedef elf_fpreg_t elf_fpregset_t[ELF_NFPREG];
 
 #endif /* CONFIG_MIPS32 */
 
-#ifdef CONFIG_MIPS64
+#ifdef __mips64
 /*
  * This is used to ensure we don't load something for the wrong architecture.
  */

@@ -95,7 +95,7 @@ struct sigcontext32 {
 	int		signal;
 	unsigned int	handler;
 	unsigned int	oldmask;
-	u32 regs;  /* 4 byte pointer to the pt_regs32 structure. */
+	__u32 regs;  /* 4 byte pointer to the pt_regs32 structure. */
 };
 
 struct mcontext32 {
@@ -110,7 +110,7 @@ struct ucontext32 {
 	unsigned int 	  	uc_link;
 	stack_32_t	 	uc_stack;
 	int		 	uc_pad[7];
-	u32			uc_regs;	/* points to uc_mcontext field */
+	__u32			uc_regs;	/* points to uc_mcontext field */
 	compat_sigset_t	 	uc_sigmask;	/* mask last for extensibility */
 	/* glibc has 1024-bit signal masks, ours are 64-bit */
 	int		 	uc_maskext[30];

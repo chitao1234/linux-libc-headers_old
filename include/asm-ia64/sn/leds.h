@@ -23,7 +23,7 @@
  */
 
 static __inline__ void
-set_led_bits(u8 value, u8 mask)
+set_led_bits(__u8 value, __u8 mask)
 {
 	pda->led_state = (pda->led_state & ~mask) | (value & mask);
 	*pda->led_address = (short) pda->led_state;

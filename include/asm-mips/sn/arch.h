@@ -17,8 +17,8 @@
 #include <asm/sn/sn0/arch.h>
 #endif
 
-typedef u64	hubreg_t;
-typedef u64	nic_t;
+typedef __u64	hubreg_t;
+typedef __u64	nic_t;
 
 #define cputonasid(cpu)			(cpu_data[(cpu)].p_nasid)
 #define cputoslice(cpu)			(cpu_data[(cpu)].p_slice)

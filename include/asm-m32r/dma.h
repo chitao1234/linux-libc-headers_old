@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_DMA_H
 #define _ASM_M32R_DMA_H
 
-/* $Id: dma.h,v 1.1 2004/10/21 15:15:37 mmazur Exp $ */
+/* $Id$ */
 
 #include <asm/io.h>
 

@@ -145,13 +145,13 @@ extern void nile4_map_irq_all(int cpu_irq);
 extern void nile4_enable_irq(int nile4_irq);
 extern void nile4_disable_irq(int nile4_irq);
 extern void nile4_disable_irq_all(void);
-extern u16 nile4_get_irq_stat(int cpu_irq);
+extern __u16 nile4_get_irq_stat(int cpu_irq);
 extern void nile4_enable_irq_output(int cpu_irq);
 extern void nile4_disable_irq_output(int cpu_irq);
 extern void nile4_set_pci_irq_polarity(int pci_irq, int high);
 extern void nile4_set_pci_irq_level_or_edge(int pci_irq, int level);
 extern void nile4_clear_irq(int nile4_irq);
-extern void nile4_clear_irq_mask(u32 mask);
-extern u8 nile4_i8259_iack(void);
+extern void nile4_clear_irq_mask(__u32 mask);
+extern __u8 nile4_i8259_iack(void);
 extern void nile4_dump_irq_status(void);        /* Debug */
 #endif /* !__ASSEMBLY__ */

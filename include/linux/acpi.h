@@ -51,49 +51,49 @@ extern enum acpi_irq_model_id	acpi_irq_model;
 
 struct acpi_table_rsdp {
 	char			signature[8];
-	u8			checksum;
+	__u8			checksum;
 	char			oem_id[6];
-	u8			revision;
-	u32			rsdt_address;
+	__u8			revision;
+	__u32			rsdt_address;
 } __attribute__ ((packed));
 
 struct acpi20_table_rsdp {
 	char			signature[8];
-	u8			checksum;
+	__u8			checksum;
 	char			oem_id[6];
-	u8			revision;
-	u32			rsdt_address;
-	u32			length;
-	u64			xsdt_address;
-	u8			ext_checksum;
-	u8			reserved[3];
+	__u8			revision;
+	__u32			rsdt_address;
+	__u32			length;
+	__u64			xsdt_address;
+	__u8			ext_checksum;
+	__u8			reserved[3];
 } __attribute__ ((packed));
 
 typedef struct {
-	u8			type;
-	u8			length;
+	__u8			type;
+	__u8			length;
 } __attribute__ ((packed)) acpi_table_entry_header;
 
 /* Root System Description Table (RSDT) */
 
 struct acpi_table_rsdt {
 	struct acpi_table_header header;
-	u32			entry[8];
+	__u32			entry[8];
 } __attribute__ ((packed));
 
 /* Extended System Description Table (XSDT) */
 
 struct acpi_table_xsdt {
 	struct acpi_table_header header;
-	u64			entry[1];
+	__u64			entry[1];
 } __attribute__ ((packed));
 
 /* Fixed ACPI Description Table (FADT) */
 
 struct acpi_table_fadt {
 	struct acpi_table_header header;
-	u32 facs_addr;
-	u32 dsdt_addr;
+	__u32 facs_addr;
+	__u32 dsdt_addr;
 	/* ... */
 } __attribute__ ((packed));
 
@@ -101,10 +101,10 @@ struct acpi_table_fadt {
 
 struct acpi_table_madt {
 	struct acpi_table_header header;
-	u32			lapic_address;
+	__u32			lapic_address;
 	struct {
-		u32			pcat_compat:1;
-		u32			reserved:31;
+		__u32			pcat_compat:1;
+		__u32			reserved:31;
 	}			flags;
 } __attribute__ ((packed));
 
@@ -122,85 +122,85 @@ enum acpi_madt_entry_id {
 };
 
 typedef struct {
-	u16			polarity:2;
-	u16			trigger:2;
-	u16			reserved:12;
+	__u16			polarity:2;
+	__u16			trigger:2;
+	__u16			reserved:12;
 } __attribute__ ((packed)) acpi_interrupt_flags;
 
 struct acpi_table_lapic {
 	acpi_table_entry_header	header;
-	u8			acpi_id;
-	u8			id;
+	__u8			acpi_id;
+	__u8			id;
 	struct {
-		u32			enabled:1;
-		u32			reserved:31;
+		__u32			enabled:1;
+		__u32			reserved:31;
 	}			flags;
 } __attribute__ ((packed));
 
 struct acpi_table_ioapic {
 	acpi_table_entry_header	header;
-	u8			id;
-	u8			reserved;
-	u32			address;
-	u32			global_irq_base;
+	__u8			id;
+	__u8			reserved;
+	__u32			address;
+	__u32			global_irq_base;
 } __attribute__ ((packed));
 
 struct acpi_table_int_src_ovr {
 	acpi_table_entry_header	header;
-	u8			bus;
-	u8			bus_irq;
-	u32			global_irq;
+	__u8			bus;
+	__u8			bus_irq;
+	__u32			global_irq;
 	acpi_interrupt_flags	flags;
 } __attribute__ ((packed));
 
 struct acpi_table_nmi_src {
 	acpi_table_entry_header	header;
 	acpi_interrupt_flags	flags;
-	u32			global_irq;
+	__u32			global_irq;
 } __attribute__ ((packed));
 
 struct acpi_table_lapic_nmi {
 	acpi_table_entry_header	header;
-	u8			acpi_id;
+	__u8			acpi_id;
 	acpi_interrupt_flags	flags;
-	u8			lint;
+	__u8			lint;
 } __attribute__ ((packed));
 
 struct acpi_table_lapic_addr_ovr {
 	acpi_table_entry_header	header;
-	u8			reserved[2];
-	u64			address;
+	__u8			reserved[2];
+	__u64			address;
 } __attribute__ ((packed));
 
 struct acpi_table_iosapic {
 	acpi_table_entry_header	header;
-	u8			id;
-	u8			reserved;
-	u32			global_irq_base;
-	u64			address;
+	__u8			id;
+	__u8			reserved;
+	__u32			global_irq_base;
+	__u64			address;
 } __attribute__ ((packed));
 
 struct acpi_table_lsapic {
 	acpi_table_entry_header	header;
-	u8			acpi_id;
-	u8			id;
-	u8			eid;
-	u8			reserved[3];
+	__u8			acpi_id;
+	__u8			id;
+	__u8			eid;
+	__u8			reserved[3];
 	struct {
-		u32			enabled:1;
-		u32			reserved:31;
+		__u32			enabled:1;
+		__u32			reserved:31;
 	}			flags;
 } __attribute__ ((packed));
 
 struct acpi_table_plat_int_src {
 	acpi_table_entry_header	header;
 	acpi_interrupt_flags	flags;
-	u8			type;	/* See acpi_interrupt_type */
-	u8			id;
-	u8			eid;
-	u8			iosapic_vector;
-	u32			global_irq;
-	u32			reserved;
+	__u8			type;	/* See acpi_interrupt_type */
+	__u8			id;
+	__u8			eid;
+	__u8			iosapic_vector;
+	__u32			global_irq;
+	__u32			reserved;
 } __attribute__ ((packed));
 
 enum acpi_interrupt_id {
@@ -213,21 +213,21 @@ enum acpi_interrupt_id {
 #define	ACPI_SPACE_MEM		0
 
 struct acpi_gen_regaddr {
-	u8  space_id;
-	u8  bit_width;
-	u8  bit_offset;
-	u8  resv;
-	u32 addrl;
-	u32 addrh;
+	__u8  space_id;
+	__u8  bit_width;
+	__u8  bit_offset;
+	__u8  resv;
+	__u32 addrl;
+	__u32 addrh;
 } __attribute__ ((packed));
 
 struct acpi_table_hpet {
 	struct acpi_table_header header;
-	u32 id;
+	__u32 id;
 	struct acpi_gen_regaddr addr;
-	u8 number;
-	u16 min_tick;
-	u8 page_protect;
+	__u8 number;
+	__u16 min_tick;
+	__u8 page_protect;
 } __attribute__ ((packed));
 
 /*
@@ -236,17 +236,17 @@ struct acpi_table_hpet {
  */
 struct acpi_table_sbf
 {
-	u8 sbf_signature[4];
-	u32 sbf_len;
-	u8 sbf_revision;
-	u8 sbf_csum;
-	u8 sbf_oemid[6];
-	u8 sbf_oemtable[8];
-	u8 sbf_revdata[4];
-	u8 sbf_creator[4];
-	u8 sbf_crearev[4];
-	u8 sbf_cmos;
-	u8 sbf_spare[3];
+	__u8 sbf_signature[4];
+	__u32 sbf_len;
+	__u8 sbf_revision;
+	__u8 sbf_csum;
+	__u8 sbf_oemid[6];
+	__u8 sbf_oemtable[8];
+	__u8 sbf_revdata[4];
+	__u8 sbf_creator[4];
+	__u8 sbf_crearev[4];
+	__u8 sbf_cmos;
+	__u8 sbf_spare[3];
 } __attribute__ ((packed));
 
 /*
@@ -256,8 +256,8 @@ struct acpi_table_sbf
 
 struct acpi_table_srat {
 	struct acpi_table_header header;
-	u32			table_revision;
-	u64			reserved;
+	__u32			table_revision;
+	__u64			reserved;
 } __attribute__ ((packed));
 
 enum acpi_srat_entry_id {
@@ -268,31 +268,31 @@ enum acpi_srat_entry_id {
 
 struct acpi_table_processor_affinity {
 	acpi_table_entry_header	header;
-	u8			proximity_domain;
-	u8			apic_id;
+	__u8			proximity_domain;
+	__u8			apic_id;
 	struct {
-		u32			enabled:1;
-		u32			reserved:31;
+		__u32			enabled:1;
+		__u32			reserved:31;
 	}			flags;
-	u8			lsapic_eid;
-	u8			reserved[7];
+	__u8			lsapic_eid;
+	__u8			reserved[7];
 } __attribute__ ((packed));
 
 struct acpi_table_memory_affinity {
 	acpi_table_entry_header	header;
-	u8			proximity_domain;
-	u8			reserved1[5];
-	u32			base_addr_lo;
-	u32			base_addr_hi;
-	u32			length_lo;
-	u32			length_hi;
-	u32			memory_type;	/* See acpi_address_range_id */
+	__u8			proximity_domain;
+	__u8			reserved1[5];
+	__u32			base_addr_lo;
+	__u32			base_addr_hi;
+	__u32			length_lo;
+	__u32			length_hi;
+	__u32			memory_type;	/* See acpi_address_range_id */
 	struct {
-		u32			enabled:1;
-		u32			hot_pluggable:1;
-		u32			reserved:30;
+		__u32			enabled:1;
+		__u32			hot_pluggable:1;
+		__u32			reserved:30;
 	}			flags;
-	u64			reserved2;
+	__u64			reserved2;
 } __attribute__ ((packed));
 
 enum acpi_address_range_id {
@@ -310,17 +310,17 @@ enum acpi_address_range_id {
 
 struct acpi_table_slit {
 	struct acpi_table_header header;
-	u64			localities;
-	u8			entry[1];	/* real size = localities^2 */
+	__u64			localities;
+	__u8			entry[1];	/* real size = localities^2 */
 } __attribute__ ((packed));
 
 /* Smart Battery Description Table (SBST) */
 
 struct acpi_table_sbst {
 	struct acpi_table_header header;
-	u32			warning;	/* Warn user */
-	u32			low;		/* Critical sleep */
-	u32			critical;	/* Critical shutdown */
+	__u32			warning;	/* Warn user */
+	__u32			low;		/* Critical sleep */
+	__u32			critical;	/* Critical shutdown */
 } __attribute__ ((packed));
 
 /* Embedded Controller Boot Resources Table (ECDT) */
@@ -329,8 +329,8 @@ struct acpi_table_ecdt {
 	struct acpi_table_header 	header;
 	struct acpi_generic_address	ec_control;
 	struct acpi_generic_address	ec_data;
-	u32				uid;
-	u8				gpe_bit;
+	__u32				uid;
+	__u8				gpe_bit;
 	char				ec_id[0];
 } __attribute__ ((packed));
 
@@ -338,9 +338,9 @@ struct acpi_table_ecdt {
 
 struct acpi_table_mcfg {
 	struct acpi_table_header	header;
-	u8				reserved[8];
-	u32				base_address;
-	u32				base_reserved;
+	__u8				reserved[8];
+	__u32				base_address;
+	__u32				base_reserved;
 } __attribute__ ((packed));
 
 /* Table Handlers */
@@ -403,7 +403,7 @@ int acpi_unmap_lsapic(int cpu);
 
 extern int acpi_mp_config;
 
-extern u32 pci_mmcfg_base_addr;
+extern __u32 pci_mmcfg_base_addr;
 
 extern int sbf_port ;
 
@@ -423,8 +423,8 @@ static inline int acpi_boot_table_init(void)
 
 #endif 	/*!CONFIG_ACPI_BOOT*/
 
-unsigned int acpi_register_gsi (u32 gsi, int edge_level, int active_high_low);
-int acpi_gsi_to_irq (u32 gsi, unsigned int *irq);
+unsigned int acpi_register_gsi (__u32 gsi, int edge_level, int active_high_low);
+int acpi_gsi_to_irq (__u32 gsi, unsigned int *irq);
 
 /*
  * This function undoes the effect of one call to acpi_register_gsi().
@@ -432,7 +432,7 @@ int acpi_gsi_to_irq (u32 gsi, unsigned int *irq);
  * are freed.
  */
 #ifdef CONFIG_ACPI_DEALLOCATE_IRQ
-void acpi_unregister_gsi (u32 gsi);
+void acpi_unregister_gsi (__u32 gsi);
 #endif
 
 #ifdef CONFIG_ACPI_PCI
@@ -440,12 +440,12 @@ void acpi_unregister_gsi (u32 gsi);
 struct acpi_prt_entry {
 	struct list_head	node;
 	struct acpi_pci_id	id;
-	u8			pin;
+	__u8			pin;
 	struct {
 		acpi_handle		handle;
-		u32			index;
+		__u32			index;
 	}			link;
-	u32			irq;
+	__u32			irq;
 };
 
 struct acpi_prt_list {
@@ -477,8 +477,8 @@ void acpi_pci_unregister_driver(struct acpi_pci_driver *driver);
 
 #ifdef CONFIG_ACPI_EC
 
-extern int ec_read(u8 addr, u8 *val);
-extern int ec_write(u8 addr, u8 val);
+extern int ec_read(__u8 addr, __u8 *val);
+extern int ec_write(__u8 addr, __u8 val);
 
 #endif /*CONFIG_ACPI_EC*/
 

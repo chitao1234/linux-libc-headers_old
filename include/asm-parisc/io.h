@@ -80,7 +80,7 @@ static inline unsigned short gsc_readw(unsigned long addr)
 
 static inline unsigned int gsc_readl(unsigned long addr)
 {
-	u32 ret;
+	__u32 ret;
 
 	gsc_check_addr(addr);
 
@@ -102,7 +102,7 @@ static inline unsigned long long gsc_readq(unsigned long addr)
 	:  "=r" (ret) : "r" (addr) );
 #else
 	/* two reads may have side effects.. */
-	ret = ((u64) gsc_readl(addr)) << 32;
+	ret = ((__u64) gsc_readl(addr)) << 32;
 	ret |= gsc_readl(addr+4);
 #endif
 	return ret;

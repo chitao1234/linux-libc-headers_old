@@ -28,9 +28,9 @@
 
 #ifndef __ASSEMBLY__
 struct e820entry {
-	u64 addr;	/* start of memory segment */
-	u64 size;	/* size of memory segment */
-	u32 type;	/* type of memory segment */
+	__u64 addr;	/* start of memory segment */
+	__u64 size;	/* size of memory segment */
+	__u32 type;	/* type of memory segment */
 } __attribute__((packed));
 
 struct e820map {

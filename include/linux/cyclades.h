@@ -1,4 +1,4 @@
-/* $Revision: 1.5 $$Date: 2004/10/24 16:29:31 $
+/* $Revision: 1.5 $$Date$
  * linux/include/linux/cyclades.h
  *
  * This file was initially written by

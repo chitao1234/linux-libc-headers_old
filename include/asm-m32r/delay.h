@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_DELAY_H
 #define _ASM_M32R_DELAY_H
 
-/* $Id: delay.h,v 1.1 2004/10/21 15:15:37 mmazur Exp $ */
+/* $Id$ */
 
 /*
  * Copyright (C) 1993 Linus Torvalds

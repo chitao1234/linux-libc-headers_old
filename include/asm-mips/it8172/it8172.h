@@ -336,13 +336,13 @@
 #define TIMER_TIDR				0x0E
 
 
-#define IT_WRITE(ofs, data) *(volatile u32 *)KSEG1ADDR((IT8172_BASE+ofs)) = data
-#define IT_READ(ofs, data)  data = *(volatile u32 *)KSEG1ADDR((IT8172_BASE+ofs))
+#define IT_WRITE(ofs, data) *(volatile __u32 *)KSEG1ADDR((IT8172_BASE+ofs)) = data
+#define IT_READ(ofs, data)  data = *(volatile __u32 *)KSEG1ADDR((IT8172_BASE+ofs))
 
-#define IT_IO_WRITE(ofs, data) *(volatile u32 *)KSEG1ADDR((IT8172_PCI_IO_BASE+ofs)) = data
-#define IT_IO_READ(ofs, data)  data = *(volatile u32 *)KSEG1ADDR((IT8172_PCI_IO_BASE+ofs))
+#define IT_IO_WRITE(ofs, data) *(volatile __u32 *)KSEG1ADDR((IT8172_PCI_IO_BASE+ofs)) = data
+#define IT_IO_READ(ofs, data)  data = *(volatile __u32 *)KSEG1ADDR((IT8172_PCI_IO_BASE+ofs))
 
-#define IT_IO_WRITE16(ofs, data) *(volatile u16 *)KSEG1ADDR((IT8172_PCI_IO_BASE+ofs)) = data
-#define IT_IO_READ16(ofs, data)  data = *(volatile u16 *)KSEG1ADDR((IT8172_PCI_IO_BASE+ofs))
+#define IT_IO_WRITE16(ofs, data) *(volatile __u16 *)KSEG1ADDR((IT8172_PCI_IO_BASE+ofs)) = data
+#define IT_IO_READ16(ofs, data)  data = *(volatile __u16 *)KSEG1ADDR((IT8172_PCI_IO_BASE+ofs))
 
 #endif

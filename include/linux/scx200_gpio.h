@@ -1,5 +1,5 @@
 
-u32 scx200_gpio_configure(int index, u32 set, u32 clear);
+__u32 scx200_gpio_configure(int index, __u32 set, __u32 clear);
 void scx200_gpio_dump(unsigned index);
 
 extern unsigned scx200_gpio_base;

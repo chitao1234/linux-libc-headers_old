@@ -74,7 +74,7 @@
 #define MIPS_REVISION_CORID_CORE_EMUL_BON  0x63
 #define MIPS_REVISION_CORID_CORE_EMUL_MSC  0x65
 
-#define MIPS_REVISION_CORID (((*(volatile u32 *)ioremap(MIPS_REVISION_REG, 4)) >> 10) & 0x3f)
+#define MIPS_REVISION_CORID (((*(volatile __u32 *)ioremap(MIPS_REVISION_REG, 4)) >> 10) & 0x3f)
 
 extern unsigned int mips_revision_corid;
 

@@ -22,7 +22,7 @@
 
 #include <asm/mmzone.h>
 
-extern u8 cpu_to_node_map[NR_CPUS] __cacheline_aligned;
+extern __u8 cpu_to_node_map[NR_CPUS] __cacheline_aligned;
 extern cpumask_t node_to_cpu_mask[MAX_NUMNODES] __cacheline_aligned;
 
 /* Stuff below this line could be architecture independent */
@@ -42,7 +42,7 @@ struct node_memblk_s {
 };
 
 struct node_cpuid_s {
-	u16	phys_id;	/* id << 8 | eid */
+	__u16	phys_id;	/* id << 8 | eid */
 	int	nid;		/* logical node containing this CPU */
 };
 
@@ -57,7 +57,7 @@ extern struct node_cpuid_s node_cpuid[NR_CPUS];
  * proportional to the memory access latency ratios.
  */
 
-extern u8 numa_slit[MAX_NUMNODES * MAX_NUMNODES];
+extern __u8 numa_slit[MAX_NUMNODES * MAX_NUMNODES];
 #define node_distance(from,to) (numa_slit[(from) * num_online_nodes() + (to)])
 
 extern int paddr_to_nid(unsigned long paddr);

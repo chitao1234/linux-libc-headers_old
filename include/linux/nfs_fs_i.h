@@ -10,8 +10,8 @@ struct nlm_lockowner;
  * NFS lock info
  */
 struct nfs_lock_info {
-	u32		state;
-	u32		flags;
+	__u32		state;
+	__u32		flags;
 	struct nlm_lockowner *owner;
 };
 

@@ -23,12 +23,12 @@
 #include <asm/io.h>
 
 struct vcr_info {
-	u8	perr_flags;	/* P-port Error flags */
-	u8	merr_flags;	/* Module Error flags */
-	u16	mod_vers;	/* Module Version */
-	u16	mod_id;		/* Module ID */
-	u8	bot_mb;		/* Bottom Memory block */
-	u8	top_mb;		/* Top Memory block */
+	__u8	perr_flags;	/* P-port Error flags */
+	__u8	merr_flags;	/* Module Error flags */
+	__u16	mod_vers;	/* Module Version */
+	__u16	mod_id;		/* Module ID */
+	__u8	bot_mb;		/* Bottom Memory block */
+	__u8	top_mb;		/* Top Memory block */
 };
 
 static inline struct vcr_info sh64_get_vcr_info(unsigned long base)

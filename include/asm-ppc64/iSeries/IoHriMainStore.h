@@ -22,48 +22,48 @@
 
 /* Main Store Vpd for Condor,iStar,sStar */
 struct IoHriMainStoreSegment4 {    
-	u8	msArea0Exists:1;
-	u8	msArea1Exists:1;
-	u8	msArea2Exists:1;
-	u8	msArea3Exists:1;
-	u8	reserved1:4;
-	u8	reserved2;
+	__u8	msArea0Exists:1;
+	__u8	msArea1Exists:1;
+	__u8	msArea2Exists:1;
+	__u8	msArea3Exists:1;
+	__u8	reserved1:4;
+	__u8	reserved2;
 
-	u8	msArea0Functional:1;
-	u8	msArea1Functional:1;
-	u8	msArea2Functional:1;
-	u8	msArea3Functional:1;
-	u8	reserved3:4;
-	u8	reserved4;
+	__u8	msArea0Functional:1;
+	__u8	msArea1Functional:1;
+	__u8	msArea2Functional:1;
+	__u8	msArea3Functional:1;
+	__u8	reserved3:4;
+	__u8	reserved4;
 
-	u32	totalMainStore;
+	__u32	totalMainStore;
 
-	u64	msArea0Ptr;
-	u64	msArea1Ptr;
-	u64	msArea2Ptr;
-	u64	msArea3Ptr;
+	__u64	msArea0Ptr;
+	__u64	msArea1Ptr;
+	__u64	msArea2Ptr;
+	__u64	msArea3Ptr;
 
-	u32	cardProductionLevel;
+	__u32	cardProductionLevel;
 
-	u32	msAdrHole;
+	__u32	msAdrHole;
 
-	u8	msArea0HasRiserVpd:1;
-	u8	msArea1HasRiserVpd:1;
-	u8	msArea2HasRiserVpd:1;
-	u8	msArea3HasRiserVpd:1;
-	u8	reserved5:4;	
-	u8	reserved6;
-	u16	reserved7;
+	__u8	msArea0HasRiserVpd:1;
+	__u8	msArea1HasRiserVpd:1;
+	__u8	msArea2HasRiserVpd:1;
+	__u8	msArea3HasRiserVpd:1;
+	__u8	reserved5:4;	
+	__u8	reserved6;
+	__u16	reserved7;
 
-	u8	reserved8[28];
+	__u8	reserved8[28];
 
-	u64	nonInterleavedBlocksStartAdr;
-	u64	nonInterleavedBlocksEndAdr;
+	__u64	nonInterleavedBlocksStartAdr;
+	__u64	nonInterleavedBlocksEndAdr;
 };
 
 /* Main Store VPD for Power4 */
 struct IoHriMainStoreChipInfo1 {
-	u32	chipMfgID	__attribute((packed));
+	__u32	chipMfgID	__attribute((packed));
 	char	chipECLevel[4]	__attribute((packed));
 };
 
@@ -76,32 +76,32 @@ struct IoHriMainStoreVpdIdData {
 
 struct IoHriMainStoreVpdFruData {
 	char	fruLabel[8]	__attribute((packed));
-	u8	numberOfSlots	__attribute((packed));
-	u8	pluggingType	__attribute((packed));
-	u16	slotMapIndex	__attribute((packed));
+	__u8	numberOfSlots	__attribute((packed));
+	__u8	pluggingType	__attribute((packed));
+	__u16	slotMapIndex	__attribute((packed));
 };
 
 struct IoHriMainStoreAdrRangeBlock {
 	void *	blockStart      __attribute((packed));
 	void *	blockEnd        __attribute((packed));
-	u32	blockProcChipId __attribute((packed));
+	__u32	blockProcChipId __attribute((packed));
 };
 
 #define MaxAreaAdrRangeBlocks 4
 
 struct IoHriMainStoreArea4 {
-	u32	msVpdFormat			__attribute((packed));
-	u8	containedVpdType		__attribute((packed));
-	u8	reserved1			__attribute((packed));
-	u16	reserved2			__attribute((packed));
+	__u32	msVpdFormat			__attribute((packed));
+	__u8	containedVpdType		__attribute((packed));
+	__u8	reserved1			__attribute((packed));
+	__u16	reserved2			__attribute((packed));
 
-	u64	msExists			__attribute((packed));
-	u64	msFunctional			__attribute((packed));
+	__u64	msExists			__attribute((packed));
+	__u64	msFunctional			__attribute((packed));
 
-	u32	memorySize			__attribute((packed));
-	u32	procNodeId			__attribute((packed));
+	__u32	memorySize			__attribute((packed));
+	__u32	procNodeId			__attribute((packed));
 
-	u32	numAdrRangeBlocks		__attribute((packed));
+	__u32	numAdrRangeBlocks		__attribute((packed));
 	struct IoHriMainStoreAdrRangeBlock xAdrRangeBlock[MaxAreaAdrRangeBlocks] __attribute((packed));
 
 	struct IoHriMainStoreChipInfo1	chipInfo0	__attribute((packed));
@@ -114,51 +114,51 @@ struct IoHriMainStoreArea4 {
 	struct IoHriMainStoreChipInfo1	chipInfo7	__attribute((packed));
 
 	void *   msRamAreaArray			__attribute((packed));
-	u32	msRamAreaArrayNumEntries	__attribute((packed));
-	u32	msRamAreaArrayEntrySize		__attribute((packed));
+	__u32	msRamAreaArrayNumEntries	__attribute((packed));
+	__u32	msRamAreaArrayEntrySize		__attribute((packed));
 
-	u32	numaDimmExists			__attribute((packed));
-	u32	numaDimmFunctional		__attribute((packed));
+	__u32	numaDimmExists			__attribute((packed));
+	__u32	numaDimmFunctional		__attribute((packed));
 	void *	numaDimmArray			__attribute((packed));
-	u32	numaDimmArrayNumEntries		__attribute((packed));
-	u32	numaDimmArrayEntrySize		__attribute((packed));
+	__u32	numaDimmArrayNumEntries		__attribute((packed));
+	__u32	numaDimmArrayEntrySize		__attribute((packed));
 
 	struct IoHriMainStoreVpdIdData  idData	__attribute((packed));
 
-	u64	powerData			__attribute((packed));
-	u64	cardAssemblyPartNum		__attribute((packed));
-	u64	chipSerialNum			__attribute((packed));
+	__u64	powerData			__attribute((packed));
+	__u64	cardAssemblyPartNum		__attribute((packed));
+	__u64	chipSerialNum			__attribute((packed));
 
-	u64	reserved3			__attribute((packed));
+	__u64	reserved3			__attribute((packed));
 	char	reserved4[16]			__attribute((packed));
 
 	struct IoHriMainStoreVpdFruData fruData	__attribute((packed));
 
-	u8	vpdPortNum			__attribute((packed));
-	u8	reserved5			__attribute((packed));
-	u8	frameId				__attribute((packed));
-	u8	rackUnit			__attribute((packed));
+	__u8	vpdPortNum			__attribute((packed));
+	__u8	reserved5			__attribute((packed));
+	__u8	frameId				__attribute((packed));
+	__u8	rackUnit			__attribute((packed));
 	char	asciiKeywordVpd[256]		__attribute((packed));
-	u32	reserved6			__attribute((packed));
+	__u32	reserved6			__attribute((packed));
 };
 
 
 struct IoHriMainStoreSegment5 {    
-	u16	reserved1;
-	u8	reserved2;
-	u8	msVpdFormat;
+	__u16	reserved1;
+	__u8	reserved2;
+	__u8	msVpdFormat;
 
-	u32	totalMainStore;
-	u64	maxConfiguredMsAdr;
+	__u32	totalMainStore;
+	__u64	maxConfiguredMsAdr;
 
 	struct IoHriMainStoreArea4*	msAreaArray;
-	u32	msAreaArrayNumEntries;
-	u32	msAreaArrayEntrySize;
+	__u32	msAreaArrayNumEntries;
+	__u32	msAreaArrayEntrySize;
 
-	u32	msAreaExists;    
-	u32	msAreaFunctional;
+	__u32	msAreaExists;    
+	__u32	msAreaFunctional;
 
-	u64	reserved3;
+	__u64	reserved3;
 };
 
 

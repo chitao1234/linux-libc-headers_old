@@ -70,29 +70,29 @@ extern int i2c_slave_recv(struct i2c_client *,char*,int);
    and probably just as fast. 
    Note that we use i2c_adapter here, because you do not need a specific
    smbus adapter to call this function. */
-extern s32 i2c_smbus_xfer (struct i2c_adapter * adapter, u16 addr, 
+extern __s32 i2c_smbus_xfer (struct i2c_adapter * adapter, __u16 addr, 
                            unsigned short flags,
-                           char read_write, u8 command, int size,
+                           char read_write, __u8 command, int size,
                            union i2c_smbus_data * data);
 
 /* Now follow the 'nice' access routines. These also document the calling
    conventions of smbus_access. */
 
-extern s32 i2c_smbus_write_quick(struct i2c_client * client, u8 value);
-extern s32 i2c_smbus_read_byte(struct i2c_client * client);
-extern s32 i2c_smbus_write_byte(struct i2c_client * client, u8 value);
-extern s32 i2c_smbus_read_byte_data(struct i2c_client * client, u8 command);
-extern s32 i2c_smbus_write_byte_data(struct i2c_client * client,
-                                     u8 command, u8 value);
-extern s32 i2c_smbus_read_word_data(struct i2c_client * client, u8 command);
-extern s32 i2c_smbus_write_word_data(struct i2c_client * client,
-                                     u8 command, u16 value);
+extern __s32 i2c_smbus_write_quick(struct i2c_client * client, __u8 value);
+extern __s32 i2c_smbus_read_byte(struct i2c_client * client);
+extern __s32 i2c_smbus_write_byte(struct i2c_client * client, __u8 value);
+extern __s32 i2c_smbus_read_byte_data(struct i2c_client * client, __u8 command);
+extern __s32 i2c_smbus_write_byte_data(struct i2c_client * client,
+                                     __u8 command, __u8 value);
+extern __s32 i2c_smbus_read_word_data(struct i2c_client * client, __u8 command);
+extern __s32 i2c_smbus_write_word_data(struct i2c_client * client,
+                                     __u8 command, __u16 value);
 /* Returns the number of bytes transferred */
-extern s32 i2c_smbus_write_block_data(struct i2c_client * client,
-				      u8 command, u8 length,
-				      u8 *values);
-extern s32 i2c_smbus_read_i2c_block_data(struct i2c_client * client,
-					 u8 command, u8 *values);
+extern __s32 i2c_smbus_write_block_data(struct i2c_client * client,
+				      __u8 command, __u8 length,
+				      __u8 *values);
+extern __s32 i2c_smbus_read_i2c_block_data(struct i2c_client * client,
+					 __u8 command, __u8 *values);
 
 /*
  * A driver is capable of handling one or more physical devices present on
@@ -195,9 +195,9 @@ struct i2c_algorithm {
 	   using common I2C messages */
 	int (*master_xfer)(struct i2c_adapter *adap,struct i2c_msg msgs[], 
 	                   int num);
-	int (*smbus_xfer) (struct i2c_adapter *adap, u16 addr, 
+	int (*smbus_xfer) (struct i2c_adapter *adap, __u16 addr, 
 	                   unsigned short flags, char read_write,
-	                   u8 command, int size, union i2c_smbus_data * data);
+	                   __u8 command, int size, union i2c_smbus_data * data);
 
 	/* --- these optional/future use for some adapter types.*/
 	int (*slave_send)(struct i2c_adapter *,char*,int);
@@ -207,7 +207,7 @@ struct i2c_algorithm {
 	int (*algo_control)(struct i2c_adapter *, unsigned int, unsigned long);
 
 	/* To determine what the adapter supports */
-	u32 (*functionality) (struct i2c_adapter *);
+	__u32 (*functionality) (struct i2c_adapter *);
 };
 
 /*
@@ -373,10 +373,10 @@ extern void i2c_put_adapter(struct i2c_adapter *adap);
 
 
 /* Return the functionality mask */
-extern u32 i2c_get_functionality (struct i2c_adapter *adap);
+extern __u32 i2c_get_functionality (struct i2c_adapter *adap);
 
 /* Return 1 if adapter supports everything we need, 0 if not. */
-extern int i2c_check_functionality (struct i2c_adapter *adap, u32 func);
+extern int i2c_check_functionality (struct i2c_adapter *adap, __u32 func);
 
 /*
  * I2C Message - used for pure i2c transaction, also from /dev interface

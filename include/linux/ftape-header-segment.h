@@ -21,7 +21,7 @@
  *
  * $Source: /cvsroot/linux-libc-headers/include/linux/ftape-header-segment.h,v $
  * $Revision: 1.1 $
- * $Date: 2003/12/15 18:46:58 $
+ * $Date$
  *
  *      This file defines some offsets into the header segment of a
  *      floppy tape cartridge.  For use with the QIC-40/80/3010/3020

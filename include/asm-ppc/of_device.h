@@ -18,7 +18,7 @@ extern struct bus_type of_platform_bus_type;
 struct of_device
 {
 	struct device_node	*node;		/* OF device node */
-	u64			dma_mask;	/* DMA mask */
+	__u64			dma_mask;	/* DMA mask */
 	struct device		dev;		/* Generic device interface */
 };
 #define	to_of_device(d) container_of(d, struct of_device, dev)
@@ -54,7 +54,7 @@ struct of_platform_driver
 	int	(*probe)(struct of_device* dev, const struct of_match *match);
 	int	(*remove)(struct of_device* dev);
 
-	int	(*suspend)(struct of_device* dev, u32 state);
+	int	(*suspend)(struct of_device* dev, __u32 state);
 	int	(*resume)(struct of_device* dev);
 	int	(*shutdown)(struct of_device* dev);
 

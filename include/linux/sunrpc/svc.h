@@ -75,28 +75,28 @@ struct svc_serv {
  */
 #define RPCSVC_MAXPAGES		((RPCSVC_MAXPAYLOAD+PAGE_SIZE-1)/PAGE_SIZE + 2)
 
-static inline u32 svc_getu32(struct kvec *iov)
+static inline __u32 svc_getu32(struct kvec *iov)
 {
-	u32 val, *vp;
+	__u32 val, *vp;
 	vp = iov->iov_base;
 	val = *vp++;
 	iov->iov_base = (void*)vp;
-	iov->iov_len -= sizeof(u32);
+	iov->iov_len -= sizeof(__u32);
 	return val;
 }
 
 static inline void svc_ungetu32(struct kvec *iov)
 {
-	u32 *vp = (u32 *)iov->iov_base;
+	__u32 *vp = (__u32 *)iov->iov_base;
 	iov->iov_base = (void *)(vp - 1);
 	iov->iov_len += sizeof(*vp);
 }
 
-static inline void svc_putu32(struct kvec *iov, u32 val)
+static inline void svc_putu32(struct kvec *iov, __u32 val)
 {
-	u32 *vp = iov->iov_base + iov->iov_len;
+	__u32 *vp = iov->iov_base + iov->iov_len;
 	*vp = val;
-	iov->iov_len += sizeof(u32);
+	iov->iov_len += sizeof(__u32);
 }
 
 	
@@ -127,11 +127,11 @@ struct svc_rqst {
 	short			rq_arghi;	/* pages available in argument page list */
 	short			rq_resused;	/* pages used for result */
 
-	u32			rq_xid;		/* transmission id */
-	u32			rq_prog;	/* program number */
-	u32			rq_vers;	/* program version */
-	u32			rq_proc;	/* procedure number */
-	u32			rq_prot;	/* IP protocol */
+	__u32			rq_xid;		/* transmission id */
+	__u32			rq_prog;	/* program number */
+	__u32			rq_vers;	/* program version */
+	__u32			rq_proc;	/* procedure number */
+	__u32			rq_prot;	/* IP protocol */
 	unsigned short
 				rq_secure  : 1;	/* secure port */
 
@@ -164,7 +164,7 @@ struct svc_rqst {
  * Check buffer bounds after decoding arguments
  */
 static inline int
-xdr_argsize_check(struct svc_rqst *rqstp, u32 *p)
+xdr_argsize_check(struct svc_rqst *rqstp, __u32 *p)
 {
 	char *cp = (char *)p;
 	struct kvec *vec = &rqstp->rq_arg.head[0];
@@ -172,7 +172,7 @@ xdr_argsize_check(struct svc_rqst *rqstp, u32 *p)
 }
 
 static inline int
-xdr_ressize_check(struct svc_rqst *rqstp, u32 *p)
+xdr_ressize_check(struct svc_rqst *rqstp, __u32 *p)
 {
 	struct kvec *vec = &rqstp->rq_res.head[0];
 	char *cp = (char*)p;
@@ -228,19 +228,19 @@ static inline void svc_free_allpages(struct svc_rqst *rqstp)
 }
 
 struct svc_deferred_req {
-	u32			prot;	/* protocol (UDP or TCP) */
+	__u32			prot;	/* protocol (UDP or TCP) */
 	struct sockaddr_in	addr;
 	struct svc_sock		*svsk;	/* where reply must go */
 	struct cache_deferred_req handle;
 	int			argslen;
-	u32			args[0];
+	__u32			args[0];
 };
 
 /*
  * RPC program
  */
 struct svc_program {
-	u32			pg_prog;	/* program number */
+	__u32			pg_prog;	/* program number */
 	unsigned int		pg_lovers;	/* lowest version */
 	unsigned int		pg_hivers;	/* lowest version */
 	unsigned int		pg_nvers;	/* number of versions */
@@ -249,23 +249,23 @@ struct svc_program {
 	char *			pg_class;	/* class name: services sharing authentication */
 	struct svc_stat *	pg_stats;	/* rpc statistics */
 	/* Override authentication. NULL means use default */
-	int			(*pg_authenticate)(struct svc_rqst *, u32 *);
+	int			(*pg_authenticate)(struct svc_rqst *, __u32 *);
 };
 
 /*
  * RPC program version
  */
 struct svc_version {
-	u32			vs_vers;	/* version number */
-	u32			vs_nproc;	/* number of procedures */
+	__u32			vs_vers;	/* version number */
+	__u32			vs_nproc;	/* number of procedures */
 	struct svc_procedure *	vs_proc;	/* per-procedure info */
-	u32			vs_xdrsize;	/* xdrsize needed for this version */
+	__u32			vs_xdrsize;	/* xdrsize needed for this version */
 
 	/* Override dispatch function (e.g. when caching replies).
 	 * A return value of 0 means drop the request. 
 	 * vs_dispatch == NULL means use default dispatcher.
 	 */
-	int			(*vs_dispatch)(struct svc_rqst *, u32 *);
+	int			(*vs_dispatch)(struct svc_rqst *, __u32 *);
 };
 
 /*

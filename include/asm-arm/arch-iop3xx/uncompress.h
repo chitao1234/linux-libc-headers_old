@@ -9,7 +9,7 @@
 #ifdef CONFIG_ARCH_IOP321
 #define UTYPE unsigned char *
 #elif defined(CONFIG_ARCH_IOP331)
-#define UTYPE u32 *
+#define UTYPE __u32 *
 #else
 #error "Missing IOP3xx arch type def"
 #endif

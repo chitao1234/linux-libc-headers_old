@@ -172,9 +172,9 @@
 #ifndef __ASSEMBLY__
 
 typedef union hubii_wid_u {
-	u64	wid_reg_value;
+	__u64	wid_reg_value;
 	struct {
-		u64 	wid_rsvd: 	32,	/* unused */
+		__u64 	wid_rsvd: 	32,	/* unused */
                    	wid_rev_num:	 4,	/* revision number */
                    	wid_part_num:	16,	/* the widget type: hub=c101 */
                    	wid_mfg_num:	11,	/* Manufacturer id (IBM) */
@@ -184,9 +184,9 @@ typedef union hubii_wid_u {
 
 
 typedef union hubii_wcr_u {
-	u64	wcr_reg_value;
+	__u64	wcr_reg_value;
 	struct {
-		u64 	wcr_rsvd: 	41,	/* unused */
+		__u64 	wcr_rsvd: 	41,	/* unused */
                    	wcr_e_thresh:	 5,	/* elasticity threshold */
 			wcr_dir_con:	 1,	/* widget direct connect */
                    	wcr_f_bad_pkt:	 1,	/* Force bad llp pkt enable */
@@ -200,9 +200,9 @@ typedef union hubii_wcr_u {
 #define	iwcr_dir_con	wcr_fields_s.wcr_dir_con
 
 typedef union hubii_wstat_u {
-	u64      reg_value;
+	__u64      reg_value;
 	struct {
-		u64	rsvd1:		31,
+		__u64	rsvd1:		31,
 			crazy:		 1,	/* Crazy bit		*/
 			rsvd2:		 8,
 			llp_tx_cnt:	 8, 	/* LLP Xmit retry counter */
@@ -217,9 +217,9 @@ typedef union hubii_wstat_u {
 
 
 typedef union hubii_ilcsr_u {
-	u64	icsr_reg_value;
+	__u64	icsr_reg_value;
 	struct {
-		u64 	icsr_rsvd: 	22,	/* unused */
+		__u64 	icsr_rsvd: 	22,	/* unused */
                    	icsr_max_burst:	10,	/* max burst */
                         icsr_rsvd4:	 6,	/* reserved */
                    	icsr_max_retry:	10,	/* max retry */
@@ -237,9 +237,9 @@ typedef union hubii_ilcsr_u {
 
 
 typedef union hubii_iowa_u {
-	u64	iowa_reg_value;
+	__u64	iowa_reg_value;
 	struct {
-		u64 	iowa_rsvd: 	48,	/* unused */
+		__u64 	iowa_rsvd: 	48,	/* unused */
                        	iowa_wxoac:	 8,	/* xtalk widget access bits */
                    	iowa_rsvd1:	 7,	/* xtalk widget access bits */
                   	iowa_w0oac:	 1;	/* xtalk widget access bits */
@@ -247,9 +247,9 @@ typedef union hubii_iowa_u {
 } hubii_iowa_t;
 
 typedef union hubii_iiwa_u {
-	u64	iiwa_reg_value;
+	__u64	iiwa_reg_value;
 	struct {
-		u64 	iiwa_rsvd: 	48,	/* unused */
+		__u64 	iiwa_rsvd: 	48,	/* unused */
 			iiwa_wxiac:	 8,	/* hub wid access bits */
 			iiwa_rsvd1:	 7,	/* reserved */
 			iiwa_w0iac:	 1;	/* hub wid0 access */
@@ -257,9 +257,9 @@ typedef union hubii_iiwa_u {
 } hubii_iiwa_t;
 
 typedef union	hubii_illr_u {
-	u64	illr_reg_value;
+	__u64	illr_reg_value;
 	struct {
-		u64 	illr_rsvd: 	32,	/* unused */
+		__u64 	illr_rsvd: 	32,	/* unused */
 			illr_cb_cnt:	16,	/* checkbit error count */
                    	illr_sn_cnt:	16;	/* sequence number count */
         } illr_fields_s;
@@ -271,9 +271,9 @@ performance registers */
 /* io_perf_sel allows the caller to specify what tests will be
    performed */
 typedef union io_perf_sel {
-	u64 perf_sel_reg;
+	__u64 perf_sel_reg;
 	struct {
-		u64 	perf_rsvd  : 48,
+		__u64 	perf_rsvd  : 48,
 		        perf_icct  :  8,
 		        perf_ippr1 :  4,
   		        perf_ippr0 :  4;
@@ -284,9 +284,9 @@ typedef union io_perf_sel {
    hardware problems there is only one counter, not two. */
 
 typedef union io_perf_cnt {
-	u64	perf_cnt;
+	__u64	perf_cnt;
 	struct {
-		u64	perf_rsvd1 : 32,
+		__u64	perf_rsvd1 : 32,
   			        perf_rsvd2 : 12,
   			        perf_cnt   : 20;
 	} perf_cnt_bits;
@@ -442,9 +442,9 @@ typedef union io_perf_cnt {
  */
 #ifndef __ASSEMBLY__
 typedef union icrba_u {
-	u64	reg_value;
+	__u64	reg_value;
 	struct {
-		u64 	resvd: 	6,
+		__u64 	resvd: 	6,
 			stall_bte0: 1,	/* Stall BTE 0 */
 			stall_bte1: 1,	/* Stall BTE 1 */
 			error:	1,	/* CRB has an error	*/
@@ -464,10 +464,10 @@ typedef union icrba_u {
    runtime selection of the format based on the REV_ID field of the
    NI_STATUS_REV_ID register. */
 typedef union h1_icrba_u {
-	u64	reg_value;
+	__u64	reg_value;
 
 	struct {
-		u64 	resvd: 	6,
+		__u64 	resvd: 	6,
 			unused:	1,	/* Unused but RW!!	*/
 			error:	1,	/* CRB has an error	*/
 			ecode:	4,	/* Error Code 		*/
@@ -527,9 +527,9 @@ typedef union h1_icrba_u {
  */
 #ifndef __ASSEMBLY__
 typedef union icrbb_u {
-	u64	reg_value;
+	__u64	reg_value;
 	struct {
-	    u64	rsvd1:	5,
+	    __u64	rsvd1:	5,
 		btenum:	1,	/* BTE to which entry belongs to */
 		cohtrans: 1,	/* Coherent transaction	*/
 		xtsize:	2,	/* Xtalk operation size
@@ -569,9 +569,9 @@ typedef union icrbb_u {
    runtime selection of the format based on the REV_ID field of the
    NI_STATUS_REV_ID register. */
 typedef union h1_icrbb_u {
-	u64	reg_value;
+	__u64	reg_value;
 	struct {
-		u64	rsvd1:	5,
+		__u64	rsvd1:	5,
 			btenum:	1,	/* BTE to which entry belongs to */
 			cohtrans: 1,	/* Coherent transaction	*/
 			xtsize:	2,	/* Xtalk operation size
@@ -685,9 +685,9 @@ typedef union h1_icrbb_u {
 #ifndef __ASSEMBLY__
 
 typedef union icrbc_s {
-	u64	reg_value;
+	__u64	reg_value;
 	struct {
-		u64	rsvd:	6,
+		__u64	rsvd:	6,
 			sleep:	1,
 			pricnt: 4,	/* Priority count sent with Read req */
 			pripsc: 4,	/* Priority Pre scalar 	*/
@@ -722,9 +722,9 @@ typedef union icrbc_s {
 
 #ifndef __ASSEMBLY__
 typedef union icrbd_s {
-	u64	reg_value;
+	__u64	reg_value;
 	struct {
-	    u64	rsvd:	38,
+	    __u64	rsvd:	38,
 		toutvld: 1,	/* Timeout in progress for this CRB */
 		ctxtvld: 1,	/* Context field below is valid	*/
 		rsvd2:	1,
@@ -744,9 +744,9 @@ typedef union icrbd_s {
 
 
 typedef union hubii_ifdr_u {
-	u64	hi_ifdr_value;
+	__u64	hi_ifdr_value;
 	struct {
-		u64	ifdr_rsvd:	49,
+		__u64	ifdr_rsvd:	49,
 	                ifdr_maxrp:	 7,
 	                ifdr_rsvd1:	 1,
                       	ifdr_maxrq:	 7;
@@ -803,9 +803,9 @@ typedef union hubii_ifdr_u {
 #ifndef __ASSEMBLY__
 
 typedef union iprte_a {
-	u64	entry;
+	__u64	entry;
 	struct {
-	    u64	rsvd1     : 7,  /* Reserved field 		*/
+	    __u64	rsvd1     : 7,  /* Reserved field 		*/
 		valid     : 1,	/* Maps to a timeout entry	*/
 		rsvd2     : 1,
 		srcnode   : 9,	/* Node which did this PIO	*/
@@ -837,9 +837,9 @@ typedef union iprte_a {
  */
 
 typedef union iprb_u {
-	u64	reg_value;
+	__u64	reg_value;
 	struct {
-	    u64	rsvd1:	15,
+	    __u64	rsvd1:	15,
 		error:	1,	/* Widget rcvd wr resp pkt w/ error */
 		ovflow:	5,	/* Over flow count. perf measurement */
 		fire_and_forget: 1, /* Launch Write without response */
@@ -879,9 +879,9 @@ typedef union iprb_u {
  */
 #ifndef __ASSEMBLY__
 typedef union icrbp_a {
-	u64   ip_reg;	    /* the entire register value	*/
+	__u64   ip_reg;	    /* the entire register value	*/
 	struct {
-	     u64 error:	1,  /*    63, error occurred		*/
+	     __u64 error:	1,  /*    63, error occurred		*/
 		ln_uce:	1,  /*    62: uncorrectable memory 	*/
 		ln_ae:	1,  /*    61: protection violation 	*/
 		ln_werr:1,  /*    60: write access error 	*/
@@ -921,9 +921,9 @@ typedef union icrbp_a {
 
 #ifndef __ASSEMBLY__
 typedef union hubii_idsr {
-	u64 iin_reg;
+	__u64 iin_reg;
 	struct {
-		u64 rsvd1 : 35,
+		__u64 rsvd1 : 35,
 	            isent : 1,
 	            rsvd2 : 3,
 	            ienable: 1,

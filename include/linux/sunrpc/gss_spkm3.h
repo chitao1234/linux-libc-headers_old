@@ -39,13 +39,13 @@ struct spkm3_ctx {
 #define SPKM_WRAP_TOK	5
 #define SPKM_DEL_TOK	6
 
-u32 spkm3_make_token(struct spkm3_ctx *ctx, int qop_req, struct xdr_buf * text, struct xdr_netobj * token, int toktype);
+__u32 spkm3_make_token(struct spkm3_ctx *ctx, int qop_req, struct xdr_buf * text, struct xdr_netobj * token, int toktype);
 
-u32 spkm3_read_token(struct spkm3_ctx *ctx, struct xdr_netobj *read_token, struct xdr_buf *message_buffer, int *qop_state, int toktype);
+__u32 spkm3_read_token(struct spkm3_ctx *ctx, struct xdr_netobj *read_token, struct xdr_buf *message_buffer, int *qop_state, int toktype);
 
 #define CKSUMTYPE_RSA_MD5            0x0007
 
-s32 make_checksum(s32 cksumtype, char *header, int hdrlen, struct xdr_buf *body,
+__s32 make_checksum(__s32 cksumtype, char *header, int hdrlen, struct xdr_buf *body,
                    struct xdr_netobj *cksum);
 void asn1_bitstring_len(struct xdr_netobj *in, int *enclen, int *zerobits);
 int decode_asn1_bitstring(struct xdr_netobj *out, char *in, int enclen, 
@@ -55,5 +55,5 @@ void spkm3_mic_header(unsigned char **hdrbuf, unsigned int *hdrlen,
 void spkm3_make_mic_token(unsigned  char **tokp, int toklen, 
                    struct xdr_netobj *mic_hdr,
                    struct xdr_netobj *md5cksum, int md5elen, int md5zbit);
-u32 spkm3_verify_mic_token(unsigned char **tokp, int *mic_hdrlen, 
+__u32 spkm3_verify_mic_token(unsigned char **tokp, int *mic_hdrlen, 
                    unsigned char **cksum);

@@ -33,7 +33,7 @@ struct ia64_ctx {
 };
 
 extern struct ia64_ctx ia64_ctx;
-DECLARE_PER_CPU(u8, ia64_need_tlb_flush);
+DECLARE_PER_CPU(__u8, ia64_need_tlb_flush);
 
 extern void wrap_mmu_context (struct mm_struct *mm);
 

@@ -59,7 +59,7 @@ struct affs_root_tail {
 	__be32 bm_blk[AFFS_ROOT_BMAPS];
 	__be32 bm_ext;
 	struct affs_date root_change;
-	u8 disk_name[32];
+	__u8 disk_name[32];
 	__be32 spare1;
 	__be32 spare2;
 	struct affs_date disk_change;
@@ -86,9 +86,9 @@ struct affs_tail {
 	__be16 gid;
 	__be32 protect;
 	__be32 size;
-	u8 comment[92];
+	__u8 comment[92];
 	struct affs_date change;
-	u8 name[32];
+	__u8 name[32];
 	__be32 spare2;
 	__be32 original;
 	__be32 link_chain;
@@ -105,7 +105,7 @@ struct slink_front
 	__be32 key;
 	__be32 spare1[3];
 	__be32 checksum;
-	u8 symname[1];	/* depends on block size */
+	__u8 symname[1];	/* depends on block size */
 };
 
 struct affs_data_head
@@ -116,7 +116,7 @@ struct affs_data_head
 	__be32 size;
 	__be32 next;
 	__be32 checksum;
-	u8 data[1];	/* depends on block size */
+	__u8 data[1];	/* depends on block size */
 };
 
 /* Permission bits */

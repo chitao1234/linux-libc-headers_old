@@ -25,9 +25,9 @@
 struct mypriv {
         struct pci_dev *dev;
         u_char *start;
-        u32    base_map0;
-        u32    curr_map0;
-        u32    asize;
+        __u32    base_map0;
+        __u32    curr_map0;
+        __u32    asize;
 	struct mtd_info *nextpmc551;
 };                       
 

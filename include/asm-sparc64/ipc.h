@@ -7,8 +7,8 @@
  * See arch/sparc64/kernel/sys_sparc32.c for ugly details..
  */
 struct ipc_kludge {
-	u32 msgp;
-	s32 msgtyp;
+	__u32 msgp;
+	__s32 msgtyp;
 };
 
 #define SEMOP		 1

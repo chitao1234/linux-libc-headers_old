@@ -30,12 +30,12 @@
 #define EFI_NOT_FOUND		(14 | (1UL << (BITS_PER_LONG-1)))
 
 typedef unsigned long efi_status_t;
-typedef u8 efi_bool_t;
-typedef u16 efi_char16_t;		/* UNICODE character */
+typedef __u8 efi_bool_t;
+typedef __u16 efi_char16_t;		/* UNICODE character */
 
 
 typedef struct {
-	u8 b[16];
+	__u8 b[16];
 } efi_guid_t;
 
 #define EFI_GUID(a,b,c,d0,d1,d2,d3,d4,d5,d6,d7) \
@@ -49,11 +49,11 @@ typedef struct {
  * Generic EFI table header
  */
 typedef	struct {
-	u64 signature;
-	u32 revision;
-	u32 headersize;
-	u32 crc32;
-	u32 reserved;
+	__u64 signature;
+	__u32 revision;
+	__u32 headersize;
+	__u32 crc32;
+	__u32 reserved;
 } efi_table_hdr_t;
 
 /*
@@ -78,14 +78,14 @@ typedef	struct {
 #define EFI_MAX_MEMORY_TYPE		14
 
 /* Attribute values: */
-#define EFI_MEMORY_UC		((u64)0x0000000000000001ULL)	/* uncached */
-#define EFI_MEMORY_WC		((u64)0x0000000000000002ULL)	/* write-coalescing */
-#define EFI_MEMORY_WT		((u64)0x0000000000000004ULL)	/* write-through */
-#define EFI_MEMORY_WB		((u64)0x0000000000000008ULL)	/* write-back */
-#define EFI_MEMORY_WP		((u64)0x0000000000001000ULL)	/* write-protect */
-#define EFI_MEMORY_RP		((u64)0x0000000000002000ULL)	/* read-protect */
-#define EFI_MEMORY_XP		((u64)0x0000000000004000ULL)	/* execute-protect */
-#define EFI_MEMORY_RUNTIME	((u64)0x8000000000000000ULL)	/* range requires runtime mapping */
+#define EFI_MEMORY_UC		((__u64)0x0000000000000001ULL)	/* uncached */
+#define EFI_MEMORY_WC		((__u64)0x0000000000000002ULL)	/* write-coalescing */
+#define EFI_MEMORY_WT		((__u64)0x0000000000000004ULL)	/* write-through */
+#define EFI_MEMORY_WB		((__u64)0x0000000000000008ULL)	/* write-back */
+#define EFI_MEMORY_WP		((__u64)0x0000000000001000ULL)	/* write-protect */
+#define EFI_MEMORY_RP		((__u64)0x0000000000002000ULL)	/* read-protect */
+#define EFI_MEMORY_XP		((__u64)0x0000000000004000ULL)	/* execute-protect */
+#define EFI_MEMORY_RUNTIME	((__u64)0x8000000000000000ULL)	/* range requires runtime mapping */
 #define EFI_MEMORY_DESCRIPTOR_VERSION	1
 
 #define EFI_PAGE_SHIFT		12
@@ -96,14 +96,14 @@ typedef	struct {
  * the case in ia64.  Need to have this fixed in the f/w.
  */
 typedef struct {
-	u32 type;
-	u32 pad;
-	u64 phys_addr;
-	u64 virt_addr;
-	u64 num_pages;
-	u64 attribute;
+	__u32 type;
+	__u32 pad;
+	__u64 phys_addr;
+	__u64 virt_addr;
+	__u64 num_pages;
+	__u64 attribute;
 #if defined (__i386__)
-	u64 pad1;
+	__u64 pad1;
 #endif
 } efi_memory_desc_t;
 
@@ -117,23 +117,23 @@ typedef int (*efi_freemem_callback_t) (unsigned long start, unsigned long end, v
 #define EFI_UNSPECIFIED_TIMEZONE 0x07ff
 
 typedef struct {
-	u16 year;
-	u8 month;
-	u8 day;
-	u8 hour;
-	u8 minute;
-	u8 second;
-	u8 pad1;
-	u32 nanosecond;
-	s16 timezone;
-	u8 daylight;
-	u8 pad2;
+	__u16 year;
+	__u8 month;
+	__u8 day;
+	__u8 hour;
+	__u8 minute;
+	__u8 second;
+	__u8 pad1;
+	__u32 nanosecond;
+	__s16 timezone;
+	__u8 daylight;
+	__u8 pad2;
 } efi_time_t;
 
 typedef struct {
-	u32 resolution;
-	u32 accuracy;
-	u8 sets_to_zero;
+	__u32 resolution;
+	__u32 accuracy;
+	__u8 sets_to_zero;
 } efi_time_cap_t;
 
 /*
@@ -146,7 +146,7 @@ typedef struct {
 /*
  * EFI Runtime Services table
  */
-#define EFI_RUNTIME_SERVICES_SIGNATURE ((u64)0x5652453544e5552ULL)
+#define EFI_RUNTIME_SERVICES_SIGNATURE ((__u64)0x5652453544e5552ULL)
 #define EFI_RUNTIME_SERVICES_REVISION  0x00010000
 
 typedef struct {
@@ -169,19 +169,19 @@ typedef efi_status_t efi_set_time_t (efi_time_t *tm);
 typedef efi_status_t efi_get_wakeup_time_t (efi_bool_t *enabled, efi_bool_t *pending,
 					    efi_time_t *tm);
 typedef efi_status_t efi_set_wakeup_time_t (efi_bool_t enabled, efi_time_t *tm);
-typedef efi_status_t efi_get_variable_t (efi_char16_t *name, efi_guid_t *vendor, u32 *attr,
+typedef efi_status_t efi_get_variable_t (efi_char16_t *name, efi_guid_t *vendor, __u32 *attr,
 					 unsigned long *data_size, void *data);
 typedef efi_status_t efi_get_next_variable_t (unsigned long *name_size, efi_char16_t *name,
 					      efi_guid_t *vendor);
 typedef efi_status_t efi_set_variable_t (efi_char16_t *name, efi_guid_t *vendor, 
 					 unsigned long attr, unsigned long data_size, 
 					 void *data);
-typedef efi_status_t efi_get_next_high_mono_count_t (u32 *count);
+typedef efi_status_t efi_get_next_high_mono_count_t (__u32 *count);
 typedef void efi_reset_system_t (int reset_type, efi_status_t status,
 				 unsigned long data_size, efi_char16_t *data);
 typedef efi_status_t efi_set_virtual_address_map_t (unsigned long memory_map_size,
 						unsigned long descriptor_size,
-						u32 descriptor_version,
+						__u32 descriptor_version,
 						efi_memory_desc_t *virtual_map);
 
 /*
@@ -219,13 +219,13 @@ typedef struct {
 	unsigned long table;
 } efi_config_table_t;
 
-#define EFI_SYSTEM_TABLE_SIGNATURE ((u64)0x5453595320494249ULL)
+#define EFI_SYSTEM_TABLE_SIGNATURE ((__u64)0x5453595320494249ULL)
 #define EFI_SYSTEM_TABLE_REVISION  ((1 << 16) | 00)
 
 typedef struct {
 	efi_table_hdr_t hdr;
 	unsigned long fw_vendor;	/* physical addr of CHAR16 vendor string */
-	u32 fw_revision;
+	__u32 fw_revision;
 	unsigned long con_in_handle;
 	unsigned long con_in;
 	unsigned long con_out_handle;
@@ -294,9 +294,9 @@ extern void efi_map_memmap(void);
 extern void efi_memmap_walk (efi_freemem_callback_t callback, void *arg);
 extern void efi_gettimeofday (struct timespec *ts);
 extern void efi_enter_virtual_mode (void);	/* switch EFI to virtual mode, if possible */
-extern u64 efi_get_iobase (void);
-extern u32 efi_mem_type (unsigned long phys_addr);
-extern u64 efi_mem_attributes (unsigned long phys_addr);
+extern __u64 efi_get_iobase (void);
+extern __u32 efi_mem_type (unsigned long phys_addr);
+extern __u64 efi_mem_attributes (unsigned long phys_addr);
 extern int __init efi_uart_console_only (void);
 extern void efi_initialize_iomem_resources(struct resource *code_resource,
 					struct resource *data_resource);
@@ -390,9 +390,9 @@ extern int __init efi_setup_pcdp_console(char *);
 #define   EFI_DEV_END_ENTIRE			0xFF
 
 struct efi_generic_dev_path {
-	u8 type;
-	u8 sub_type;
-	u16 length;
+	__u8 type;
+	__u8 sub_type;
+	__u16 length;
 } __attribute ((packed));
 
 #endif /* _LINUX_EFI_H */

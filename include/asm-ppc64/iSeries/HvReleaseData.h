@@ -44,20 +44,20 @@
 
 struct	HvReleaseData
 {
-	u32	xDesc;			// Descriptor	"HvRD" ebcdic	x00-x03
-	u16	xSize;			// Size of this control block	x04-x05
-	u16	xVpdAreasPtrOffset;	// Offset in NACA of ItVpdAreas	x06-x07
+	__u32	xDesc;			// Descriptor	"HvRD" ebcdic	x00-x03
+	__u16	xSize;			// Size of this control block	x04-x05
+	__u16	xVpdAreasPtrOffset;	// Offset in NACA of ItVpdAreas	x06-x07
 	struct  naca_struct * xSlicNacaAddr; // Virt addr of SLIC NACA  x08-x0F
-	u32	xMsNucDataOffset;	// Offset of Linux Mapping Data x10-x13
-	u32	xRsvd1;			// Reserved			x14-x17
-	u16	xTagsMode:1;		// 0 == tags active, 1 == tags inactive
-	u16	xAddressSize:1;		// 0 == 64-bit, 1 == 32-bit
-	u16	xNoSharedProcs:1;	// 0 == shared procs, 1 == no shared
-	u16	xNoHMT:1;		// 0 == allow HMT, 1 == no HMT
-	u16	xRsvd2:12;		// Reserved			x18-x19
-	u16	xVrmIndex;		// VRM Index of OS image	x1A-x1B
-	u16	xMinSupportedPlicVrmIndex;// Min PLIC level  (soft)	x1C-x1D
-	u16	xMinCompatablePlicVrmIndex;// Min PLIC levelP (hard)	x1E-x1F
+	__u32	xMsNucDataOffset;	// Offset of Linux Mapping Data x10-x13
+	__u32	xRsvd1;			// Reserved			x14-x17
+	__u16	xTagsMode:1;		// 0 == tags active, 1 == tags inactive
+	__u16	xAddressSize:1;		// 0 == 64-bit, 1 == 32-bit
+	__u16	xNoSharedProcs:1;	// 0 == shared procs, 1 == no shared
+	__u16	xNoHMT:1;		// 0 == allow HMT, 1 == no HMT
+	__u16	xRsvd2:12;		// Reserved			x18-x19
+	__u16	xVrmIndex;		// VRM Index of OS image	x1A-x1B
+	__u16	xMinSupportedPlicVrmIndex;// Min PLIC level  (soft)	x1C-x1D
+	__u16	xMinCompatablePlicVrmIndex;// Min PLIC levelP (hard)	x1E-x1F
 	char	xVrmName[12];		// Displayable name  		x20-x2B
 	char	xRsvd3[20];		// Reserved			x2C-x3F
 };

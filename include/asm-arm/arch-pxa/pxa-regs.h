@@ -892,7 +892,7 @@
 
 #define UDCDN(x)	__REG2(0x40600300, (x)<<2)
 #define PHYS_UDCDN(x)	(0x40600300 + ((x)<<2))
-#define PUDCDN(x)	(volatile u32 *)(io_p2v(PHYS_UDCDN((x))))
+#define PUDCDN(x)	(volatile __u32 *)(io_p2v(PHYS_UDCDN((x))))
 #define UDCDR0          __REG(0x40600300) /* Data Register - EP0 */
 #define UDCDRA          __REG(0x40600304) /* Data Register - EPA */
 #define UDCDRB          __REG(0x40600308) /* Data Register - EPB */

@@ -197,14 +197,14 @@ static inline void * __ioremap_mode(phys_t offset, unsigned long size,
 	unsigned long flags)
 {
 	if (cpu_has_64bit_addresses) {
-		u64 base = UNCAC_BASE;
+		__u64 base = UNCAC_BASE;
 
 		/*
 		 * R10000 supports a 2 bit uncached attribute therefore
 		 * UNCAC_BASE may not equal IO_BASE.
 		 */
 		if (flags == _CACHE_UNCACHED)
-			base = (u64) IO_BASE;
+			base = (__u64) IO_BASE;
 		return (void *) (unsigned long) (base + offset);
 	}
 
@@ -279,7 +279,7 @@ static inline void pfx##write##bwlq(type val,				\
 									\
 	__val = pfx##ioswab##bwlq(val);					\
 									\
-	if (sizeof(type) != sizeof(u64) || sizeof(u64) == sizeof(long))	\
+	if (sizeof(type) != sizeof(__u64) || sizeof(__u64) == sizeof(long))	\
 		*__mem = __val;						\
 	else if (cpu_has_64bits) {					\
 		unsigned long __flags;					\
@@ -310,7 +310,7 @@ static inline type pfx##read##bwlq(volatile void *mem)		\
 									\
 	__mem = (void *)__swizzle_addr_##bwlq((unsigned long)(mem));	\
 									\
-	if (sizeof(type) != sizeof(u64) || sizeof(u64) == sizeof(long))	\
+	if (sizeof(type) != sizeof(__u64) || sizeof(__u64) == sizeof(long))	\
 		__val = *__mem;						\
 	else if (cpu_has_64bits) {					\
 		unsigned long __flags;					\
@@ -345,7 +345,7 @@ static inline void pfx##out##bwlq##p(type val, unsigned long port)	\
 									\
 	__val = pfx##ioswab##bwlq(val);					\
 									\
-	if (sizeof(type) != sizeof(u64)) {				\
+	if (sizeof(type) != sizeof(__u64)) {				\
 		*__addr = __val;					\
 		slow;							\
 	} else								\
@@ -360,7 +360,7 @@ static inline type pfx##in##bwlq##p(unsigned long port)			\
 	port = __swizzle_addr_##bwlq(port);				\
 	__addr = (void *)(mips_io_port_base + port);			\
 									\
-	if (sizeof(type) != sizeof(u64)) {				\
+	if (sizeof(type) != sizeof(__u64)) {				\
 		__val = *__addr;					\
 		slow;							\
 	} else {							\
@@ -392,12 +392,12 @@ __BUILD_IOPORT_PFX(__raw_, bwlq, type)
 									\
 __BUILD_MEMORY_SINGLE(__bus_, bwlq, type, 0)
 
-BUILDIO(b, u8)
-BUILDIO(w, u16)
-BUILDIO(l, u32)
-BUILDIO(q, u64)
+BUILDIO(b, __u8)
+BUILDIO(w, __u16)
+BUILDIO(l, __u32)
+BUILDIO(q, __u64)
 
-__BUILDIO(q, u64)
+__BUILDIO(q, __u64)
 
 #define readb_relaxed			readb
 #define readw_relaxed			readw
@@ -463,10 +463,10 @@ static inline void ins##bwlq(unsigned long port, void *addr,		\
 __BUILD_MEMORY_STRING(bwlq, type)					\
 __BUILD_IOPORT_STRING(bwlq, type)
 
-BUILDSTRING(b, u8)
-BUILDSTRING(w, u16)
-BUILDSTRING(l, u32)
-BUILDSTRING(q, u64)
+BUILDSTRING(b, __u8)
+BUILDSTRING(w, __u16)
+BUILDSTRING(l, __u32)
+BUILDSTRING(q, __u64)
 
 
 /* Depends on MIPS II instruction set */
@@ -609,7 +609,7 @@ extern void (*_dma_cache_inv)(unsigned long start, unsigned long size);
 #define __CSR_32_ADJUST 0
 #endif
 
-#define csr_out32(v,a) (*(volatile u32 *)((unsigned long)(a) + __CSR_32_ADJUST) = (v))
-#define csr_in32(a)    (*(volatile u32 *)((unsigned long)(a) + __CSR_32_ADJUST))
+#define csr_out32(v,a) (*(volatile __u32 *)((unsigned long)(a) + __CSR_32_ADJUST) = (v))
+#define csr_in32(a)    (*(volatile __u32 *)((unsigned long)(a) + __CSR_32_ADJUST))
 
 #endif /* _ASM_IO_H */

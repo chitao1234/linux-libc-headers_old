@@ -36,15 +36,15 @@ static inline void asm_wait(void)
 		".set\tmips0");
 }
 
-#define reg_rd08(r)    ((u8 )(*((vu8 *)(r))))
-#define reg_rd16(r)    ((u16)(*((vu16*)(r))))
-#define reg_rd32(r)    ((u32)(*((vu32*)(r))))
-#define reg_rd64(r)    ((u64)(*((vu64*)(r))))
+#define reg_rd08(r)    ((__u8 )(*((vu8 *)(r))))
+#define reg_rd16(r)    ((__u16)(*((vu16*)(r))))
+#define reg_rd32(r)    ((__u32)(*((vu32*)(r))))
+#define reg_rd64(r)    ((__u64)(*((vu64*)(r))))
 
-#define reg_wr08(r,v)  ((*((vu8 *)(r)))=((u8 )(v)))
-#define reg_wr16(r,v)  ((*((vu16*)(r)))=((u16)(v)))
-#define reg_wr32(r,v)  ((*((vu32*)(r)))=((u32)(v)))
-#define reg_wr64(r,v)  ((*((vu64*)(r)))=((u64)(v)))
+#define reg_wr08(r,v)  ((*((vu8 *)(r)))=((__u8 )(v)))
+#define reg_wr16(r,v)  ((*((vu16*)(r)))=((__u16)(v)))
+#define reg_wr32(r,v)  ((*((vu32*)(r)))=((__u32)(v)))
+#define reg_wr64(r,v)  ((*((vu64*)(r)))=((__u64)(v)))
 
 typedef volatile __signed char vs8;
 typedef volatile unsigned char vu8;
@@ -55,10 +55,10 @@ typedef volatile unsigned short vu16;
 typedef volatile __signed int vs32;
 typedef volatile unsigned int vu32;
 
-typedef  s8  s08;
+typedef  __s8  s08;
 typedef vs8 vs08;
 
-typedef  u8  u08;
+typedef  __u8  u08;
 typedef vu8 vu08;
 
 

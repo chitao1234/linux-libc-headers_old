@@ -9,7 +9,7 @@
  * Public License.  See the file "COPYING" in the main directory of
  * this archive for more details.
  *
- * $Id: m32700ut_pld.h,v 1.2 2004/10/22 16:58:47 mmazur Exp $
+ * $Id$
  */
 
 #ifndef _M32700UT_M32700UT_PLD_H

@@ -80,9 +80,9 @@ struct compat_rusage {
 };
 
 struct compat_dirent {
-	u32		d_ino;
+	__u32		d_ino;
 	compat_off_t	d_off;
-	u16		d_reclen;
+	__u16		d_reclen;
 	char		d_name[256];
 };
 

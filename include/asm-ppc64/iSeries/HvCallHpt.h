@@ -48,76 +48,76 @@
 
 
 //============================================================================
-static inline u64		HvCallHpt_getHptAddress(void)
+static inline __u64		HvCallHpt_getHptAddress(void)
 {
-	u64 retval = HvCall0(HvCallHptGetHptAddress);
+	__u64 retval = HvCall0(HvCallHptGetHptAddress);
 	// getPaca()->adjustHmtForNoOfSpinLocksHeld();
 	return retval;
 }
 //============================================================================
-static inline u64		HvCallHpt_getHptPages(void)
+static inline __u64		HvCallHpt_getHptPages(void)
 {	
-	u64 retval = HvCall0(HvCallHptGetHptPages);
+	__u64 retval = HvCall0(HvCallHptGetHptPages);
 	// getPaca()->adjustHmtForNoOfSpinLocksHeld();
 	return retval;
 }
 //=============================================================================
-static inline void		HvCallHpt_setPp(u32 hpteIndex, u8 value)
+static inline void		HvCallHpt_setPp(__u32 hpteIndex, __u8 value)
 {
 	HvCall2( HvCallHptSetPp, hpteIndex, value );
 	// getPaca()->adjustHmtForNoOfSpinLocksHeld();
 }
 //=============================================================================
-static inline void		HvCallHpt_setSwBits(u32 hpteIndex, u8 bitson, u8 bitsoff )
+static inline void		HvCallHpt_setSwBits(__u32 hpteIndex, __u8 bitson, __u8 bitsoff )
 {
 	HvCall3( HvCallHptSetSwBits, hpteIndex, bitson, bitsoff );
 	// getPaca()->adjustHmtForNoOfSpinLocksHeld();
 }
 //=============================================================================
-static inline void		HvCallHpt_invalidateNoSyncICache(u32 hpteIndex)
+static inline void		HvCallHpt_invalidateNoSyncICache(__u32 hpteIndex)
 						
 {
 	HvCall1( HvCallHptInvalidateNoSyncICache, hpteIndex );
 	// getPaca()->adjustHmtForNoOfSpinLocksHeld();
 }
 //=============================================================================
-static inline u64		HvCallHpt_invalidateSetSwBitsGet(u32 hpteIndex, u8 bitson, u8 bitsoff )
+static inline __u64		HvCallHpt_invalidateSetSwBitsGet(__u32 hpteIndex, __u8 bitson, __u8 bitsoff )
 						
 {
-	u64 compressedStatus;
+	__u64 compressedStatus;
 	compressedStatus = HvCall4( HvCallHptInvalidateSetSwBitsGet, hpteIndex, bitson, bitsoff, 1 );
 	HvCall1( HvCallHptInvalidateNoSyncICache, hpteIndex );
 	// getPaca()->adjustHmtForNoOfSpinLocksHeld();
 	return compressedStatus;
 }
 //=============================================================================
-static inline u64		HvCallHpt_findValid( HPTE *hpte, u64 vpn )
+static inline __u64		HvCallHpt_findValid( HPTE *hpte, __u64 vpn )
 {
-	u64 retIndex = HvCall3Ret16( HvCallHptFindValid, hpte, vpn, 0, 0 );
+	__u64 retIndex = HvCall3Ret16( HvCallHptFindValid, hpte, vpn, 0, 0 );
 	// getPaca()->adjustHmtForNoOfSpinLocksHeld();
 	return retIndex;
 }
 //=============================================================================
-static inline u64		HvCallHpt_findNextValid( HPTE *hpte, u32 hpteIndex, u8 bitson, u8 bitsoff )
+static inline __u64		HvCallHpt_findNextValid( HPTE *hpte, __u32 hpteIndex, __u8 bitson, __u8 bitsoff )
 {
-	u64 retIndex = HvCall3Ret16( HvCallHptFindNextValid, hpte, hpteIndex, bitson, bitsoff );
+	__u64 retIndex = HvCall3Ret16( HvCallHptFindNextValid, hpte, hpteIndex, bitson, bitsoff );
 	// getPaca()->adjustHmtForNoOfSpinLocksHeld();
 	return retIndex;
 }
 //=============================================================================
-static inline void		HvCallHpt_get( HPTE *hpte, u32 hpteIndex )
+static inline void		HvCallHpt_get( HPTE *hpte, __u32 hpteIndex )
 {
 	HvCall2Ret16( HvCallHptGet, hpte, hpteIndex, 0 );
 	// getPaca()->adjustHmtForNoOfSpinLocksHeld();
 }
 //============================================================================
-static inline void		HvCallHpt_addValidate( u32 hpteIndex,
-						       u32 hBit,
+static inline void		HvCallHpt_addValidate( __u32 hpteIndex,
+						       __u32 hBit,
 						       HPTE *hpte )
 						
 {
 	HvCall4( HvCallHptAddValidate, hpteIndex,
-		 hBit, (*((u64 *)hpte)), (*(((u64 *)hpte)+1)) );
+		 hBit, (*((__u64 *)hpte)), (*(((__u64 *)hpte)+1)) );
 	// getPaca()->adjustHmtForNoOfSpinLocksHeld();
 }
 

@@ -38,10 +38,10 @@ struct nfs_server {
 	struct list_head	nfs4_siblings;	/* List of other nfs_server structs
 						 * that share the same clientid
 						 */
-	u32			attr_bitmask[2];/* V4 bitmask representing the set
+	__u32			attr_bitmask[2];/* V4 bitmask representing the set
 						   of attributes supported on this
 						   filesystem */
-	u32			acl_bitmask;	/* V4 bitmask representing the ACEs
+	__u32			acl_bitmask;	/* V4 bitmask representing the ACEs
 						   that are supported on this
 						   filesystem */
 #endif

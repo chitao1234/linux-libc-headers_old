@@ -42,7 +42,7 @@ enum MCA_AdapterStatus {
 };
 
 struct mca_device {
-	u64			dma_mask;
+	__u64			dma_mask;
 	int			pos_id;
 	int			slot;
 
@@ -83,7 +83,7 @@ struct mca_bus_accessor_functions {
 };
 
 struct mca_bus {
-	u64			default_dma_mask;
+	__u64			default_dma_mask;
 	int			number;
 	struct mca_bus_accessor_functions f;
 	struct device		dev;

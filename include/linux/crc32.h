@@ -7,9 +7,9 @@
 
 #include <linux/types.h>
 
-extern u32  crc32_le(u32 crc, unsigned char const *p, size_t len);
-extern u32  crc32_be(u32 crc, unsigned char const *p, size_t len);
-extern u32  bitreverse(u32 in);
+extern __u32  crc32_le(__u32 crc, unsigned char const *p, size_t len);
+extern __u32  crc32_be(__u32 crc, unsigned char const *p, size_t len);
+extern __u32  bitreverse(__u32 in);
 
 #define crc32(seed, data, length)  crc32_le(seed, (unsigned char const *)data, length)
 

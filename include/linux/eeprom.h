@@ -26,15 +26,15 @@ struct eeprom {
 	unsigned	ee_state;
 
 	spinlock_t	*lock;
-	u32		*cache;
+	__u32		*cache;
 };
 
 
-u8   eeprom_readb(struct eeprom *ee, unsigned address);
-void eeprom_read(struct eeprom *ee, unsigned address, u8 *bytes,
+__u8   eeprom_readb(struct eeprom *ee, unsigned address);
+void eeprom_read(struct eeprom *ee, unsigned address, __u8 *bytes,
 		unsigned count);
-void eeprom_writeb(struct eeprom *ee, unsigned address, u8 data);
-void eeprom_write(struct eeprom *ee, unsigned address, u8 *bytes,
+void eeprom_writeb(struct eeprom *ee, unsigned address, __u8 data);
+void eeprom_write(struct eeprom *ee, unsigned address, __u8 *bytes,
 		unsigned count);
 
 /* The EEPROM commands include the alway-set leading bit. */
@@ -56,10 +56,10 @@ void setup_ee_mem_bitbanger(struct eeprom *ee, void *memaddr, int eesel_bit, int
 }
 
 /* foo. put this in a .c file */
-static inline void eeprom_update(struct eeprom *ee, u32 mask, int pol)
+static inline void eeprom_update(struct eeprom *ee, __u32 mask, int pol)
 {
 	unsigned long flags;
-	u32 data;
+	__u32 data;
 
 	spin_lock_irqsave(ee->lock, flags);
 	data = *ee->cache;
@@ -106,17 +106,17 @@ void eeprom_send_addr(struct eeprom *ee, unsigned address)
 	eeprom_update(ee, ee->eedi, pol);
 }
 
-u16   eeprom_readw(struct eeprom *ee, unsigned address)
+__u16   eeprom_readw(struct eeprom *ee, unsigned address)
 {
 	unsigned i;
-	u16	res = 0;
+	__u16	res = 0;
 
 	eeprom_clk_lo(ee);
 	eeprom_update(ee, ee->eesel, 1 ^ !!(ee->polarity & EEPOL_EESEL));
 	eeprom_send_addr(ee, address);
 
 	for (i=0; i<16; i++) {
-		u32 data;
+		__u32 data;
 		eeprom_clk_hi(ee);
 		res <<= 1;
 		data = readl(ee->addr);
@@ -130,6 +130,6 @@ u16   eeprom_readw(struct eeprom *ee, unsigned address)
 }
 
 
-void eeprom_writeb(struct eeprom *ee, unsigned address, u8 data)
+void eeprom_writeb(struct eeprom *ee, unsigned address, __u8 data)
 {
 }

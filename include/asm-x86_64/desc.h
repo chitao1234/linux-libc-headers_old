@@ -12,8 +12,8 @@
 
 // 8 byte segment descriptor
 struct desc_struct { 
-	u16 limit0;
-	u16 base0;
+	__u16 limit0;
+	__u16 base0;
 	unsigned base1 : 8, type : 4, s : 1, dpl : 2, p : 1;
 	unsigned limit : 4, avl : 1, l : 1, d : 1, g : 1, base2 : 8;
 } __attribute__((packed)); 
@@ -32,12 +32,12 @@ enum {
 
 // 16byte gate
 struct gate_struct {          
-	u16 offset_low;
-	u16 segment; 
+	__u16 offset_low;
+	__u16 segment; 
 	unsigned ist : 3, zero0 : 5, type : 5, dpl : 2, p : 1;
-	u16 offset_middle;
-	u32 offset_high;
-	u32 zero1; 
+	__u16 offset_middle;
+	__u32 offset_high;
+	__u32 zero1; 
 } __attribute__((packed));
 
 #define PTR_LOW(x) ((unsigned long)(x) & 0xFFFF) 
@@ -51,12 +51,12 @@ enum {
 
 // LDT or TSS descriptor in the GDT. 16 bytes.
 struct ldttss_desc { 
-	u16 limit0;
-	u16 base0;
+	__u16 limit0;
+	__u16 base0;
 	unsigned base1 : 8, type : 5, dpl : 2, p : 1;
 	unsigned limit1 : 4, zero0 : 3, g : 1, base2 : 8;
-	u32 base3;
-	u32 zero1; 
+	__u32 base3;
+	__u32 zero1; 
 } __attribute__((packed)); 
 
 struct desc_ptr {
@@ -139,8 +139,8 @@ static inline void set_ldt_desc(unsigned cpu, void *addr, int size)
 static inline void set_seg_base(unsigned cpu, int entry, void *base)
 { 
 	struct desc_struct *d = &cpu_gdt_table[cpu][entry];
-	u32 addr = (u32)(u64)base;
-	BUG_ON((u64)base >> 32); 
+	__u32 addr = (__u32)(__u64)base;
+	BUG_ON((__u64)base >> 32); 
 	d->base0 = addr & 0xffff;
 	d->base1 = (addr >> 16) & 0xff;
 	d->base2 = (addr >> 24) & 0xff;
@@ -180,7 +180,7 @@ static inline void set_seg_base(unsigned cpu, int entry, void *base)
 
 static inline void load_TLS(struct thread_struct *t, unsigned int cpu)
 {
-	u64 *gdt = (u64 *)(cpu_gdt_table[cpu] + GDT_ENTRY_TLS_MIN);
+	__u64 *gdt = (__u64 *)(cpu_gdt_table[cpu] + GDT_ENTRY_TLS_MIN);
 	gdt[0] = t->tls_array[0];
 	gdt[1] = t->tls_array[1];
 	gdt[2] = t->tls_array[2];

@@ -552,9 +552,9 @@
  * bytes when running bigendian.  We also provide non-swapping versions.
  */
 #define __GT_READ(ofs)							\
-	(*(volatile u32 *)(GT64120_BASE+(ofs)))
+	(*(volatile __u32 *)(GT64120_BASE+(ofs)))
 #define __GT_WRITE(ofs, data)						\
-	do { *(volatile u32 *)(GT64120_BASE+(ofs)) = (data); } while (0)
+	do { *(volatile __u32 *)(GT64120_BASE+(ofs)) = (data); } while (0)
 #define GT_READ(ofs)		le32_to_cpu(__GT_READ(ofs))
 #define GT_WRITE(ofs, data)	__GT_WRITE(ofs, cpu_to_le32(data))
 

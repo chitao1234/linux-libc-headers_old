@@ -16,7 +16,7 @@
 
 
 #ifndef ___ASM_ARCH_REGS_IRQ_H
-#define ___ASM_ARCH_REGS_IRQ_H "$Id: regs-irq.h,v 1.1 2004/08/17 20:24:51 mmazur Exp $"
+#define ___ASM_ARCH_REGS_IRQ_H "$Id$"
 
 /* interrupt controller */
 

@@ -7,63 +7,63 @@
 
 #define COMPAT_USER_HZ	100
 
-typedef u32		compat_size_t;
-typedef s32		compat_ssize_t;
-typedef s32		compat_time_t;
-typedef s32		compat_clock_t;
-typedef s32		compat_key_t;
-typedef s32		compat_pid_t;
-typedef u16		compat_uid_t;
-typedef u16		compat_gid_t;
-typedef u32		compat_uid32_t;
-typedef u32		compat_gid32_t;
-typedef u16		compat_mode_t;
-typedef u32		compat_ino_t;
-typedef u16		compat_dev_t;
-typedef s32		compat_off_t;
-typedef s64		compat_loff_t;
-typedef u16		compat_nlink_t;
-typedef u16		compat_ipc_pid_t;
-typedef s32		compat_daddr_t;
-typedef u32		compat_caddr_t;
+typedef __u32		compat_size_t;
+typedef __s32		compat_ssize_t;
+typedef __s32		compat_time_t;
+typedef __s32		compat_clock_t;
+typedef __s32		compat_key_t;
+typedef __s32		compat_pid_t;
+typedef __u16		compat_uid_t;
+typedef __u16		compat_gid_t;
+typedef __u32		compat_uid32_t;
+typedef __u32		compat_gid32_t;
+typedef __u16		compat_mode_t;
+typedef __u32		compat_ino_t;
+typedef __u16		compat_dev_t;
+typedef __s32		compat_off_t;
+typedef __s64		compat_loff_t;
+typedef __u16		compat_nlink_t;
+typedef __u16		compat_ipc_pid_t;
+typedef __s32		compat_daddr_t;
+typedef __u32		compat_caddr_t;
 typedef __kernel_fsid_t	compat_fsid_t;
 
-typedef s32		compat_int_t;
-typedef s32		compat_long_t;
-typedef u32		compat_uint_t;
-typedef u32		compat_ulong_t;
+typedef __s32		compat_int_t;
+typedef __s32		compat_long_t;
+typedef __u32		compat_uint_t;
+typedef __u32		compat_ulong_t;
 
 struct compat_timespec {
 	compat_time_t	tv_sec;
-	s32		tv_nsec;
+	__s32		tv_nsec;
 };
 
 struct compat_timeval {
 	compat_time_t	tv_sec;
-	s32		tv_usec;
+	__s32		tv_usec;
 };
 
 struct compat_stat {
 	compat_dev_t	st_dev;
-	u16		__pad1;
+	__u16		__pad1;
 	compat_ino_t	st_ino;
 	compat_mode_t	st_mode;
 	compat_nlink_t	st_nlink;
 	compat_uid_t	st_uid;
 	compat_gid_t	st_gid;
 	compat_dev_t	st_rdev;
-	u16		__pad2;
-	u32		st_size;
-	u32		st_blksize;
-	u32		st_blocks;
-	u32		st_atime;
-	u32		st_atime_nsec;
-	u32		st_mtime;
-	u32		st_mtime_nsec;
-	u32		st_ctime;
-	u32		st_ctime_nsec;
-	u32		__unused4;
-	u32		__unused5;
+	__u16		__pad2;
+	__u32		st_size;
+	__u32		st_blksize;
+	__u32		st_blocks;
+	__u32		st_atime;
+	__u32		st_atime_nsec;
+	__u32		st_mtime;
+	__u32		st_mtime_nsec;
+	__u32		st_ctime;
+	__u32		st_ctime_nsec;
+	__u32		__unused4;
+	__u32		__unused5;
 };
 
 struct compat_flock {
@@ -107,12 +107,12 @@ struct compat_statfs {
 #define COMPAT_RLIM_OLD_INFINITY       0x7fffffff
 #define COMPAT_RLIM_INFINITY           0xffffffff
 
-typedef u32		compat_old_sigset_t;	/* at least 32 bits */
+typedef __u32		compat_old_sigset_t;	/* at least 32 bits */
 
 #define _COMPAT_NSIG		64
 #define _COMPAT_NSIG_BPW	32
 
-typedef u32		compat_sigset_word;
+typedef __u32		compat_sigset_word;
 
 #define COMPAT_OFF_T_MAX	0x7fffffff
 #define COMPAT_LOFF_T_MAX	0x7fffffffffffffffL
@@ -180,7 +180,7 @@ struct compat_shmid64_ds {
  * just declare them as pointers because the syscall entry code will have appropriately
  * comverted them already.
  */
-typedef	u32		compat_uptr_t;
+typedef	__u32		compat_uptr_t;
 
 static inline void *
 compat_ptr (compat_uptr_t uptr)

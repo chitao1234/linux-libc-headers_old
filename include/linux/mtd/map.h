@@ -36,20 +36,20 @@ struct map_info {
 	int buswidth; /* in octets */
 
 #ifdef CONFIG_MTD_COMPLEX_MAPPINGS
-	u8 (*read8)(struct map_info *, unsigned long);
-	u16 (*read16)(struct map_info *, unsigned long);
-	u32 (*read32)(struct map_info *, unsigned long);  
-	u64 (*read64)(struct map_info *, unsigned long);  
+	__u8 (*read8)(struct map_info *, unsigned long);
+	__u16 (*read16)(struct map_info *, unsigned long);
+	__u32 (*read32)(struct map_info *, unsigned long);  
+	__u64 (*read64)(struct map_info *, unsigned long);  
 	/* If it returned a 'long' I'd call it readl.
 	 * It doesn't.
 	 * I won't.
 	 * dwmw2 */
 	
 	void (*copy_from)(struct map_info *, void *, unsigned long, ssize_t);
-	void (*write8)(struct map_info *, u8, unsigned long);
-	void (*write16)(struct map_info *, u16, unsigned long);
-	void (*write32)(struct map_info *, u32, unsigned long);
-	void (*write64)(struct map_info *, u64, unsigned long);
+	void (*write8)(struct map_info *, __u8, unsigned long);
+	void (*write16)(struct map_info *, __u16, unsigned long);
+	void (*write32)(struct map_info *, __u32, unsigned long);
+	void (*write64)(struct map_info *, __u64, unsigned long);
 	void (*copy_to)(struct map_info *, unsigned long, const void *, ssize_t);
 
 	/* We can perhaps put in 'point' and 'unpoint' methods, if we really

@@ -18,7 +18,7 @@
  * components found on the BOARDs.
  */
 
-typedef s32 klconf_off_t;
+typedef __s32 klconf_off_t;
 
 
 /* Functions/macros needed to use this structure */

@@ -58,7 +58,7 @@ static inline physid_mask_t ioapic_phys_id_map(physid_mask_t phys_map)
 }
 
 /* Mapping from cpu number to logical apicid */
-extern u8 cpu_2_logical_apicid[];
+extern __u8 cpu_2_logical_apicid[];
 static inline int cpu_to_logical_apicid(int cpu)
 {
        if (cpu >= NR_CPUS)
@@ -143,7 +143,7 @@ static inline unsigned int cpu_mask_to_apicid(cpumask_t cpumask)
 }
 
 /* No NUMA-Q box has a HT CPU, but it can't hurt to use the default code. */
-static inline u32 phys_pkg_id(u32 cpuid_apic, int index_msb)
+static inline __u32 phys_pkg_id(__u32 cpuid_apic, int index_msb)
 {
 	return cpuid_apic >> index_msb;
 }

@@ -3,7 +3,7 @@
 
 #include <linux/types.h>
 
-typedef u32 kprobe_opcode_t;
+typedef __u32 kprobe_opcode_t;
 
 #define BREAKPOINT_INSTRUCTION   0x91d02070 /* ta 0x70 */
 #define BREAKPOINT_INSTRUCTION_2 0x91d02071 /* ta 0x71 */

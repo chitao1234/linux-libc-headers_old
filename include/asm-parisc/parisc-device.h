@@ -20,7 +20,7 @@ struct parisc_device {
 	unsigned long	mod_info;	/* PAT specific - Misc Module info */
 	unsigned long	pmod_loc;	/* physical Module location */
 #endif
-	u64		dma_mask;	/* DMA mask for I/O */
+	__u64		dma_mask;	/* DMA mask for I/O */
 	struct device 	dev;
 };
 

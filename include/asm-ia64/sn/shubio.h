@@ -3083,11 +3083,11 @@ typedef union ii_ippr_u {
         #define IIO_FIRST_PC_ENTRY 12
  */
 
-#define IIO_ICRB_A(_x)  ((u64)(IIO_ICRB_0 + (6 * IIO_ICRB_OFFSET * (_x))))
-#define IIO_ICRB_B(_x)  ((u64)((char *)IIO_ICRB_A(_x) + 1*IIO_ICRB_OFFSET))
-#define IIO_ICRB_C(_x)  ((u64)((char *)IIO_ICRB_A(_x) + 2*IIO_ICRB_OFFSET))
-#define IIO_ICRB_D(_x)  ((u64)((char *)IIO_ICRB_A(_x) + 3*IIO_ICRB_OFFSET))
-#define IIO_ICRB_E(_x)  ((u64)((char *)IIO_ICRB_A(_x) + 4*IIO_ICRB_OFFSET))
+#define IIO_ICRB_A(_x)  ((__u64)(IIO_ICRB_0 + (6 * IIO_ICRB_OFFSET * (_x))))
+#define IIO_ICRB_B(_x)  ((__u64)((char *)IIO_ICRB_A(_x) + 1*IIO_ICRB_OFFSET))
+#define IIO_ICRB_C(_x)  ((__u64)((char *)IIO_ICRB_A(_x) + 2*IIO_ICRB_OFFSET))
+#define IIO_ICRB_D(_x)  ((__u64)((char *)IIO_ICRB_A(_x) + 3*IIO_ICRB_OFFSET))
+#define IIO_ICRB_E(_x)  ((__u64)((char *)IIO_ICRB_A(_x) + 4*IIO_ICRB_OFFSET))
 
 #define TNUM_TO_WIDGET_DEV(_tnum)	(_tnum & 0x7)
 

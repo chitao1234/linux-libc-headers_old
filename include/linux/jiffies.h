@@ -11,7 +11,7 @@
 #ifndef div_long_long_rem
 #define div_long_long_rem(dividend,divisor,remainder) \
 ({							\
-	u64 result = dividend;				\
+	__u64 result = dividend;				\
 	*remainder = do_div(result,divisor);		\
 	result;						\
 })
@@ -81,15 +81,15 @@
  * without sampling the sequence number in xtime_lock.
  * get_jiffies_64() will do this for you as appropriate.
  */
-extern u64 __jiffy_data jiffies_64;
+extern __u64 __jiffy_data jiffies_64;
 extern unsigned long volatile __jiffy_data jiffies;
 
 #if (BITS_PER_LONG < 64)
-u64 get_jiffies_64(void);
+__u64 get_jiffies_64(void);
 #else
-static inline u64 get_jiffies_64(void)
+static inline __u64 get_jiffies_64(void)
 {
-	return (u64)jiffies;
+	return (__u64)jiffies;
 }
 #endif
 
@@ -216,14 +216,14 @@ static inline u64 get_jiffies_64(void)
 #endif
 #define NSEC_JIFFIE_SC (SEC_JIFFIE_SC + 29)
 #define USEC_JIFFIE_SC (SEC_JIFFIE_SC + 19)
-#define SEC_CONVERSION ((unsigned long)((((u64)NSEC_PER_SEC << SEC_JIFFIE_SC) +\
-                                TICK_NSEC -1) / (u64)TICK_NSEC))
+#define SEC_CONVERSION ((unsigned long)((((__u64)NSEC_PER_SEC << SEC_JIFFIE_SC) +\
+                                TICK_NSEC -1) / (__u64)TICK_NSEC))
 
-#define NSEC_CONVERSION ((unsigned long)((((u64)1 << NSEC_JIFFIE_SC) +\
-                                        TICK_NSEC -1) / (u64)TICK_NSEC))
+#define NSEC_CONVERSION ((unsigned long)((((__u64)1 << NSEC_JIFFIE_SC) +\
+                                        TICK_NSEC -1) / (__u64)TICK_NSEC))
 #define USEC_CONVERSION  \
-                    ((unsigned long)((((u64)NSEC_PER_USEC << USEC_JIFFIE_SC) +\
-                                        TICK_NSEC -1) / (u64)TICK_NSEC))
+                    ((unsigned long)((((__u64)NSEC_PER_USEC << USEC_JIFFIE_SC) +\
+                                        TICK_NSEC -1) / (__u64)TICK_NSEC))
 /*
  * USEC_ROUND is used in the timeval to jiffie conversion.  See there
  * for more details.  It is the scaled resolution rounding value.  Note
@@ -231,7 +231,7 @@ static inline u64 get_jiffies_64(void)
  * in jiffies (albit scaled), it is nothing but the bits we will shift
  * off.
  */
-#define USEC_ROUND (u64)(((u64)1 << USEC_JIFFIE_SC) - 1)
+#define USEC_ROUND (__u64)(((__u64)1 << USEC_JIFFIE_SC) - 1)
 /*
  * The maximum jiffie value is (MAX_INT >> 1).  Here we translate that
  * into seconds.  The 64-bit case will overflow if we are not careful,
@@ -239,7 +239,7 @@ static inline u64 get_jiffies_64(void)
  */
 #if BITS_PER_LONG < 64
 # define MAX_SEC_IN_JIFFIES \
-	(long)((u64)((u64)MAX_JIFFY_OFFSET * TICK_NSEC) / NSEC_PER_SEC)
+	(long)((__u64)((__u64)MAX_JIFFY_OFFSET * TICK_NSEC) / NSEC_PER_SEC)
 #else	/* take care of overflow on 64 bits machines */
 # define MAX_SEC_IN_JIFFIES \
 	(SH_DIV((MAX_JIFFY_OFFSET >> SEC_JIFFIE_SC) * TICK_NSEC, NSEC_PER_SEC, 1) - 1)
@@ -321,8 +321,8 @@ timespec_to_jiffies(const struct timespec *value)
 		sec = MAX_SEC_IN_JIFFIES;
 		nsec = 0;
 	}
-	return (((u64)sec * SEC_CONVERSION) +
-		(((u64)nsec * NSEC_CONVERSION) >>
+	return (((__u64)sec * SEC_CONVERSION) +
+		(((__u64)nsec * NSEC_CONVERSION) >>
 		 (NSEC_JIFFIE_SC - SEC_JIFFIE_SC))) >> SEC_JIFFIE_SC;
 
 }
@@ -334,7 +334,7 @@ jiffies_to_timespec(const unsigned long jiffies, struct timespec *value)
 	 * Convert jiffies to nanoseconds and separate with
 	 * one divide.
 	 */
-	u64 nsec = (u64)jiffies * TICK_NSEC;
+	__u64 nsec = (__u64)jiffies * TICK_NSEC;
 	value->tv_sec = div_long_long_rem(nsec, NSEC_PER_SEC, &value->tv_nsec);
 }
 
@@ -360,8 +360,8 @@ timeval_to_jiffies(const struct timeval *value)
 		sec = MAX_SEC_IN_JIFFIES;
 		usec = 0;
 	}
-	return (((u64)sec * SEC_CONVERSION) +
-		(((u64)usec * USEC_CONVERSION + USEC_ROUND) >>
+	return (((__u64)sec * SEC_CONVERSION) +
+		(((__u64)usec * USEC_CONVERSION + USEC_ROUND) >>
 		 (USEC_JIFFIE_SC - SEC_JIFFIE_SC))) >> SEC_JIFFIE_SC;
 }
 
@@ -372,7 +372,7 @@ jiffies_to_timeval(const unsigned long jiffies, struct timeval *value)
 	 * Convert jiffies to nanoseconds and separate with
 	 * one divide.
 	 */
-	u64 nsec = (u64)jiffies * TICK_NSEC;
+	__u64 nsec = (__u64)jiffies * TICK_NSEC;
 	value->tv_sec = div_long_long_rem(nsec, NSEC_PER_SEC, &value->tv_usec);
 	value->tv_usec /= NSEC_PER_USEC;
 }
@@ -385,7 +385,7 @@ static inline clock_t jiffies_to_clock_t(long x)
 #if (TICK_NSEC % (NSEC_PER_SEC / USER_HZ)) == 0
 	return x / (HZ / USER_HZ);
 #else
-	u64 tmp = (u64)x * TICK_NSEC;
+	__u64 tmp = (__u64)x * TICK_NSEC;
 	do_div(tmp, (NSEC_PER_SEC / USER_HZ));
 	return (long)tmp;
 #endif
@@ -398,20 +398,20 @@ static inline unsigned long clock_t_to_jiffies(unsigned long x)
 		return ~0UL;
 	return x * (HZ / USER_HZ);
 #else
-	u64 jif;
+	__u64 jif;
 
 	/* Don't worry about loss of precision here .. */
 	if (x >= ~0UL / HZ * USER_HZ)
 		return ~0UL;
 
 	/* .. but do try to contain it here */
-	jif = x * (u64) HZ;
+	jif = x * (__u64) HZ;
 	do_div(jif, USER_HZ);
 	return jif;
 #endif
 }
 
-static inline u64 jiffies_64_to_clock_t(u64 x)
+static inline __u64 jiffies_64_to_clock_t(__u64 x)
 {
 #if (TICK_NSEC % (NSEC_PER_SEC / USER_HZ)) == 0
 	do_div(x, HZ / USER_HZ);
@@ -427,7 +427,7 @@ static inline u64 jiffies_64_to_clock_t(u64 x)
 	return x;
 }
 
-static inline u64 nsec_to_clock_t(u64 x)
+static inline __u64 nsec_to_clock_t(__u64 x)
 {
 #if (NSEC_PER_SEC % USER_HZ) == 0
 	do_div(x, (NSEC_PER_SEC / USER_HZ));

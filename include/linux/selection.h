@@ -27,14 +27,14 @@ extern int default_grn[];
 extern int default_blu[];
 
 extern unsigned short *screen_pos(struct vc_data *vc, int w_offset, int viewed);
-extern u16 screen_glyph(struct vc_data *vc, int offset);
+extern __u16 screen_glyph(struct vc_data *vc, int offset);
 extern void complement_pos(struct vc_data *vc, int offset);
 extern void invert_screen(struct vc_data *vc, int offset, int count, int shift);
 
 extern void getconsxy(struct vc_data *vc, unsigned char *p);
 extern void putconsxy(struct vc_data *vc, unsigned char *p);
 
-extern u16 vcs_scr_readw(struct vc_data *vc, const u16 *org);
-extern void vcs_scr_writew(struct vc_data *vc, u16 val, u16 *org);
+extern __u16 vcs_scr_readw(struct vc_data *vc, const __u16 *org);
+extern void vcs_scr_writew(struct vc_data *vc, __u16 val, __u16 *org);
 
 #endif

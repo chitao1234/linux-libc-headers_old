@@ -27,9 +27,9 @@
 #define MIPS_GT96100_BASE (KSEG1ADDR(0x14000000))
 
 #define GT96100_WRITE(ofs, data) \
-    *(volatile u32 *)(MIPS_GT96100_BASE+ofs) = cpu_to_le32(data)
+    *(volatile __u32 *)(MIPS_GT96100_BASE+ofs) = cpu_to_le32(data)
 #define GT96100_READ(ofs) \
-    le32_to_cpu(*(volatile u32 *)(MIPS_GT96100_BASE+ofs))
+    le32_to_cpu(*(volatile __u32 *)(MIPS_GT96100_BASE+ofs))
 
 #define GT96100_ETH_IO_SIZE 0x4000
 

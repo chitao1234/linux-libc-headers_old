@@ -72,9 +72,9 @@ Ptr____Call (c)
 
 /* Minimal context save area for Hyper Forground */
 typedef struct _hf_save_area_t {
-	u32	r10_save;
-	u32	r54_save;
-	u32	r98_save;
+	__u32	r10_save;
+	__u32	r54_save;
+	__u32	r98_save;
 
 	___DSP_DUAL_16BIT_ALLOC(
 	    status_save,
@@ -86,9 +86,9 @@ typedef struct _hf_save_area_t {
 	    rci0_save
 	)
 
-	u32	r32_save;
-	u32	r76_save;
-	u32	rsd2_save;
+	__u32	r32_save;
+	__u32	r76_save;
+	__u32	rsd2_save;
 
        	___DSP_DUAL_16BIT_ALLOC(
 	      rsi2_save,	  /* See TaskTreeParameterBlock for 
@@ -202,7 +202,7 @@ typedef struct _task_tree_context_block_t {
 	     stack8
 	)
 
-	u32	  saverfe;					
+	__u32	  saverfe;					
 
 	/* Value may be overwriten by stack save algorithm.
 	   Retain the size of the stack data saved here if used */
@@ -210,34 +210,34 @@ typedef struct _task_tree_context_block_t {
              reserved1,	
   	     stack_size
 	)
-	u32		saverba;	  /* (HFG) */
-	u32		saverdc;
-	u32		savers_config_23; /* (HFG) */
-	u32		savers_DMA23;	  /* (HFG) */
-	u32		saversa0;
-	u32		saversi0;
-	u32		saversa1;
-	u32		saversi1;
-	u32		saversa3;
-	u32		saversd0;
-	u32		saversd1;
-	u32		saversd3;
-	u32		savers_config01;
-	u32		savers_DMA01;
-	u32		saveacc0hl;
-	u32		saveacc1hl;
-	u32		saveacc0xacc1x;
-	u32		saveacc2hl;
-	u32		saveacc3hl;
-	u32		saveacc2xacc3x;
-	u32		saveaux0hl;
-	u32		saveaux1hl;
-	u32		saveaux0xaux1x;
-	u32		saveaux2hl;
-	u32		saveaux3hl;
-	u32		saveaux2xaux3x;
-	u32		savershouthl;
-	u32		savershoutxmacmode;
+	__u32		saverba;	  /* (HFG) */
+	__u32		saverdc;
+	__u32		savers_config_23; /* (HFG) */
+	__u32		savers_DMA23;	  /* (HFG) */
+	__u32		saversa0;
+	__u32		saversi0;
+	__u32		saversa1;
+	__u32		saversi1;
+	__u32		saversa3;
+	__u32		saversd0;
+	__u32		saversd1;
+	__u32		saversd3;
+	__u32		savers_config01;
+	__u32		savers_DMA01;
+	__u32		saveacc0hl;
+	__u32		saveacc1hl;
+	__u32		saveacc0xacc1x;
+	__u32		saveacc2hl;
+	__u32		saveacc3hl;
+	__u32		saveacc2xacc3x;
+	__u32		saveaux0hl;
+	__u32		saveaux1hl;
+	__u32		saveaux0xaux1x;
+	__u32		saveaux2hl;
+	__u32		saveaux3hl;
+	__u32		saveaux2xaux3x;
+	__u32		savershouthl;
+	__u32		savershoutxmacmode;
 } task_tree_context_block_t;						  
                 
 

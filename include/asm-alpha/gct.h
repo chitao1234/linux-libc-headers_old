@@ -1,38 +1,38 @@
 #ifndef __ALPHA_GCT_H
 #define __ALPHA_GCT_H
 
-typedef u64 gct_id;
-typedef u64 gct6_handle;
+typedef __u64 gct_id;
+typedef __u64 gct6_handle;
 
 typedef struct __gct6_node {
-	u8 type;	
-	u8 subtype;
-	u16 size;
-	u32 hd_extension;
+	__u8 type;	
+	__u8 subtype;
+	__u16 size;
+	__u32 hd_extension;
 	gct6_handle owner;
 	gct6_handle active_user;
 	gct_id id;
-	u64 flags;
-	u16 rev;
-	u16 change_counter;
-	u16 max_child;
-	u16 reserved1;
+	__u64 flags;
+	__u16 rev;
+	__u16 change_counter;
+	__u16 max_child;
+	__u16 reserved1;
 	gct6_handle saved_owner;
 	gct6_handle affinity;
 	gct6_handle parent;
 	gct6_handle next;
 	gct6_handle prev;
 	gct6_handle child;
-	u64 fw_flags;
-	u64 os_usage;
-	u64 fru_id;
-	u32 checksum;
-	u32 magic;	/* 'GLXY' */
+	__u64 fw_flags;
+	__u64 os_usage;
+	__u64 fru_id;
+	__u32 checksum;
+	__u32 magic;	/* 'GLXY' */
 } gct6_node;
 
 typedef struct {
-	u8 type;	
-	u8 subtype;
+	__u8 type;	
+	__u8 subtype;
 	void (*callout)(gct6_node *);
 } gct6_search_struct;
 

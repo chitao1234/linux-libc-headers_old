@@ -42,16 +42,16 @@ static inline unsigned long check_apicid_present(int bit)
 
 #define apicid_cluster(apicid) ((apicid) & XAPIC_DEST_CLUSTER_MASK)
 
-extern u8 bios_cpu_apicid[];
-extern u8 cpu_2_logical_apicid[];
+extern __u8 bios_cpu_apicid[];
+extern __u8 cpu_2_logical_apicid[];
 
 static inline void init_apic_ldr(void)
 {
 	unsigned long val, id;
 	int i, count;
-	u8 lid;
-	u8 my_id = (u8)hard_smp_processor_id();
-	u8 my_cluster = (u8)apicid_cluster(my_id);
+	__u8 lid;
+	__u8 my_id = (__u8)hard_smp_processor_id();
+	__u8 my_cluster = (__u8)apicid_cluster(my_id);
 
 	/* Create logical APIC IDs by counting CPUs already in cluster. */
 	for (count = 0, i = NR_CPUS; --i >= 0; ) {
@@ -180,7 +180,7 @@ static inline unsigned int cpu_mask_to_apicid(cpumask_t cpumask)
  *
  * See Intel's IA-32 SW Dev's Manual Vol2 under CPUID.
  */
-static inline u32 phys_pkg_id(u32 cpuid_apic, int index_msb)
+static inline __u32 phys_pkg_id(__u32 cpuid_apic, int index_msb)
 {
 	return hard_smp_processor_id() >> index_msb;
 }

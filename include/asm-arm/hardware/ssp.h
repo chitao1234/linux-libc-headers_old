@@ -15,7 +15,7 @@ struct ssp_state {
 	unsigned int	cr1;
 };
 
-int ssp_write_word(u16 data);
+int ssp_write_word(__u16 data);
 int ssp_read_word(void);
 void ssp_flush(void);
 void ssp_enable(void);

@@ -43,7 +43,7 @@ struct eisa_device {
 	int                   state;
 	unsigned long         base_addr;
 	struct resource       res[EISA_MAX_RESOURCES];
-	u64                   dma_mask;
+	__u64                   dma_mask;
 	struct device         dev; /* generic device */
 #ifdef CONFIG_EISA_NAMES
 	char		      pretty_name[DEVICE_NAME_SIZE];
@@ -91,7 +91,7 @@ struct eisa_root_device {
 	unsigned long    bus_base_addr;
 	int		 slots;  /* Max slot number */
 	int		 force_probe; /* Probe even when no slot 0 */
-	u64		 dma_mask; /* from bridge device */
+	__u64		 dma_mask; /* from bridge device */
 	int              bus_nr; /* Set by eisa_root_register */
 	struct resource  eisa_root_res;	/* ditto */
 };

@@ -312,7 +312,7 @@
  */
 
 struct err_stack_format {
-	u64	sk_addr	   : 33,   /* address */
+	__u64	sk_addr	   : 33,   /* address */
 		sk_cmd	   :  8,   /* message command */
 		sk_crb_sts : 10,   /* status from RRB or WRB */
 		sk_rw_rb   :  1,   /* RRB == 0, WRB == 1 */
@@ -323,12 +323,12 @@ struct err_stack_format {
 };
 
 typedef union pi_err_stack {
-	u64	pi_stk_word;
+	__u64	pi_stk_word;
 	struct	err_stack_format pi_stk_fmt;
 } pi_err_stack_t;
 
 struct err_status0_format {
-	u64	s0_valid   :  1,   /* Valid */
+	__u64	s0_valid   :  1,   /* Valid */
 		s0_ovr_run :  1,   /* Overrun, spooled to memory */
 		s0_addr	   : 37,   /* address */
 		s0_cmd	   :  8,   /* message command */
@@ -338,12 +338,12 @@ struct err_status0_format {
 };
 
 typedef union pi_err_stat0 {
-	u64	pi_stat0_word;
+	__u64	pi_stat0_word;
 	struct err_status0_format pi_stat0_fmt;
 } pi_err_stat0_t;
 
 struct err_status1_format {
-	u64	s1_src	   : 11,   /* message source */
+	__u64	s1_src	   : 11,   /* message source */
 		s1_crb_sts : 10,   /* status from RRB or WRB */
 		s1_rw_rb   :  1,   /* RRB == 0, WRB == 1 */
 		s1_crb_num :  3,   /* WRB (0 to 7) or RRB (0 to 4) */
@@ -353,11 +353,11 @@ struct err_status1_format {
 };
 
 typedef union pi_err_stat1 {
-	u64	pi_stat1_word;
+	__u64	pi_stat1_word;
 	struct err_status1_format pi_stat1_fmt;
 } pi_err_stat1_t;
 
-typedef u64	rtc_time_t;
+typedef __u64	rtc_time_t;
 
 #endif /* !__ASSEMBLY__ */
 

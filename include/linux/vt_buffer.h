@@ -28,7 +28,7 @@
 #endif
 
 #ifndef VT_BUF_HAVE_MEMSETW
-static inline void scr_memsetw(u16 *s, u16 c, unsigned int count)
+static inline void scr_memsetw(__u16 *s, __u16 c, unsigned int count)
 {
 	count /= 2;
 	while (count--)
@@ -37,7 +37,7 @@ static inline void scr_memsetw(u16 *s, u16 c, unsigned int count)
 #endif
 
 #ifndef VT_BUF_HAVE_MEMCPYW
-static inline void scr_memcpyw(u16 *d, const u16 *s, unsigned int count)
+static inline void scr_memcpyw(__u16 *d, const __u16 *s, unsigned int count)
 {
 	count /= 2;
 	while (count--)
@@ -46,7 +46,7 @@ static inline void scr_memcpyw(u16 *d, const u16 *s, unsigned int count)
 #endif
 
 #ifndef VT_BUF_HAVE_MEMMOVEW
-static inline void scr_memmovew(u16 *d, const u16 *s, unsigned int count)
+static inline void scr_memmovew(__u16 *d, const __u16 *s, unsigned int count)
 {
 	if (d < s)
 		scr_memcpyw(d, s, count);

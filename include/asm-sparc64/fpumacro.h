@@ -11,7 +11,7 @@
 #include <asm/visasm.h>
 
 struct fpustate {
-	u32	regs[64];
+	__u32	regs[64];
 };
 
 #define FPUSTATE (struct fpustate *)(current_thread_info()->fpregs)

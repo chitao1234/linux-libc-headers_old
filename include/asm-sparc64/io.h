@@ -31,9 +31,9 @@ extern unsigned long pci_memspace_mask;
 
 #define bus_dvma_to_mem(__vaddr) ((__vaddr) & pci_memspace_mask)
 
-static __inline__ u8 _inb(unsigned long addr)
+static __inline__ __u8 _inb(unsigned long addr)
 {
-	u8 ret;
+	__u8 ret;
 
 	__asm__ __volatile__("lduba\t[%1] %2, %0\t/* pci_inb */"
 			     : "=r" (ret)
@@ -42,9 +42,9 @@ static __inline__ u8 _inb(unsigned long addr)
 	return ret;
 }
 
-static __inline__ u16 _inw(unsigned long addr)
+static __inline__ __u16 _inw(unsigned long addr)
 {
-	u16 ret;
+	__u16 ret;
 
 	__asm__ __volatile__("lduha\t[%1] %2, %0\t/* pci_inw */"
 			     : "=r" (ret)
@@ -53,9 +53,9 @@ static __inline__ u16 _inw(unsigned long addr)
 	return ret;
 }
 
-static __inline__ u32 _inl(unsigned long addr)
+static __inline__ __u32 _inl(unsigned long addr)
 {
-	u32 ret;
+	__u32 ret;
 
 	__asm__ __volatile__("lduwa\t[%1] %2, %0\t/* pci_inl */"
 			     : "=r" (ret)
@@ -64,21 +64,21 @@ static __inline__ u32 _inl(unsigned long addr)
 	return ret;
 }
 
-static __inline__ void _outb(u8 b, unsigned long addr)
+static __inline__ void _outb(__u8 b, unsigned long addr)
 {
 	__asm__ __volatile__("stba\t%r0, [%1] %2\t/* pci_outb */"
 			     : /* no outputs */
 			     : "Jr" (b), "r" (addr), "i" (ASI_PHYS_BYPASS_EC_E_L));
 }
 
-static __inline__ void _outw(u16 w, unsigned long addr)
+static __inline__ void _outw(__u16 w, unsigned long addr)
 {
 	__asm__ __volatile__("stha\t%r0, [%1] %2\t/* pci_outw */"
 			     : /* no outputs */
 			     : "Jr" (w), "r" (addr), "i" (ASI_PHYS_BYPASS_EC_E_L));
 }
 
-static __inline__ void _outl(u32 l, unsigned long addr)
+static __inline__ void _outl(__u32 l, unsigned long addr)
 {
 	__asm__ __volatile__("stwa\t%r0, [%1] %2\t/* pci_outl */"
 			     : /* no outputs */
@@ -88,9 +88,9 @@ static __inline__ void _outl(u32 l, unsigned long addr)
 #define inb(__addr)		(_inb((unsigned long)(__addr)))
 #define inw(__addr)		(_inw((unsigned long)(__addr)))
 #define inl(__addr)		(_inl((unsigned long)(__addr)))
-#define outb(__b, __addr)	(_outb((u8)(__b), (unsigned long)(__addr)))
-#define outw(__w, __addr)	(_outw((u16)(__w), (unsigned long)(__addr)))
-#define outl(__l, __addr)	(_outl((u32)(__l), (unsigned long)(__addr)))
+#define outb(__b, __addr)	(_outb((__u8)(__b), (unsigned long)(__addr)))
+#define outw(__w, __addr)	(_outw((__u16)(__w), (unsigned long)(__addr)))
+#define outl(__l, __addr)	(_outl((__u32)(__l), (unsigned long)(__addr)))
 
 #define inb_p(__addr) 		inb(__addr)
 #define outb_p(__b, __addr)	outb(__b, __addr)
@@ -113,8 +113,8 @@ extern void insl(void *addr, void *dst, unsigned long count);
 #define iowrite32_rep(a,s,c)	outsl(a,s,c)
 
 /* Memory functions, same as I/O accesses on Ultra. */
-static inline u8 _readb(const volatile void *addr)
-{	u8 ret;
+static inline __u8 _readb(const volatile void *addr)
+{	__u8 ret;
 
 	__asm__ __volatile__("lduba\t[%1] %2, %0\t/* pci_readb */"
 			     : "=r" (ret)
@@ -122,8 +122,8 @@ static inline u8 _readb(const volatile void *addr)
 	return ret;
 }
 
-static inline u16 _readw(const volatile void *addr)
-{	u16 ret;
+static inline __u16 _readw(const volatile void *addr)
+{	__u16 ret;
 
 	__asm__ __volatile__("lduha\t[%1] %2, %0\t/* pci_readw */"
 			     : "=r" (ret)
@@ -132,8 +132,8 @@ static inline u16 _readw(const volatile void *addr)
 	return ret;
 }
 
-static inline u32 _readl(const volatile void *addr)
-{	u32 ret;
+static inline __u32 _readl(const volatile void *addr)
+{	__u32 ret;
 
 	__asm__ __volatile__("lduwa\t[%1] %2, %0\t/* pci_readl */"
 			     : "=r" (ret)
@@ -142,8 +142,8 @@ static inline u32 _readl(const volatile void *addr)
 	return ret;
 }
 
-static inline u64 _readq(const volatile void *addr)
-{	u64 ret;
+static inline __u64 _readq(const volatile void *addr)
+{	__u64 ret;
 
 	__asm__ __volatile__("ldxa\t[%1] %2, %0\t/* pci_readq */"
 			     : "=r" (ret)
@@ -152,28 +152,28 @@ static inline u64 _readq(const volatile void *addr)
 	return ret;
 }
 
-static inline void _writeb(u8 b, volatile void *addr)
+static inline void _writeb(__u8 b, volatile void *addr)
 {
 	__asm__ __volatile__("stba\t%r0, [%1] %2\t/* pci_writeb */"
 			     : /* no outputs */
 			     : "Jr" (b), "r" (addr), "i" (ASI_PHYS_BYPASS_EC_E_L));
 }
 
-static inline void _writew(u16 w, volatile void *addr)
+static inline void _writew(__u16 w, volatile void *addr)
 {
 	__asm__ __volatile__("stha\t%r0, [%1] %2\t/* pci_writew */"
 			     : /* no outputs */
 			     : "Jr" (w), "r" (addr), "i" (ASI_PHYS_BYPASS_EC_E_L));
 }
 
-static inline void _writel(u32 l, volatile void *addr)
+static inline void _writel(__u32 l, volatile void *addr)
 {
 	__asm__ __volatile__("stwa\t%r0, [%1] %2\t/* pci_writel */"
 			     : /* no outputs */
 			     : "Jr" (l), "r" (addr), "i" (ASI_PHYS_BYPASS_EC_E_L));
 }
 
-static inline void _writeq(u64 q, volatile void *addr)
+static inline void _writeq(__u64 q, volatile void *addr)
 {
 	__asm__ __volatile__("stxa\t%r0, [%1] %2\t/* pci_writeq */"
 			     : /* no outputs */
@@ -194,9 +194,9 @@ static inline void _writeq(u64 q, volatile void *addr)
 #define writeq(__q, __addr)	_writeq(__q, __addr)
 
 /* Now versions without byte-swapping. */
-static __inline__ u8 _raw_readb(unsigned long addr)
+static __inline__ __u8 _raw_readb(unsigned long addr)
 {
-	u8 ret;
+	__u8 ret;
 
 	__asm__ __volatile__("lduba\t[%1] %2, %0\t/* pci_raw_readb */"
 			     : "=r" (ret)
@@ -205,9 +205,9 @@ static __inline__ u8 _raw_readb(unsigned long addr)
 	return ret;
 }
 
-static __inline__ u16 _raw_readw(unsigned long addr)
+static __inline__ __u16 _raw_readw(unsigned long addr)
 {
-	u16 ret;
+	__u16 ret;
 
 	__asm__ __volatile__("lduha\t[%1] %2, %0\t/* pci_raw_readw */"
 			     : "=r" (ret)
@@ -216,9 +216,9 @@ static __inline__ u16 _raw_readw(unsigned long addr)
 	return ret;
 }
 
-static __inline__ u32 _raw_readl(unsigned long addr)
+static __inline__ __u32 _raw_readl(unsigned long addr)
 {
-	u32 ret;
+	__u32 ret;
 
 	__asm__ __volatile__("lduwa\t[%1] %2, %0\t/* pci_raw_readl */"
 			     : "=r" (ret)
@@ -227,9 +227,9 @@ static __inline__ u32 _raw_readl(unsigned long addr)
 	return ret;
 }
 
-static __inline__ u64 _raw_readq(unsigned long addr)
+static __inline__ __u64 _raw_readq(unsigned long addr)
 {
-	u64 ret;
+	__u64 ret;
 
 	__asm__ __volatile__("ldxa\t[%1] %2, %0\t/* pci_raw_readq */"
 			     : "=r" (ret)
@@ -238,28 +238,28 @@ static __inline__ u64 _raw_readq(unsigned long addr)
 	return ret;
 }
 
-static __inline__ void _raw_writeb(u8 b, unsigned long addr)
+static __inline__ void _raw_writeb(__u8 b, unsigned long addr)
 {
 	__asm__ __volatile__("stba\t%r0, [%1] %2\t/* pci_raw_writeb */"
 			     : /* no outputs */
 			     : "Jr" (b), "r" (addr), "i" (ASI_PHYS_BYPASS_EC_E));
 }
 
-static __inline__ void _raw_writew(u16 w, unsigned long addr)
+static __inline__ void _raw_writew(__u16 w, unsigned long addr)
 {
 	__asm__ __volatile__("stha\t%r0, [%1] %2\t/* pci_raw_writew */"
 			     : /* no outputs */
 			     : "Jr" (w), "r" (addr), "i" (ASI_PHYS_BYPASS_EC_E));
 }
 
-static __inline__ void _raw_writel(u32 l, unsigned long addr)
+static __inline__ void _raw_writel(__u32 l, unsigned long addr)
 {
 	__asm__ __volatile__("stwa\t%r0, [%1] %2\t/* pci_raw_writel */"
 			     : /* no outputs */
 			     : "Jr" (l), "r" (addr), "i" (ASI_PHYS_BYPASS_EC_E));
 }
 
-static __inline__ void _raw_writeq(u64 q, unsigned long addr)
+static __inline__ void _raw_writeq(__u64 q, unsigned long addr)
 {
 	__asm__ __volatile__("stxa\t%r0, [%1] %2\t/* pci_raw_writeq */"
 			     : /* no outputs */
@@ -270,10 +270,10 @@ static __inline__ void _raw_writeq(u64 q, unsigned long addr)
 #define __raw_readw(__addr)		(_raw_readw((unsigned long)(__addr)))
 #define __raw_readl(__addr)		(_raw_readl((unsigned long)(__addr)))
 #define __raw_readq(__addr)		(_raw_readq((unsigned long)(__addr)))
-#define __raw_writeb(__b, __addr)	(_raw_writeb((u8)(__b), (unsigned long)(__addr)))
-#define __raw_writew(__w, __addr)	(_raw_writew((u16)(__w), (unsigned long)(__addr)))
-#define __raw_writel(__l, __addr)	(_raw_writel((u32)(__l), (unsigned long)(__addr)))
-#define __raw_writeq(__q, __addr)	(_raw_writeq((u64)(__q), (unsigned long)(__addr)))
+#define __raw_writeb(__b, __addr)	(_raw_writeb((__u8)(__b), (unsigned long)(__addr)))
+#define __raw_writew(__w, __addr)	(_raw_writew((__u16)(__w), (unsigned long)(__addr)))
+#define __raw_writel(__l, __addr)	(_raw_writel((__u32)(__l), (unsigned long)(__addr)))
+#define __raw_writeq(__q, __addr)	(_raw_writeq((__u64)(__q), (unsigned long)(__addr)))
 
 /* Valid I/O Space regions are anywhere, because each PCI bus supported
  * can live in an arbitrary area of the physical address range.
@@ -283,9 +283,9 @@ static __inline__ void _raw_writeq(u64 q, unsigned long addr)
 /* Now, SBUS variants, only difference from PCI is that we do
  * not use little-endian ASIs.
  */
-static inline u8 _sbus_readb(const volatile void *addr)
+static inline __u8 _sbus_readb(const volatile void *addr)
 {
-	u8 ret;
+	__u8 ret;
 
 	__asm__ __volatile__("lduba\t[%1] %2, %0\t/* sbus_readb */"
 			     : "=r" (ret)
@@ -294,9 +294,9 @@ static inline u8 _sbus_readb(const volatile void *addr)
 	return ret;
 }
 
-static inline u16 _sbus_readw(const volatile void *addr)
+static inline __u16 _sbus_readw(const volatile void *addr)
 {
-	u16 ret;
+	__u16 ret;
 
 	__asm__ __volatile__("lduha\t[%1] %2, %0\t/* sbus_readw */"
 			     : "=r" (ret)
@@ -305,9 +305,9 @@ static inline u16 _sbus_readw(const volatile void *addr)
 	return ret;
 }
 
-static inline u32 _sbus_readl(const volatile void *addr)
+static inline __u32 _sbus_readl(const volatile void *addr)
 {
-	u32 ret;
+	__u32 ret;
 
 	__asm__ __volatile__("lduwa\t[%1] %2, %0\t/* sbus_readl */"
 			     : "=r" (ret)
@@ -316,9 +316,9 @@ static inline u32 _sbus_readl(const volatile void *addr)
 	return ret;
 }
 
-static inline u64 _sbus_readq(const volatile void *addr)
+static inline __u64 _sbus_readq(const volatile void *addr)
 {
-	u64 ret;
+	__u64 ret;
 
 	__asm__ __volatile__("ldxa\t[%1] %2, %0\t/* sbus_readq */"
 			     : "=r" (ret)
@@ -327,28 +327,28 @@ static inline u64 _sbus_readq(const volatile void *addr)
 	return ret;
 }
 
-static inline void _sbus_writeb(u8 b, volatile void *addr)
+static inline void _sbus_writeb(__u8 b, volatile void *addr)
 {
 	__asm__ __volatile__("stba\t%r0, [%1] %2\t/* sbus_writeb */"
 			     : /* no outputs */
 			     : "Jr" (b), "r" (addr), "i" (ASI_PHYS_BYPASS_EC_E));
 }
 
-static inline void _sbus_writew(u16 w, volatile void *addr)
+static inline void _sbus_writew(__u16 w, volatile void *addr)
 {
 	__asm__ __volatile__("stha\t%r0, [%1] %2\t/* sbus_writew */"
 			     : /* no outputs */
 			     : "Jr" (w), "r" (addr), "i" (ASI_PHYS_BYPASS_EC_E));
 }
 
-static inline void _sbus_writel(u32 l, volatile void *addr)
+static inline void _sbus_writel(__u32 l, volatile void *addr)
 {
 	__asm__ __volatile__("stwa\t%r0, [%1] %2\t/* sbus_writel */"
 			     : /* no outputs */
 			     : "Jr" (l), "r" (addr), "i" (ASI_PHYS_BYPASS_EC_E));
 }
 
-static inline void _sbus_writeq(u64 l, volatile void *addr)
+static inline void _sbus_writeq(__u64 l, volatile void *addr)
 {
 	__asm__ __volatile__("stxa\t%r0, [%1] %2\t/* sbus_writeq */"
 			     : /* no outputs */

@@ -92,7 +92,7 @@
  * defined here
  */
 #ifndef __ASSEMBLY__
-typedef u32 widgetreg_t;
+typedef __u32 widgetreg_t;
 
 /* widget configuration registers */
 typedef volatile struct widget_cfg {

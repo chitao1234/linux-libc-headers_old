@@ -45,8 +45,8 @@ extern void mf_deallocate_lp_events(HvLpIndex targetLp, HvLpEvent_Type type,
 extern void mf_power_off(void);
 extern void mf_reboot(void);
 
-extern void mf_display_src(u32 word);
-extern void mf_display_progress(u16 value);
+extern void mf_display_src(__u32 word);
+extern void mf_display_progress(__u16 value);
 extern void mf_clear_src(void);
 
 extern void mf_init(void);

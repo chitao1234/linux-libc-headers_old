@@ -60,18 +60,18 @@ struct ItLpQueue
 // cache line is for use by the OS.
 //
 //=============================================================================
-	u8	xPlicOverflowIntPending;// 0x00 Overflow events are pending
-	u8	xPlicStatus;		// 0x01 DedicatedIo or DedicatedLp or NotUsed
-	u16	xSlicLogicalProcIndex;	// 0x02 Logical Proc Index for correlation
-	u8	xPlicRsvd[12];		// 0x04
+	__u8	xPlicOverflowIntPending;// 0x00 Overflow events are pending
+	__u8	xPlicStatus;		// 0x01 DedicatedIo or DedicatedLp or NotUsed
+	__u16	xSlicLogicalProcIndex;	// 0x02 Logical Proc Index for correlation
+	__u8	xPlicRsvd[12];		// 0x04
 	char*	xSlicCurEventPtr;	// 0x10
 	char*	xSlicLastValidEventPtr;	// 0x18
 	char*	xSlicEventStackPtr;	// 0x20
-	u8	xIndex;			// 0x28 unique sequential index.
-	u8	xSlicRsvd[3];		// 0x29-2b
-	u32	xInUseWord;		// 0x2C
-	u64	xLpIntCount;		// 0x30 Total Lp Int msgs processed
-	u64	xLpIntCountByType[9];	// 0x38-0x7F Event counts by type
+	__u8	xIndex;			// 0x28 unique sequential index.
+	__u8	xSlicRsvd[3];		// 0x29-2b
+	__u32	xInUseWord;		// 0x2C
+	__u64	xLpIntCount;		// 0x30 Total Lp Int msgs processed
+	__u64	xLpIntCountByType[9];	// 0x38-0x7F Event counts by type
 };
 
 extern struct ItLpQueue xItLpQueue;

@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_SEGMENT_H
 #define _ASM_M32R_SEGMENT_H
 
-/* $Id: segment.h,v 1.1 2004/10/21 15:15:38 mmazur Exp $ */
+/* $Id$ */
 
 /* orig : i386 (2.4.18) */
 

@@ -204,11 +204,11 @@ idal_buffer_set_cda(struct idal_buffer *ib, struct ccw1 *ccw)
 {
 	if (__idal_buffer_is_needed(ib)) {
 		// setup idals;
-		ccw->cda = (u32)(addr_t) ib->data;
+		ccw->cda = (__u32)(addr_t) ib->data;
 		ccw->flags |= CCW_FLAG_IDA;
 	} else
 		// we do not need idals - use direct addressing
-		ccw->cda = (u32)(addr_t) ib->data[0];
+		ccw->cda = (__u32)(addr_t) ib->data[0];
 	ccw->count = ib->size;
 }
 

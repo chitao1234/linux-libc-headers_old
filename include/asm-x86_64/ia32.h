@@ -131,7 +131,7 @@ typedef struct compat_siginfo{
 
 struct sigframe32
 {
-        u32 pretcode;
+        __u32 pretcode;
         int sig;
         struct sigcontext_ia32 sc;
         struct _fpstate_ia32 fpstate;
@@ -140,10 +140,10 @@ struct sigframe32
 
 struct rt_sigframe32
 {
-        u32 pretcode;
+        __u32 pretcode;
         int sig;
-        u32 pinfo;
-        u32 puc;
+        __u32 pinfo;
+        __u32 puc;
         compat_siginfo_t info;
         struct ucontext_ia32 uc;
         struct _fpstate_ia32 fpstate;

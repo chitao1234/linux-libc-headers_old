@@ -27,7 +27,7 @@
  * system call/exception. As usual the registers k0/k1 aren't being saved.
  */
 struct pt_regs {
-#ifdef CONFIG_MIPS32
+#ifndef __mips64
 	/* Pad bytes for argument save space on the stack. */
 	unsigned long pad0[6];
 #endif

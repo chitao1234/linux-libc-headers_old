@@ -26,10 +26,10 @@ struct siginfo;
 /*
  * Careful to keep union _sifields from shifting ...
  */
-#ifdef CONFIG_MIPS32
+#ifndef __mips64
 #define __ARCH_SI_PREAMBLE_SIZE (3 * sizeof(int))
 #endif
-#ifdef CONFIG_MIPS64
+#ifdef __mips64
 #define __ARCH_SI_PREAMBLE_SIZE (4 * sizeof(int))
 #endif
 

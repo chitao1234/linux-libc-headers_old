@@ -62,9 +62,9 @@ static inline void end_edge_ioapic_irq (unsigned int irq) { }
  * The structure of the IO-APIC:
  */
 union IO_APIC_reg_00 {
-	u32	raw;
+	__u32	raw;
 	struct {
-		u32	__reserved_2	: 14,
+		__u32	__reserved_2	: 14,
 			LTS		:  1,
 			delivery_type	:  1,
 			__reserved_1	:  8,
@@ -73,9 +73,9 @@ union IO_APIC_reg_00 {
 };
 
 union IO_APIC_reg_01 {
-	u32	raw;
+	__u32	raw;
 	struct {
-		u32	version		:  8,
+		__u32	version		:  8,
 		__reserved_2	:  7,
 		PRQ		:  1,
 		entries		:  8,
@@ -84,18 +84,18 @@ union IO_APIC_reg_01 {
 };
 
 union IO_APIC_reg_02 {
-	u32	raw;
+	__u32	raw;
 	struct {
-		u32	__reserved_2	: 24,
+		__u32	__reserved_2	: 24,
 		arbitration	:  4,
 		__reserved_1	:  4;
 	} __attribute__ ((packed)) bits;
 };
 
 union IO_APIC_reg_03 {
-	u32	raw;
+	__u32	raw;
 	struct {
-		u32	boot_DT		:  1,
+		__u32	boot_DT		:  1,
 			__reserved_1	: 31;
 	} __attribute__ ((packed)) bits;
 };

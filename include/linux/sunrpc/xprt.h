@@ -93,7 +93,7 @@ struct rpc_rqst {
 	__u32			rq_xid;		/* request XID */
 	int			rq_cong;	/* has incremented xprt->cong */
 	int			rq_received;	/* receive completed */
-	u32			rq_seqno;	/* gss seq no. used on req. */
+	__u32			rq_seqno;	/* gss seq no. used on req. */
 
 	struct list_head	rq_list;
 
@@ -106,13 +106,13 @@ struct rpc_rqst {
 	/*
 	 * For authentication (e.g. auth_des)
 	 */
-	u32			rq_creddata[2];
+	__u32			rq_creddata[2];
 	
 	/*
 	 * Partial send handling
 	 */
 	
-	u32			rq_bytes_sent;	/* Bytes we have sent */
+	__u32			rq_bytes_sent;	/* Bytes we have sent */
 
 	unsigned long		rq_xtime;	/* when transmitted */
 	int			rq_ntrans;
@@ -160,7 +160,7 @@ struct rpc_xprt {
 	/*
 	 * State of TCP reply receive stuff
 	 */
-	u32			tcp_recm,	/* Fragment header */
+	__u32			tcp_recm,	/* Fragment header */
 				tcp_xid,	/* Current XID */
 				tcp_reclen,	/* fragment length */
 				tcp_offset;	/* fragment offset */

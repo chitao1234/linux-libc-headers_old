@@ -12,13 +12,13 @@
  */
 
 struct cpu_usage_stat {
-	u64 user;
-	u64 nice;
-	u64 system;
-	u64 softirq;
-	u64 irq;
-	u64 idle;
-	u64 iowait;
+	__u64 user;
+	__u64 nice;
+	__u64 system;
+	__u64 softirq;
+	__u64 irq;
+	__u64 idle;
+	__u64 iowait;
 };
 
 struct kernel_stat {

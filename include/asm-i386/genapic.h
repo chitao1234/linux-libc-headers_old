@@ -45,7 +45,7 @@ struct genapic {
 	void (*setup_portio_remap)(void); 
 	int (*check_phys_apicid_present)(int boot_cpu_physical_apicid);
 	void (*enable_apic_mode)(void);
-	u32 (*phys_pkg_id)(u32 cpuid_apic, int index_msb);
+	__u32 (*phys_pkg_id)(__u32 cpuid_apic, int index_msb);
 
 	/* mpparse */
 	void (*mpc_oem_bus_info)(struct mpc_config_bus *, char *, 

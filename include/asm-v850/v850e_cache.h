@@ -24,13 +24,13 @@
 
 /* Cache control registers.  */
 #define V850E_CACHE_BHC_ADDR	0xFFFFF06A
-#define V850E_CACHE_BHC		(*(volatile u16 *)V850E_CACHE_BHC_ADDR)
+#define V850E_CACHE_BHC		(*(volatile __u16 *)V850E_CACHE_BHC_ADDR)
 #define V850E_CACHE_ICC_ADDR	0xFFFFF070
-#define V850E_CACHE_ICC		(*(volatile u16 *)V850E_CACHE_ICC_ADDR)
+#define V850E_CACHE_ICC		(*(volatile __u16 *)V850E_CACHE_ICC_ADDR)
 #define V850E_CACHE_ISI_ADDR	0xFFFFF072
-#define V850E_CACHE_ISI		(*(volatile u16 *)V850E_CACHE_ISI_ADDR)
+#define V850E_CACHE_ISI		(*(volatile __u16 *)V850E_CACHE_ISI_ADDR)
 #define V850E_CACHE_DCC_ADDR	0xFFFFF078
-#define V850E_CACHE_DCC		(*(volatile u16 *)V850E_CACHE_DCC_ADDR)
+#define V850E_CACHE_DCC		(*(volatile __u16 *)V850E_CACHE_DCC_ADDR)
 
 /* Size of a cache line in bytes.  */
 #define V850E_CACHE_LINE_SIZE	16
@@ -41,7 +41,7 @@
 
 #if defined(__KERNEL__) && !defined(__ASSEMBLY__)
 /* Set caching params via the BHC, ICC, and DCC registers.  */
-void v850e_cache_enable (u16 bhc, u16 icc, u16 dcc);
+void v850e_cache_enable (__u16 bhc, __u16 icc, __u16 dcc);
 #endif /* __KERNEL__ && !__ASSEMBLY__ */
 
 

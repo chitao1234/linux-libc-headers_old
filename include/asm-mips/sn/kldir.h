@@ -210,7 +210,7 @@
 
 #ifndef __ASSEMBLY__
 typedef struct kldir_ent_s {
-	u64		magic;		/* Indicates validity of entry      */
+	__u64		magic;		/* Indicates validity of entry      */
 	off_t		offset;		/* Offset from start of node space  */
 #if defined(CONFIG_SGI_IO)	/* FIXME */
 	__psunsigned_t	pointer;	/* Pointer to area in some cases    */
@@ -218,7 +218,7 @@ typedef struct kldir_ent_s {
 	unsigned long	pointer;	/* Pointer to area in some cases    */
 #endif
 	size_t		size;		/* Size in bytes 		    */
-	u64		count;		/* Repeat count if array, 1 if not  */
+	__u64		count;		/* Repeat count if array, 1 if not  */
 	size_t		stride;		/* Stride if array, 0 if not        */
 	char		rsvd[16];	/* Pad entry to 0x40 bytes          */
 	/* NOTE: These 16 bytes are used in the Partition KLDIR

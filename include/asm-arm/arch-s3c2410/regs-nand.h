@@ -14,7 +14,7 @@
 */
 
 #ifndef __ASM_ARM_REGS_NAND
-#define __ASM_ARM_REGS_NAND "$Id: regs-nand.h,v 1.1 2004/10/21 16:42:45 mmazur Exp $"
+#define __ASM_ARM_REGS_NAND "$Id$"
 
 
 #define S3C2410_NFREG(x) (x)

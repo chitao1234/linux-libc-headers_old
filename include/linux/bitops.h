@@ -119,7 +119,7 @@ static inline unsigned long generic_hweight64(__u64 w)
 	return generic_hweight32((unsigned int)(w >> 32)) +
 				generic_hweight32((unsigned int)w);
 #else
-	u64 res;
+	__u64 res;
 	res = (w & 0x5555555555555555ul) + ((w >> 1) & 0x5555555555555555ul);
 	res = (res & 0x3333333333333333ul) + ((res >> 2) & 0x3333333333333333ul);
 	res = (res & 0x0F0F0F0F0F0F0F0Ful) + ((res >> 4) & 0x0F0F0F0F0F0F0F0Ful);

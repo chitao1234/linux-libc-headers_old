@@ -74,13 +74,13 @@
 #define CB_PIC_BASE_ADDR 	0x0FE04000
 
 #define CB_PIC_INT0M_ADDR 	(CB_PIC_BASE_ADDR + 0x00)
-#define CB_PIC_INT0M      	(*(volatile u16 *)CB_PIC_INT0M_ADDR)
+#define CB_PIC_INT0M      	(*(volatile __u16 *)CB_PIC_INT0M_ADDR)
 #define CB_PIC_INT1M_ADDR 	(CB_PIC_BASE_ADDR + 0x10)
-#define CB_PIC_INT1M      	(*(volatile u16 *)CB_PIC_INT1M_ADDR)
+#define CB_PIC_INT1M      	(*(volatile __u16 *)CB_PIC_INT1M_ADDR)
 #define CB_PIC_INTR_ADDR  	(CB_PIC_BASE_ADDR + 0x20)
-#define CB_PIC_INTR       	(*(volatile u16 *)CB_PIC_INTR_ADDR)
+#define CB_PIC_INTR       	(*(volatile __u16 *)CB_PIC_INTR_ADDR)
 #define CB_PIC_INTEN_ADDR 	(CB_PIC_BASE_ADDR + 0x30)
-#define CB_PIC_INTEN      	(*(volatile u16 *)CB_PIC_INTEN_ADDR)
+#define CB_PIC_INTEN      	(*(volatile __u16 *)CB_PIC_INTEN_ADDR)
 
 #define CB_PIC_INT0EN        	0x0001
 #define CB_PIC_INT1EN        	0x0002
@@ -150,11 +150,11 @@ extern void cb_pic_init_irqs (void);
 /* CompactFlash setting */
 #define CB_CF_BASE     		0x0FE0C000
 #define CB_CF_CCR_ADDR 		(CB_CF_BASE+0x200)
-#define CB_CF_CCR      		(*(volatile u8 *)CB_CF_CCR_ADDR)
+#define CB_CF_CCR      		(*(volatile __u8 *)CB_CF_CCR_ADDR)
 #define CB_CF_REG0_ADDR		(CB_CF_BASE+0x1000)
-#define CB_CF_REG0     		(*(volatile u16 *)CB_CF_REG0_ADDR)
+#define CB_CF_REG0     		(*(volatile __u16 *)CB_CF_REG0_ADDR)
 #define CB_CF_STS0_ADDR		(CB_CF_BASE+0x1004)
-#define CB_CF_STS0     		(*(volatile u16 *)CB_CF_STS0_ADDR)
+#define CB_CF_STS0     		(*(volatile __u16 *)CB_CF_STS0_ADDR)
 #define CB_PCATA_BASE  		(CB_CF_BASE+0x800)
 #define CB_IDE_BASE    		(CB_CF_BASE+0x9F0)
 #define CB_IDE_CTRL    		(CB_CF_BASE+0xBF6)

@@ -294,8 +294,8 @@ extern int pdc_pat_cpu_get_number(struct pdc_pat_cpu_num *cpu_info, void *hpa);
 extern int pdc_pat_pd_get_addr_map(unsigned long *actual_len, void *mem_addr, unsigned long count, unsigned long offset);
 
 
-extern int pdc_pat_io_pci_cfg_read(unsigned long pci_addr, int pci_size, u32 *val); 
-extern int pdc_pat_io_pci_cfg_write(unsigned long pci_addr, int pci_size, u32 val); 
+extern int pdc_pat_io_pci_cfg_read(unsigned long pci_addr, int pci_size, __u32 *val); 
+extern int pdc_pat_io_pci_cfg_write(unsigned long pci_addr, int pci_size, __u32 val); 
 
 
 /* Flag to indicate this is a PAT box...don't use this unless you

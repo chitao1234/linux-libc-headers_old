@@ -15,7 +15,7 @@
  *
  * This macro should be used for accessing values larger in size than 
  * single bytes at locations that are expected to be improperly aligned, 
- * e.g. retrieving a u16 value from a location not u16-aligned.
+ * e.g. retrieving a __u16 value from a location not u16-aligned.
  *
  * Note that unaligned accesses can be very expensive on some architectures.
  */
@@ -28,7 +28,7 @@
  *
  * This macro should be used for placing values larger in size than 
  * single bytes at locations that are expected to be improperly aligned, 
- * e.g. writing a u16 value to a location not u16-aligned.
+ * e.g. writing a __u16 value to a location not u16-aligned.
  *
  * Note that unaligned accesses can be very expensive on some architectures.
  */

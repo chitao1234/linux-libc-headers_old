@@ -39,32 +39,32 @@
 
 struct HvEventFlags
 {
-	u8	xValid:1;		// Indicates a valid request	x00-x00
-	u8	xRsvd1:4;		// Reserved			...
-	u8	xAckType:1;		// Immediate or deferred	...
-	u8	xAckInd:1;		// Indicates if ACK required	...
-	u8	xFunction:1;		// Interrupt or Acknowledge	...
+	__u8	xValid:1;		// Indicates a valid request	x00-x00
+	__u8	xRsvd1:4;		// Reserved			...
+	__u8	xAckType:1;		// Immediate or deferred	...
+	__u8	xAckInd:1;		// Indicates if ACK required	...
+	__u8	xFunction:1;		// Interrupt or Acknowledge	...
 };
 
 
 struct HvLpEvent
 {
 	struct HvEventFlags xFlags;	// Event flags			x00-x00
-	u8	xType;			// Type of message		x01-x01
-	u16	xSubtype;		// Subtype for event		x02-x03
-	u8	xSourceLp;		// Source LP			x04-x04
-	u8	xTargetLp;		// Target LP			x05-x05
-	u8	xSizeMinus1;		// Size of Derived class - 1	x06-x06
-	u8	xRc;			// RC for Ack flows		x07-x07
-	u16	xSourceInstanceId;	// Source sides instance id	x08-x09
-	u16	xTargetInstanceId;	// Target sides instance id	x0A-x0B
+	__u8	xType;			// Type of message		x01-x01
+	__u16	xSubtype;		// Subtype for event		x02-x03
+	__u8	xSourceLp;		// Source LP			x04-x04
+	__u8	xTargetLp;		// Target LP			x05-x05
+	__u8	xSizeMinus1;		// Size of Derived class - 1	x06-x06
+	__u8	xRc;			// RC for Ack flows		x07-x07
+	__u16	xSourceInstanceId;	// Source sides instance id	x08-x09
+	__u16	xTargetInstanceId;	// Target sides instance id	x0A-x0B
 	union {
-		u32	xSubtypeData;	// Data usable by the subtype	x0C-x0F
-		u16	xSubtypeDataShort[2];	// Data as 2 shorts
-		u8	xSubtypeDataChar[4];	// Data as 4 chars
+		__u32	xSubtypeData;	// Data usable by the subtype	x0C-x0F
+		__u16	xSubtypeDataShort[2];	// Data as 2 shorts
+		__u8	xSubtypeDataChar[4];	// Data as 4 chars
 	} x;
 
-	u64	xCorrelationToken;	// Unique value for source/type x10-x17
+	__u64	xCorrelationToken;	// Unique value for source/type x10-x17
 };
 
 // Lp Event handler function

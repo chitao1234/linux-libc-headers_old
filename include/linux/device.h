@@ -106,8 +106,8 @@ struct device_driver {
 	int	(*probe)	(struct device * dev);
 	int 	(*remove)	(struct device * dev);
 	void	(*shutdown)	(struct device * dev);
-	int	(*suspend)	(struct device * dev, u32 state, u32 level);
-	int	(*resume)	(struct device * dev, u32 level);
+	int	(*suspend)	(struct device * dev, __u32 state, __u32 level);
+	int	(*resume)	(struct device * dev, __u32 level);
 };
 
 
@@ -267,11 +267,11 @@ struct device {
 					   BIOS data relevant to device) */
 	struct dev_pm_info	power;
 
-	u32		detach_state;	/* State to enter when device is
+	__u32		detach_state;	/* State to enter when device is
 					   detached from its driver. */
 
-	u64		*dma_mask;	/* dma mask (if dma'able device) */
-	u64		coherent_dma_mask;/* Like dma_mask, but for
+	__u64		*dma_mask;	/* dma mask (if dma'able device) */
+	__u64		coherent_dma_mask;/* Like dma_mask, but for
 					     alloc_coherent mappings as
 					     not all hardware supports
 					     64 bit addresses for consistent
@@ -364,9 +364,9 @@ extern struct device *device_find(const char *name, struct bus_type *bus);
 
 struct platform_device {
 	char		* name;
-	u32		id;
+	__u32		id;
 	struct device	dev;
-	u32		num_resources;
+	__u32		num_resources;
 	struct resource	* resource;
 };
 

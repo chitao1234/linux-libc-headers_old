@@ -25,9 +25,9 @@
 #	define APM_DO_POP_SEGS
 #endif
 
-static inline void apm_bios_call_asm(u32 func, u32 ebx_in, u32 ecx_in,
-					u32 *eax, u32 *ebx, u32 *ecx,
-					u32 *edx, u32 *esi)
+static inline void apm_bios_call_asm(__u32 func, __u32 ebx_in, __u32 ecx_in,
+					__u32 *eax, __u32 *ebx, __u32 *ecx,
+					__u32 *edx, __u32 *esi)
 {
 	/*
 	 * N.B. We do NOT need a cld after the BIOS call
@@ -47,11 +47,11 @@ static inline void apm_bios_call_asm(u32 func, u32 ebx_in, u32 ecx_in,
 		: "memory", "cc");
 }
 
-static inline u8 apm_bios_call_simple_asm(u32 func, u32 ebx_in,
-						u32 ecx_in, u32 *eax)
+static inline __u8 apm_bios_call_simple_asm(__u32 func, __u32 ebx_in,
+						__u32 ecx_in, __u32 *eax)
 {
 	int	cx, dx, si;
-	u8	error;
+	__u8	error;
 
 	/*
 	 * N.B. We do NOT need a cld after the BIOS call

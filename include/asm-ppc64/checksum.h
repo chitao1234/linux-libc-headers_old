@@ -89,8 +89,8 @@ static inline unsigned short ip_compute_csum(unsigned char * buff, int len)
 #define csum_partial_copy_nocheck(src, dst, len, sum)   \
         csum_partial_copy_generic((src), (dst), (len), (sum), NULL, NULL)
 
-static inline u32 csum_tcpudp_nofold(u32 saddr,
-                                     u32 daddr,
+static inline __u32 csum_tcpudp_nofold(__u32 saddr,
+                                     __u32 daddr,
                                      unsigned short len,
                                      unsigned short proto,
                                      unsigned int sum)
@@ -101,7 +101,7 @@ static inline u32 csum_tcpudp_nofold(u32 saddr,
 	s += daddr;
 	s += (proto << 16) + len;
 	s += (s >> 32);
-	return (u32) s;
+	return (__u32) s;
 }
 
 #endif

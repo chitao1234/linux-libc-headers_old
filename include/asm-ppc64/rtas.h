@@ -44,12 +44,12 @@
  *
  */
 
-typedef u32 rtas_arg_t;
+typedef __u32 rtas_arg_t;
 
 struct rtas_args {
-	u32 token;
-	u32 nargs;
-	u32 nret; 
+	__u32 token;
+	__u32 nargs;
+	__u32 nret; 
 	rtas_arg_t args[16];
 	rtas_arg_t *rets;     /* Pointer to return values in args[]. */
 };  

@@ -42,7 +42,7 @@ extern struct ItExtVpdPanel xItExtVpdPanel;
 extern struct IoHriProcessorVpd xIoHriProcessorVpd[];
 extern struct ItLpQueue xItLpQueue;
 extern struct ItVpdAreas itVpdAreas;
-extern u64    xMsVpd[];
+extern __u64    xMsVpd[];
 extern struct msChunks msChunks;
 
 

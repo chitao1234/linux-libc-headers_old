@@ -44,11 +44,11 @@
 #ifndef __ASSEMBLY__
 
 typedef struct gda {
-	u32	g_magic;	/* GDA magic number */
-	u16	g_version;	/* Version of this structure */
-	u16	g_masterid;	/* The NASID:CPUNUM of the master cpu */
-	u32	g_promop;	/* Passes requests from the kernel to prom */
-	u32	g_vds;		/* Store the virtual dipswitches here */
+	__u32	g_magic;	/* GDA magic number */
+	__u16	g_version;	/* Version of this structure */
+	__u16	g_masterid;	/* The NASID:CPUNUM of the master cpu */
+	__u32	g_promop;	/* Passes requests from the kernel to prom */
+	__u32	g_vds;		/* Store the virtual dipswitches here */
 	void	**g_hooked_norm;/* ptr to pda loc for norm hndlr */
 	void	**g_hooked_utlb;/* ptr to pda loc for utlb hndlr */
 	void	**g_hooked_xtlb;/* ptr to pda loc for xtlb hndlr */

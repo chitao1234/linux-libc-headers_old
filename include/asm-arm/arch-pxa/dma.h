@@ -23,10 +23,10 @@
  */
 
 typedef struct pxa_dma_desc {
-	volatile u32 ddadr;	/* Points to the next descriptor + flags */
-	volatile u32 dsadr;	/* DSADR value for the current transfer */
-	volatile u32 dtadr;	/* DTADR value for the current transfer */
-	volatile u32 dcmd;	/* DCMD value for the current transfer */
+	volatile __u32 ddadr;	/* Points to the next descriptor + flags */
+	volatile __u32 dsadr;	/* DSADR value for the current transfer */
+	volatile __u32 dtadr;	/* DTADR value for the current transfer */
+	volatile __u32 dcmd;	/* DCMD value for the current transfer */
 } pxa_dma_desc;
 
 #if defined(CONFIG_PXA27x)

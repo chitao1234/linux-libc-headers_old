@@ -12,12 +12,12 @@
 
 #define page_to_phys(page)	(((page) - mem_map) << PAGE_SHIFT)
 
-static inline u32 flip_dword (u32 l)
+static inline __u32 flip_dword (__u32 l)
 {
 	return ((l&0xff)<<24) | (((l>>8)&0xff)<<16) | (((l>>16)&0xff)<<8)| ((l>>24)&0xff);
 }
 
-static inline u16 flip_word (u16 w)
+static inline __u16 flip_word (__u16 w)
 {
 	return ((w&0xff) << 8) | ((w>>8)&0xff);
 }
@@ -28,64 +28,64 @@ static inline u16 flip_word (u16 w)
  * Memory mapped I/O to PCI
  */
 
-static inline u8 __raw_readb(const volatile void *addr)
+static inline __u8 __raw_readb(const volatile void *addr)
 {
-	return *volatile u8 *)addr;
+	return *volatile __u8 *)addr;
 }
 
-static inline u16 __raw_readw(const volatile void *addr)
+static inline __u16 __raw_readw(const volatile void *addr)
 {
-	return *volatile u16 *)addr;
+	return *volatile __u16 *)addr;
 }
 
-static inline u32 __raw_readl(const volatile void *addr)
+static inline __u32 __raw_readl(const volatile void *addr)
 {
-	return *volatile u32 *)addr;
+	return *volatile __u32 *)addr;
 }
 
-static inline void __raw_writeb(u8 b, volatile void *addr)
+static inline void __raw_writeb(__u8 b, volatile void *addr)
 {
-	*volatile u8 *)addr = b;
+	*volatile __u8 *)addr = b;
 }
 
-static inline void __raw_writew(u16 w, volatile void *addr)
+static inline void __raw_writew(__u16 w, volatile void *addr)
 {
-	* volatile u16 *)addr = w;
+	* volatile __u16 *)addr = w;
 }
 
-static inline void __raw_writel(u32 l, volatile void *addr)
+static inline void __raw_writel(__u32 l, volatile void *addr)
 {
-	*(volatile u32 *)addr = l;
+	*(volatile __u32 *)addr = l;
 }
 
-static inline u8 __readb(const volatile void *addr)
+static inline __u8 __readb(const volatile void *addr)
 {
-	return *(volatile u8 *)addr;
+	return *(volatile __u8 *)addr;
 }
 
-static inline u16 __readw(const volatile void *addr)
+static inline __u16 __readw(const volatile void *addr)
 {
-	return flip_word(*(volatile u16 *)addr);
+	return flip_word(*(volatile __u16 *)addr);
 }
 
-static inline u32 __readl(const volatile void *addr)
+static inline __u32 __readl(const volatile void *addr)
 {
-	return flip_dword(*(volatile u32 *)addr);
+	return flip_dword(*(volatile __u32 *)addr);
 }
 
-static inline void __writeb(u8 b, volatile void *addr)
+static inline void __writeb(__u8 b, volatile void *addr)
 {
-	*(volatile u8 *)addr = b;
+	*(volatile __u8 *)addr = b;
 }
 
-static inline void __writew(u16 w, volatile void *addr)
+static inline void __writew(__u16 w, volatile void *addr)
 {
-	*(volatile u16 *)addr = flip_word(w);
+	*(volatile __u16 *)addr = flip_word(w);
 }
 
-static inline void __writel(u32 l, volatile void *addr)
+static inline void __writel(__u32 l, volatile void *addr)
 {
-	*(volatile u32 *)addr = flip_dword(l);
+	*(volatile __u32 *)addr = flip_dword(l);
 }
 
 #define readb(__addr)		__readb(__addr)
@@ -148,34 +148,34 @@ void insl(unsigned long addr, void *dst, unsigned long count);
  * SBus has only one, memory mapped, I/O space.
  * We do not need to flip bytes for SBus of course.
  */
-static inline u8 _sbus_readb(const volatile void *addr)
+static inline __u8 _sbus_readb(const volatile void *addr)
 {
-	return *(volatile u8 *)addr;
+	return *(volatile __u8 *)addr;
 }
 
-static inline u16 _sbus_readw(const volatile void *addr)
+static inline __u16 _sbus_readw(const volatile void *addr)
 {
-	return *(volatile u16 *)addr;
+	return *(volatile __u16 *)addr;
 }
 
-static inline u32 _sbus_readl(const volatile void *addr)
+static inline __u32 _sbus_readl(const volatile void *addr)
 {
-	return *(volatile u32 *)addr;
+	return *(volatile __u32 *)addr;
 }
 
-static inline void _sbus_writeb(u8 b, volatile void *addr)
+static inline void _sbus_writeb(__u8 b, volatile void *addr)
 {
-	*(volatile u8 *)addr = b;
+	*(volatile __u8 *)addr = b;
 }
 
-static inline void _sbus_writew(u16 w, volatile void *addr)
+static inline void _sbus_writew(__u16 w, volatile void *addr)
 {
-	*(volatile u16 *)addr = w;
+	*(volatile __u16 *)addr = w;
 }
 
-static inline void _sbus_writel(u32 l, volatile void *addr)
+static inline void _sbus_writel(__u32 l, volatile void *addr)
 {
-	*(volatile u32 *)addr = l;
+	*(volatile __u32 *)addr = l;
 }
 
 /*

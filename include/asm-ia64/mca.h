@@ -31,14 +31,14 @@ typedef struct ia64_fptr {
 } ia64_fptr_t;
 
 typedef union cmcv_reg_u {
-	u64	cmcv_regval;
+	__u64	cmcv_regval;
 	struct	{
-		u64	cmcr_vector		: 8;
-		u64	cmcr_reserved1		: 4;
-		u64	cmcr_ignored1		: 1;
-		u64	cmcr_reserved2		: 3;
-		u64	cmcr_mask		: 1;
-		u64	cmcr_ignored2		: 47;
+		__u64	cmcr_vector		: 8;
+		__u64	cmcr_reserved1		: 4;
+		__u64	cmcr_ignored1		: 1;
+		__u64	cmcr_reserved2		: 3;
+		__u64	cmcr_mask		: 1;
+		__u64	cmcr_ignored2		: 47;
 	} cmcv_reg_s;
 
 } cmcv_reg_t;
@@ -53,27 +53,27 @@ enum {
 
 /* Information maintained by the MC infrastructure */
 typedef struct ia64_mc_info_s {
-	u64		imi_mca_handler;
+	__u64		imi_mca_handler;
 	size_t		imi_mca_handler_size;
-	u64		imi_monarch_init_handler;
+	__u64		imi_monarch_init_handler;
 	size_t		imi_monarch_init_handler_size;
-	u64		imi_slave_init_handler;
+	__u64		imi_slave_init_handler;
 	size_t		imi_slave_init_handler_size;
-	u8		imi_rendez_checkin[NR_CPUS];
+	__u8		imi_rendez_checkin[NR_CPUS];
 
 } ia64_mc_info_t;
 
 typedef struct ia64_mca_sal_to_os_state_s {
-	u64		imsto_os_gp;		/* GP of the os registered with the SAL */
-	u64		imsto_pal_proc;		/* PAL_PROC entry point - physical addr */
-	u64		imsto_sal_proc;		/* SAL_PROC entry point - physical addr */
-	u64		imsto_sal_gp;		/* GP of the SAL - physical */
-	u64		imsto_rendez_state;	/* Rendez state information */
-	u64		imsto_sal_check_ra;	/* Return address in SAL_CHECK while going
+	__u64		imsto_os_gp;		/* GP of the os registered with the SAL */
+	__u64		imsto_pal_proc;		/* PAL_PROC entry point - physical addr */
+	__u64		imsto_sal_proc;		/* SAL_PROC entry point - physical addr */
+	__u64		imsto_sal_gp;		/* GP of the SAL - physical */
+	__u64		imsto_rendez_state;	/* Rendez state information */
+	__u64		imsto_sal_check_ra;	/* Return address in SAL_CHECK while going
 						 * back to SAL from OS after MCA handling.
 						 */
-	u64		pal_min_state;		/* from PAL in r17 */
-	u64		proc_state_param;	/* from PAL in r18. See SDV 2:268 11.3.2.1 */
+	__u64		pal_min_state;		/* from PAL in r17 */
+	__u64		proc_state_param;	/* from PAL in r18. See SDV 2:268 11.3.2.1 */
 } ia64_mca_sal_to_os_state_t;
 
 enum {
@@ -89,17 +89,17 @@ enum {
 };
 
 typedef struct ia64_mca_os_to_sal_state_s {
-	u64		imots_os_status;	/*   OS status to SAL as to what happened
+	__u64		imots_os_status;	/*   OS status to SAL as to what happened
 						 *   with the MCA handling.
 						 */
-	u64		imots_sal_gp;		/* GP of the SAL - physical */
-	u64		imots_context;		/* 0 if return to same context
+	__u64		imots_sal_gp;		/* GP of the SAL - physical */
+	__u64		imots_context;		/* 0 if return to same context
 						   1 if return to new context */
-	u64		*imots_new_min_state;	/* Pointer to structure containing
+	__u64		*imots_new_min_state;	/* Pointer to structure containing
 						 * new values of registers in the min state
 						 * save area.
 						 */
-	u64		imots_sal_check_ra;	/* Return address in SAL_CHECK while going
+	__u64		imots_sal_check_ra;	/* Return address in SAL_CHECK while going
 						 * back to SAL from OS after MCA handling.
 						 */
 } ia64_mca_os_to_sal_state_t;
@@ -107,11 +107,11 @@ typedef struct ia64_mca_os_to_sal_state_s {
 /* Per-CPU MCA state that is too big for normal per-CPU variables.  */
 
 struct ia64_mca_cpu {
-	u64 stack[IA64_MCA_STACK_SIZE/8];	/* MCA memory-stack */
-	u64 proc_state_dump[512];
-	u64 stackframe[32];
-	u64 rbstore[IA64_MCA_STACK_SIZE/8];	/* MCA reg.-backing store */
-	u64 init_stack[KERNEL_STACK_SIZE/8];
+	__u64 stack[IA64_MCA_STACK_SIZE/8];	/* MCA memory-stack */
+	__u64 proc_state_dump[512];
+	__u64 stackframe[32];
+	__u64 rbstore[IA64_MCA_STACK_SIZE/8];	/* MCA reg.-backing store */
+	__u64 init_stack[KERNEL_STACK_SIZE/8];
 } __attribute__ ((aligned(16)));
 
 /* Array of physical addresses of each CPU's MCA area.  */

@@ -13,20 +13,20 @@
 
 struct prda_sys {
 	pid_t t_pid;
-        u32   t_hint;
-        u32   t_dlactseq;
-        u32   t_fpflags;
-        u32   t_prid;		/* processor type, $prid CP0 register */
-        u32   t_dlendseq;
-        u64   t_unused1[5];
+        __u32   t_hint;
+        __u32   t_dlactseq;
+        __u32   t_fpflags;
+        __u32   t_prid;		/* processor type, $prid CP0 register */
+        __u32   t_dlendseq;
+        __u64   t_unused1[5];
         pid_t t_rpid;
-        s32   t_resched;
-        u32   t_unused[8];
-        u32   t_cpu;		/* current/last cpu */
+        __s32   t_resched;
+        __u32   t_unused[8];
+        __u32   t_cpu;		/* current/last cpu */
 
 	/* FIXME: The signal information, not supported by Linux now */
-	u32   t_flags;		/* if true, then the sigprocmask is in userspace */
-	u32   t_sigprocmask [1]; /* the sigprocmask */
+	__u32   t_flags;		/* if true, then the sigprocmask is in userspace */
+	__u32   t_sigprocmask [1]; /* the sigprocmask */
 };
 
 struct prda {

@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_STRING_H
 #define _ASM_M32R_STRING_H
 
-/* $Id: string.h,v 1.1 2004/10/21 15:15:38 mmazur Exp $ */
+/* $Id$ */
 
 #define  __HAVE_ARCH_STRLEN
 extern size_t strlen(const char * s);

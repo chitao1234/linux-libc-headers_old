@@ -21,7 +21,7 @@
  *
  * $Source: /cvsroot/linux-libc-headers/include/linux/zftape.h,v $
  * $Revision: 1.2 $
- * $Date: 2003/12/30 20:42:57 $
+ * $Date$
  *
  *      Special ioctl and other global info for the zftape VFS
  *      interface for the QIC-40/80/3010/3020 floppy-tape driver for

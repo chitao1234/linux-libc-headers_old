@@ -14,7 +14,7 @@
 
 #include <linux/config.h>
 
-#if defined(CONFIG_MIPS32) || defined(WANT_COMPAT_REG_H)
+#if !defined(__mips64) || defined(WANT_COMPAT_REG_H)
 
 #define EF_R0			6
 #define EF_R1			7

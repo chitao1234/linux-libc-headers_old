@@ -11,8 +11,8 @@
 
 
 /* Maximum file offset in file_lock.fl_end */
-# define NLM_OFFSET_MAX		((s32) 0x7fffffff)
-# define NLM4_OFFSET_MAX	((s64) ((~(u64)0) >> 1))
+# define NLM_OFFSET_MAX		((__s32) 0x7fffffff)
+# define NLM4_OFFSET_MAX	((__s64) ((~(__u64)0) >> 1))
 
 /* Return states for NLM */
 enum {

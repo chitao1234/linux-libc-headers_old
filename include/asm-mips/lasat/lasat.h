@@ -25,9 +25,9 @@
 #ifndef _LANGUAGE_ASSEMBLY
 
 extern struct lasat_misc {
-	volatile u32 *reset_reg;
-	volatile u32 *flash_wp_reg;
-	u32 flash_wp_bit;
+	volatile __u32 *reset_reg;
+	volatile __u32 *flash_wp_reg;
+	__u32 flash_wp_bit;
 } *lasat_misc;
 
 enum lasat_mtdparts {

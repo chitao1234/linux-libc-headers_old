@@ -45,7 +45,7 @@
 #ifndef __ASSEMBLY__
 
 #if 0
-# define __REG(x)	(*((volatile u32 *)io_p2v(x)))
+# define __REG(x)	(*((volatile __u32 *)io_p2v(x)))
 #else
 /*
  * This __REG() version gives the same results as the one above,  except
@@ -54,16 +54,16 @@
  * doesn't guess this by itself.
  */
 #include <asm/types.h>
-typedef struct { volatile u32 offset[4096]; } __regbase;
+typedef struct { volatile __u32 offset[4096]; } __regbase;
 # define __REGP(x)	((__regbase *)((x)&~4095))->offset[((x)&4095)>>2]
 # define __REG(x)	__REGP(io_p2v(x))
 #endif
 
 /* With indexed regs we don't want to feed the index through io_p2v()
    especially if it is a variable, otherwise horrible code will result. */
-# define __REG2(x,y)     (*(volatile u32 *)((u32)&__REG(x) + (y)))
+# define __REG2(x,y)     (*(volatile __u32 *)((__u32)&__REG(x) + (y)))
 
-# define __PREG(x)	(io_v2p((u32)&(x)))
+# define __PREG(x)	(io_v2p((__u32)&(x)))
 
 #else
 

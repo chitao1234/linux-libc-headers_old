@@ -554,7 +554,7 @@ struct sa1111_dev {
 	void		*mapbase;
 	unsigned int	skpcr_mask;
 	unsigned int	irq[6];
-	u64		dma_mask;
+	__u64		dma_mask;
 };
 
 #define SA1111_DEV(_d)	container_of((_d), struct sa1111_dev, dev)
@@ -567,7 +567,7 @@ struct sa1111_driver {
 	unsigned int		devid;
 	int (*probe)(struct sa1111_dev *);
 	int (*remove)(struct sa1111_dev *);
-	int (*suspend)(struct sa1111_dev *, u32);
+	int (*suspend)(struct sa1111_dev *, __u32);
 	int (*resume)(struct sa1111_dev *);
 };
 
