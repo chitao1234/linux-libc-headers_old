@@ -22,9 +22,7 @@
 #ifndef __SOUND_ASEQUENCER_H
 #define __SOUND_ASEQUENCER_H
 
-#ifndef __KERNEL__
 #include <linux/ioctl.h>
-#endif
 
 #include <sound/asound.h>
 
