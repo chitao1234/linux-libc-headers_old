@@ -5,7 +5,11 @@
    hardware ignores reprogramming.  We also need userland buy-in to the 
    change in HZ, since this is visible in the wait4 resources etc.  */
 
+#ifdef __KERNEL__
+/* Debian doesn't define CONFIG_ALPHA_RAWHIDE, and including
+   <linux/config.h> pollutes the namespace.  */
 #include <linux/config.h>
+#endif
 
 #ifndef HZ
 # ifndef CONFIG_ALPHA_RAWHIDE
