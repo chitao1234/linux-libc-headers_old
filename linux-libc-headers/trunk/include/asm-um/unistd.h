@@ -7,7 +7,6 @@
 #define _UM_UNISTD_H_
 
 #include "linux/resource.h"
-#include "asm/uaccess.h"
 
 extern long sys_open(const char *filename, int flags, int mode);
 extern long sys_dup(unsigned int fildes);
