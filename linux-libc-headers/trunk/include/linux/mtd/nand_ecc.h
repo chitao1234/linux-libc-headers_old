@@ -3,7 +3,6 @@
  *
  *  Copyright (C) 2000 Steven J. Hill (sjhill@realitydiluted.com)
  *
- * $Id: nand_ecc.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as

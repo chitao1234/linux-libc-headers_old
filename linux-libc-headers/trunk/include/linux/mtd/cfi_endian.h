@@ -1,5 +1,4 @@
 /*
- * $Id: cfi_endian.h,v 1.2 2003/12/19 19:25:17 mmazur Exp $
  *
  */
 

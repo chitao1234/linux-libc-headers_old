@@ -29,7 +29,6 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- * Version: $Id: quota.h,v 1.4 2004/01/29 21:08:06 qboosh Exp $
  */
 
 #ifndef _LINUX_QUOTA_

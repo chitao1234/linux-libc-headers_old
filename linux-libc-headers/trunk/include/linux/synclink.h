@@ -1,7 +1,6 @@
 /*
  * SyncLink Multiprotocol Serial Adapter Driver
  *
- * $Id: synclink.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
  *
  * Copyright (C) 1998-2000 by Microgate Corporation
  *

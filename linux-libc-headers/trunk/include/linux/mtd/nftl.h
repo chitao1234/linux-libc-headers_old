@@ -1,5 +1,4 @@
 /*
- * $Id: nftl.h,v 1.2 2004/01/01 19:42:56 mmazur Exp $
  *
  * (C) 1999-2003 David Woodhouse <dwmw2@infradead.org>
  */

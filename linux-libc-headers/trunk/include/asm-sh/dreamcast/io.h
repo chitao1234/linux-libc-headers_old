@@ -1,5 +1,4 @@
 /*
- *	$Id: io.h,v 1.1 2003/12/15 18:46:59 mmazur Exp $
  *	IO functions for SEGA Dreamcast
  */
 

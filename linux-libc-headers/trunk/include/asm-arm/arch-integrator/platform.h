@@ -26,7 +26,6 @@
  * 	NOTE: This is a multi-hosted header file for use with uHAL and
  * 	      supported debuggers.
  * 
- * 	$Id: platform.h,v 1.1 2003/12/15 18:47:05 mmazur Exp $
  * 
  * ***********************************************************************/
 

@@ -1,5 +1,4 @@
 /*
- *	$Id: pci.h,v 1.3 2004/01/17 22:43:07 mmazur Exp $
  *
  *	PCI defines and function prototypes
  *	Copyright 1994, Drew Eckhardt

@@ -1,5 +1,4 @@
 /*
- * $Id: pmc551.h,v 1.3 2004/03/05 16:20:46 mmazur Exp $
  *
  * PMC551 PCI Mezzanine Ram Device
  *

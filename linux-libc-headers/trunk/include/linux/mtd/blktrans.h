@@ -1,5 +1,4 @@
 /*
- * $Id: blktrans.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
  *
  * (C) 2003 David Woodhouse <dwmw2@infradead.org>
  *
