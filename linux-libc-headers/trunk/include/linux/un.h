@@ -1,11 +1,3 @@
-#ifndef _LINUX_UN_H
-#define _LINUX_UN_H
+#warning "You should include <sys/un.h>. This time I will do it for you."
+#include <sys/un.h>
 
-#define UNIX_PATH_MAX	108
-
-struct sockaddr_un {
-	sa_family_t sun_family;	/* AF_UNIX */
-	char sun_path[UNIX_PATH_MAX];	/* pathname */
-};
-
-#endif /* _LINUX_UN_H */
