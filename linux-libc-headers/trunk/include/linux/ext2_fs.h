@@ -17,7 +17,6 @@
 #define _LINUX_EXT2_FS_H
 
 #include <linux/types.h>
-#include <linux/ext2_fs_sb.h>
 
 /*
  * The second extended filesystem constants/structures
@@ -431,23 +430,23 @@ struct ext2_super_block {
  */
 
 #define EXT2_HAS_COMPAT_FEATURE(sb,mask)			\
-	( EXT2_SB(sb)->s_es->s_feature_compat & cpu_to_le32(mask) )
+	( EXT2_SB(sb)->s_es->s_feature_compat & __cpu_to_le32(mask) )
 #define EXT2_HAS_RO_COMPAT_FEATURE(sb,mask)			\
-	( EXT2_SB(sb)->s_es->s_feature_ro_compat & cpu_to_le32(mask) )
+	( EXT2_SB(sb)->s_es->s_feature_ro_compat & __cpu_to_le32(mask) )
 #define EXT2_HAS_INCOMPAT_FEATURE(sb,mask)			\
-	( EXT2_SB(sb)->s_es->s_feature_incompat & cpu_to_le32(mask) )
+	( EXT2_SB(sb)->s_es->s_feature_incompat & __cpu_to_le32(mask) )
 #define EXT2_SET_COMPAT_FEATURE(sb,mask)			\
-	EXT2_SB(sb)->s_es->s_feature_compat |= cpu_to_le32(mask)
+	EXT2_SB(sb)->s_es->s_feature_compat |= __cpu_to_le32(mask)
 #define EXT2_SET_RO_COMPAT_FEATURE(sb,mask)			\
-	EXT2_SB(sb)->s_es->s_feature_ro_compat |= cpu_to_le32(mask)
+	EXT2_SB(sb)->s_es->s_feature_ro_compat |= __cpu_to_le32(mask)
 #define EXT2_SET_INCOMPAT_FEATURE(sb,mask)			\
-	EXT2_SB(sb)->s_es->s_feature_incompat |= cpu_to_le32(mask)
+	EXT2_SB(sb)->s_es->s_feature_incompat |= __cpu_to_le32(mask)
 #define EXT2_CLEAR_COMPAT_FEATURE(sb,mask)			\
-	EXT2_SB(sb)->s_es->s_feature_compat &= ~cpu_to_le32(mask)
+	EXT2_SB(sb)->s_es->s_feature_compat &= ~__cpu_to_le32(mask)
 #define EXT2_CLEAR_RO_COMPAT_FEATURE(sb,mask)			\
-	EXT2_SB(sb)->s_es->s_feature_ro_compat &= ~cpu_to_le32(mask)
+	EXT2_SB(sb)->s_es->s_feature_ro_compat &= ~__cpu_to_le32(mask)
 #define EXT2_CLEAR_INCOMPAT_FEATURE(sb,mask)			\
-	EXT2_SB(sb)->s_es->s_feature_incompat &= ~cpu_to_le32(mask)
+	EXT2_SB(sb)->s_es->s_feature_incompat &= ~__cpu_to_le32(mask)
 
 #define EXT2_FEATURE_COMPAT_DIR_PREALLOC	0x0001
 #define EXT2_FEATURE_COMPAT_IMAGIC_INODES	0x0002
