@@ -16,10 +16,7 @@
  * documentation. Do not change them.
  */
 
-#ifdef __KERNEL__
-#include <linux/socket.h>
 #include <linux/types.h>
-#endif
 #include <linux/atmapi.h>
 #include <linux/atmsap.h>
 #include <linux/atmioc.h>
