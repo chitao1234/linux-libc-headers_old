@@ -13,7 +13,7 @@
  *
  *	hacked by Andi Kleen for x86-64.
  * 
- *  $Id: hw_irq.h,v 1.4 2004/01/17 22:43:06 mmazur Exp $
+ *  $Id: hw_irq.h,v 1.5 2004/02/10 20:08:25 mmazur Exp $
  */
 
 #ifndef __ASSEMBLY__
@@ -104,8 +104,6 @@ extern unsigned long io_apic_irqs;
 
 extern atomic_t irq_err_count;
 extern atomic_t irq_mis_count;
-
-extern char _stext, _etext;
 
 #define IO_APIC_IRQ(x) (((x) >= 16) || ((1<<(x)) & io_apic_irqs))
 

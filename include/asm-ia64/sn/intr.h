@@ -1,5 +1,4 @@
-/* $Id: intr.h,v 1.2 2004/01/15 20:18:39 mmazur Exp $
- *
+/*
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive
  * for more details.

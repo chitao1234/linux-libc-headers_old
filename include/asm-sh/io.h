@@ -28,30 +28,4 @@
 #include <asm/cache.h>
 #include <asm/system.h>
 
-/* These are always function calls, in both kernel and user space */
-extern unsigned char	_inb (unsigned long port);
-extern unsigned short	_inw (unsigned long port);
-extern unsigned int	_inl (unsigned long port);
-extern void		_outb (unsigned char b, unsigned long port);
-extern void		_outw (unsigned short w, unsigned long port);
-extern void		_outl (unsigned int l, unsigned long port);
-extern unsigned char	_inb_p (unsigned long port);
-extern unsigned short	_inw_p (unsigned long port);
-extern unsigned int	_inl_p (unsigned long port);
-extern void		_outb_p (unsigned char b, unsigned long port);
-extern void		_outw_p (unsigned short w, unsigned long port);
-extern void		_outl_p (unsigned int l, unsigned long port);
-extern void		_insb (unsigned long port, void *dst, unsigned long count);
-extern void		_insw (unsigned long port, void *dst, unsigned long count);
-extern void		_insl (unsigned long port, void *dst, unsigned long count);
-extern void		_outsb (unsigned long port, const void *src, unsigned long count);
-extern void		_outsw (unsigned long port, const void *src, unsigned long count);
-extern void		_outsl (unsigned long port, const void *src, unsigned long count);
-extern unsigned char	_readb(unsigned long addr);
-extern unsigned short	_readw(unsigned long addr);
-extern unsigned int	_readl(unsigned long addr);
-extern void		_writeb(unsigned char b, unsigned long addr);
-extern void		_writew(unsigned short b, unsigned long addr);
-extern void		_writel(unsigned int b, unsigned long addr);
-
 #endif /* __ASM_SH_IO_H */

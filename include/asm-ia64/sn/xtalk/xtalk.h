@@ -1,15 +1,12 @@
-/* $Id: xtalk.h,v 1.3 2004/01/21 17:40:48 mmazur Exp $
- *
+/*
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive
  * for more details.
  *
  * Copyright (C) 1992-1997, 2000-2003 Silicon Graphics, Inc.  All Rights Reserved.
  */
-#ifndef _ASM_SN_XTALK_XTALK_H
-#define _ASM_SN_XTALK_XTALK_H
-
-#include "asm/sn/sgi.h"
+#ifndef _ASM_IA64_SN_XTALK_XTALK_H
+#define _ASM_IA64_SN_XTALK_XTALK_H
 
 
 /*
@@ -18,7 +15,7 @@
 /*
  * User-level device driver visible types
  */
-typedef int            xwidgetnum_t;	/* xtalk widget number  (0..15) */
+typedef char            xwidgetnum_t;	/* xtalk widget number  (0..15) */
 
 #define XWIDGET_NONE		(-1)
 
@@ -50,4 +47,4 @@ typedef struct xtalk_piomap_s *xtalk_piomap_t;
 #define	XIO_PACK(p,o)	((((uint64_t)(p))<<XIO_PORT_SHIFT) | ((o)&XIO_ADDR_BITS))
 
 
-#endif				/* _ASM_SN_XTALK_XTALK_H */
+#endif				/* _ASM_IA64_SN_XTALK_XTALK_H */

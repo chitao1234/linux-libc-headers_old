@@ -21,8 +21,6 @@
 #define _ISERIES_DMA_H
 
 #include <asm/types.h>
-#ifndef __LINUX_SPINLOCK_H
-#endif
 
 // NUM_TCE_LEVELS defines the largest contiguous block
 // of dma (tce) space we can get.  NUM_TCE_LEVELS = 10 
@@ -93,4 +91,4 @@ extern void              create_virtual_bus_tce_table( void );
 
 extern void		 create_pci_bus_tce_table( unsigned busNumber );
 
-#endif // _ISERIES_DMA_H
+#endif /* _ISERIES_DMA_H */

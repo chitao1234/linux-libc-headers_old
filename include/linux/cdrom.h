@@ -5,7 +5,7 @@
  *               1994, 1995   Eberhard Moenkeberg, emoenke@gwdg.de
  *               1996         David van Leeuwen, david@tm.tno.nl
  *               1997, 1998   Erik Andersen, andersee@debian.org
- *               1998-2000    Jens Axboe, axboe@suse.de
+ *               1998-2002    Jens Axboe, axboe@suse.de
  */
  
 #ifndef	_LINUX_CDROM_H
@@ -14,6 +14,10 @@
 #include <asm/types.h>
 #include <endian.h>
 #include <byteswap.h>
+
+#if !defined(__LITTLE_ENDIAN) && !defined(__BIG_ENDIAN)
+#error "Endian problem - this didn't happen"
+#endif
 
 /*******************************************************
  * As of Linux 2.1.x, all Linux CD-ROM application programs will use this 
@@ -390,6 +394,9 @@ struct cdrom_generic_command
 #define CDC_DVD_R		0x10000	/* drive can write DVD-R */
 #define CDC_DVD_RAM		0x20000	/* drive can write DVD-RAM */
 #define CDC_MO_DRIVE		0x40000 /* drive is an MO device */
+#define CDC_MRW			0x80000 /* drive can read MRW */
+#define CDC_MRW_W		0x100000 /* drive can write MRW */
+#define CDC_RAM			0x200000 /* ok to open for WRITE */
 
 /* drive status possibilities returned by CDROM_DRIVE_STATUS ioctl */
 #define CDS_NO_INFO		0	/* if not implemented */
@@ -694,8 +701,6 @@ struct request_sense {
 #elif defined(__LITTLE_ENDIAN)
 	__u8 error_code		: 7;
 	__u8 valid		: 1;
-#else
-#error	"Endian problem - this didn't happen"
 #endif
 	__u8 segment_number;
 #if defined(__BIG_ENDIAN)
@@ -708,8 +713,6 @@ struct request_sense {
 	__u8 reserved2		: 1;
 	__u8 ili		: 1;
 	__u8 reserved1		: 2;
-#else
-#error	"Endian problem - this didn't happen"
 #endif
 	__u8 information[4];
 	__u8 add_sense_len;
@@ -719,6 +722,158 @@ struct request_sense {
 	__u8 fruc;
 	__u8 sks[3];
 	__u8 asb[46];
+};
+
+/*
+ * feature profile
+ */
+#define CDF_MRW		0x28
+
+/*
+ * media status bits
+ */
+#define CDM_MRW_NOTMRW			0
+#define CDM_MRW_BGFORMAT_INACTIVE	1
+#define CDM_MRW_BGFORMAT_ACTIVE		2
+#define CDM_MRW_BGFORMAT_COMPLETE	3
+
+/*
+ * mrw address spaces
+ */
+#define MRW_LBA_DMA			0
+#define MRW_LBA_GAA			1
+
+/*
+ * mrw mode pages (first is deprecated) -- probed at init time and
+ * cdi->mrw_mode_page is set
+ */
+#define MRW_MODE_PC_PRE1		0x2c
+#define MRW_MODE_PC			0x03
+
+struct mrw_feature_desc {
+	__u16 feature_code;
+#if defined(__BIG_ENDIAN)
+	__u8 reserved1		: 2;
+	__u8 feature_version	: 4;
+	__u8 persistent		: 1;
+	__u8 curr		: 1;
+#elif defined(__LITTLE_ENDIAN)
+	__u8 curr		: 1;
+	__u8 persistent		: 1;
+	__u8 feature_version	: 4;
+	__u8 reserved1		: 2;
+#endif
+	__u8 add_len;
+#if defined(__BIG_ENDIAN)
+	__u8 reserved2		: 7;
+	__u8 write		: 1;
+#elif defined(__LITTLE_ENDIAN)
+	__u8 write		: 1;
+	__u8 reserved2		: 7;
+#endif
+	__u8 reserved3;
+	__u8 reserved4;
+	__u8 reserved5;
+};
+
+typedef struct {
+	__u16 disc_information_length;
+#if defined(__BIG_ENDIAN)
+	__u8 reserved1			: 3;
+        __u8 erasable			: 1;
+        __u8 border_status		: 2;
+        __u8 disc_status		: 2;
+#elif defined(__LITTLE_ENDIAN)
+        __u8 disc_status		: 2;
+        __u8 border_status		: 2;
+        __u8 erasable			: 1;
+	__u8 reserved1			: 3;
+#endif
+	__u8 n_first_track;
+	__u8 n_sessions_lsb;
+	__u8 first_track_lsb;
+	__u8 last_track_lsb;
+#if defined(__BIG_ENDIAN)
+	__u8 did_v			: 1;
+        __u8 dbc_v			: 1;
+        __u8 uru			: 1;
+        __u8 reserved2			: 2;
+	__u8 dbit			: 1;
+	__u8 mrw_status			: 2;
+#elif defined(__LITTLE_ENDIAN)
+	__u8 mrw_status			: 2;
+	__u8 dbit			: 1;
+        __u8 reserved2			: 2;
+        __u8 uru			: 1;
+        __u8 dbc_v			: 1;
+	__u8 did_v			: 1;
+#endif
+	__u8 disc_type;
+	__u8 n_sessions_msb;
+	__u8 first_track_msb;
+	__u8 last_track_msb;
+	__u32 disc_id;
+	__u32 lead_in;
+	__u32 lead_out;
+	__u8 disc_bar_code[8];
+	__u8 reserved3;
+	__u8 n_opc;
+} disc_information;
+
+typedef struct {
+	__u16 track_information_length;
+	__u8 track_lsb;
+	__u8 session_lsb;
+	__u8 reserved1;
+#if defined(__BIG_ENDIAN)
+	__u8 reserved2			: 2;
+        __u8 damage			: 1;
+        __u8 copy			: 1;
+        __u8 track_mode			: 4;
+	__u8 rt				: 1;
+	__u8 blank			: 1;
+	__u8 packet			: 1;
+	__u8 fp				: 1;
+	__u8 data_mode			: 4;
+	__u8 reserved3			: 6;
+	__u8 lra_v			: 1;
+	__u8 nwa_v			: 1;
+#elif defined(__LITTLE_ENDIAN)
+        __u8 track_mode			: 4;
+        __u8 copy			: 1;
+        __u8 damage			: 1;
+	__u8 reserved2			: 2;
+	__u8 data_mode			: 4;
+	__u8 fp				: 1;
+	__u8 packet			: 1;
+	__u8 blank			: 1;
+	__u8 rt				: 1;
+	__u8 nwa_v			: 1;
+	__u8 lra_v			: 1;
+	__u8 reserved3			: 6;
+#endif
+	__u32 track_start;
+	__u32 next_writable;
+	__u32 free_blocks;
+	__u32 fixed_packet_size;
+	__u32 track_size;
+	__u32 last_rec_address;
+} track_information;
+
+struct feature_header {
+	__u32 data_len;
+	__u8 reserved1;
+	__u8 reserved2;
+	__u16 curr_profile;
+};
+
+struct mode_page_header {
+	__u16 mode_data_length;
+	__u8 medium_type;
+	__u8 reserved1;
+	__u8 reserved2;
+	__u8 reserved3;
+	__u16 desc_length;
 };
 
 #endif  /* _LINUX_CDROM_H */

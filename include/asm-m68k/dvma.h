@@ -1,4 +1,4 @@
-/* $Id: dvma.h,v 1.2 2004/01/15 20:18:41 mmazur Exp $
+/* $Id: dvma.h,v 1.3 2004/02/10 20:08:09 mmazur Exp $
  * include/asm-m68k/dma.h
  *
  * Copyright 1995 (C) David S. Miller (davem@caip.rutgers.edu)
@@ -57,7 +57,8 @@ extern void dvma_free(void *vaddr);
 #define dvma_vtob(x) dvma_vtop(x)
 #define dvma_btov(x) dvma_ptov(x)
 
-extern inline int dvma_map_cpu(unsigned long kaddr, unsigned long vaddr, int len)
+static inline int dvma_map_cpu(unsigned long kaddr, unsigned long vaddr,
+			       int len)
 {
 	return 0;
 }

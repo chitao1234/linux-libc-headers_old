@@ -11,7 +11,6 @@
 
 #include <asm/sn/sgi.h>
 #include <asm/irq.h>
-#include <asm/topology.h>
 #include <asm/sn/intr.h>
 #include <asm/sn/router.h>
 #include <asm/sn/pda.h>
@@ -64,6 +63,8 @@ struct nodepda_s {
 	nodepda_router_info_t	*npda_rip_first;
 	nodepda_router_info_t	**npda_rip_last;
 
+
+	spinlock_t		bist_lock;
 
 	/*
 	 * The BTEs on this node are shared by the local cpus

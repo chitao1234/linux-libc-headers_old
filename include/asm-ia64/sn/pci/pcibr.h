@@ -1,13 +1,12 @@
-/* $Id: pcibr.h,v 1.3 2004/01/21 17:40:47 mmazur Exp $
- *
+/*
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive
  * for more details.
  *
  * Copyright (C) 1992-1997,2000-2003 Silicon Graphics, Inc. All rights reserved.
  */
-#ifndef _ASM_SN_PCI_PCIBR_H
-#define _ASM_SN_PCI_PCIBR_H
+#ifndef _ASM_IA64_SN_PCI_PCIBR_H
+#define _ASM_IA64_SN_PCI_PCIBR_H
 
 /* 
  * Some useful ioctls into the pcibr driver
@@ -88,7 +87,7 @@ struct pcibr_slot_info_resp_s {
     int                     resp_bss_ninfo;
     char                    resp_bss_devio_bssd_space[16];
     iopaddr_t               resp_bss_devio_bssd_base; 
-    bridgereg_t             resp_bss_device;
+    uint64_t		    resp_bss_device;
     int                     resp_bss_pmu_uctr;
     int                     resp_bss_d32_uctr;
     int                     resp_bss_d64_uctr;
@@ -96,7 +95,7 @@ struct pcibr_slot_info_resp_s {
     unsigned                resp_bss_d64_flags;
     iopaddr_t               resp_bss_d32_base;
     unsigned                resp_bss_d32_flags;
-    atomic_t                resp_bss_ext_ates_active;
+    atomic_t		    resp_bss_ext_ates_active;
     volatile unsigned      *resp_bss_cmd_pointer;
     unsigned                resp_bss_cmd_shadow;
     int                     resp_bs_rrb_valid;
@@ -104,10 +103,10 @@ struct pcibr_slot_info_resp_s {
     int                     resp_bs_rrb_valid_v2;
     int                     resp_bs_rrb_valid_v3;
     int                     resp_bs_rrb_res;
-    bridgereg_t             resp_b_resp;
-    bridgereg_t             resp_b_int_device;
-    bridgereg_t             resp_b_int_enable;
-    bridgereg_t             resp_b_int_host;
+    uint64_t		    resp_b_resp;
+    uint64_t		    resp_b_int_device;
+    uint64_t		    resp_b_int_enable;
+    uint64_t		    resp_b_int_host;
     picreg_t		    resp_p_int_enable;
     picreg_t		    resp_p_int_host;
     struct pcibr_slot_func_info_resp_s {
@@ -174,4 +173,4 @@ struct pcibr_slot_info_resp_s {
 /* ERANGE                        34    */
 /* EUNATCH                       42    */
 
-#endif				/* _ASM_SN_PCI_PCIBR_H */
+#endif				/* _ASM_IA64_SN_PCI_PCIBR_H */
