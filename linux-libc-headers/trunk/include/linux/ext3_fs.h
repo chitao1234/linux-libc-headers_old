@@ -17,9 +17,6 @@
 #define _LINUX_EXT3_FS_H
 
 #include <linux/types.h>
-#include <linux/ext3_fs_i.h>
-#include <linux/ext3_fs_sb.h>
-
 
 struct statfs;
 
@@ -477,23 +474,23 @@ static inline struct ext3_inode_info *EXT3_I(struct inode *inode)
  */
 
 #define EXT3_HAS_COMPAT_FEATURE(sb,mask)			\
-	( EXT3_SB(sb)->s_es->s_feature_compat & cpu_to_le32(mask) )
+	( EXT3_SB(sb)->s_es->s_feature_compat & __cpu_to_le32(mask) )
 #define EXT3_HAS_RO_COMPAT_FEATURE(sb,mask)			\
-	( EXT3_SB(sb)->s_es->s_feature_ro_compat & cpu_to_le32(mask) )
+	( EXT3_SB(sb)->s_es->s_feature_ro_compat & __cpu_to_le32(mask) )
 #define EXT3_HAS_INCOMPAT_FEATURE(sb,mask)			\
-	( EXT3_SB(sb)->s_es->s_feature_incompat & cpu_to_le32(mask) )
+	( EXT3_SB(sb)->s_es->s_feature_incompat & __cpu_to_le32(mask) )
 #define EXT3_SET_COMPAT_FEATURE(sb,mask)			\
-	EXT3_SB(sb)->s_es->s_feature_compat |= cpu_to_le32(mask)
+	EXT3_SB(sb)->s_es->s_feature_compat |= __cpu_to_le32(mask)
 #define EXT3_SET_RO_COMPAT_FEATURE(sb,mask)			\
-	EXT3_SB(sb)->s_es->s_feature_ro_compat |= cpu_to_le32(mask)
+	EXT3_SB(sb)->s_es->s_feature_ro_compat |= __cpu_to_le32(mask)
 #define EXT3_SET_INCOMPAT_FEATURE(sb,mask)			\
-	EXT3_SB(sb)->s_es->s_feature_incompat |= cpu_to_le32(mask)
+	EXT3_SB(sb)->s_es->s_feature_incompat |= __cpu_to_le32(mask)
 #define EXT3_CLEAR_COMPAT_FEATURE(sb,mask)			\
-	EXT3_SB(sb)->s_es->s_feature_compat &= ~cpu_to_le32(mask)
+	EXT3_SB(sb)->s_es->s_feature_compat &= ~__cpu_to_le32(mask)
 #define EXT3_CLEAR_RO_COMPAT_FEATURE(sb,mask)			\
-	EXT3_SB(sb)->s_es->s_feature_ro_compat &= ~cpu_to_le32(mask)
+	EXT3_SB(sb)->s_es->s_feature_ro_compat &= ~__cpu_to_le32(mask)
 #define EXT3_CLEAR_INCOMPAT_FEATURE(sb,mask)			\
-	EXT3_SB(sb)->s_es->s_feature_incompat &= ~cpu_to_le32(mask)
+	EXT3_SB(sb)->s_es->s_feature_incompat &= ~__cpu_to_le32(mask)
 
 #define EXT3_FEATURE_COMPAT_DIR_PREALLOC	0x0001
 #define EXT3_FEATURE_COMPAT_IMAGIC_INODES	0x0002
@@ -615,10 +612,10 @@ struct ext3_dir_entry_2 {
 /* hash info structure used by the directory hash */
 struct dx_hash_info
 {
-	u32		hash;
-	u32		minor_hash;
-	int		hash_version;
-	u32		*seed;
+	__u32		hash;
+	__u32		minor_hash;
+	__s32		hash_version;
+	__u32		*seed;
 };
 
 #define EXT3_HTREE_EOF	0x7fffffff
