@@ -19,7 +19,6 @@
 #include <linux/cache.h>
 #include <linux/radix-tree.h>
 #include <linux/kobject.h>
-#include <asm/atomic.h>
 
 struct iovec;
 struct nameidata;
