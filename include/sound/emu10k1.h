@@ -139,8 +139,8 @@
 #define EXTOUT_AC97_R	   0x01	/* AC'97 playback channel - right */
 #define EXTOUT_TOSLINK_L   0x02	/* LiveDrive - TOSLink Optical - left */
 #define EXTOUT_TOSLINK_R   0x03	/* LiveDrive - TOSLink Optical - right */
-#define EXTOUT_CENTER      0x04	/* SB Live 5.1 - center */
-#define EXTOUT_LFE         0x05 /* SB Live 5.1 - LFE */
+#define EXTOUT_AC97_CENTER 0x04	/* SB Live 5.1 - center */
+#define EXTOUT_AC97_LFE	   0x05 /* SB Live 5.1 - LFE */
 #define EXTOUT_HEADPHONE_L 0x06	/* LiveDrive - Headphone - left */
 #define EXTOUT_HEADPHONE_R 0x07	/* LiveDrive - Headphone - right */
 #define EXTOUT_REAR_L	   0x08	/* Rear channel - left */
@@ -148,6 +148,8 @@
 #define EXTOUT_ADC_CAP_L   0x0a	/* ADC Capture buffer - left */
 #define EXTOUT_ADC_CAP_R   0x0b	/* ADC Capture buffer - right */
 #define EXTOUT_MIC_CAP	   0x0c	/* MIC Capture buffer */
+#define EXTOUT_AC97_REAR_L 0x0d	/* SB Live 5.1 (c) 2003 - Rear Left */
+#define EXTOUT_AC97_REAR_R 0x0e	/* SB Live 5.1 (c) 2003 - Rear Right */
 #define EXTOUT_ACENTER	   0x11 /* Analog Center */
 #define EXTOUT_ALFE	   0x12 /* Analog LFE */
 

@@ -167,7 +167,7 @@
 
 /* Hack!  Only words for bus 0.  */
 
-#if !MCPCIA_ONE_HAE_WINDOW
+#ifndef MCPCIA_ONE_HAE_WINDOW
 #define MCPCIA_HAE_ADDRESS	MCPCIA_HAE_MEM(4)
 #endif
 #define MCPCIA_IACK_SC		_MCPCIA_IACK_SC(4)

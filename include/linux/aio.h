@@ -75,7 +75,7 @@ struct kiocb {
 		(x)->ki_filp = (filp);			\
 		(x)->ki_ctx = &tsk->active_mm->default_kioctx;	\
 		(x)->ki_cancel = NULL;			\
-		(x)->ki_user_obj = tsk;			\
+		(x)->ki_obj.tsk = tsk;			\
 	} while (0)
 
 #define AIO_RING_MAGIC			0xa10a10a1

@@ -4,7 +4,7 @@
 /*
  * IA-64 Linux syscall numbers and inline-functions.
  *
- * Copyright (C) 1998-2003 Hewlett-Packard Co
+ * Copyright (C) 1998-2004 Hewlett-Packard Co
  *	David Mosberger-Tang <davidm@hpl.hp.com>
  */
 
@@ -248,14 +248,16 @@
 #define __NR_clock_nanosleep		1256
 #define __NR_fstatfs64			1257
 #define __NR_statfs64			1258
-#define __NR_reserved1			1259	/* reserved for NUMA interface */
-#define __NR_reserved2			1260	/* reserved for NUMA interface */
-#define __NR_reserved3			1261	/* reserved for NUMA interface */
+#define __NR_mbind			1259
+#define __NR_get_mempolicy		1260
+#define __NR_set_mempolicy		1261
 #define __NR_mq_open			1262
 #define __NR_mq_unlink			1263
 #define __NR_mq_timedsend		1264
 #define __NR_mq_timedreceive		1265
 #define __NR_mq_notify			1266
 #define __NR_mq_getsetattr		1267
+#define __NR_kexec_load			1268
+#define __NR_vserver			1269
 
 #endif /* _ASM_IA64_UNISTD_H */

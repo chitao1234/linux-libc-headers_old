@@ -184,6 +184,9 @@ struct tcp_info
 	__u32	tcpi_snd_cwnd;
 	__u32	tcpi_advmss;
 	__u32	tcpi_reordering;
+
+	__u32	tcpi_rcv_rtt;
+	__u32	tcpi_rcv_space;
 };
 
 #endif	/* _LINUX_TCP_H */

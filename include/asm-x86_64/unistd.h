@@ -98,7 +98,7 @@ __SYSCALL(__NR_setitimer, sys_setitimer)
 __SYSCALL(__NR_getpid, sys_getpid)
 
 #define __NR_sendfile                           40
-__SYSCALL(__NR_sendfile, sys_sendfile)
+__SYSCALL(__NR_sendfile, sys_sendfile64)
 #define __NR_socket                             41
 __SYSCALL(__NR_socket, sys_socket)
 #define __NR_connect                            42
@@ -534,26 +534,28 @@ __SYSCALL(__NR_utimes, sys_utimes)
 __SYSCALL(__NR_vserver, sys_ni_syscall)
 #define __NR_vserver		236
 __SYSCALL(__NR_vserver, sys_ni_syscall)
-#define __NR_mbind 			237
-__SYSCALL(__NR_mbind, sys_ni_syscall)
+#define __NR_mbind 		237
+__SYSCALL(__NR_mbind, sys_mbind)
 #define __NR_set_mempolicy 	238
-__SYSCALL(__NR_set_mempolicy, sys_ni_syscall)
+__SYSCALL(__NR_set_mempolicy, sys_set_mempolicy)
 #define __NR_get_mempolicy 	239
-__SYSCALL(__NR_get_mempolicy, sys_ni_syscall)
+__SYSCALL(__NR_get_mempolicy, sys_get_mempolicy)
 #define __NR_mq_open 		240
 __SYSCALL(__NR_mq_open, sys_mq_open)
 #define __NR_mq_unlink 		241
 __SYSCALL(__NR_mq_unlink, sys_mq_unlink)
 #define __NR_mq_timedsend 	242
 __SYSCALL(__NR_mq_timedsend, sys_mq_timedsend)
-#define __NR_mq_timedreceive 243
+#define __NR_mq_timedreceive	243
 __SYSCALL(__NR_mq_timedreceive, sys_mq_timedreceive)
 #define __NR_mq_notify 		244
 __SYSCALL(__NR_mq_notify, sys_mq_notify)
 #define __NR_mq_getsetattr 	245
 __SYSCALL(__NR_mq_getsetattr, sys_mq_getsetattr)
+#define __NR_kexec_load 	246
+__SYSCALL(__NR_kexec_load, sys_ni_syscall)
 
-#define __NR_syscall_max __NR_mq_getsetattr
+#define __NR_syscall_max __NR_kexec_load
 #ifndef __NO_STUBS
 
 /* user-visible error numbers are in the range -1 - -4095 */

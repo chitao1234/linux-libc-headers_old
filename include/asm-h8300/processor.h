@@ -21,12 +21,12 @@
 #include <asm/fpu.h>
 #include <asm/ptrace.h>
 
-extern inline unsigned long rdusp(void) {
+static inline unsigned long rdusp(void) {
 	extern unsigned int	sw_usp;
 	return(sw_usp);
 }
 
-extern inline void wrusp(unsigned long usp) {
+static inline void wrusp(unsigned long usp) {
 	extern unsigned int	sw_usp;
 	sw_usp = usp;
 }
@@ -59,9 +59,15 @@ struct thread_struct {
 	} breakinfo;
 };
 
-#define INIT_THREAD  { \
-	sizeof(init_stack) + (unsigned long) init_stack, 0, \
-	PS_S,  0, {(unsigned short *)-1, 0}, \
+#define INIT_THREAD  {						\
+	.ksp  = sizeof(init_stack) + (unsigned long)init_stack, \
+	.usp  = 0,						\
+	.ccr  = PS_S,						\
+	.esp0 = 0,						\
+	.breakinfo = {						\
+		.addr = (unsigned short *)-1,			\
+		.inst = 0					\
+	}							\
 }
 
 /*
@@ -76,6 +82,7 @@ do {							        \
 	set_fs(USER_DS);           /* reads from user space */  \
   	(_regs)->pc = (_pc);				        \
 	(_regs)->ccr &= 0x00;	   /* clear kernel flag */      \
+	(_regs)->er5 = current->mm->start_data;	/* GOT base */  \
 	wrusp((unsigned long)(_usp) - sizeof(unsigned long)*3);	\
 } while(0)
 #endif
@@ -86,6 +93,7 @@ do {							        \
 	(_regs)->pc = (_pc);				        \
 	(_regs)->ccr = 0x00;	   /* clear kernel flag */      \
 	(_regs)->exr = 0x78;       /* enable all interrupts */  \
+	(_regs)->er5 = current->mm->start_data;	/* GOT base */  \
 	/* 14 = space for retaddr(4), vector(4), er0(4) and ext(2) on stack */ \
 	wrusp(((unsigned long)(_usp)) - 14);                    \
 } while(0)

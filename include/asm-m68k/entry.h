@@ -39,7 +39,7 @@
 	/* portable version */
 #define ALLOWINT	(~0x700)
 #define	MAX_NOINT_IPL	0
-#endif /* machine compilation types */ 
+#endif /* machine compilation types */
 
 #ifdef __ASSEMBLY__
 

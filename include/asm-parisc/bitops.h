@@ -261,6 +261,17 @@ found_middle:
 	return result + __ffs(tmp);
 }
 
+/**
+ * find_first_bit - find the first set bit in a memory region
+ * @addr: The address to start the search at
+ * @size: The maximum size to search
+ *
+ * Returns the bit-number of the first set bit, not the number of the byte
+ * containing a bit.
+ */
+#define find_first_bit(addr, size) \
+        find_next_bit((addr), (size), 0)
+
 static __inline__ int ext2_test_bit(int nr, __const__ void * addr)
 {
 	__const__ unsigned char	*ADDR = (__const__ unsigned char *) addr;

@@ -498,6 +498,8 @@ static inline pid_t waitpid(pid_t pid, int *wait_stat, int options)
 	return sys_wait4((int)pid, wait_stat, options, NULL);
 }
 
+extern long execve(const char *file, char **argv, char **envp);
+
 struct pt_regs;
 asmlinkage int sys_execve(char *filenamei, char **argv, char **envp,
 			struct pt_regs *regs);
@@ -512,12 +514,6 @@ asmlinkage long sys_rt_sigaction(int sig,
 				const struct sigaction *act,
 				struct sigaction *oact,
 				size_t sigsetsize);
-
-/*
- * The following two can't be eliminated yet - they rely on
- * specific conditions.
- */
-static inline _syscall3(int,execve,const char *,file,char **,argv,char **,envp);
 
 #endif
 
