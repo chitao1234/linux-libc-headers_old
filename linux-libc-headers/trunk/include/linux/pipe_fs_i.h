@@ -40,9 +40,5 @@ struct pipe_inode_info {
 #define PIPE_MAX_RCHUNK(inode)	(PIPE_SIZE - PIPE_START(inode))
 #define PIPE_MAX_WCHUNK(inode)	(PIPE_SIZE - PIPE_END(inode))
 
-/* Drop the inode semaphore and wait for a pipe event, atomically */
-void pipe_wait(struct inode * inode);
-
-struct inode* pipe_new(struct inode* inode);
 
 #endif

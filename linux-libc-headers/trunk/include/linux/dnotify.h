@@ -15,13 +15,8 @@ struct dnotify_struct {
 	fl_owner_t		dn_owner;
 };
 
-extern void __inode_dir_notify(struct inode *, unsigned long);
 extern void dnotify_flush(struct file *filp, fl_owner_t id);
 extern int fcntl_dirnotify(int, struct file *, unsigned long);
 void dnotify_parent(struct dentry *dentry, unsigned long event);
 
-static inline void inode_dir_notify(struct inode *inode, unsigned long event)
-{
-	if ((inode)->i_dnotify_mask & (event))
-		__inode_dir_notify(inode, event);
-}
+
