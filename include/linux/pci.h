@@ -17,6 +17,7 @@
 #define LINUX_PCI_H
 
 #include <linux/mod_devicetable.h>
+#include <linux/types.h>
 
 /*
  * Under PCI, each device has 256 bytes of configuration address space,

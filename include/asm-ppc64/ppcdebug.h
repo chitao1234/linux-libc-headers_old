@@ -64,8 +64,6 @@
 
 #define PPCDBG_NUM_FLAGS     64
 
-extern u64 ppc64_debug_switch;
-
 #ifdef WANT_PPCDBG_TAB
 /* A table of debug switch names to allow name lookup in xmon 
  * (and whoever else wants it.

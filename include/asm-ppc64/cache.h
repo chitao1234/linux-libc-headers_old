@@ -19,14 +19,14 @@
 #ifndef __ASSEMBLY__
 
 struct ppc64_caches {
-	u32	dsize;			/* L1 d-cache size */
-	u32	dline_size;		/* L1 d-cache line size	*/
-	u32	log_dline_size;
-	u32	dlines_per_page;
-	u32	isize;			/* L1 i-cache size */
-	u32	iline_size;		/* L1 i-cache line size	*/
-	u32	log_iline_size;
-	u32	ilines_per_page;
+	__u32	dsize;			/* L1 d-cache size */
+	__u32	dline_size;		/* L1 d-cache line size	*/
+	__u32	log_dline_size;
+	__u32	dlines_per_page;
+	__u32	isize;			/* L1 i-cache size */
+	__u32	iline_size;		/* L1 i-cache line size	*/
+	__u32	log_iline_size;
+	__u32	ilines_per_page;
 };
 
 extern struct ppc64_caches ppc64_caches;
