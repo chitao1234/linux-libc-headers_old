@@ -1,4 +1,4 @@
-/* $Id: tpam.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
+/*
  *
  * Turbo PAM ISDN driver for Linux. (Kernel Driver)
  *

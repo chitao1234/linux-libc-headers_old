@@ -1,4 +1,4 @@
-/* $Id: page.h,v 1.4 2004/01/21 19:54:45 mmazur Exp $
+/*
  * page.h:  Various defines and such for MMU operations on the Sparc for
  *          the Linux kernel.
  *

@@ -1,4 +1,4 @@
-/* $Id: apb.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $
+/*
  * apb.h: Advanced PCI Bridge Configuration Registers and Bits
  *
  * Copyright (C) 1998  Eddie C. Dost  (ecd@skynet.be)

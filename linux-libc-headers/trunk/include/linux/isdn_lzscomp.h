@@ -1,4 +1,4 @@
-/* $Id: isdn_lzscomp.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
+/*
  *
  * Header for isdn_lzscomp.c
  * Concentrated here to not mess up half a dozen kernel headers with code

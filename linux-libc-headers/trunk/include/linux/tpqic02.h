@@ -1,4 +1,4 @@
-/* $Id: tpqic02.h,v 1.2 2004/01/15 20:19:03 mmazur Exp $
+/*
  *
  * Include file for QIC-02 driver for Linux.
  *

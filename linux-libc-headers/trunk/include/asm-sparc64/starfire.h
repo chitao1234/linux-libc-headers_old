@@ -1,4 +1,4 @@
-/* $Id: starfire.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $
+/*
  * starfire.h: Group all starfire specific code together.
  *
  * Copyright (C) 2000 Anton Blanchard (anton@samba.org)

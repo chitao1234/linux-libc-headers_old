@@ -1,4 +1,4 @@
-/* $Id: siginfo.h,v 1.2 2003/12/26 02:44:47 mmazur Exp $
+/*
  * siginfo.c:
  */
 

@@ -1,4 +1,4 @@
-/* $Id: display7seg.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $
+/*
  *
  * display7seg - Driver interface for the 7-segment display
  * present on Sun Microsystems CP1400 and CP1500

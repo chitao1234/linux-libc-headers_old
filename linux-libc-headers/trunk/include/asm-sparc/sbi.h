@@ -1,4 +1,4 @@
-/* $Id: sbi.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/*
  * sbi.h:  SBI (Sbus Interface on sun4d) definitions
  *
  * Copyright (C) 1997 Jakub Jelinek <jj@sunsite.mff.cuni.cz>

@@ -1,4 +1,4 @@
-/* $Id: b1lli.h,v 1.1 2003/12/15 18:46:57 mmazur Exp $
+/*
  *
  * ISDN lowlevel-module for AVM B1-card.
  *

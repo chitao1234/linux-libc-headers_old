@@ -1,4 +1,4 @@
-/* $Id: obio.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/*
  * obio.h:  Some useful locations in 0xFXXXXXXXX PA obio space on sun4d.
  *
  * Copyright (C) 1997 Jakub Jelinek <jj@sunsite.mff.cuni.cz>

@@ -1,4 +1,4 @@
-/* $Id: mostek.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $
+/*
  * mostek.h:  Describes the various Mostek time of day clock registers.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)

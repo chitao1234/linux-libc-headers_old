@@ -1,4 +1,4 @@
-/* $Id: isa.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $
+/*
  * isa.h: Sparc64 layer for PCI to ISA bridge devices.
  *
  * Copyright (C) 2001 David S. Miller (davem@redhat.com)
