@@ -30,6 +30,9 @@ typedef unsigned int __u32;
 
 #if (_MIPS_SZLONG == 64)
 
+#ifndef __LLH_TYPE_LONG_IS_64BIT__
+#define __LLH_TYPE_LONG_IS_64BIT__
+#endif
 typedef __signed__ long __s64;
 typedef unsigned long __u64;
 

@@ -33,6 +33,9 @@ typedef __signed__ long long __s64;
 typedef unsigned long long __u64;
 #endif
 #else /* __s390x__ */
+#ifndef __LLH_TYPE_LONG_IS_64BIT__
+#define __LLH_TYPE_LONG_IS_64BIT__
+#endif
 typedef __signed__ long __s64;
 typedef unsigned long __u64;
 #endif
