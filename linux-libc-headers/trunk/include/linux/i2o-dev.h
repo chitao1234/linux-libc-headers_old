@@ -20,6 +20,10 @@
 #ifndef _I2O_DEV_H
 #define _I2O_DEV_H
 
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned int u32;
+
 /* How many controllers are we allowing */
 #define MAX_I2O_CONTROLLERS	32
 
@@ -125,10 +129,6 @@ struct i2o_evt_get {
 #define I2O_BUS_NUBUS	6
 #define I2O_BUS_CARDBUS 7
 #define I2O_BUS_UNKNOWN 0x80
-
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned int u32;
 
 typedef struct _i2o_pci_bus {
 	u8 PciFunctionNumber;
