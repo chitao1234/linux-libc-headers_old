@@ -9,13 +9,12 @@
  * Public License.  See the file "COPYING" in the main directory of
  * this archive for more details.
  *
- * $Id: opsput_lan.h,v 1.1 2004/10/21 15:15:40 mmazur Exp $
+ * $Id: opsput_lan.h,v 1.2 2004/10/22 16:58:48 mmazur Exp $
  */
 
 #ifndef _OPSPUT_OPSPUT_LAN_H
 #define _OPSPUT_OPSPUT_LAN_H
 
-#include <linux/config.h>
 
 #ifndef __ASSEMBLY__
 /*

@@ -1,10 +1,9 @@
-/* $Id: rtc.h,v 1.1 2004/10/21 15:15:38 mmazur Exp $ */
+/* $Id: rtc.h,v 1.2 2004/10/22 16:58:47 mmazur Exp $ */
 
 #ifndef __RTC_H__
 #define __RTC_H__
 
 
-#include <linux/config.h>
 
    /* Dallas DS1302 clock/calendar register numbers. */
 #  define RTC_SECONDS      0

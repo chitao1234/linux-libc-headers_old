@@ -1,9 +1,8 @@
 #ifndef _ASM_M32R_SIGCONTEXT_H
 #define _ASM_M32R_SIGCONTEXT_H
 
-/* $Id: sigcontext.h,v 1.1 2004/10/21 15:15:38 mmazur Exp $ */
+/* $Id: sigcontext.h,v 1.2 2004/10/22 16:58:47 mmazur Exp $ */
 
-#include <linux/config.h>
 
 struct sigcontext {
 	/* CPU registers */

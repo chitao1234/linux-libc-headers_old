@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_PROCESSOR_H
 #define _ASM_M32R_PROCESSOR_H
 
-/* $Id: processor.h,v 1.1 2004/10/21 15:15:38 mmazur Exp $ */
+/* $Id: processor.h,v 1.2 2004/10/22 16:58:47 mmazur Exp $ */
 
 /*
  * This file is subject to the terms and conditions of the GNU General Public
@@ -17,7 +17,6 @@
  * Copyright (C) 1994 Linus Torvalds
  */
 #include <linux/kernel.h>
-#include <linux/config.h>
 #include <asm/cache.h>
 #include <asm/ptrace.h>  /* pt_regs */
 

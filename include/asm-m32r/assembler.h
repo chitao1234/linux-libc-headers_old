@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_ASSEMBLER_H
 #define _ASM_M32R_ASSEMBLER_H
 
-/* $Id: assembler.h,v 1.1 2004/10/21 15:15:37 mmazur Exp $ */
+/* $Id: assembler.h,v 1.2 2004/10/22 16:58:46 mmazur Exp $ */
 
 /*
  * linux/asm-m32r/assembler.h
@@ -12,7 +12,6 @@
  * assembler source.
  */
 
-#include <linux/config.h>
 
 
 #undef ENTRY
