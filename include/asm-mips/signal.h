@@ -97,20 +97,6 @@ typedef unsigned long old_sigset_t;		/* at least 32 bits */
 #define MINSIGSTKSZ    2048
 #define SIGSTKSZ       8192
 
-#ifdef __KERNEL__
-
-/*
- * These values of sa_flags are used only by the kernel as part of the
- * irq handling routines.
- *
- * SA_INTERRUPT is also used by the irq handling routines.
- * SA_SHIRQ flag is for shared interrupt support on PCI and EISA.
- */
-#define SA_PROBE		SA_ONESHOT
-#define SA_SAMPLE_RANDOM	SA_RESTART
-#define SA_SHIRQ		0x02000000
-
-#endif /* __KERNEL__ */
 
 #define SIG_BLOCK	1	/* for blocking signals */
 #define SIG_UNBLOCK	2	/* for unblocking signals */
@@ -146,32 +132,5 @@ typedef struct sigaltstack {
 	int ss_flags;
 } stack_t;
 
-#ifdef __KERNEL__
-#include <asm/sigcontext.h>
-
-/*
- * The following break codes are or were in use for specific purposes in
- * other MIPS operating systems.  Linux/MIPS doesn't use all of them.  The
- * unused ones are here as placeholders; we might encounter them in
- * non-Linux/MIPS object files or make use of them in the future.
- */
-#define BRK_USERBP	0	/* User bp (used by debuggers) */
-#define BRK_KERNELBP	1	/* Break in the kernel */
-#define BRK_ABORT	2	/* Sometimes used by abort(3) to SIGIOT */
-#define BRK_BD_TAKEN	3	/* For bd slot emulation - not implemented */
-#define BRK_BD_NOTTAKEN	4	/* For bd slot emulation - not implemented */
-#define BRK_SSTEPBP	5	/* User bp (used by debuggers) */
-#define BRK_OVERFLOW	6	/* Overflow check */
-#define BRK_DIVZERO	7	/* Divide by zero check */
-#define BRK_RANGE	8	/* Range error check */
-#define BRK_STACKOVERFLOW 9	/* For Ada stackchecking */
-#define BRK_NORLD	10	/* No rld found - not used by Linux/MIPS */
-#define _BRK_THREADBP	11	/* For threads, user bp (used by debuggers) */
-#define BRK_MULOVF	1023	/* Multiply overflow */
-#define BRK_BUG		512	/* Used by BUG() */
-
-#define ptrace_signal_deliver(regs, cookie) do { } while (0)
-
-#endif /* __KERNEL__ */
 
 #endif /* _ASM_SIGNAL_H */

@@ -9,22 +9,6 @@
 #ifndef _ASM_PARAM_H
 #define _ASM_PARAM_H
 
-#ifdef __KERNEL__
-
-
-#ifdef CONFIG_DECSTATION
-   /*
-    * log2(HZ), change this here if you want another HZ value. This is also
-    * used in dec_time_init.  Minimum is 1, Maximum is 15.
-    */
-#  define LOG_2_HZ 7
-#  define HZ (1 << LOG_2_HZ)
-#else
-# define HZ		1000		/* Internal kernel timer frequency */
-#endif
-# define USER_HZ	100		/* .. some user interfaces are in "ticks" */
-# define CLOCKS_PER_SEC	(USER_HZ)	/* like times() */
-#endif
 
 #ifndef HZ
 #define HZ 100

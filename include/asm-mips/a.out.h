@@ -8,10 +8,6 @@
 #ifndef _ASM_A_OUT_H
 #define _ASM_A_OUT_H
 
-#ifdef __KERNEL__
-
-
-#endif
 
 struct exec
 {
@@ -31,16 +27,5 @@ struct exec
 #define N_TRSIZE(a)	((a).a_trsize)
 #define N_DRSIZE(a)	((a).a_drsize)
 #define N_SYMSIZE(a)	((a).a_syms)
-
-#ifdef __KERNEL__
-
-#ifdef CONFIG_MIPS32
-#define STACK_TOP	TASK_SIZE
-#endif
-#ifdef CONFIG_MIPS64
-#define STACK_TOP	(current->thread.mflags & MF_32BIT_ADDR ? TASK_SIZE32 : TASK_SIZE)
-#endif
-
-#endif
 
 #endif /* _ASM_A_OUT_H */
