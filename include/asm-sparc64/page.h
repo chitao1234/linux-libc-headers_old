@@ -1,11 +1,10 @@
-
 #ifndef _SPARC64_PAGE_H
 #define _SPARC64_PAGE_H
 
-#include <asm/const.h>
+#include <unistd.h>
 
-#define PAGE_SHIFT   13
-#define PAGE_SIZE    (_AC(1,UL) << PAGE_SHIFT)
+#define PAGE_SIZE ((unsigned long)getpagesize())
+#define PAGE_SHIFT ((PAGE_SIZE > 65536) ? -1 : ((unsigned long[]){12,13,14,-1,15,-1,-1,-1,16}[PAGE_SIZE>>13]))
 #define PAGE_MASK    (~(PAGE_SIZE-1))
 
 #endif /* !(_SPARC64_PAGE_H) */
