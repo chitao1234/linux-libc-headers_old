@@ -72,7 +72,7 @@
 /* To minimise problems in user space, I might remove those headers
  * at some point. Jean II */
 #include <linux/types.h>		/* for "caddr_t" et al		*/
-#include <linux/socket.h>		/* for "struct sockaddr" et al	*/
+#include <sys/socket.h>		/* for "struct sockaddr" et al	*/
 #include <linux/if.h>			/* for IFNAMSIZ and co... */
 
 /***************************** VERSION *****************************/

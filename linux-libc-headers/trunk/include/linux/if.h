@@ -20,7 +20,7 @@
 #define _LINUX_IF_H
 
 #include <linux/types.h>		/* for "__kernel_caddr_t" et al	*/
-#include <linux/socket.h>		/* for "struct sockaddr" et al	*/
+#include <sys/socket.h>		/* for "struct sockaddr" et al	*/
 
 #define	IFNAMSIZ	16
 #include <linux/hdlc/ioctl.h>
