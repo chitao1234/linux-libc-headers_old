@@ -1,4 +1,4 @@
-/* $Id: processor.h,v 1.3 2004/01/17 22:43:05 mmazur Exp $
+/* $Id: processor.h,v 1.4 2004/01/21 19:54:45 mmazur Exp $
  * include/asm-sparc/processor.h
  *
  * Copyright (C) 1994 David S. Miller (davem@caip.rutgers.edu)
@@ -135,13 +135,5 @@ extern unsigned long get_wchan(struct task_struct *);
 
 #define KSTK_EIP(tsk)  ((tsk)->thread.kregs->pc)
 #define KSTK_ESP(tsk)  ((tsk)->thread.kregs->u_regs[UREG_FP])
-
-#ifdef __KERNEL__
-
-extern struct task_struct *last_task_used_math;
-
-#define cpu_relax()	barrier()
-
-#endif
 
 #endif /* __ASM_SPARC_PROCESSOR_H */

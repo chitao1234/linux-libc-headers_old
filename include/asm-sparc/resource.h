@@ -1,4 +1,4 @@
-/* $Id: resource.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/* $Id: resource.h,v 1.2 2004/01/21 19:54:45 mmazur Exp $
  * resource.h: Resource definitions.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)
@@ -31,22 +31,5 @@
  * old value.
  */
 #define RLIM_INFINITY	0x7fffffff
-
-#ifdef __KERNEL__
-#define INIT_RLIMITS			\
-{					\
-    {RLIM_INFINITY, RLIM_INFINITY},	\
-    {RLIM_INFINITY, RLIM_INFINITY},	\
-    {RLIM_INFINITY, RLIM_INFINITY},	\
-    {_STK_LIM, RLIM_INFINITY},		\
-    {       0, RLIM_INFINITY},		\
-    {RLIM_INFINITY, RLIM_INFINITY},	\
-    {INR_OPEN, INR_OPEN}, {0, 0},	\
-    {RLIM_INFINITY, RLIM_INFINITY},	\
-    {RLIM_INFINITY, RLIM_INFINITY},	\
-    {RLIM_INFINITY, RLIM_INFINITY}	\
-}
-
-#endif /* __KERNEL__ */
 
 #endif /* !(_SPARC_RESOURCE_H) */

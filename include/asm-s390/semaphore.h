@@ -14,7 +14,6 @@
 #include <asm/system.h>
 #include <asm/atomic.h>
 #include <linux/wait.h>
-#include <linux/rwsem.h>
 
 struct semaphore {
 	/*

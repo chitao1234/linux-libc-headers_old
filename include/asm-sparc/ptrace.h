@@ -1,4 +1,4 @@
-/* $Id: ptrace.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $ */
+/* $Id: ptrace.h,v 1.2 2004/01/21 19:54:45 mmazur Exp $ */
 #ifndef _SPARC_PTRACE_H
 #define _SPARC_PTRACE_H
 
@@ -59,11 +59,6 @@ struct sparc_stackf {
 #define TRACEREG_SZ   sizeof(struct pt_regs)
 #define STACKFRAME_SZ sizeof(struct sparc_stackf)
 
-#ifdef __KERNEL__
-#define user_mode(regs) (!((regs)->psr & PSR_PS))
-#define instruction_pointer(regs) ((regs)->pc)
-extern void show_regs(struct pt_regs *);
-#endif
 
 #else /* __ASSEMBLY__ */
 /* For assembly code. */

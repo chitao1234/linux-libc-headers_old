@@ -1,15 +1,8 @@
-/* $Id: signal.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $ */
+/* $Id: signal.h,v 1.2 2004/01/21 19:54:45 mmazur Exp $ */
 #ifndef _ASMSPARC_SIGNAL_H
 #define _ASMSPARC_SIGNAL_H
 
 #include <asm/sigcontext.h>
-
-#ifdef __KERNEL__
-#ifndef __ASSEMBLY__
-#include <linux/personality.h>
-#include <linux/types.h>
-#endif
-#endif
 
 /* On the Sparc the signal handlers get passed a 'sub-signal' code
  * for certain signal types, which we document here.
@@ -156,30 +149,6 @@ struct sigstack {
 #define MINSIGSTKSZ	4096
 #define SIGSTKSZ	16384
 
-#ifdef __KERNEL__
-/*
- * These values of sa_flags are used only by the kernel as part of the
- * irq handling routines.
- *
- * SA_INTERRUPT is also used by the irq handling routines.
- *
- * DJHR
- * SA_STATIC_ALLOC is used for the SPARC system to indicate that this
- * interrupt handler's irq structure should be statically allocated
- * by the request_irq routine.
- * The alternative is that arch/sparc/kernel/irq.c has carnal knowledge
- * of interrupt usage and that sucks. Also without a flag like this
- * it may be possible for the free_irq routine to attempt to free
- * statically allocated data.. which is NOT GOOD.
- *
- */
-#define SA_PROBE SA_ONESHOT
-#define SA_SAMPLE_RANDOM SA_RESTART
-#define SA_STATIC_ALLOC		0x80
-#endif
-
-/* Type of a signal handler.  */
-#ifdef __KERNEL__
 typedef void (*__sighandler_t)(int, int, struct sigcontext *, char *);
 #else
 typedef void (*__sighandler_t)(int);
@@ -195,13 +164,6 @@ struct __new_sigaction {
 	void		(*sa_restorer)(void);	/* Not used by Linux/SPARC */
 	__new_sigset_t	sa_mask;
 };
-
-#ifdef __KERNEL__
-struct k_sigaction {
-	struct __new_sigaction	sa;
-	void			*ka_restorer;
-};
-#endif
 
 struct __old_sigaction {
 	__sighandler_t	sa_handler;

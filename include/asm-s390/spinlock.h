@@ -17,14 +17,8 @@
  * asm/spinlock.h. The diagnose is only available in kernel
  * context.
  */
-#ifdef __KERNEL__
-#include <asm/lowcore.h>
-#define __DIAG44_INSN "ex"
-#define __DIAG44_OPERAND __LC_DIAG44_OPCODE
-#else
 #define __DIAG44_INSN "#"
 #define __DIAG44_OPERAND 0
-#endif
 #endif /* __s390x__ */
 
 /*
