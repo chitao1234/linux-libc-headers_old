@@ -1,4 +1,4 @@
-/* $Id: iograph.h,v 1.1 2003/12/15 18:47:01 mmazur Exp $
+/* $Id: iograph.h,v 1.2 2004/01/21 17:40:46 mmazur Exp $
  *
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive
@@ -207,10 +207,6 @@
 
 /* Info labels that begin with '_' cannot be overwritten by an attr_set call */
 #define INFO_LBL_RESERVED(name) ((name)[0] == '_')
-
-#if defined(__KERNEL__)
-void init_all_devices(void);
-#endif /* __KERNEL__ */
 
 #include <asm/sn/xtalk/xbow.h>	/* For get MAX_PORT_NUM */
 

@@ -1,4 +1,4 @@
-/* $Id: xwidget.h,v 1.1 2003/12/15 18:47:02 mmazur Exp $
+/* $Id: xwidget.h,v 1.2 2004/01/21 17:40:48 mmazur Exp $
  *
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive
@@ -248,59 +248,6 @@ typedef struct xwidget_hwid_s {
 	((hwid2)->mfg_num == XWIDGET_MFG_NUM_NONE) || \
 	((hwid1)->mfg_num == (hwid2)->mfg_num)))
 
-
-/* Generic crosstalk widget initialization interface */
-#if __KERNEL__
-
-extern int              xwidget_driver_register(xwidget_part_num_t part_num,
-						xwidget_mfg_num_t mfg_num,
-						char *driver_prefix,
-						unsigned flags);
-
-extern void             xwidget_driver_unregister(char *driver_prefix);
-
-extern int              xwidget_register(struct xwidget_hwid_s *hwid,
-					 vertex_hdl_t dev,
-					 xwidgetnum_t id,
-					 vertex_hdl_t master,
-					 xwidgetnum_t targetid);
-
-extern int		xwidget_unregister(vertex_hdl_t);
-
-extern void             xwidget_reset(vertex_hdl_t xwidget);
-extern void             xwidget_gfx_reset(vertex_hdl_t xwidget);
-extern char		*xwidget_name_get(vertex_hdl_t xwidget);	
-
-/* Generic crosstalk widget information access interface */
-extern xwidget_info_t   xwidget_info_chk(vertex_hdl_t widget);
-extern xwidget_info_t   xwidget_info_get(vertex_hdl_t widget);
-extern void             xwidget_info_set(vertex_hdl_t widget, xwidget_info_t widget_info);
-extern vertex_hdl_t     xwidget_info_dev_get(xwidget_info_t xwidget_info);
-extern xwidgetnum_t     xwidget_info_id_get(xwidget_info_t xwidget_info);
-extern int              xwidget_info_type_get(xwidget_info_t xwidget_info);
-extern int              xwidget_info_state_get(xwidget_info_t xwidget_info);
-extern vertex_hdl_t     xwidget_info_master_get(xwidget_info_t xwidget_info);
-extern xwidgetnum_t     xwidget_info_masterid_get(xwidget_info_t xwidget_info);
-extern xwidget_part_num_t xwidget_info_part_num_get(xwidget_info_t xwidget_info);
-extern xwidget_rev_num_t xwidget_info_rev_num_get(xwidget_info_t xwidget_info);
-extern xwidget_mfg_num_t xwidget_info_mfg_num_get(xwidget_info_t xwidget_info);
-
-extern xwidgetnum_t hub_widget_id(nasid_t);
-
-
-
-/*
- * TBD: DELETE THIS ENTIRE STRUCTURE!  Equivalent is now in
- * xtalk_private.h: xwidget_info_s
- * This is just here for now because we still have a lot of
- * junk referencing it.
- * However, since nobody looks inside ...
- */
-typedef struct v_widget_s {
-    unsigned                v_widget_s_is_really_empty;
-#define	v_widget_s_is_really_empty	and using this would be a syntax error.
-} v_widget_t;
-#endif				/* _KERNEL */
 
 #endif				/* __ASSEMBLY__ */
 

@@ -79,7 +79,6 @@
 
 #ifndef __ASSEMBLY__
 
-#include <asm/current.h>
 #include <asm/page.h>
 
 /*
@@ -221,64 +220,6 @@ struct switch_stack {
 	unsigned long pr;		/* 64 predicate registers (1 bit each) */
 };
 
-#ifdef __KERNEL__
-/*
- * We use the ia64_psr(regs)->ri to determine which of the three
- * instructions in bundle (16 bytes) took the sample. Generate
- * the canonical representation by adding to instruction pointer.
- */
-# define instruction_pointer(regs) ((regs)->cr_iip + ia64_psr(regs)->ri)
-  /* given a pointer to a task_struct, return the user's pt_regs */
-# define ia64_task_regs(t)		(((struct pt_regs *) ((char *) (t) + IA64_STK_OFFSET)) - 1)
-# define ia64_psr(regs)			((struct ia64_psr *) &(regs)->cr_ipsr)
-# define user_mode(regs)		(((struct ia64_psr *) &(regs)->cr_ipsr)->cpl != 0)
-# define user_stack(task,regs)	((long) regs - (long) task == IA64_STK_OFFSET - sizeof(*regs))
-# define fsys_mode(task,regs)					\
-  ({								\
-	  struct task_struct *_task = (task);			\
-	  struct pt_regs *_regs = (regs);			\
-	  !user_mode(_regs) && user_stack(_task, _regs);	\
-  })
-
-  /*
-   * System call handlers that, upon successful completion, need to return a negative value
-   * should call force_successful_syscall_return() right before returning.  On architectures
-   * where the syscall convention provides for a separate error flag (e.g., alpha, ia64,
-   * ppc{,64}, sparc{,64}, possibly others), this macro can be used to ensure that the error
-   * flag will not get set.  On architectures which do not support a separate error flag,
-   * the macro is a no-op and the spurious error condition needs to be filtered out by some
-   * other means (e.g., in user-level, by passing an extra argument to the syscall handler,
-   * or something along those lines).
-   *
-   * On ia64, we can clear the user's pt_regs->r8 to force a successful syscall.
-   */
-# define force_successful_syscall_return()	(ia64_task_regs(current)->r8 = 0)
-
-  struct task_struct;			/* forward decl */
-  struct unw_frame_info;		/* forward decl */
-
-  extern void show_regs (struct pt_regs *);
-  extern void ia64_do_show_stack (struct unw_frame_info *, void *);
-  extern unsigned long ia64_get_user_rbs_end (struct task_struct *, struct pt_regs *,
-					      unsigned long *);
-  extern long ia64_peek (struct task_struct *, struct switch_stack *, unsigned long,
-			 unsigned long, long *);
-  extern long ia64_poke (struct task_struct *, struct switch_stack *, unsigned long,
-			 unsigned long, long);
-  extern void ia64_flush_fph (struct task_struct *);
-  extern void ia64_sync_fph (struct task_struct *);
-  extern long ia64_sync_user_rbs (struct task_struct *, struct switch_stack *,
-				  unsigned long, unsigned long);
-
-  /* get nat bits for scratch registers such that bit N==1 iff scratch register rN is a NaT */
-  extern unsigned long ia64_get_scratch_nat_bits (struct pt_regs *pt, unsigned long scratch_unat);
-  /* put nat bits for scratch registers such that scratch register rN is a NaT iff bit N==1 */
-  extern unsigned long ia64_put_scratch_nat_bits (struct pt_regs *pt, unsigned long nat);
-
-  extern void ia64_increment_ip (struct pt_regs *pt);
-  extern void ia64_decrement_ip (struct pt_regs *pt);
-
-#endif /* !__KERNEL__ */
 
 /* pt_all_user_regs is used for PTRACE_GETREGS PTRACE_SETREGS */
 struct pt_all_user_regs {

@@ -50,40 +50,6 @@ struct io_space {
 extern struct io_space io_space[];
 extern unsigned int num_io_spaces;
 
-# ifdef __KERNEL__
-
-#include <asm/intrinsics.h>
-#include <asm/machvec.h>
-#include <asm/page.h>
-#include <asm/system.h>
-
-/*
- * Change virtual addresses to physical addresses and vv.
- */
-static inline unsigned long
-virt_to_phys (volatile void *address)
-{
-	return (unsigned long) address - PAGE_OFFSET;
-}
-
-static inline void*
-phys_to_virt (unsigned long address)
-{
-	return (void *) (address + PAGE_OFFSET);
-}
-
-#define ARCH_HAS_VALID_PHYS_ADDR_RANGE
-extern int valid_phys_addr_range (unsigned long addr, size_t *count); /* efi.c */
-
-/*
- * The following two macros are deprecated and scheduled for removal.
- * Please use the PCI-DMA interface defined in <asm/pci.h> instead.
- */
-#define bus_to_virt	phys_to_virt
-#define virt_to_bus	virt_to_phys
-#define page_to_bus	page_to_phys
-
-# endif /* KERNEL */
 
 /*
  * Memory fence w/accept.  This should never be used in code that is
@@ -393,29 +359,6 @@ iounmap (void *addr)
 }
 
 #define ioremap_nocache(o,s)	ioremap(o,s)
-
-# ifdef __KERNEL__
-
-/*
- * String version of IO memory access ops:
- */
-extern void __ia64_memcpy_fromio (void *, unsigned long, long);
-extern void __ia64_memcpy_toio (unsigned long, void *, long);
-extern void __ia64_memset_c_io (unsigned long, unsigned long, long);
-
-#define memcpy_fromio(to,from,len) \
-  __ia64_memcpy_fromio((to),(unsigned long)(from),(len))
-#define memcpy_toio(to,from,len) \
-  __ia64_memcpy_toio((unsigned long)(to),(from),(len))
-#define memset_io(addr,c,len) \
-  __ia64_memset_c_io((unsigned long)(addr),0x0101010101010101UL*(u8)(c),(len))
-
-
-#define dma_cache_inv(_start,_size)             do { } while (0)
-#define dma_cache_wback(_start,_size)           do { } while (0)
-#define dma_cache_wback_inv(_start,_size)       do { } while (0)
-
-# endif /* __KERNEL__ */
 
 /*
  * Enabling BIO_VMERGE_BOUNDARY forces us to turn off I/O MMU bypassing.  It is said that
