@@ -1,9 +1,9 @@
 #ifndef _LINUX_TYPES_H
 #define _LINUX_TYPES_H
 
+#include <sys/types.h>
 #include <linux/posix_types.h>
 #include <asm/types.h>
-#include <sys/types.h>
 
 #ifndef __KERNEL_STRICT_NAMES
 
