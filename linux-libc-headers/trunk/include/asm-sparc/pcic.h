@@ -1,4 +1,4 @@
-/* $Id: pcic.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/* $Id: pcic.h,v 1.2 2003/12/22 12:02:10 mmazur Exp $
  * pcic.h: JavaEngine 1 specific PCI definitions.
  *
  * Copyright (C) 1998 V. Roganov and G. Raiko
@@ -11,7 +11,6 @@
 
 #include <linux/types.h>
 #include <linux/smp.h>
-#include <linux/smp_lock.h>
 #include <linux/pci.h>
 #include <linux/ioport.h>
 #include <asm/pbm.h>

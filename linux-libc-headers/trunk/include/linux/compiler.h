@@ -18,6 +18,7 @@
 # define __deprecated
 #else
 
+#ifndef __ASSEMBLY__
 #if __GNUC__ > 3
 # include <linux/compiler-gcc+.h>	/* catch-all for GCC 4, 5, etc. */
 #elif __GNUC__ == 3
@@ -26,6 +27,7 @@
 # include <linux/compiler-gcc2.h>
 #else
 # error Sorry, your compiler is too old/not recognized.
+#endif
 #endif
 
 /* Intel compiler defines __GNUC__. So we will overwrite implementations

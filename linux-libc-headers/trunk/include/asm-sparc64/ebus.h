@@ -1,4 +1,4 @@
-/* $Id: ebus.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $
+/* $Id: ebus.h,v 1.2 2003/12/22 12:02:12 mmazur Exp $
  * ebus.h: PCI to Ebus pseudo driver software state.
  *
  * Copyright (C) 1997 Eddie C. Dost (ecd@skynet.be)
@@ -57,6 +57,7 @@ struct ebus_dma_info {
 
 	unsigned int	flags;
 #define EBUS_DMA_FLAG_USE_EBDMA_HANDLER		0x00000001
+#define EBUS_DMA_FLAG_TCI_DISABLE		0x00000002
 
 	/* These are only valid is EBUS_DMA_FLAG_USE_EBDMA_HANDLER is
 	 * set.
