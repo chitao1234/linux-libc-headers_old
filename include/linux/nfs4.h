@@ -92,7 +92,7 @@ enum nfs4_acl_whotype {
 	NFS4_ACL_WHO_NAMED = 0,
 	NFS4_ACL_WHO_OWNER,
 	NFS4_ACL_WHO_GROUP,
-	NFS4_ACL_WHO_EVERYONE,
+	NFS4_ACL_WHO_EVERYONE
 };
 
 typedef struct { char data[NFS4_VERIFIER_SIZE]; } nfs4_verifier;
@@ -136,7 +136,7 @@ enum nfs_opnum4 {
 	OP_VERIFY = 37,
 	OP_WRITE = 38,
 	OP_RELEASE_LOCKOWNER = 39,
-	OP_ILLEGAL = 10044,
+	OP_ILLEGAL = 10044
 };
 
 enum nfsstat4 {

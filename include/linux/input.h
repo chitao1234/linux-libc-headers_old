@@ -55,7 +55,7 @@ struct input_absinfo {
 #define EVIOCSREP		_IOW('E', 0x03, int[2])			/* [<2.6] get repeat settings */
 #define EVIOCGKEYCODE		_IOR('E', 0x04, int[2])			/* get keycode */
 #define EVIOCSKEYCODE		_IOW('E', 0x04, int[2])			/* set keycode */
-#define EVIOCGKEY		_IOR('E', 0x05, int[2])			/* [<2.6] get key value */
+/*#define EVIOCGKEY		_IOR('E', 0x05, int[2])			 [<2.6] get key value - duplicate with a 2.6 definition, so commented out*/
 #define EVIOCGNAME(len)		_IOC(_IOC_READ, 'E', 0x06, len)		/* get device name */
 #define EVIOCGBUS		_IOR('E', 0x07, __s16[4])		/* [<2.6 ONLY] get bus address */
 #define EVIOCGPHYS(len)		_IOC(_IOC_READ, 'E', 0x07, len)		/* get physical location */

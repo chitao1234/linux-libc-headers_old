@@ -465,7 +465,7 @@ enum {
 /*18*/	AWE_MD_TREBLE_LEVEL,	/* integer: treble level (def=9) */
 /*19*/	AWE_MD_DEBUG_MODE,	/* integer: debug level (def=0) */
 /*20*/	AWE_MD_PAN_EXCHANGE,	/* 0/1: exchange panning direction (def=0) */
-	AWE_MD_END,
+	AWE_MD_END
 };
 
 /*----------------------------------------------------------------*/
@@ -519,7 +519,7 @@ enum {
 /*32*/	AWE_FX_COARSE_LOOP_END,		/* SHORT: upper word offset */
 /*33*/	AWE_FX_ATTEN,		/* BYTE: lo IFATN */
 
-	AWE_FX_END,
+	AWE_FX_END
 };
 
 #endif /* AWE_VOICE_H */

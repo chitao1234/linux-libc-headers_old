@@ -94,7 +94,7 @@ struct nlmsgerr
 
 enum {
 	NETLINK_UNCONNECTED = 0,
-	NETLINK_CONNECTED,
+	NETLINK_CONNECTED
 };
 
 #endif	/* __LINUX_NETLINK_H */

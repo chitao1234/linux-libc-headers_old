@@ -15,6 +15,7 @@
 
 #define USE_ELF_CORE_DUMP
 
+#ifndef R_386_NUM
 #define R_386_NONE	0
 #define R_386_32	1
 #define R_386_PC32	2
@@ -27,5 +28,6 @@
 #define R_386_GOTOFF	9
 #define R_386_GOTPC	10
 #define R_386_NUM	11
+#endif
 
 #endif
