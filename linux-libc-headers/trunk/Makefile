@@ -17,6 +17,8 @@ release: VERSION
 	find .tmp -name '*~'|xargs rm -f
 	find .tmp -name CVS|xargs rm -rf
 	find .tmp -type d -empty|xargs rmdir
+	find .tmp -type d|xargs chmod a+rx
+	chmod a+r -R .tmp
 	tar -cf release/${name}.tar.bz2 --bzip2 -C .tmp ${name}
 	rm -rf .tmp
 
