@@ -155,7 +155,7 @@ typedef s390_regs elf_gregset_t;
 
 /* regs is struct pt_regs, pr_reg is elf_gregset_t (which is
    now struct_user_regs, they are different) */
-
+/*
 static inline int dump_regs(struct pt_regs *ptregs, elf_gregset_t *regs)
 {
 	memcpy(&regs->psw, &ptregs->psw, sizeof(regs->psw)+sizeof(regs->gprs));
@@ -181,7 +181,7 @@ static inline int dump_task_fpu(struct task_struct *tsk, elf_fpregset_t *fpregs)
 }
 
 #define ELF_CORE_COPY_FPREGS(tsk, fpregs) dump_task_fpu(tsk, fpregs)
-
+*/
 
 /* This yields a mask that user programs can use to figure out what
    instruction set this CPU supports. */
