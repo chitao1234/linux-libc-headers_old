@@ -30,7 +30,6 @@
 #include <linux/if_packet.h>
 
 #include <asm/types.h>
-#include <asm/cache.h>
 #include <endian.h>
 #include <byteswap.h>
 

@@ -192,4 +192,6 @@
 #define	UMEM_MAJOR		116	/* http://www.umem.com/ Battery Backed RAM */
 
 
+#define VIOTAPE_MAJOR		230
+
 #endif

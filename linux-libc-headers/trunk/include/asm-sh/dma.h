@@ -10,6 +10,7 @@
 #ifndef __ASM_SH_DMA_H
 #define __ASM_SH_DMA_H
 
+#include <linux/wait.h>
 #include <asm/cpu/dma.h>
 #include <asm/semaphore.h>
 
@@ -61,11 +62,13 @@ struct dma_info {
 	unsigned long dar;
 
 	unsigned int configured:1;
+	unsigned int tei_capable:1;
 	atomic_t busy;
 
 	struct semaphore sem;
+	wait_queue_head_t wait_queue;
 	struct dma_ops *ops;
-} __attribute__ ((packed));
+};
 
 /* arch/sh/drivers/dma/dma-api.c */
 extern int dma_xfer(unsigned int chan, unsigned long from,

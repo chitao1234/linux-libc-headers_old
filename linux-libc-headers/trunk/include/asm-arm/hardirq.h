@@ -3,6 +3,7 @@
 
 #include <linux/cache.h>
 #include <linux/threads.h>
+#include <asm/irq.h>
 
 typedef struct {
 	unsigned int __softirq_pending;

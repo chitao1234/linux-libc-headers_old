@@ -79,5 +79,6 @@ struct loop_info64 {
 #define LOOP_GET_STATUS		0x4C03
 #define LOOP_SET_STATUS64	0x4C04
 #define LOOP_GET_STATUS64	0x4C05
+#define LOOP_CHANGE_FD		0x4C06
 
 #endif
