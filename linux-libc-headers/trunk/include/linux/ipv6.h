@@ -16,12 +16,14 @@
  *	*under construction*
  */
 
+#ifndef _NETINET_IN_H
 
 struct in6_pktinfo {
 	struct in6_addr	ipi6_addr;
 	int		ipi6_ifindex;
 };
 
+#endif
 
 struct in6_ifreq {
 	struct in6_addr	ifr6_addr;

@@ -80,6 +80,8 @@
 #define	IPOPT_TS_TSANDADDR	1		/* timestamps and addresses */
 #define	IPOPT_TS_PRESPEC	3		/* specified modules only */
 
+#ifndef __NETINET_IP_H
+
 struct iphdr {
 #if defined(__LITTLE_ENDIAN)
 	__u8	ihl:4,
@@ -101,6 +103,8 @@ struct iphdr {
 	__u32	daddr;
 	/*The options start here. */
 };
+
+#endif
 
 struct ip_auth_hdr {
 	__u8  nexthdr;
