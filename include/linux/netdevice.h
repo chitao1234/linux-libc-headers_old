@@ -29,9 +29,10 @@
 #include <linux/if_ether.h>
 #include <linux/if_packet.h>
 
-#include <asm/atomic.h>
+#include <asm/types.h>
 #include <asm/cache.h>
-#include <asm/byteorder.h>
+#include <endian.h>
+#include <byteswap.h>
 
 #ifdef __KERNEL__
 #include <linux/config.h>
