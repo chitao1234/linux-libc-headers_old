@@ -18,7 +18,7 @@
 int printk(const char *fmt, ...);
 
 struct semaphore {
-	int count; /* not atomic_t since we do the atomicity here already */
+	atomic_t count;
 	atomic_t waking;
 	wait_queue_head_t wait;
 #if WAITQUEUE_DEBUG
@@ -33,7 +33,7 @@ struct semaphore {
 #endif
 
 #define __SEMAPHORE_INITIALIZER(name,count)             \
-        { count, ATOMIC_INIT(0),          \
+        { ATOMIC_INIT(count), ATOMIC_INIT(0),           \
           __WAIT_QUEUE_HEAD_INITIALIZER((name).wait)    \
           __SEM_DEBUG_INIT(name) }
 
@@ -81,7 +81,7 @@ extern inline void down(struct semaphore * sem)
 	/* atomically decrement the semaphores count, and if its negative, we wait */
 	local_save_flags(flags);
 	local_irq_disable();
-	failed = --(sem->count) < 0;
+	failed = --(sem->count.counter) < 0;
 	local_irq_restore(flags);
 	if(failed) {
 		__down(sem);
@@ -107,7 +107,7 @@ extern inline int down_interruptible(struct semaphore * sem)
 	/* atomically decrement the semaphores count, and if its negative, we wait */
 	local_save_flags(flags);
 	local_irq_disable();
-	failed = --(sem->count) < 0;
+	failed = --(sem->count.counter) < 0;
 	local_irq_restore(flags);
 	if(failed)
 		failed = __down_interruptible(sem);
@@ -125,7 +125,7 @@ extern inline int down_trylock(struct semaphore * sem)
 
 	local_save_flags(flags);
 	local_irq_disable();
-	failed = --(sem->count) < 0;
+	failed = --(sem->count.counter) < 0;
 	local_irq_restore(flags);
 	if(failed)
 		failed = __down_trylock(sem);
@@ -150,7 +150,7 @@ extern inline void up(struct semaphore * sem)
 	/* atomically increment the semaphores count, and if it was negative, we wake people */
 	local_save_flags(flags);
 	local_irq_disable();
-	wakeup = ++(sem->count) <= 0;
+	wakeup = ++(sem->count.counter) <= 0;
 	local_irq_restore(flags);
 	if(wakeup) {
 		__up(sem);

@@ -123,7 +123,7 @@ static inline void get_mmu_context(struct mm_struct *mm)
 		mm->context = get_free_context(mm);
 }
 
-/* flush context if allocated... */	
+/* flush context if allocated... */
 static inline void destroy_context(struct mm_struct *mm)
 {
 	if(mm->context != SUN3_INVALID_CONTEXT)
@@ -149,5 +149,5 @@ static inline void activate_mm(struct mm_struct *prev_mm,
 	activate_context(next_mm);
 }
 
-#endif 
+#endif
 #endif

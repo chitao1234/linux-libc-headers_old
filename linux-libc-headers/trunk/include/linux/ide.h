@@ -569,7 +569,6 @@ typedef union {
 #define NODMA 0
 #define NOAUTODMA 1
 #define AUTODMA 2
-#define EOL 255
 
 #define BAD_DMA_DRIVE		0
 #define GOOD_DMA_DRIVE		1
@@ -579,7 +578,5 @@ typedef struct ide_pio_timings_s {
 	int	active_time;	/* Active pulse (ns) minimum */
 	int	cycle_time;	/* Cycle time (ns) minimum = (setup + active + recovery) */
 } ide_pio_timings_t;
-
-#define IDE_MAX_TAG	32
 
 #endif /* _IDE_H */

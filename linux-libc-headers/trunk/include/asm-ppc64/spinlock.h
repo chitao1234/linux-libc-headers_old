@@ -4,7 +4,7 @@
 /*
  * Simple spin lock operations.  
  *
- * Copyright (C) 2001 Paul Mackerras <paulus@au.ibm.com>, IBM
+ * Copyright (C) 2001-2004 Paul Mackerras <paulus@au.ibm.com>, IBM
  * Copyright (C) 2001 Anton Blanchard <anton@au.ibm.com>, IBM
  *
  * Type of int is used as a full 64b word is not necessary.

@@ -2,7 +2,7 @@
  * include/asm-m68k/serial.h
  *
  * currently this seems useful only for a Q40,
- * it's an almost exact copy of ../asm-alpha/serial.h 
+ * it's an almost exact copy of ../asm-alpha/serial.h
  *
  */
 
@@ -30,7 +30,7 @@
 #define ACCENT_FLAGS 0
 #define BOCA_FLAGS 0
 #endif
-	
+
 #define STD_SERIAL_PORT_DEFNS			\
 	/* UART CLK   PORT IRQ     FLAGS        */			\
 	{ 0, BASE_BAUD, 0x3F8, 4, STD_COM_FLAGS },	/* ttyS0 */	\
@@ -41,7 +41,7 @@
 
 #ifdef CONFIG_SERIAL_MANY_PORTS
 #define EXTRA_SERIAL_PORT_DEFNS			\
-	{ 0, BASE_BAUD, 0x1A0, 9, FOURPORT_FLAGS }, 	/* ttyS4 */	\
+	{ 0, BASE_BAUD, 0x1A0, 9, FOURPORT_FLAGS },	/* ttyS4 */	\
 	{ 0, BASE_BAUD, 0x1A8, 9, FOURPORT_FLAGS },	/* ttyS5 */	\
 	{ 0, BASE_BAUD, 0x1B0, 9, FOURPORT_FLAGS },	/* ttyS6 */	\
 	{ 0, BASE_BAUD, 0x1B8, 9, FOURPORT_FLAGS },	/* ttyS7 */	\

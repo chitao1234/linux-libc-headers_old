@@ -243,7 +243,7 @@ struct cdrom_read
 struct cdrom_read_audio
 {
 	union cdrom_addr addr; /* frame address */
-	__u8 addr_format;    /* CDROM_LBA or CDROM_MSF */
+	__u8 addr_format;      /* CDROM_LBA or CDROM_MSF */
 	int nframes;           /* number of 2352-byte-frames to read at once */
 	__u8 *buf;           /* frame buffer (size: nframes*2352 bytes) */
 };
@@ -293,7 +293,7 @@ struct cdrom_generic_command
 	unsigned char		data_direction;
 	int			quiet;
 	int			timeout;
-	void			*reserved[1];
+	void			*reserved[1];	/* unused, actually */
 };
 
 
@@ -745,6 +745,19 @@ struct request_sense {
  */
 #define MRW_LBA_DMA			0
 #define MRW_LBA_GAA			1
+
+struct packet_command
+{
+	unsigned char 		cmd[CDROM_PACKET_SIZE];
+	unsigned char 		*buffer;
+	unsigned int 		buflen;
+	int			stat;
+	struct request_sense	*sense;
+	unsigned char		data_direction;
+	int			quiet;
+	int			timeout;
+	void			*reserved[1];
+};
 
 /*
  * mrw mode pages (first is deprecated) -- probed at init time and

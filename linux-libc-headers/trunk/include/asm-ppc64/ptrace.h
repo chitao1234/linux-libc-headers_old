@@ -121,7 +121,7 @@ struct pt_regs32 {
 /* Kernel and userspace will both use this PT_FPSCR value.  32-bit apps will have
 + * visibility to the asm-ppc/ptrace.h header instead of this one.
 + */
-#define PT_FPSCR (PT_FPR0 + 32 + 1)	  /* each FP reg occupies 1 slot in 64-bit space */
+#define PT_FPSCR (PT_FPR0 + 32)	  /* each FP reg occupies 1 slot in 64-bit space */
 
 #define PT_VR0 82	/* each Vector reg occupies 2 slots in 64-bit */
 #define PT_VSCR (PT_VR0 + 32*2 + 1)

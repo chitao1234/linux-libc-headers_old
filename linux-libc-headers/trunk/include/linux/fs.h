@@ -9,7 +9,6 @@
 #include <linux/limits.h>
 #include <linux/kdev_t.h>
 #include <linux/ioctl.h>
-#include <linux/audit.h>
 
 struct iovec;
 struct nameidata;

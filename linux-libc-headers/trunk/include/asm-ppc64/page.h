@@ -11,18 +11,21 @@
  */
 
 
+#ifdef __ASSEMBLY__
+  #define ASM_CONST(x) x
+#else
+  #define __ASM_CONST(x) x##UL
+  #define ASM_CONST(x) __ASM_CONST(x)
+#endif
+
 /* PAGE_SHIFT determines the page size */
 #define PAGE_SHIFT	12
-#ifndef __ASSEMBLY__
-# define PAGE_SIZE	(1UL << PAGE_SHIFT)
-#else
-# define PAGE_SIZE	(1 << PAGE_SHIFT)
-#endif
+#define PAGE_SIZE	(ASM_CONST(1) << PAGE_SHIFT)
 #define PAGE_MASK	(~(PAGE_SIZE-1))
 #define PAGE_OFFSET_MASK (PAGE_SIZE-1)
 
 #define SID_SHIFT       28
-#define SID_MASK        0xfffffffff
+#define SID_MASK        0xfffffffffUL
 #define GET_ESID(x)     (((x) >> SID_SHIFT) & SID_MASK)
 
 #ifdef CONFIG_HUGETLB_PAGE

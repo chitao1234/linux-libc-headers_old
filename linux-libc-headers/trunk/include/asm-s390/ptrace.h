@@ -289,6 +289,7 @@ typedef struct
  */
 typedef struct
 {
+	unsigned long args[1];
 	psw_t psw;
 	unsigned long gprs[NUM_GPRS];
 	unsigned int  acrs[NUM_ACRS];

@@ -1,5 +1,5 @@
 /*
- * linux/include/asm-m68k/io.h 
+ * linux/include/asm-m68k/io.h
  *
  * 4/1/00 RZ: - rewritten to avoid clashes between ISA/PCI and other
  *              IO access
