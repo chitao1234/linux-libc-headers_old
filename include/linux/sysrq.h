@@ -1,6 +1,6 @@
 /* -*- linux-c -*-
  *
- *	$Id: sysrq.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
+ *	$Id: sysrq.h,v 1.2 2003/12/19 18:13:57 mmazur Exp $
  *
  *	Linux Magic System Request Key Hacks
  *
@@ -22,7 +22,6 @@ struct sysrq_key_op {
 	char *action_msg;
 };
 
-#ifdef CONFIG_MAGIC_SYSRQ
 
 /* Generic SysRq interface -- you may call it from any device driver, supplying
  * ASCII code of the key, pointer to registers and kbd/tty structs (if they
@@ -37,6 +36,9 @@ void handle_sysrq(int, struct pt_regs *, struct tty_struct *);
  */
 
 void __handle_sysrq_nolock(int, struct pt_regs *, struct tty_struct *);
+
+#ifdef CONFIG_MAGIC_SYSRQ
+
 
 /*
  * Sysrq registration manipulation functions
