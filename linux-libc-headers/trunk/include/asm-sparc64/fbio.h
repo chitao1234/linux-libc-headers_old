@@ -4,6 +4,8 @@
 /* Constants used for fbio SunOS compatibility */
 /* (C) 1996 Miguel de Icaza */
 
+#include <linux/fb.h>
+
 /* Frame buffer types */
 #define FBTYPE_NOTYPE           -1
 #define FBTYPE_SUN1BW           0   /* mono */
