@@ -1,4 +1,3 @@
-#ifdef __KERNEL__
 #ifndef __PPC_UNALIGNED_H
 #define __PPC_UNALIGNED_H
 
@@ -15,4 +14,3 @@
 #define put_unaligned(val, ptr) ((void)( *(ptr) = (val) ))
 
 #endif
-#endif /* __KERNEL__ */
