@@ -9,7 +9,6 @@
  *	    scheduler patch
  */
 
-#include <linux/compiler.h>
 #include <linux/types.h>
 
 #include <asm/intrinsics.h>

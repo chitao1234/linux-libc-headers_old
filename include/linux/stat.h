@@ -54,7 +54,7 @@
 #define S_IXUGO		(S_IXUSR|S_IXGRP|S_IXOTH)
 
 #include <linux/types.h>
-#include <linux/time.h>
+#include <sys/time.h>
 
 struct kstat {
 	unsigned long	ino;

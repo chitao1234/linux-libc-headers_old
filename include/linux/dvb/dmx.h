@@ -26,7 +26,7 @@
 
 #include <asm/types.h>
 #ifdef __KERNEL__
-#include <linux/time.h>
+#include <sys/time.h>
 #else
 #include <time.h>
 #endif

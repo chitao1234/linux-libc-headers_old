@@ -26,11 +26,11 @@
 				   member of a struct __sysctl_args to have? */
 
 struct __sysctl_args {
-	int __user *name;
+	int *name;
 	int nlen;
-	void __user *oldval;
-	size_t __user *oldlenp;
-	void __user *newval;
+	void *oldval;
+	size_t *oldlenp;
+	void *newval;
 	size_t newlen;
 	unsigned long __unused[4];
 };

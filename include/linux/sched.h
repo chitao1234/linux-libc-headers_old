@@ -18,7 +18,6 @@
 #include <linux/signal.h>
 #include <linux/securebits.h>
 #include <linux/fs_struct.h>
-#include <linux/compiler.h>
 #include <linux/completion.h>
 #include <linux/pid.h>
 #include <linux/percpu.h>
@@ -81,7 +80,7 @@ extern unsigned long avenrun[];		/* Load averages */
 #define CT_TO_SECS(x)	((x) / HZ)
 #define CT_TO_USECS(x)	(((x) % HZ) * 1000000/HZ)
 
-#include <linux/time.h>
+#include <sys/time.h>
 #include <linux/param.h>
 #include <linux/resource.h>
 #include <linux/timer.h>

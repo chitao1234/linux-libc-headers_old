@@ -219,7 +219,7 @@ extern unsigned long __copy_tofrom_user(void *to, const void *from,
 					unsigned long size);
 
 static inline unsigned long
-__copy_from_user(void *to, const void __user *from, unsigned long n)
+__copy_from_user(void *to, const void *from, unsigned long n)
 {
 	might_sleep();
 	if (__builtin_constant_p(n)) {
@@ -244,7 +244,7 @@ __copy_from_user(void *to, const void __user *from, unsigned long n)
 }
 
 static inline unsigned long
-__copy_to_user(void __user *to, const void *from, unsigned long n)
+__copy_to_user(void *to, const void *from, unsigned long n)
 {
 	might_sleep();
 	if (__builtin_constant_p(n)) {

@@ -21,7 +21,6 @@
 
 # ifndef __ASSEMBLY__
 
-#include <linux/compiler.h>
 #include <linux/percpu.h>
 #include <linux/sched.h>
 #include <linux/spinlock.h>

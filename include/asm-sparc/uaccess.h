@@ -1,4 +1,4 @@
-/* $Id: uaccess.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/* $Id: uaccess.h,v 1.2 2003/12/26 19:03:24 mmazur Exp $
  * uaccess.h: User space memore access functions.
  *
  * Copyright (C) 1996 David S. Miller (davem@caip.rutgers.edu)
@@ -8,7 +8,6 @@
 #define _ASM_UACCESS_H
 
 #ifdef __KERNEL__
-#include <linux/compiler.h>
 #include <linux/sched.h>
 #include <linux/string.h>
 #include <linux/errno.h>
@@ -46,7 +45,7 @@
 #define __access_ok(addr,size) (__user_ok((addr) & get_fs().seg,(size)))
 #define access_ok(type,addr,size) __access_ok((unsigned long)(addr),(size))
 
-static inline int verify_area(int type, const void __user * addr, unsigned long size)
+static inline int verify_area(int type, const void * addr, unsigned long size)
 {
 	return access_ok(type,addr,size)?0:-EFAULT;
 }
@@ -294,7 +293,7 @@ extern int __get_user_bad(void);
 
 extern unsigned long __copy_user(void *to, const void *from, unsigned long size);
 
-static inline unsigned long copy_to_user(void __user *to, const void *from, unsigned long n)
+static inline unsigned long copy_to_user(void *to, const void *from, unsigned long n)
 {
 	if (n && __access_ok((unsigned long) to, n))
 		return __copy_user((void *) to, from, n);
@@ -302,12 +301,12 @@ static inline unsigned long copy_to_user(void __user *to, const void *from, unsi
 		return n;
 }
 
-static inline unsigned long __copy_to_user(void __user *to, const void *from, unsigned long n)
+static inline unsigned long __copy_to_user(void *to, const void *from, unsigned long n)
 {
 	return __copy_user((void *)to, from, n);
 }
 
-static inline unsigned long copy_from_user(void *to, const void __user *from, unsigned long n)
+static inline unsigned long copy_from_user(void *to, const void *from, unsigned long n)
 {
 	if (n && __access_ok((unsigned long) from, n))
 		return __copy_user(to, (void *) from, n);
@@ -315,12 +314,12 @@ static inline unsigned long copy_from_user(void *to, const void __user *from, un
 		return n;
 }
 
-static inline unsigned long __copy_from_user(void *to, const void __user *from, unsigned long n)
+static inline unsigned long __copy_from_user(void *to, const void *from, unsigned long n)
 {
 	return __copy_user(to, (void *)from, n);
 }
 
-static inline unsigned long __clear_user(void __user *addr, unsigned long size)
+static inline unsigned long __clear_user(void *addr, unsigned long size)
 {
 	unsigned long ret;
 
@@ -341,7 +340,7 @@ static inline unsigned long __clear_user(void __user *addr, unsigned long size)
 	return ret;
 }
 
-static inline unsigned long clear_user(void __user *addr, unsigned long n)
+static inline unsigned long clear_user(void *addr, unsigned long n)
 {
 	if (n && __access_ok((unsigned long) addr, n))
 		return __clear_user(addr, n);
@@ -349,9 +348,9 @@ static inline unsigned long clear_user(void __user *addr, unsigned long n)
 		return n;
 }
 
-extern long __strncpy_from_user(char *dest, const char __user *src, long count);
+extern long __strncpy_from_user(char *dest, const char *src, long count);
 
-static inline long strncpy_from_user(char *dest, const char __user *src, long count)
+static inline long strncpy_from_user(char *dest, const char *src, long count)
 {
 	if (__access_ok((unsigned long) src, count))
 		return __strncpy_from_user(dest, src, count);
@@ -359,10 +358,10 @@ static inline long strncpy_from_user(char *dest, const char __user *src, long co
 		return -EFAULT;
 }
 
-extern long __strlen_user(const char __user *);
-extern long __strnlen_user(const char __user *, long len);
+extern long __strlen_user(const char *);
+extern long __strnlen_user(const char *, long len);
 
-static inline long strlen_user(const char __user *str)
+static inline long strlen_user(const char *str)
 {
 	if (!access_ok(VERIFY_READ, str, 0))
 		return 0;
@@ -370,7 +369,7 @@ static inline long strlen_user(const char __user *str)
 		return __strlen_user(str);
 }
 
-static inline long strnlen_user(const char __user *str, long len)
+static inline long strnlen_user(const char *str, long len)
 {
 	if (!access_ok(VERIFY_READ, str, 0))
 		return 0;

@@ -5,7 +5,6 @@
 #include <asm/rwlock.h>
 #include <asm/page.h>
 #include <linux/config.h>
-#include <linux/compiler.h>
 
 extern int printk(const char * fmt, ...)
 	__attribute__ ((format (printf, 1, 2)));

@@ -6,7 +6,6 @@
  */
 
 #include <linux/config.h>
-#include <linux/compiler.h>
 #include <asm/byteorder.h>	/* swab32 */
 #include <asm/system.h>		/* save_flags */
 

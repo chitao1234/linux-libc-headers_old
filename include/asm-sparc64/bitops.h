@@ -1,4 +1,4 @@
-/* $Id: bitops.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $
+/* $Id: bitops.h,v 1.2 2003/12/26 19:03:26 mmazur Exp $
  * bitops.h: Bit string operations on the V9.
  *
  * Copyright 1996, 1997 David S. Miller (davem@caip.rutgers.edu)
@@ -7,7 +7,6 @@
 #ifndef _SPARC64_BITOPS_H
 #define _SPARC64_BITOPS_H
 
-#include <linux/compiler.h>
 #include <asm/byteorder.h>
 
 extern long ___test_and_set_bit(unsigned long nr, volatile unsigned long *addr);

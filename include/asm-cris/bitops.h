@@ -16,7 +16,6 @@
 
 #include <asm/arch/bitops.h>
 #include <asm/system.h>
-#include <linux/compiler.h>
 
 /*
  * Some hacks to defeat gcc over-optimizations..

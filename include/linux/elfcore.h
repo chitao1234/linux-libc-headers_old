@@ -3,7 +3,7 @@
 
 #include <linux/types.h>
 #include <linux/signal.h>
-#include <linux/time.h>
+#include <sys/time.h>
 #include <linux/user.h>
 
 struct elf_siginfo

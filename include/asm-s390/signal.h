@@ -10,7 +10,7 @@
 #define _ASMS390_SIGNAL_H
 
 #include <linux/types.h>
-#include <linux/time.h>
+#include <sys/time.h>
 
 /* Avoid too many header ordering problems.  */
 struct siginfo;

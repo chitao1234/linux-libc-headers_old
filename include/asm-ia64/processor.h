@@ -85,7 +85,6 @@
 #ifndef __ASSEMBLY__
 
 #include <linux/cache.h>
-#include <linux/compiler.h>
 #include <linux/threads.h>
 #include <linux/types.h>
 

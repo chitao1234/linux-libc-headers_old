@@ -7,7 +7,6 @@
 #include <linux/config.h>
 #include <linux/netfilter_ipv4/ip_conntrack_tuple.h>
 #include <linux/bitops.h>
-#include <linux/compiler.h>
 #include <asm/atomic.h>
 
 enum ip_conntrack_info

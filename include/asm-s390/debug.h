@@ -41,7 +41,7 @@ struct __debug_entry{
  #include <linux/spinlock.h>
 #endif /* LINUX_VERSION_CODE */
 #include <linux/kernel.h>
-#include <linux/time.h>
+#include <sys/time.h>
 #include <linux/proc_fs.h>
 
 #define DEBUG_MAX_LEVEL            6  /* debug levels range from 0 to 6 */
