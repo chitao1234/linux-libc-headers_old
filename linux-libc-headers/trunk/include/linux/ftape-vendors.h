@@ -22,7 +22,7 @@
  *
  * $Source: /cvsroot/linux-libc-headers/include/linux/ftape-vendors.h,v $
  * $Revision: 1.1 $
- * $Date: 2003/12/15 18:46:58 $
+ * $Date$
  *
  *      This file contains the supported drive types with their
  *      QIC-117 spec. vendor code and drive dependent configuration
@@ -34,7 +34,7 @@ typedef enum {
 	no_wake_up,
 	wake_up_colorado,
 	wake_up_mountain,
-	wake_up_insight,
+	wake_up_insight
 } wake_up_types;
 
 typedef struct {

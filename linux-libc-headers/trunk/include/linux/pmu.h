@@ -91,7 +91,7 @@ enum {
 	PMU_PADDINGTON_BASED,	/* 1999 PowerBook G3 */
 	PMU_KEYLARGO_BASED,	/* Core99 motherboard (PMU99) */
 	PMU_68K_V1,		/* 68K PMU, version 1 */
-	PMU_68K_V2, 		/* 68K PMU, version 2 */
+	PMU_68K_V2 		/* 68K PMU, version 2 */
 };
 
 /* PMU PMU_POWER_EVENTS commands */
@@ -101,7 +101,7 @@ enum {
 	PMU_PWR_CLR_POWERUP_EVENTS	= 0x02,
 	PMU_PWR_GET_WAKEUP_EVENTS	= 0x03,
 	PMU_PWR_SET_WAKEUP_EVENTS	= 0x04,
-	PMU_PWR_CLR_WAKEUP_EVENTS	= 0x05,
+	PMU_PWR_CLR_WAKEUP_EVENTS	= 0x05
 };
 
 /* Power events wakeup bits */
@@ -110,7 +110,7 @@ enum {
 	PMU_PWR_WAKEUP_AC_INSERT	= 0x02, /* Wake on AC adapter plug */
 	PMU_PWR_WAKEUP_AC_CHANGE	= 0x04,
 	PMU_PWR_WAKEUP_LID_OPEN		= 0x08,
-	PMU_PWR_WAKEUP_RING		= 0x10,
+	PMU_PWR_WAKEUP_RING		= 0x10
 };
 	
 /*

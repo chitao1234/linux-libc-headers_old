@@ -122,7 +122,7 @@ enum
 	KERN_NGROUPS_MAX=63,	/* int: NGROUPS_MAX */
 	KERN_SPARC_SCONS_PWROFF=64, /* int: serial console power-off halt */
 	KERN_HZ_TIMER=65,	/* int: hz timer on or off */
-	KERN_UNKNOWN_NMI_PANIC=66, /* int: unknown nmi panic flag */
+	KERN_UNKNOWN_NMI_PANIC=66 /* int: unknown nmi panic flag */
 };
 
 
@@ -166,7 +166,7 @@ enum
 	VM_BLOCK_DUMP=24,	/* block dump mode */
 	VM_HUGETLB_GROUP=25,	/* permitted hugetlb group */
 	VM_VFS_CACHE_PRESSURE=26, /* dcache/icache reclaim pressure */
-	VM_LEGACY_VA_LAYOUT=27, /* legacy/compatibility virtual address space layout */
+	VM_LEGACY_VA_LAYOUT=27 /* legacy/compatibility virtual address space layout */
 };
 
 
@@ -190,7 +190,7 @@ enum
 	NET_DECNET=15,
 	NET_ECONET=16,
 	NET_KHTTPD=17,				/* [<2.6] */
-	NET_SCTP=17, 
+	NET_SCTP=17 
 };
 
 /* /proc/sys/kernel/random */
@@ -239,7 +239,7 @@ enum
 	NET_CORE_LO_CONG=15,
 	NET_CORE_MOD_CONG=16,
 	NET_CORE_DEV_WEIGHT=17,
-	NET_CORE_SOMAXCONN=18,
+	NET_CORE_SOMAXCONN=18
 };
 
 /* /proc/sys/net/ethernet */
@@ -252,7 +252,7 @@ enum
 {
 	NET_UNIX_DESTROY_DELAY=1,
 	NET_UNIX_DELETE_DELAY=2,
-	NET_UNIX_MAX_DGRAM_QLEN=3,
+	NET_UNIX_MAX_DGRAM_QLEN=3
 };
 
 /* /proc/sys/net/ipv4 */
@@ -342,7 +342,7 @@ enum
 	NET_TCP_BIC_LOW_WINDOW=104,
 	NET_TCP_DEFAULT_WIN_SCALE=105,
 	NET_TCP_MODERATE_RCVBUF=106,
-	NET_TCP_TSO_WIN_DIVISOR=107,
+	NET_TCP_TSO_WIN_DIVISOR=107
 };
 
 enum {
@@ -363,7 +363,7 @@ enum {
 	NET_IPV4_ROUTE_MTU_EXPIRES=15,
 	NET_IPV4_ROUTE_MIN_PMTU=16,
 	NET_IPV4_ROUTE_MIN_ADVMSS=17,
-	NET_IPV4_ROUTE_SECRET_INTERVAL=18,
+	NET_IPV4_ROUTE_SECRET_INTERVAL=18
 };
 
 enum
@@ -394,7 +394,7 @@ enum
 	NET_IPV4_CONF_NOPOLICY=16,
 	NET_IPV4_CONF_FORCE_IGMP_VERSION=17,
 	NET_IPV4_CONF_ARP_ANNOUNCE=18,
-	NET_IPV4_CONF_ARP_IGNORE=19,
+	NET_IPV4_CONF_ARP_IGNORE=19
 };
 
 /* /proc/sys/net/ipv4/netfilter */
@@ -426,7 +426,7 @@ enum
  	NET_IPV4_NF_CONNTRACK_SCTP_TIMEOUT_SHUTDOWN_SENT=24,
  	NET_IPV4_NF_CONNTRACK_SCTP_TIMEOUT_SHUTDOWN_RECD=25,
  	NET_IPV4_NF_CONNTRACK_SCTP_TIMEOUT_SHUTDOWN_ACK_SENT=26,
-	NET_IPV4_NF_CONNTRACK_COUNT=27,
+	NET_IPV4_NF_CONNTRACK_COUNT=27
 };
  
 /* /proc/sys/net/ipv6 */
@@ -440,7 +440,7 @@ enum {
 	NET_IPV6_IP6FRAG_LOW_THRESH=22,
 	NET_IPV6_IP6FRAG_TIME=23,
 	NET_IPV6_IP6FRAG_SECRET_INTERVAL=24,
-	NET_IPV6_MLD_MAX_MSF=25,
+	NET_IPV6_MLD_MAX_MSF=25
 };
 
 enum {
@@ -649,7 +649,7 @@ enum {
 	NET_SCTP_PRESERVE_ENABLE         = 11,
 	NET_SCTP_MAX_BURST               = 12,
 	NET_SCTP_ADDIP_ENABLE		 = 13,
-	NET_SCTP_PRSCTP_ENABLE		 = 14,
+	NET_SCTP_PRSCTP_ENABLE		 = 14
 };
 
 /* /proc/sys/net/bridge */
@@ -657,7 +657,7 @@ enum {
 	NET_BRIDGE_NF_CALL_ARPTABLES = 1,
 	NET_BRIDGE_NF_CALL_IPTABLES = 2,
 	NET_BRIDGE_NF_CALL_IP6TABLES = 3,
-	NET_BRIDGE_NF_FILTER_VLAN_TAGGED = 4,
+	NET_BRIDGE_NF_FILTER_VLAN_TAGGED = 4
 };
 
 /* CTL_PROC names: */
@@ -683,7 +683,7 @@ enum
 	FS_DQSTATS=16,	/* disc quota usage statistics */
 	FS_XFS=17,	/* struct: control xfs parameters */
 	FS_AIO_NR=18,	/* current system-wide number of aio requests */
-	FS_AIO_MAX_NR=19,	/* system-wide maximum number of aio requests */
+	FS_AIO_MAX_NR=19	/* system-wide maximum number of aio requests */
 };
 
 /* /proc/sys/fs/quota/ */
@@ -695,7 +695,7 @@ enum {
 	FS_DQ_CACHE_HITS = 5,
 	FS_DQ_ALLOCATED = 6,
 	FS_DQ_FREE = 7,
-	FS_DQ_SYNCS = 8,
+	FS_DQ_SYNCS = 8
 };
 
 /* CTL_DEBUG names: */
@@ -707,7 +707,7 @@ enum {
 	DEV_PARPORT=3,
 	DEV_RAID=4,
 	DEV_MAC_HID=5,
-	DEV_SCSI=6,
+	DEV_SCSI=6
 };
 
 /* /proc/sys/dev/cdrom */
@@ -750,12 +750,12 @@ enum {
 
 /* /proc/sys/dev/parport/parport n/devices/ */
 enum {
-	DEV_PARPORT_DEVICES_ACTIVE=-3,
+	DEV_PARPORT_DEVICES_ACTIVE=-3
 };
 
 /* /proc/sys/dev/parport/parport n/devices/device n */
 enum {
-	DEV_PARPORT_DEVICE_TIMESLICE=1,
+	DEV_PARPORT_DEVICE_TIMESLICE=1
 };
 
 /* /proc/sys/dev/mac_hid */
@@ -770,7 +770,7 @@ enum {
 
 /* /proc/sys/dev/scsi */
 enum {
-	DEV_SCSI_LOGGING_LEVEL=1,
+	DEV_SCSI_LOGGING_LEVEL=1
 };
 
 /* /proc/sys/abi */
@@ -781,7 +781,7 @@ enum
 	ABI_DEFHANDLER_LCALL7=3,/* default handler for procs using lcall7 */
 	ABI_DEFHANDLER_LIBCSO=4,/* default handler for an libc.so ELF interp */
 	ABI_TRACE=5,		/* tracing flags */
-	ABI_FAKE_UTSNAME=6,	/* fake target utsname information */
+	ABI_FAKE_UTSNAME=6	/* fake target utsname information */
 };
 
 #endif /* _LINUX_SYSCTL_H */

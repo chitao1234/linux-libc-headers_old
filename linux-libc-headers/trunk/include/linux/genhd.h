@@ -35,7 +35,7 @@ enum {
 	NETBSD_PARTITION = 0xa9,	/* NetBSD Partition ID */
 	BSDI_PARTITION = 0xb7,		/* BSDI Partition ID */
 	MINIX_PARTITION = 0x81,		/* Minix Partition ID */
-	UNIXWARE_PARTITION = 0x63,	/* Same as GNU_HURD and SCO Unix */
+	UNIXWARE_PARTITION = 0x63	/* Same as GNU_HURD and SCO Unix */
 };
 
 struct partition {

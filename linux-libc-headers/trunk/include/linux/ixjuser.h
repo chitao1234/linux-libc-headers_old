@@ -288,7 +288,7 @@ typedef enum {
 	G2 = hz783,
 	GS2 = hz830,
 	A2 = hz880,
-	AS2 = hz932,
+	AS2 = hz932
 } IXJ_NOTE;
 
 typedef struct {
