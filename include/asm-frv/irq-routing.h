@@ -39,7 +39,7 @@ struct irq_source {
 	struct irq_source	*next;
 	struct irq_level	*level;
 	const char		*muxname;
-	volatile void __iomem	*muxdata;
+	volatile void *muxdata;
 	unsigned long		irqmask;
 
 	void (*doirq)(struct irq_source *source);
