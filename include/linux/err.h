@@ -23,7 +23,7 @@ static inline long PTR_ERR(const void *ptr)
 
 static inline long IS_ERR(const void *ptr)
 {
-	return (unsigned long)ptr > (unsigned long)-1000L;
+	return unlikely((unsigned long)ptr > (unsigned long)-1000L);
 }
 
 #endif /* _LINUX_ERR_H */

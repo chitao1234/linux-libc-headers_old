@@ -30,7 +30,7 @@ struct map_info {
 	unsigned long phys;
 #define NO_XIP (-1UL)
 
-	unsigned long virt;
+	void __iomem *virt;
 	void *cached;
 
 	int buswidth; /* in octets */

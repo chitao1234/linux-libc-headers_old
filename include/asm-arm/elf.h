@@ -12,6 +12,7 @@ typedef unsigned long elf_freg_t[3];
 
 #define EM_ARM	40
 #define EF_ARM_APCS26 0x08
+#define EF_ARM_SOFT_FLOAT 0x200
 
 #define R_ARM_NONE	0
 #define R_ARM_PC24	1

@@ -147,13 +147,10 @@ extern unsigned long find_next_zero_bit(unsigned long *, unsigned long, unsigned
 #define find_first_zero_bit(addr, size) \
         find_next_zero_bit((addr), (size), 0)
 
-extern long ___test_and_set_le_bit(int nr, volatile unsigned long *addr);
-extern long ___test_and_clear_le_bit(int nr, volatile unsigned long *addr);
-
-#define test_and_set_le_bit(nr,addr)	({___test_and_set_le_bit(nr,addr)!=0;})
-#define test_and_clear_le_bit(nr,addr)	({___test_and_clear_le_bit(nr,addr)!=0;})
-#define set_le_bit(nr,addr)		((void)___test_and_set_le_bit(nr,addr))
-#define clear_le_bit(nr,addr)		((void)___test_and_clear_le_bit(nr,addr))
+#define test_and_set_le_bit(nr,addr)	\
+	({ ___test_and_set_bit((nr) ^ 0x38, (addr)) != 0; })
+#define test_and_clear_le_bit(nr,addr)	\
+	({ ___test_and_clear_bit((nr) ^ 0x38, (addr)) != 0; })
 
 static __inline__ int test_le_bit(int nr, __const__ unsigned long * addr)
 {

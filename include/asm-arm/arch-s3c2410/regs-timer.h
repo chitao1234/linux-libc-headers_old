@@ -17,7 +17,7 @@
 
 
 #ifndef __ASM_ARCH_REGS_TIMER_H
-#define __ASM_ARCH_REGS_TIMER_H "$Id: regs-timer.h,v 1.1 2004/08/17 20:24:51 mmazur Exp $"
+#define __ASM_ARCH_REGS_TIMER_H "$Id: regs-timer.h,v 1.2 2004/10/22 15:55:58 mmazur Exp $"
 
 #define S3C2410_TIMERREG(x) (S3C2410_VA_TIMER + (x))
 #define S3C2410_TIMERREG2(tmr,reg) S3C2410_TIMERREG((reg)+0x0c+((tmr)*0x0c))
@@ -29,6 +29,8 @@
 #define S3C2410_TCFG_PRESCALER0_MASK (255<<0)
 #define S3C2410_TCFG_PRESCALER1_MASK (255<<8)
 #define S3C2410_TCFG_PRESCALER1_SHIFT (8)
+#define S3C2410_TCFG_DEADZONE_MASK   (255<<16)
+#define S3C2410_TCFG_DEADZONE_SHIFT  (16)
 
 #define S3C2410_TCFG1_MUX4_DIV2	  (0<<16)
 #define S3C2410_TCFG1_MUX4_DIV4	  (1<<16)

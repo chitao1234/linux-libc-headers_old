@@ -13,8 +13,6 @@ extern unsigned int do_bindings(struct ip_conntrack *ct,
 				unsigned int hooknum,
 				struct sk_buff **pskb);
 
-extern struct list_head protos;
-
 extern int icmp_reply_translation(struct sk_buff **pskb,
 				  struct ip_conntrack *conntrack,
 				  unsigned int hooknum,
@@ -25,8 +23,4 @@ extern void replace_in_hashes(struct ip_conntrack *conntrack,
 extern void place_in_hashes(struct ip_conntrack *conntrack,
 			    struct ip_nat_info *info);
 
-/* Built-in protocols. */
-extern struct ip_nat_protocol ip_nat_protocol_tcp;
-extern struct ip_nat_protocol ip_nat_protocol_udp;
-extern struct ip_nat_protocol ip_nat_protocol_icmp;
 #endif /* _IP_NAT_CORE_H */

@@ -4,7 +4,7 @@
 /*
  * ELF-specific definitions.
  *
- * Copyright (C) 1998-1999, 2002-2003 Hewlett-Packard Co
+ * Copyright (C) 1998-1999, 2002-2004 Hewlett-Packard Co
  *	David Mosberger-Tang <davidm@hpl.hp.com>
  */
 
@@ -36,7 +36,7 @@
  * the way of the program that it will "exec", and that there is
  * sufficient room for the brk.
  */
-#define ELF_ET_DYN_BASE		(TASK_UNMAPPED_BASE + 0x800000000)
+#define ELF_ET_DYN_BASE		(TASK_UNMAPPED_BASE + 0x800000000UL)
 
 /* IA-64 relocations: */
 #define R_IA64_NONE		0x00	/* none */
@@ -169,7 +169,7 @@ extern void ia64_elf_core_copy_regs (struct pt_regs *src, elf_gregset_t dst);
 /* This macro yields a string that ld.so will use to load
    implementation specific libraries for optimization.  Not terribly
    relevant until we have real hardware to play with... */
-#define ELF_PLATFORM	0
+#define ELF_PLATFORM	NULL
 
 /*
  * Architecture-neutral AT_ values are in the range 0-17.  Leave some room for more of

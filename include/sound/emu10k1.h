@@ -115,6 +115,8 @@
 #define FXBUS_PCM_RIGHT_FRONT	0x09
 #define FXBUS_MIDI_REVERB	0x0c
 #define FXBUS_MIDI_CHORUS	0x0d
+#define FXBUS_PCM_LEFT_SIDE	0x0e
+#define FXBUS_PCM_RIGHT_SIDE	0x0f
 #define FXBUS_PT_LEFT		0x14
 #define FXBUS_PT_RIGHT		0x15
 
@@ -180,8 +182,8 @@
 #define A_EXTOUT_AFRONT_R	0x09	/*              right */
 #define A_EXTOUT_ACENTER	0x0a	/* analog center */
 #define A_EXTOUT_ALFE		0x0b	/* analog LFE */
-/* 0x0c ?? */
-/* 0x0d ?? */
+#define A_EXTOUT_ASIDE_L	0x0c	/* analog side left  - Audigy 2 ZS */
+#define A_EXTOUT_ASIDE_R	0x0d	/*             right - Audigy 2 ZS */
 #define A_EXTOUT_AREAR_L	0x0e	/* analog rear left */
 #define A_EXTOUT_AREAR_R	0x0f	/*             right */
 #define A_EXTOUT_AC97_L		0x10	/* AC97 left (front) */

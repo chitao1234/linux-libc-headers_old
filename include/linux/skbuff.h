@@ -83,14 +83,12 @@
 #define NET_CALLER(arg) __builtin_return_address(0)
 #endif
 
+struct net_device;
+
 #ifdef CONFIG_NETFILTER
 struct nf_conntrack {
 	atomic_t use;
 	void (*destroy)(struct nf_conntrack *);
-};
-
-struct nf_ct_info {
-	struct nf_conntrack *master;
 };
 
 #ifdef CONFIG_BRIDGE_NETFILTER
@@ -178,6 +176,7 @@ struct skb_shared_info {
  *	@nfmark: Can be used for communication between hooks
  *	@nfcache: Cache info
  *	@nfct: Associated connection, if any
+ *	@nfctinfo: Relationship of this skb to the connection
  *	@nf_debug: Netfilter debugging
  *	@nf_bridge: Saved data about a bridged frame - see br_netfilter.c
  *      @private: Data which is private to the HIPPI implementation
@@ -214,7 +213,6 @@ struct sk_buff {
 	} nh;
 
 	union {
-	  	struct ethhdr	*ethernet;
 	  	unsigned char 	*raw;
 	} mac;
 
@@ -245,7 +243,8 @@ struct sk_buff {
 #ifdef CONFIG_NETFILTER
         unsigned long		nfmark;
 	__u32			nfcache;
-	struct nf_ct_info	*nfct;
+	__u32			nfctinfo;
+	struct nf_conntrack	*nfct;
 #ifdef CONFIG_NETFILTER_DEBUG
         unsigned int		nf_debug;
 #endif
@@ -263,7 +262,7 @@ struct sk_buff {
 #ifdef CONFIG_NET_CLS_ACT
 	__u32           tc_verd;               /* traffic control verdict */
 	__u32           tc_classid;            /* traffic control classid */
- #endif
+#endif
 
 #endif
 

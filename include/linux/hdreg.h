@@ -460,8 +460,8 @@ enum {
 #define HDIO_GETGEO_BIG		0x330
 #define HDIO_GETGEO_BIG_RAW	0x331
 
-#define HDIO_SET_IDE_SCSI      0x0338
-#define HDIO_SET_SCSI_IDE      0x0339
+/* 0x338 is reserved - used to be HDIO_SET_IDE_SCSI */
+/* 0x339 is reserved - used to be HDIO_SET_SCSI_IDE */
 
 #define __NEW_HD_DRIVE_ID
 

@@ -39,7 +39,7 @@
 /*
  * This does not append a newline
  */
-static void puts(const char *s)
+static void putstr(const char *s)
 {
 	char c;
 

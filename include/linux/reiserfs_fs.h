@@ -1699,7 +1699,7 @@ void reiserfs_read_locked_inode(struct inode * inode, struct reiserfs_iget_args 
 int reiserfs_find_actor(struct inode * inode, void *p) ;
 int reiserfs_init_locked_inode(struct inode * inode, void *p) ;
 void reiserfs_delete_inode (struct inode * inode);
-void reiserfs_write_inode (struct inode * inode, int) ;
+int reiserfs_write_inode (struct inode * inode, int) ;
 struct dentry *reiserfs_get_dentry(struct super_block *, void *) ;
 struct dentry *reiserfs_decode_fh(struct super_block *sb, __u32 *data,
                                      int len, int fhtype,
@@ -1806,9 +1806,9 @@ int reiserfs_global_version_in_proc( char *buffer, char **start, off_t offset,
     int prealloc_size;			/* is set in determine_prealloc_size() function, used by underlayed
 					 * function that do actual allocation */
 
-    int formatted_node:1;		/* the allocator uses different polices for getting disk space for
+    unsigned formatted_node:1;		/* the allocator uses different polices for getting disk space for
 					 * formatted/unformatted blocks with/without preallocation */
-    int preallocate:1;
+    unsigned preallocate:1;
 };
 
 typedef struct __reiserfs_blocknr_hint reiserfs_blocknr_hint_t;
