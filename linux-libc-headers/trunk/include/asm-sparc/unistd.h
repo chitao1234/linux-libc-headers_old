@@ -1,4 +1,4 @@
-/* $Id: unistd.h,v 1.2 2003/12/22 12:02:10 mmazur Exp $ */
+/* $Id: unistd.h,v 1.3 2004/02/28 23:31:47 mmazur Exp $ */
 #ifndef _SPARC_UNISTD_H
 #define _SPARC_UNISTD_H
 
@@ -285,14 +285,14 @@
 #define __NR_timer_create	266
 /* #define __NR_vserver		267 Reserved for VSERVER */
 #define __NR_io_setup		268
-#define __NR_io_destroy		268
-#define __NR_io_submit		269
-#define __NR_io_cancel		270
-#define __NR_io_getevents	271
-/* WARNING: You MAY NOT add syscall numbers larger than 271, since
+#define __NR_io_destroy		269
+#define __NR_io_submit		270
+#define __NR_io_cancel		271
+#define __NR_io_getevents	272
+/* WARNING: You MAY NOT add syscall numbers larger than 272, since
  *          all of the syscall tables in the Sparc kernel are
- *          sized to have 272 entries (starting at zero).  Therefore
- *          find a free slot in the 0-271 range.
+ *          sized to have 273 entries (starting at zero).  Therefore
+ *          find a free slot in the 0-272 range.
  */
 
 #define _syscall0(type,name) \

@@ -11,11 +11,10 @@
 #ifndef _ASM_IA64_SN_ARCH_H
 #define _ASM_IA64_SN_ARCH_H
 
-#include <linux/threads.h>
-#include <linux/mmzone.h>
+#include <asm/types.h>
 #include <asm/sn/types.h>
 
-#include <asm/sn/sn2/arch.h>
+#include <asm/sn/sn_cpuid.h>
 
 typedef u64	shubreg_t;
 typedef u64	hubreg_t;

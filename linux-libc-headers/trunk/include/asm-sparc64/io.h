@@ -1,4 +1,4 @@
-/* $Id: io.h,v 1.3 2004/02/10 20:08:24 mmazur Exp $ */
+/* $Id: io.h,v 1.4 2004/02/28 23:31:48 mmazur Exp $ */
 #ifndef __SPARC64_IO_H
 #define __SPARC64_IO_H
 
@@ -176,6 +176,10 @@ static __inline__ void _writeq(u64 q, unsigned long addr)
 #define readw(__addr)		(_readw((unsigned long)(__addr)))
 #define readl(__addr)		(_readl((unsigned long)(__addr)))
 #define readq(__addr)		(_readq((unsigned long)(__addr)))
+#define readb_relaxed(a)	readb(a)
+#define readw_relaxed(a)	readw(a)
+#define readl_relaxed(a)	readl(a)
+#define readq_relaxed(a)	readq(a)
 #define writeb(__b, __addr)	(_writeb((u8)(__b), (unsigned long)(__addr)))
 #define writew(__w, __addr)	(_writew((u16)(__w), (unsigned long)(__addr)))
 #define writel(__l, __addr)	(_writel((u32)(__l), (unsigned long)(__addr)))

@@ -1,7 +1,6 @@
 #ifndef _LINUX_FB_H
 #define _LINUX_FB_H
 
-#include <linux/tty.h>
 #include <asm/types.h>
 
 /* Definitions of frame buffers						*/
@@ -323,11 +322,6 @@ struct fb_cursor {
 	struct fbcurpos hot;	/* cursor hot spot */
 	struct fb_image	image;	/* Cursor image */
 };
-
-#define FB_PIXMAP_DEFAULT 1     /* used internally by fbcon */
-#define FB_PIXMAP_SYSTEM  2     /* memory is in system RAM  */
-#define FB_PIXMAP_IO      4     /* memory is iomapped       */
-#define FB_PIXMAP_SYNC    256   /* set if GPU can DMA       */
 
 
 #endif /* _LINUX_FB_H */

@@ -140,6 +140,7 @@
 /* Info labels that begin with '_' cannot be overwritten by an attr_set call */
 #define INFO_LBL_RESERVED(name) ((name)[0] == '_')
 
+#include <asm/sn/sgi.h>
 #include <asm/sn/xtalk/xbow.h>	/* For get MAX_PORT_NUM */
 
 int io_brick_map_widget(int, int);

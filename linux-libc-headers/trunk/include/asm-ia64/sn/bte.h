@@ -12,8 +12,7 @@
 
 #include <linux/timer.h>
 #include <linux/cache.h>
-#include <asm/sn/io.h>
-#include <asm/delay.h>
+#include <asm/sn/types.h>
 
 
 /* #define BTE_DEBUG */

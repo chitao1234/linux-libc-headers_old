@@ -20,7 +20,7 @@
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.		     */
 /* ------------------------------------------------------------------------- */
 
-/* $Id: i2c-id.h,v 1.3 2004/02/10 20:08:26 mmazur Exp $ */
+/* $Id: i2c-id.h,v 1.4 2004/02/28 23:31:51 mmazur Exp $ */
 
 #ifndef LINUX_I2C_ID_H
 #define LINUX_I2C_ID_H
@@ -156,6 +156,7 @@
 #define I2C_DRIVERID_LM83 1040
 #define I2C_DRIVERID_LM90 1042
 #define I2C_DRIVERID_ASB100 1043
+#define I2C_DRIVERID_FSCHER 1046
 #define I2C_DRIVERID_W83L785TS 1047
 
 /*
