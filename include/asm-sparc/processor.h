@@ -1,4 +1,4 @@
-/* $Id: processor.h,v 1.4 2004/01/21 19:54:45 mmazur Exp $
+/* $Id: processor.h,v 1.5 2004/02/03 11:47:57 mmazur Exp $
  * include/asm-sparc/processor.h
  *
  * Copyright (C) 1994 David S. Miller (davem@caip.rutgers.edu)
@@ -18,7 +18,6 @@
 #include <asm/psr.h>
 #include <asm/ptrace.h>
 #include <asm/head.h>
-#include <asm/signal.h>
 #include <asm/segment.h>
 #include <asm/btfixup.h>
 #include <asm/page.h>
