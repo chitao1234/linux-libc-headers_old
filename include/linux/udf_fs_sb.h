@@ -27,11 +27,6 @@
 #define UDF_VIRTUAL_MAP20		0x2012U
 #define UDF_SPARABLE_MAP15		0x1522U
 
-struct udf_sparing_data
-{
-	__u16	s_packet_len;
-	struct buffer_head *s_spar_map[4];
-};
 
 struct udf_virtual_data
 {
@@ -39,13 +34,6 @@ struct udf_virtual_data
 	__u16	s_start_offset;
 };
 
-struct udf_bitmap
-{
-	__u32			s_extLength;
-	__u32			s_extPosition;
-	__u16			s_nr_groups;
-	struct buffer_head 	**s_block_bitmap;
-};
 
 
 #pragma pack()
