@@ -4,6 +4,7 @@
 #include <linux/if.h>
 #include <linux/ip.h>
 #include <asm/types.h>
+#include <asm/byteorder.h>
 
 #define SIOCGETTUNNEL   (SIOCDEVPRIVATE + 0)
 #define SIOCADDTUNNEL   (SIOCDEVPRIVATE + 1)

@@ -21,6 +21,7 @@
 #include <asm/types.h>
 #include <endian.h>
 #include <byteswap.h>
+#include <asm/byteorder.h>
 
 /* For user-space programs to pick up these definitions
  * which they wouldn't get otherwise without defining __KERNEL__
