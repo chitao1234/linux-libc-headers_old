@@ -266,6 +266,7 @@ struct ext3_inode {
 #define i_fsize		osd2.masix2.m_i_fsize
 #define i_reserved2	osd2.masix2.m_i_reserved2
 
+#endif /* defined(__linux__) */
 
 /*
  * File system states
