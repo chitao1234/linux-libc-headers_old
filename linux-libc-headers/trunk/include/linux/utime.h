@@ -1,9 +1,3 @@
-#ifndef _LINUX_UTIME_H
-#define _LINUX_UTIME_H
+#warning "You should include <utime.h>. This time I will do it for you."
+#include <utime.h>
 
-struct utimbuf {
-	time_t actime;
-	time_t modtime;
-};
-
-#endif
