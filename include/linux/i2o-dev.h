@@ -20,9 +20,7 @@
 #ifndef _I2O_DEV_H
 #define _I2O_DEV_H
 
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned int u32;
+#include <linux/types.h>
 
 /* How many controllers are we allowing */
 #define MAX_I2O_CONTROLLERS	32
