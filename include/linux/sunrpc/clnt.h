@@ -13,7 +13,6 @@
 #include <linux/sunrpc/xprt.h>
 #include <linux/sunrpc/stats.h>
 #include <linux/sunrpc/timer.h>
-#include <asm/signal.h>
 
 /*
  * This defines an RPC port mapping
