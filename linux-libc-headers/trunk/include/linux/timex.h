@@ -51,9 +51,6 @@
 #ifndef _LINUX_TIMEX_H
 #define _LINUX_TIMEX_H
 
-#include <linux/config.h>
-#include <linux/compiler.h>
-
 #include <asm/param.h>
 
 /*
@@ -63,6 +60,7 @@
  * OSF/1 kernel. The SHIFT_HZ define expresses the same value as the
  * nearest power of two in order to avoid hardware multiply operations.
  */
+/* (for predefined constant HZ)
 #if HZ >= 12 && HZ < 24
 # define SHIFT_HZ	4
 #elif HZ >= 24 && HZ < 48
@@ -80,6 +78,15 @@
 #else
 # error You lose.
 #endif
+*/
+#define SHIFT_HZ ( \
+	((HZ) >= 12 && (HZ) < 24) ? 4 : \
+	((HZ) >= 24 && (HZ) < 48) ? 5 : \
+	((HZ) >= 48 && (HZ) < 96) ? 6 : \
+	((HZ) >= 96 && (HZ) < 192) ? 7 : \
+	((HZ) >= 192 && (HZ) < 384) ? 8 : \
+	((HZ) >= 384 && (HZ) < 768) ? 9 : \
+	((HZ) >= 768 && (HZ) < 1536) ? 10 : -1 )
 
 /*
  * SHIFT_KG and SHIFT_KF establish the damping of the PLL and are chosen
@@ -273,150 +280,5 @@ struct timex {
 #define TIME_WAIT	4	/* leap second has occurred */
 #define TIME_ERROR	5	/* clock not synchronized */
 #define TIME_BAD	TIME_ERROR /* bw compat */
-
-#ifdef __KERNEL__
-/*
- * kernel variables
- * Note: maximum error = NTP synch distance = dispersion + delay / 2;
- * estimated error = NTP dispersion.
- */
-extern unsigned long tick_usec;		/* USER_HZ period (usec) */
-extern unsigned long tick_nsec;		/* ACTHZ          period (nsec) */
-extern int tickadj;			/* amount of adjustment per tick */
-
-/*
- * phase-lock loop variables
- */
-extern int time_state;		/* clock status */
-extern int time_status;		/* clock synchronization status bits */
-extern long time_offset;	/* time adjustment (us) */
-extern long time_constant;	/* pll time constant */
-extern long time_tolerance;	/* frequency tolerance (ppm) */
-extern long time_precision;	/* clock precision (us) */
-extern long time_maxerror;	/* maximum error */
-extern long time_esterror;	/* estimated error */
-
-extern long time_phase;		/* phase offset (scaled us) */
-extern long time_freq;		/* frequency offset (scaled ppm) */
-extern long time_adj;		/* tick adjust (scaled 1 / HZ) */
-extern long time_reftime;	/* time at last adjustment (s) */
-
-extern long time_adjust;	/* The amount of adjtime left */
-extern long time_next_adjust;	/* Value for time_adjust at next tick */
-
-/* interface variables pps->timer interrupt */
-extern long pps_offset;		/* pps time offset (us) */
-extern long pps_jitter;		/* time dispersion (jitter) (us) */
-extern long pps_freq;		/* frequency offset (scaled ppm) */
-extern long pps_stabil;		/* frequency dispersion (scaled ppm) */
-extern long pps_valid;		/* pps signal watchdog counter */
-
-/* interface variables pps->adjtimex */
-extern int pps_shift;		/* interval duration (s) (shift) */
-extern long pps_jitcnt;		/* jitter limit exceeded */
-extern long pps_calcnt;		/* calibration intervals */
-extern long pps_errcnt;		/* calibration errors */
-extern long pps_stbcnt;		/* stability limit exceeded */
-
-#ifdef CONFIG_TIME_INTERPOLATION
-
-struct time_interpolator {
-	/* cache-hot stuff first: */
-	unsigned long (*get_offset) (void);
-	void (*update) (long);
-	void (*reset) (void);
-
-	/* cache-cold stuff follows here: */
-	struct time_interpolator *next;
-	unsigned long frequency;	/* frequency in counts/second */
-	long drift;			/* drift in parts-per-million (or -1) */
-};
-
-extern volatile unsigned long last_nsec_offset;
-#ifndef __HAVE_ARCH_CMPXCHG
-extern spin_lock_t last_nsec_offset_lock;
-#endif
-extern struct time_interpolator *time_interpolator;
-
-extern void register_time_interpolator(struct time_interpolator *);
-extern void unregister_time_interpolator(struct time_interpolator *);
-
-/* Called with xtime WRITE-lock acquired.  */
-static inline void
-time_interpolator_update(long delta_nsec)
-{
-	struct time_interpolator *ti = time_interpolator;
-
-	if (last_nsec_offset > 0) {
-#ifdef __HAVE_ARCH_CMPXCHG
-		unsigned long new, old;
-
-		do {
-			old = last_nsec_offset;
-			if (old > delta_nsec)
-				new = old - delta_nsec;
-			else
-				new = 0;
-		} while (cmpxchg(&last_nsec_offset, old, new) != old);
-#else
-		/*
-		 * This really hurts, because it serializes gettimeofday(), but without an
-		 * atomic single-word compare-and-exchange, there isn't all that much else
-		 * we can do.
-		 */
-		spin_lock(&last_nsec_offset_lock);
-		{
-			last_nsec_offset -= min(last_nsec_offset, delta_nsec);
-		}
-		spin_unlock(&last_nsec_offset_lock);
-#endif
-	}
-
-	if (ti)
-		(*ti->update)(delta_nsec);
-}
-
-/* Called with xtime WRITE-lock acquired.  */
-static inline void
-time_interpolator_reset(void)
-{
-	struct time_interpolator *ti = time_interpolator;
-
-	last_nsec_offset = 0;
-	if (ti)
-		(*ti->reset)();
-}
-
-/* Called with xtime READ-lock acquired.  */
-static inline unsigned long
-time_interpolator_get_offset(void)
-{
-	struct time_interpolator *ti = time_interpolator;
-	if (ti)
-		return (*ti->get_offset)();
-	return last_nsec_offset;
-}
-
-#else /* !CONFIG_TIME_INTERPOLATION */
-
-static inline void
-time_interpolator_update(long delta_nsec)
-{
-}
-
-static inline void
-time_interpolator_reset(void)
-{
-}
-
-static inline unsigned long
-time_interpolator_get_offset(void)
-{
-	return 0;
-}
-
-#endif /* !CONFIG_TIME_INTERPOLATION */
-
-#endif /* KERNEL */
 
 #endif /* LINUX_TIMEX_H */
