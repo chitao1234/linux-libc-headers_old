@@ -9,12 +9,10 @@
 #ifndef _ASM_PAGE_H
 #define _ASM_PAGE_H
 
-
-#ifdef CONFIG_MIPS32
-#include <asm/page-32.h>
-#endif
-#ifdef CONFIG_MIPS64
-#include <asm/page-64.h>
-#endif
+#include <spaces.h>
 
 #endif /* _ASM_PAGE_H */
+#ifdef CONFIG_LIMITED_DMA
+#define WANT_PAGE_VIRTUAL
+#endif
+

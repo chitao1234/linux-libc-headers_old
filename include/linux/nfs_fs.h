@@ -63,6 +63,8 @@
 #define FLUSH_SYNC		1	/* file being synced, or contention */
 #define FLUSH_WAIT		2	/* wait for completion */
 #define FLUSH_STABLE		4	/* commit to stable storage */
+#define FLUSH_LOWPRI		8	/* low priority background flush */
+#define FLUSH_HIGHPRI		16	/* high priority memory reclaim flush */
 
 
 /*

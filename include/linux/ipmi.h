@@ -109,6 +109,35 @@ struct ipmi_ipmb_addr
 	unsigned char lun;
 };
 
+/*
+ * A LAN Address.  This is an address to/from a LAN interface bridged
+ * by the BMC, not an address actually out on the LAN.
+ *
+ * A concious decision was made here to deviate slightly from the IPMI
+ * spec.  We do not use rqSWID and rsSWID like it shows in the
+ * message.  Instead, we use remote_SWID and local_SWID.  This means
+ * that any message (a request or response) from another device will
+ * always have exactly the same address.  If you didn't do this,
+ * requests and responses from the same device would have different
+ * addresses, and that's not too cool.
+ *
+ * In this address, the remote_SWID is always the SWID the remote
+ * message came from, or the SWID we are sending the message to.
+ * local_SWID is always our SWID.  Note that having our SWID in the
+ * message is a little wierd, but this is required.
+ */
+#define IPMI_LAN_ADDR_TYPE		0x04
+struct ipmi_lan_addr
+{
+	int           addr_type;
+	short         channel;
+	unsigned char privilege;
+	unsigned char session_handle;
+	unsigned char remote_SWID;
+	unsigned char local_SWID;
+	unsigned char lun;
+};
+
 
 /*
  * Channel for talking directly with the BMC.  When using this
@@ -145,10 +174,20 @@ struct ipmi_msg
  * Receive types for messages coming from the receive interface.  This
  * is used for the receive in-kernel interface and in the receive
  * IOCTL.
+ *
+ * The "IPMI_RESPONSE_RESPNOSE_TYPE" is a little strange sounding, but
+ * it allows you to get the message results when you send a response
+ * message.
  */
 #define IPMI_RESPONSE_RECV_TYPE		1 /* A response to a command */
 #define IPMI_ASYNC_EVENT_RECV_TYPE	2 /* Something from the event queue */
 #define IPMI_CMD_RECV_TYPE		3 /* A command from somewhere else */
+#define IPMI_RESPONSE_RESPONSE_TYPE	4 /* The response for
+					      a sent response, giving any
+					      error status for sending the
+					      response.  When you send a
+					      response message, this will
+					      be returned. */
 /* Note that async events and received commands do not have a completion
    code as the first byte of the incoming data, unlike a response. */
 
@@ -216,6 +255,29 @@ struct ipmi_req
  */
 #define IPMICTL_SEND_COMMAND		_IOR(IPMI_IOC_MAGIC, 13,	\
 					     struct ipmi_req)
+
+/* Messages sent to the interface with timing parameters are this
+   format. */
+struct ipmi_req_settime
+{
+	struct ipmi_req req;
+
+	/* See ipmi_request_settime() above for details on these
+           values. */
+	int          retries;
+	unsigned int retry_time_ms;
+};
+/*
+ * Send a message to the interfaces with timing parameters.  error values
+ * are:
+ *   - EFAULT - an address supplied was invalid.
+ *   - EINVAL - The address supplied was not valid, or the command
+ *              was not allowed.
+ *   - EMSGSIZE - The message to was too large.
+ *   - ENOMEM - Buffers could not be allocated for the command.
+ */
+#define IPMICTL_SEND_COMMAND_SETTIME	_IOR(IPMI_IOC_MAGIC, 21,	\
+					     struct ipmi_req_settime)
 
 /* Messages received from the interface are this format. */
 struct ipmi_recv
@@ -307,5 +369,19 @@ struct ipmi_cmdspec
 #define IPMICTL_GET_MY_ADDRESS_CMD	_IOR(IPMI_IOC_MAGIC, 18, unsigned int)
 #define IPMICTL_SET_MY_LUN_CMD		_IOR(IPMI_IOC_MAGIC, 19, unsigned int)
 #define IPMICTL_GET_MY_LUN_CMD		_IOR(IPMI_IOC_MAGIC, 20, unsigned int)
+
+/*
+ * Get/set the default timing values for an interface.  You shouldn't
+ * generally mess with these.
+ */
+struct ipmi_timing_parms
+{
+	int          retries;
+	unsigned int retry_time_ms;
+};
+#define IPMICTL_SET_TIMING_PARMS_CMD	_IOR(IPMI_IOC_MAGIC, 22, \
+					     struct ipmi_timing_parms)
+#define IPMICTL_GET_TIMING_PARMS_CMD	_IOR(IPMI_IOC_MAGIC, 23, \
+					     struct ipmi_timing_parms)
 
 #endif /* __LINUX_IPMI_H */
