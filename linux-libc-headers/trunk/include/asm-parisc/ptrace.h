@@ -43,12 +43,5 @@ struct pt_regs {
  * since we have taken branch traps too)
  */
 #define PTRACE_SINGLEBLOCK	12	/* resume execution until next branch */
-#ifdef __KERNEL__
-
-/* XXX should we use iaoq[1] or iaoq[0] ? */
-#define user_mode(regs)			(((regs)->iaoq[0] &  3) ? 1 : 0)
-#define instruction_pointer(regs)	((regs)->iaoq[0] & ~3)
-extern void show_regs(struct pt_regs *);
-#endif
 
 #endif

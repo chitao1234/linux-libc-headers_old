@@ -11,7 +11,6 @@
  */
 
 #include <linux/wait.h>
-#include <linux/rwsem.h>
 
 #include <asm/system.h>
 
