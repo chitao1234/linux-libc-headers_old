@@ -9,7 +9,6 @@
 #define _ASM_USER_H
 
 #include <asm/page.h>
-#include <asm/reg.h>
 
 /*
  * Core file format: The core file is written in such a way that gdb
