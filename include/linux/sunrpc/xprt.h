@@ -10,7 +10,7 @@
 #define _LINUX_SUNRPC_XPRT_H
 
 #include <linux/uio.h>
-#include <linux/socket.h>
+#include <sys/socket.h>
 #include <linux/in.h>
 #include <linux/sunrpc/sched.h>
 #include <linux/sunrpc/xdr.h>
