@@ -19,6 +19,30 @@
 
 #include <byteswap.h>
 
+/* __bswap_constant_{16,32} are missing in generic <bits/byteswap.h> in glibc,
+ * thus available only on x86 and few other archs */
+#ifndef __bswap_constant_16
+#define __bswap_constant_16(x) \
+     ((((x) >> 8) & 0xff) | (((x) & 0xff) << 8))
+#endif
+#ifndef __bswap_constant_32
+#define __bswap_constant_32(x) \
+     ((((x) & 0xff000000) >> 24) | (((x) & 0x00ff0000) >>  8) |		      \
+      (((x) & 0x0000ff00) <<  8) | (((x) & 0x000000ff) << 24))
+#endif
+#if (!defined(__bswap_constant_64)) && defined __GNUC__ && __GNUC__ >= 2
+/* Swap bytes in 64 bit value.  */
+#define __bswap_constant_64(x) \
+     ((((x) & 0xff00000000000000ull) >> 56)				      \
+      | (((x) & 0x00ff000000000000ull) >> 40)				      \
+      | (((x) & 0x0000ff0000000000ull) >> 24)				      \
+      | (((x) & 0x000000ff00000000ull) >> 8)				      \
+      | (((x) & 0x00000000ff000000ull) << 8)				      \
+      | (((x) & 0x0000000000ff0000ull) << 24)				      \
+      | (((x) & 0x000000000000ff00ull) << 40)				      \
+      | (((x) & 0x00000000000000ffull) << 56))
+#endif
+
 #define ___constant_swab16(x) __bswap_constant_16(x)
 #define ___constant_swab32(x) __bswap_constant_32(x)
 #define ___constant_swab64(x) __bswap_constant_64(x)
