@@ -123,7 +123,8 @@ static __inline__ unsigned long __ffs(unsigned long word)
  * @offset: The bitnumber to start searching at
  * @size: The maximum size to search
  */
-extern unsigned long find_next_bit(unsigned long *, unsigned long, unsigned long);
+extern unsigned long find_next_bit(const unsigned long *, unsigned long,
+					unsigned long);
 
 /**
  * find_first_bit - find the first set bit in a memory region

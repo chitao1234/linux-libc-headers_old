@@ -26,7 +26,7 @@
 #define CHOP_SHIFTCOUNT(x) ((x) & (BITS_PER_LONG - 1))
 
 
-static __inline__ void set_bit(int nr, void * address)
+static __inline__ void set_bit(int nr, volatile unsigned long * address)
 {
 	unsigned long mask;
 	unsigned long *addr = (unsigned long *) address;
@@ -36,7 +36,7 @@ static __inline__ void set_bit(int nr, void * address)
 	*addr |= mask;
 }
 
-static __inline__ void __set_bit(int nr, void * address)
+static __inline__ void __set_bit(int nr, volatile unsigned long * address)
 {
 	unsigned long mask;
 	unsigned long *addr = (unsigned long *) address;
@@ -46,7 +46,7 @@ static __inline__ void __set_bit(int nr, void * address)
 	*addr |= mask;
 }
 
-static __inline__ void clear_bit(int nr, void * address)
+static __inline__ void clear_bit(int nr, volatile unsigned long * address)
 {
 	unsigned long mask;
 	unsigned long *addr = (unsigned long *) address;
@@ -56,7 +56,7 @@ static __inline__ void clear_bit(int nr, void * address)
 	*addr &= ~mask;
 }
 
-static __inline__ void __clear_bit(unsigned long nr, volatile void * address)
+static __inline__ void __clear_bit(unsigned long nr, volatile unsigned long * address)
 {
 	unsigned long mask;
 	unsigned long *addr = (unsigned long *) address;
@@ -66,7 +66,7 @@ static __inline__ void __clear_bit(unsigned long nr, volatile void * address)
 	*addr &= ~mask;
 }
 
-static __inline__ void change_bit(int nr, void * address)
+static __inline__ void change_bit(int nr, volatile unsigned long * address)
 {
 	unsigned long mask;
 	unsigned long *addr = (unsigned long *) address;
@@ -76,7 +76,7 @@ static __inline__ void change_bit(int nr, void * address)
 	*addr ^= mask;
 }
 
-static __inline__ void __change_bit(int nr, void * address)
+static __inline__ void __change_bit(int nr, volatile unsigned long * address)
 {
 	unsigned long mask;
 	unsigned long *addr = (unsigned long *) address;
@@ -86,21 +86,7 @@ static __inline__ void __change_bit(int nr, void * address)
 	*addr ^= mask;
 }
 
-static __inline__ int test_and_set_bit(int nr, void * address)
-{
-	unsigned long mask;
-	unsigned long *addr = (unsigned long *) address;
-	int oldbit;
-
-	addr += (nr >> SHIFT_PER_LONG);
-	mask = 1L << CHOP_SHIFTCOUNT(nr);
-	oldbit = (*addr & mask) ? 1 : 0;
-	*addr |= mask;
-
-	return oldbit;
-}
-
-static __inline__ int __test_and_set_bit(int nr, void * address)
+static __inline__ int test_and_set_bit(int nr, volatile unsigned long * address)
 {
 	unsigned long mask;
 	unsigned long *addr = (unsigned long *) address;
@@ -114,7 +100,21 @@ static __inline__ int __test_and_set_bit(int nr, void * address)
 	return oldbit;
 }
 
-static __inline__ int test_and_clear_bit(int nr, void * address)
+static __inline__ int __test_and_set_bit(int nr, volatile unsigned long * address)
+{
+	unsigned long mask;
+	unsigned long *addr = (unsigned long *) address;
+	int oldbit;
+
+	addr += (nr >> SHIFT_PER_LONG);
+	mask = 1L << CHOP_SHIFTCOUNT(nr);
+	oldbit = (*addr & mask) ? 1 : 0;
+	*addr |= mask;
+
+	return oldbit;
+}
+
+static __inline__ int test_and_clear_bit(int nr, volatile unsigned long * address)
 {
 	unsigned long mask;
 	unsigned long *addr = (unsigned long *) address;
@@ -128,7 +128,7 @@ static __inline__ int test_and_clear_bit(int nr, void * address)
 	return oldbit;
 }
 
-static __inline__ int __test_and_clear_bit(int nr, void * address)
+static __inline__ int __test_and_clear_bit(int nr, volatile unsigned long * address)
 {
 	unsigned long mask;
 	unsigned long *addr = (unsigned long *) address;
@@ -142,7 +142,7 @@ static __inline__ int __test_and_clear_bit(int nr, void * address)
 	return oldbit;
 }
 
-static __inline__ int test_and_change_bit(int nr, void * address)
+static __inline__ int test_and_change_bit(int nr, volatile unsigned long * address)
 {
 	unsigned long mask;
 	unsigned long *addr = (unsigned long *) address;
@@ -156,7 +156,7 @@ static __inline__ int test_and_change_bit(int nr, void * address)
 	return oldbit;
 }
 
-static __inline__ int __test_and_change_bit(int nr, void * address)
+static __inline__ int __test_and_change_bit(int nr, volatile unsigned long * address)
 {
 	unsigned long mask;
 	unsigned long *addr = (unsigned long *) address;
@@ -170,10 +170,10 @@ static __inline__ int __test_and_change_bit(int nr, void * address)
 	return oldbit;
 }
 
-static __inline__ int test_bit(int nr, const void *address)
+static __inline__ int test_bit(int nr, const volatile unsigned long *address)
 {
 	unsigned long mask;
-	unsigned long *addr = (unsigned long *) address;
+	const unsigned long *addr = (const unsigned long *)address;
 	
 	addr += (nr >> SHIFT_PER_LONG);
 	mask = 1L << CHOP_SHIFTCOUNT(nr);
@@ -188,9 +188,9 @@ static __inline__ int test_bit(int nr, const void *address)
 #define find_first_zero_bit(addr, size) \
 	find_next_zero_bit((addr), (size), 0)
 
-static __inline__ unsigned long find_next_zero_bit(void * addr, unsigned long size, unsigned long offset)
+static __inline__ unsigned long find_next_zero_bit(const void * addr, unsigned long size, unsigned long offset)
 {
-	unsigned long * p = ((unsigned long *) addr) + (offset >> SHIFT_PER_LONG);
+	const unsigned long * p = ((unsigned long *) addr) + (offset >> SHIFT_PER_LONG);
 	unsigned long result = offset & ~(BITS_PER_LONG-1);
 	unsigned long tmp;
 
@@ -223,9 +223,9 @@ found_middle:
 	return result + ffz(tmp);
 }
 
-static __inline__ unsigned long find_next_bit(unsigned long *addr, unsigned long size, unsigned long offset)
+static __inline__ unsigned long find_next_bit(const unsigned long *addr, unsigned long size, unsigned long offset)
 {
-	unsigned long *p = addr + (offset >> 6);
+	const unsigned long *p = addr + (offset >> 6);
 	unsigned long result = offset & ~(BITS_PER_LONG-1);
 	unsigned long tmp;
 
