@@ -19,8 +19,8 @@
 #ifndef _LINUX_IF_H
 #define _LINUX_IF_H
 
-#include <linux/types.h>		/* for "__kernel_caddr_t" et al	*/
 #include <sys/socket.h>		/* for "struct sockaddr" et al	*/
+#include <linux/types.h>		/* for "__kernel_caddr_t" et al	*/
 
 #define	IFNAMSIZ	16
 #include <linux/hdlc/ioctl.h>
