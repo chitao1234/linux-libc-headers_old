@@ -5,8 +5,8 @@
 struct ip_ct_amanda_expect
 {
 	u_int16_t port;		/* port number of this expectation */
-	u_int16_t offset;	/* offset of port in ctrl packet */
-	u_int16_t len;		/* length of the port number string */
+	u_int16_t offset;	/* offset of the port specification in ctrl packet */
+	u_int16_t len;		/* the length of the port number specification */
 };
 
 #endif /* _IP_CONNTRACK_AMANDA_H */
