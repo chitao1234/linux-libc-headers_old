@@ -398,6 +398,7 @@ struct _snd_trident {
         unsigned char  bDMAStart;
 
 	unsigned long port;
+	struct resource *res_port;
 	unsigned long midi_port;
 
 	unsigned int spurious_irq_count;

@@ -316,6 +316,7 @@ struct _snd_ymfpci {
 	struct gameport gameport;
 #endif
 
+	struct snd_dma_device dma_dev;
 	struct snd_dma_buffer work_ptr;
 
 	unsigned int bank_size_playback;
