@@ -17,6 +17,7 @@
 #define _LINUX_IF_ARCNET_H
 
 #include <linux/if_ether.h>
+#include <stdint.h>
 
 
 /*

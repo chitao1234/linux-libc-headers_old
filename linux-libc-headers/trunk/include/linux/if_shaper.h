@@ -1,6 +1,8 @@
 #ifndef __LINUX_SHAPER_H
 #define __LINUX_SHAPER_H
 
+#include <asm/types.h>
+
 #define SHAPER_SET_DEV		0x0001
 #define SHAPER_SET_SPEED	0x0002
 #define SHAPER_GET_DEV		0x0003

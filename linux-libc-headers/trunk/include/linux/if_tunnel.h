@@ -1,6 +1,8 @@
 #ifndef _IF_TUNNEL_H_
 #define _IF_TUNNEL_H_
 
+#include <linux/if.h>
+#include <linux/ip.h>
 #include <asm/types.h>
 
 #define SIOCGETTUNNEL   (SIOCDEVPRIVATE + 0)

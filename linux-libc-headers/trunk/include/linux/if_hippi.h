@@ -24,6 +24,7 @@
 
 #include <endian.h>
 #include <byteswap.h>
+#include <asm/types.h>
 
 /*
  *	HIPPI magic constants.
