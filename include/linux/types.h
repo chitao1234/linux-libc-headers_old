@@ -141,9 +141,11 @@ typedef __u16 __bitwise __be16;
 typedef __u32 __bitwise __le32;
 typedef __u32 __bitwise __be32;
 
-#if defined(__GNUC__) && !defined(__STRICT_ANSI__)
+#if defined(__GNUC__)
+#if !defined(__STRICT_ANSI__) || defined(__LLH_TYPE_LONG_IS_64BIT__)
 typedef __u64 __bitwise __le64;
 typedef __u64 __bitwise __be64;
+#endif
 #endif
 
 
