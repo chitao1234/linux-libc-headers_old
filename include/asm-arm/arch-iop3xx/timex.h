@@ -3,8 +3,7 @@
  *
  * IOP310 architecture timex specifications
  */
-#include <linux/config.h>
-
+#if 0
 
 #ifdef CONFIG_ARCH_IQ80310
 
@@ -24,4 +23,7 @@
 
 #error "No IOP3xx timex information for this architecture"
 
+#endif
+#else
+#define CLOCK_TICK_RATE NO_IDEA_WHAT
 #endif
