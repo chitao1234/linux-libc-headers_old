@@ -1,4 +1,3 @@
-/* $Id: errno.h,v 1.3 2003/12/28 00:21:55 mmazur Exp $ */
 #ifndef _SPARC_ERRNO_H
 #define _SPARC_ERRNO_H
 

@@ -1,4 +1,3 @@
-/* $Id: ioctl.h,v 1.2 2003/12/22 12:02:12 mmazur Exp $ */
 #ifndef _SPARC64_IOCTL_H
 #define _SPARC64_IOCTL_H
 

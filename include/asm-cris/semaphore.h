@@ -1,4 +1,3 @@
-/* $Id: semaphore.h,v 1.3 2004/01/21 17:03:31 mmazur Exp $ */
 
 /* On the i386 these are coded in asm, perhaps we should as well. Later.. */
 

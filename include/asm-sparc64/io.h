@@ -1,4 +1,3 @@
-/* $Id: io.h,v 1.4 2004/02/28 23:31:48 mmazur Exp $ */
 #ifndef __SPARC64_IO_H
 #define __SPARC64_IO_H
 

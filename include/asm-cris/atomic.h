@@ -1,4 +1,3 @@
-/* $Id: atomic.h,v 1.1 2003/12/15 18:47:01 mmazur Exp $ */
 
 #ifndef __ASM_CRIS_ATOMIC__
 #define __ASM_CRIS_ATOMIC__

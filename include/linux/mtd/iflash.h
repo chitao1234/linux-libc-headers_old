@@ -1,4 +1,3 @@
-/* $Id: iflash.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $ */
 
 #ifndef __MTD_IFLASH_H__
 #define __MTD_IFLASH_H__

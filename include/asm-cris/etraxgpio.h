@@ -1,4 +1,3 @@
-/* $Id: etraxgpio.h,v 1.2 2004/01/15 20:18:35 mmazur Exp $ */
 /*
  * The following devices are accessable using this driver using
  * GPIO_MAJOR (120) and a couple of minor numbers:

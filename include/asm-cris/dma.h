@@ -1,4 +1,3 @@
-/* $Id: dma.h,v 1.1 2003/12/15 18:47:01 mmazur Exp $ */
 
 #ifndef _ASM_DMA_H
 #define _ASM_DMA_H
