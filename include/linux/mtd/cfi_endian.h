@@ -1,9 +1,10 @@
 /*
- * $Id: cfi_endian.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
+ * $Id: cfi_endian.h,v 1.2 2003/12/19 19:25:17 mmazur Exp $
  *
  */
 
-#include <asm/byteorder.h>
+#include <endian.h>
+#include <byteswap.h>
 
 #ifndef CONFIG_MTD_CFI_ADV_OPTIONS
 

@@ -18,7 +18,8 @@
 #define _LINUX_TCP_H
 
 #include <linux/types.h>
-#include <asm/byteorder.h>
+#include <endian.h>
+#include <byteswap.h>
 
 struct tcphdr {
 	__u16	source;
@@ -48,7 +49,7 @@ struct tcphdr {
 		syn:1,
 		fin:1;
 #else
-#error	"Adjust your <asm/byteorder.h> defines"
+#error	"Endian problem - this didn't happen"
 #endif	
 	__u16	window;
 	__u16	check;

@@ -1,6 +1,2 @@
-#ifndef _LINUX_CONFIG_H
-#define _LINUX_CONFIG_H
+#include <linux/err_kernel_only.h>
 
-#include <linux/autoconf.h>
-
-#endif

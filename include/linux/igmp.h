@@ -16,7 +16,8 @@
 #ifndef _LINUX_IGMP_H
 #define _LINUX_IGMP_H
 
-#include <asm/byteorder.h>
+#include <endian.h>
+#include <byteswap.h>
 
 /*
  *	IGMP protocol structures
@@ -73,7 +74,7 @@ struct igmpv3_query {
 	     suppress:1,
 	     qrv:3;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	__u8 qqic;
 	__u16 nsrcs;

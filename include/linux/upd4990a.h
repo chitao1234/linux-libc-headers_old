@@ -13,7 +13,8 @@
 #ifndef _LINUX_uPD4990A_H
 #define _LINUX_uPD4990A_H
 
-#include <asm/byteorder.h>
+#include <endian.h>
+#include <byteswap.h>
 
 #include <asm/upd4990a.h>
 

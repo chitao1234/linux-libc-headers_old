@@ -104,7 +104,7 @@ struct pppoe_hdr {
 	__u8 type : 4;
 	__u8 ver : 4;
 #else
-#error	"Please fix <asm/byteorder.h>"
+#error	"Endian problem - this didn't happen"
 #endif
 	__u8 code;
 	__u16 sid;

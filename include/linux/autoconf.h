@@ -1,1 +1,1 @@
-#error Invalid kernel header included in userspace
+#include <linux/err_kernel_only.h>

@@ -34,7 +34,7 @@ struct icmp6hdr {
                         		override:1,
                         		reserved:29;
 #else
-#error	"Please fix <asm/byteorder.h>"
+#error	"Endian problem - this didn't happen"
 #endif						
                 } u_nd_advt;
 
@@ -50,7 +50,7 @@ struct icmp6hdr {
 					other:1,
 					reserved:6;
 #else
-#error	"Please fix <asm/byteorder.h>"
+#error	"Endian problem - this didn't happen"
 #endif
 			__u16		rt_lifetime;
                 } u_nd_ra;
