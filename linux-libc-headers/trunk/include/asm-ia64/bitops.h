@@ -35,12 +35,10 @@ set_bit (int nr, volatile void *addr)
 {
 	__u32 bit, old, new;
 	volatile __u32 *m;
-	CMPXCHG_BUGCHECK_DECL
 
 	m = (volatile __u32 *) addr + (nr >> 5);
 	bit = 1 << (nr & 31);
 	do {
-		CMPXCHG_BUGCHECK(m);
 		old = *m;
 		new = old | bit;
 	} while (cmpxchg_acq(m, old, new) != old);
@@ -61,12 +59,6 @@ __set_bit (int nr, volatile void *addr)
 	*((__u32 *) addr + (nr >> 5)) |= (1 << (nr & 31));
 }
 
-/*
- * clear_bit() has "acquire" semantics.
- */
-#define smp_mb__before_clear_bit()	smp_mb()
-#define smp_mb__after_clear_bit()	do { /* skip */; } while (0)
-
 /**
  * clear_bit - Clears a bit in memory
  * @nr: Bit to clear
@@ -82,12 +74,10 @@ clear_bit (int nr, volatile void *addr)
 {
 	__u32 mask, old, new;
 	volatile __u32 *m;
-	CMPXCHG_BUGCHECK_DECL
 
 	m = (volatile __u32 *) addr + (nr >> 5);
 	mask = ~(1 << (nr & 31));
 	do {
-		CMPXCHG_BUGCHECK(m);
 		old = *m;
 		new = old & mask;
 	} while (cmpxchg_acq(m, old, new) != old);
@@ -118,12 +108,10 @@ change_bit (int nr, volatile void *addr)
 {
 	__u32 bit, old, new;
 	volatile __u32 *m;
-	CMPXCHG_BUGCHECK_DECL
 
 	m = (volatile __u32 *) addr + (nr >> 5);
 	bit = (1 << (nr & 31));
 	do {
-		CMPXCHG_BUGCHECK(m);
 		old = *m;
 		new = old ^ bit;
 	} while (cmpxchg_acq(m, old, new) != old);
@@ -157,12 +145,10 @@ test_and_set_bit (int nr, volatile void *addr)
 {
 	__u32 bit, old, new;
 	volatile __u32 *m;
-	CMPXCHG_BUGCHECK_DECL
 
 	m = (volatile __u32 *) addr + (nr >> 5);
 	bit = 1 << (nr & 31);
 	do {
-		CMPXCHG_BUGCHECK(m);
 		old = *m;
 		new = old | bit;
 	} while (cmpxchg_acq(m, old, new) != old);
@@ -202,12 +188,10 @@ test_and_clear_bit (int nr, volatile void *addr)
 {
 	__u32 mask, old, new;
 	volatile __u32 *m;
-	CMPXCHG_BUGCHECK_DECL
 
 	m = (volatile __u32 *) addr + (nr >> 5);
 	mask = ~(1 << (nr & 31));
 	do {
-		CMPXCHG_BUGCHECK(m);
 		old = *m;
 		new = old & mask;
 	} while (cmpxchg_acq(m, old, new) != old);
@@ -247,12 +231,10 @@ test_and_change_bit (int nr, volatile void *addr)
 {
 	__u32 bit, old, new;
 	volatile __u32 *m;
-	CMPXCHG_BUGCHECK_DECL
 
 	m = (volatile __u32 *) addr + (nr >> 5);
 	bit = (1 << (nr & 31));
 	do {
-		CMPXCHG_BUGCHECK(m);
 		old = *m;
 		new = old ^ bit;
 	} while (cmpxchg_acq(m, old, new) != old);
@@ -309,54 +291,6 @@ __ffs (unsigned long x)
 	result = ia64_popcnt((x-1) & ~x);
 	return result;
 }
-
-#ifdef __KERNEL__
-
-/*
- * find_last_zero_bit - find the last zero bit in a 64 bit quantity
- * @x: The value to search
- */
-static inline unsigned long
-ia64_fls (unsigned long x)
-{
-	long double d = x;
-	long exp;
-
-	exp = ia64_getf_exp(d);
-	return exp - 0xffff;
-}
-
-static inline int
-fls (int x)
-{
-	return ia64_fls((unsigned int) x);
-}
-
-/*
- * ffs: find first bit set. This is defined the same way as the libc and compiler builtin
- * ffs routines, therefore differs in spirit from the above ffz (man ffs): it operates on
- * "int" values only and the result value is the bit number + 1.  ffs(0) is defined to
- * return zero.
- */
-#define ffs(x)	__builtin_ffs(x)
-
-/*
- * hweightN: returns the hamming weight (i.e. the number
- * of bits set) of a N-bit word
- */
-static __inline__ unsigned long
-hweight64 (unsigned long x)
-{
-	unsigned long result;
-	result = ia64_popcnt(x);
-	return result;
-}
-
-#define hweight32(x) hweight64 ((x) & 0xfffffffful)
-#define hweight16(x) hweight64 ((x) & 0xfffful)
-#define hweight8(x)  hweight64 ((x) & 0xfful)
-
-#endif /* __KERNEL__ */
 
 /*
  * Find next zero bit in a bitmap reasonably efficiently..
@@ -446,36 +380,5 @@ find_next_bit(const void *addr, unsigned long size, unsigned long offset)
 }
 
 #define find_first_bit(addr, size) find_next_bit((addr), (size), 0)
-
-#ifdef __KERNEL__
-
-#define __clear_bit(nr, addr)		clear_bit(nr, addr)
-
-#define ext2_set_bit			test_and_set_bit
-#define ext2_set_bit_atomic(l,n,a)	test_and_set_bit(n,a)
-#define ext2_clear_bit			test_and_clear_bit
-#define ext2_clear_bit_atomic(l,n,a)	test_and_clear_bit(n,a)
-#define ext2_test_bit			test_bit
-#define ext2_find_first_zero_bit	find_first_zero_bit
-#define ext2_find_next_zero_bit		find_next_zero_bit
-
-/* Bitmap functions for the minix filesystem.  */
-#define minix_test_and_set_bit(nr,addr)		test_and_set_bit(nr,addr)
-#define minix_set_bit(nr,addr)			set_bit(nr,addr)
-#define minix_test_and_clear_bit(nr,addr)	test_and_clear_bit(nr,addr)
-#define minix_test_bit(nr,addr)			test_bit(nr,addr)
-#define minix_find_first_zero_bit(addr,size)	find_first_zero_bit(addr,size)
-
-static inline int
-sched_find_first_bit (unsigned long *b)
-{
-	if (unlikely(b[0]))
-		return __ffs(b[0]);
-	if (unlikely(b[1]))
-		return 64 + __ffs(b[1]);
-	return __ffs(b[2]) + 128;
-}
-
-#endif /* __KERNEL__ */
 
 #endif /* _ASM_IA64_BITOPS_H */
