@@ -100,7 +100,7 @@ struct hippi_fp_hdr
 	__u16		reserved1:5;			/* must be zero */
 #endif
 #else
-#error	"Please fix <asm/byteorder.h>"
+#error	"Endian problem - this didn't happen"
 #endif
 #else
 	__u32		fixed;

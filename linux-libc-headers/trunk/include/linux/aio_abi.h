@@ -27,7 +27,8 @@
 #ifndef __LINUX__AIO_ABI_H
 #define __LINUX__AIO_ABI_H
 
-#include <asm/byteorder.h>
+#include <endian.h>
+#include <byteswap.h>
 
 typedef unsigned long	aio_context_t;
 

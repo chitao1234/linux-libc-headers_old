@@ -237,8 +237,8 @@ struct sockaddr_in {
 #define INADDR_MAX_LOCAL_GROUP  0xe00000ffU	/* 224.0.0.255 */
 
 
-/* <asm/byteorder.h> contains the htonl type stuff.. */
-#include <asm/byteorder.h> 
+#include <endian.h>
+#include <byteswap.h>
 
 #ifdef __KERNEL__
 /* Some random defines to make it easier in the kernel.. */

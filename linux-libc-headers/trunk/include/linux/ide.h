@@ -18,7 +18,8 @@
 #include <linux/bio.h>
 #include <linux/device.h>
 #include <linux/pci.h>
-#include <asm/byteorder.h>
+#include <endian.h>
+#include <byteswap.h>
 #include <asm/system.h>
 #include <asm/hdreg.h>
 #include <asm/io.h>
@@ -371,7 +372,7 @@ typedef union {
 		unsigned recalibrate	: 1;
 		unsigned set_geometry	: 1;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	} b;
 } special_t;
@@ -392,7 +393,7 @@ typedef union {
 		unsigned high		:8;	/* MSB */
 		unsigned low		:8;	/* LSB */
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	} b;
 } ata_nsector_t, ata_data_t, atapi_bcount_t, ata_index_t;
@@ -431,7 +432,7 @@ typedef union {
 		unsigned tzero		:1;
 		unsigned mark		:1;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	} b;
 } ata_error_t;
@@ -461,7 +462,7 @@ typedef union {
 		unsigned unit		: 1;
 		unsigned head		: 4;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	} b;
 } select_t, ata_select_t;
@@ -505,7 +506,7 @@ typedef union {
 		unsigned idx		:1;
 		unsigned check		:1;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	} b;
 } ata_status_t, atapi_status_t;
@@ -538,7 +539,7 @@ typedef union {
 		unsigned nIEN		: 1;
 		unsigned bit0		: 1;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	} b;
 } ata_control_t;
@@ -565,7 +566,7 @@ typedef union {
 		unsigned reserved321	:3;
 		unsigned dma		:1;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	} b;
 } atapi_feature_t;
@@ -589,7 +590,7 @@ typedef union {
 		unsigned io		:1;
 		unsigned cod		:1;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	} b;
 } atapi_ireason_t;
@@ -619,7 +620,7 @@ typedef union {
 		unsigned eom		:1;
 		unsigned ili		:1;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	} b;
 } atapi_error_t;
@@ -652,7 +653,7 @@ typedef union {
 		unsigned reserved3	:1;
 		unsigned sam_lun	:3;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	} b;
 } atapi_select_t;

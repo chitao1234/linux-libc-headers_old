@@ -170,7 +170,7 @@ struct iphdr {
 	__u8	version:4,
   		ihl:4;
 #else
-#error	"Please fix <asm/byteorder.h>"
+#error	"Endian problem - this didn't happen"
 #endif
 	__u8	tos;
 	__u16	tot_len;

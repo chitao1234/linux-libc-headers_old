@@ -13,7 +13,8 @@
  */
 
 #include <linux/types.h>
-#include <asm/byteorder.h>
+#include <endian.h>
+#include <byteswap.h>
 
 /*
  * With each packet command, we allocate a buffer.
@@ -99,7 +100,7 @@ typedef union {
 		u8 idx		: 1;
 		u8 check	: 1;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	} b;
 } atapi_status_reg_t;
@@ -123,7 +124,7 @@ typedef union {
 		u8 eom		: 1;
 		u8 ili		: 1;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	} b;
 } atapi_error_reg_t;
@@ -146,7 +147,7 @@ typedef union {
 		u8 reserved321	: 3;
 		u8 dma		: 1;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	} b;
 } atapi_feature_reg_t;
@@ -164,7 +165,7 @@ typedef union {
 		u8 high;
 		u8 low;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	} b;
 } atapi_bcount_reg_t;
@@ -184,7 +185,7 @@ typedef union {
 		u8 io		: 1;
 		u8 cod		: 1;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	} b;
 } atapi_ireason_reg_t;
@@ -211,7 +212,7 @@ typedef union {
 		u8 reserved3	:1;
 		u8 sam_lun	:3;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	} b;
 } atapi_drivesel_reg_t;
@@ -236,7 +237,7 @@ typedef union {
 		u8 nien		: 1;
 		u8 zero0	: 1;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	} b;
 } atapi_control_reg_t;
@@ -263,7 +264,7 @@ struct atapi_id_gcw {
 	u8 reserved234		: 3;
 	u8 packet_size		: 2;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 };
 
@@ -296,7 +297,7 @@ typedef struct {
 	u8	reserved3_45	: 2;
 	u8	response_format : 4;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	u8	additional_length;	/* Additional Length (total_length-4) */
 	u8	rsv5, rsv6, rsv7;	/* Reserved */
@@ -331,7 +332,7 @@ typedef struct atapi_request_sense {
 	u8	reserved2_4	: 1;
 	u8	sense_key	: 4;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	u32	information __attribute__ ((packed));
 	u8	asl;			/* Additional sense length (n-7) */
@@ -346,7 +347,7 @@ typedef struct atapi_request_sense {
 	u8	sksv		: 1;	/* Sense Key Specific information is valid */
 	u8	sk_specific1	: 7;	/* Sense Key Specific */
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	u8	sk_specific[2];		/* Sense Key Specific */
 	u8	pad[2];			/* Padding to 20 bytes */

@@ -817,7 +817,7 @@ typedef struct {
         __u8 erasable			: 1;
 	__u8 reserved1			: 3;
 #else
-#error "Please fix <asm/byteorder.h>"
+#error "Endian problem - this didn't happen"
 #endif
 	__u8 n_first_track;
 	__u8 n_sessions_lsb;
