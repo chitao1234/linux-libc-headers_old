@@ -3,7 +3,6 @@
 
 #include <linux/compat.h>
 #include <asm/siginfo.h>
-#include <asm/signal.h>
 
 /*
  * Data types and macros for providing 32b PowerPC support.
