@@ -23,7 +23,6 @@
 #ifndef _LINUX_MTRR_H
 #define _LINUX_MTRR_H
 
-#include <linux/config.h>
 #include <linux/ioctl.h>
 
 #define	MTRR_IOCTL_BASE	'M'
@@ -64,46 +63,5 @@ struct mtrr_gentry
 #define MTRR_TYPE_WRPROT     5
 #define MTRR_TYPE_WRBACK     6
 #define MTRR_NUM_TYPES       7
-
-#ifdef __KERNEL__
-
-extern char *mtrr_strings[]; 
-
-/*  The following functions are for use by other drivers  */
-# ifdef CONFIG_MTRR
-extern int mtrr_add (unsigned long base, unsigned long size,
-		     unsigned int type, char increment);
-extern int mtrr_add_page (unsigned long base, unsigned long size,
-		     unsigned int type, char increment);
-extern int mtrr_del (int reg, unsigned long base, unsigned long size);
-extern int mtrr_del_page (int reg, unsigned long base, unsigned long size);
-extern void mtrr_centaur_report_mcr(int mcr, u32 lo, u32 hi);
-#  else
-static __inline__ int mtrr_add (unsigned long base, unsigned long size,
-				unsigned int type, char increment)
-{
-    return -ENODEV;
-}
-static __inline__ int mtrr_add_page (unsigned long base, unsigned long size,
-				unsigned int type, char increment)
-{
-    return -ENODEV;
-}
-static __inline__ int mtrr_del (int reg, unsigned long base,
-				unsigned long size)
-{
-    return -ENODEV;
-}
-static __inline__ int mtrr_del_page (int reg, unsigned long base,
-				unsigned long size)
-{
-    return -ENODEV;
-}
-
-static __inline__ void mtrr_centaur_report_mcr(int mcr, u32 lo, u32 hi) {;}
-
-#  endif
-
-#endif
 
 #endif  /*  _LINUX_MTRR_H  */
