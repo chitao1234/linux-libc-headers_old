@@ -94,8 +94,5 @@ typedef struct user_fpu_struct elf_fpregset_t;
        _r->tregs[4]=0; _r->tregs[5]=0; _r->tregs[6]=0; _r->tregs[7]=0; \
        _r->sr = SR_FD | SR_MMU; } while (0)
 
-#ifdef __KERNEL__
-#define SET_PERSONALITY(ex, ibcs2) set_personality(PER_LINUX_32BIT)
-#endif
 
 #endif /* __ASM_SH64_ELF_H */

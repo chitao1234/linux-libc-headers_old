@@ -107,20 +107,6 @@ typedef struct {
 #define MINSIGSTKSZ	2048
 #define SIGSTKSZ	THREAD_SIZE
 
-#ifdef __KERNEL__
-
-/*
- * These values of sa_flags are used only by the kernel as part of the
- * irq handling routines.
- *
- * SA_INTERRUPT is also used by the irq handling routines.
- * SA_SHIRQ is for shared interrupt support on PCI and EISA.
- */
-#define SA_PROBE		SA_ONESHOT
-#define SA_SAMPLE_RANDOM	SA_RESTART
-#define SA_SHIRQ		0x04000000
-#endif
-
 #define SIG_BLOCK          0	/* for blocking signals */
 #define SIG_UNBLOCK        1	/* for unblocking signals */
 #define SIG_SETMASK        2	/* for setting the signal mask */
@@ -132,25 +118,6 @@ typedef void (*__sighandler_t)(int);
 #define SIG_IGN	((__sighandler_t)1)	/* ignore signal */
 #define SIG_ERR	((__sighandler_t)-1)	/* error return from signal */
 
-#ifdef __KERNEL__
-struct old_sigaction {
-	__sighandler_t sa_handler;
-	old_sigset_t sa_mask;
-	unsigned long sa_flags;
-	void (*sa_restorer)(void);
-};
-
-struct sigaction {
-	__sighandler_t sa_handler;
-	unsigned long sa_flags;
-	void (*sa_restorer)(void);
-	sigset_t sa_mask;		/* mask last for extensibility */
-};
-
-struct k_sigaction {
-	struct sigaction sa;
-};
-#else
 /* Here we must cater to libcs that poke about in kernel headers.  */
 
 struct sigaction {
@@ -166,20 +133,11 @@ struct sigaction {
 #define sa_handler	_u._sa_handler
 #define sa_sigaction	_u._sa_sigaction
 
-#endif /* __KERNEL__ */
-
 typedef struct sigaltstack {
 	void *ss_sp;
 	int ss_flags;
 	size_t ss_size;
 } stack_t;
 
-#ifdef __KERNEL__
-#include <asm/sigcontext.h>
-
-#define sigmask(sig)	(1UL << ((sig) - 1))
-#define ptrace_signal_deliver(regs, cookie) do { } while (0)
-
-#endif /* __KERNEL__ */
 
 #endif /* __ASM_SH64_SIGNAL_H */
