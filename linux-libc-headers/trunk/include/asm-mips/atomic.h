@@ -9,7 +9,7 @@
  * License.  See the file "COPYING" in the main directory of this archive
  * for more details.
  *
- * Copyright (C) 1996, 97, 99, 2000, 03 by Ralf Baechle
+ * Copyright (C) 1996, 97, 99, 2000, 03, 04 by Ralf Baechle
  */
 #ifndef _ASM_ATOMIC_H
 #define _ASM_ATOMIC_H

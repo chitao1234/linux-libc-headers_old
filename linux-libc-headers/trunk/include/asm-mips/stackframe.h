@@ -301,6 +301,7 @@
 		or	t0, t1
 		xori	t0, 0x1f
 		mtc0	t0, CP0_STATUS
+		irq_disable_hazard
 		.endm
 
 /*
@@ -313,6 +314,7 @@
 		or	t0, t1
 		xori	t0, 0x1e
 		mtc0	t0, CP0_STATUS
+		irq_enable_hazard
 		.endm
 
 /*
@@ -325,6 +327,7 @@
 		or	t0, t1
 		xori	t0, 0x1e
 		mtc0	t0, CP0_STATUS
+		irq_disable_hazard
 		.endm
 
 #endif /* _ASM_STACKFRAME_H */

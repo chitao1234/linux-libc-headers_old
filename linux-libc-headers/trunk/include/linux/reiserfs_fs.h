@@ -69,7 +69,7 @@ void reiserfs_warning (struct super_block *s, const char * fmt, ...);
 /** always check a condition and panic if it's false. */
 #define RASSERT( cond, format, args... )					\
 if( !( cond ) ) 								\
-  reiserfs_panic( 0, "reiserfs[%i]: assertion " #cond " failed at "	\
+  reiserfs_panic( NULL, "reiserfs[%i]: assertion " #cond " failed at "	\
 		  __FILE__ ":%i:%s: " format "\n",		\
 		  in_interrupt() ? -1 : current -> pid, __LINE__ , __FUNCTION__ , ##args )
 
@@ -618,8 +618,8 @@ static inline loff_t le_ih_k_type (const struct item_head * ih)
 static inline void set_le_key_k_offset (int version, struct key * key, loff_t offset)
 {
     (version == KEY_FORMAT_3_5) ?
-        (key->u.k_offset_v1.k_offset = cpu_to_le32 (offset)) : /* jdm check */
-	(set_offset_v2_k_offset( &(key->u.k_offset_v2), offset ));
+        (void)(key->u.k_offset_v1.k_offset = cpu_to_le32 (offset)) : /* jdm check */
+	(void)(set_offset_v2_k_offset( &(key->u.k_offset_v2), offset ));
 }
 
 
@@ -632,8 +632,8 @@ static inline void set_le_ih_k_offset (struct item_head * ih, loff_t offset)
 static inline void set_le_key_k_type (int version, struct key * key, int type)
 {
     (version == KEY_FORMAT_3_5) ?
-        (key->u.k_offset_v1.k_uniqueness = cpu_to_le32(type2uniqueness(type))):
-	(set_offset_v2_k_type( &(key->u.k_offset_v2), type ));
+        (void)(key->u.k_offset_v1.k_uniqueness = cpu_to_le32(type2uniqueness(type))):
+	(void)(set_offset_v2_k_type( &(key->u.k_offset_v2), type ));
 }
 static inline void set_le_ih_k_type (struct item_head * ih, int type)
 {
@@ -1814,6 +1814,15 @@ int reiserfs_global_version_in_proc( char *buffer, char **start, off_t offset,
 typedef struct __reiserfs_blocknr_hint reiserfs_blocknr_hint_t;
 
 int reiserfs_parse_alloc_options (struct super_block *, char *);
+void reiserfs_init_alloc_options (struct super_block *s);
+
+/*
+ * given a directory, this will tell you what packing locality
+ * to use for a new object underneat it.  The locality is returned
+ * in disk byte order (le).
+ */
+u32 reiserfs_choose_packing(struct inode *dir);
+
 int is_reusable (struct super_block * s, b_blocknr_t block, int bit_value);
 void reiserfs_free_block (struct reiserfs_transaction_handle *th, struct inode *, b_blocknr_t, int for_unformatted);
 int reiserfs_allocate_blocknrs(reiserfs_blocknr_hint_t *, b_blocknr_t * , int, int);

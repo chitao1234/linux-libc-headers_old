@@ -65,6 +65,11 @@ extern int leases_enable, dir_notify_enable, lease_break_time;
 #define FMODE_READ 1
 #define FMODE_WRITE 2
 
+/* Internal kernel extensions */
+#define FMODE_LSEEK	4
+#define FMODE_PREAD	8
+#define FMODE_PWRITE	FMODE_PREAD	/* These go hand in hand */
+
 #define RW_MASK		1
 #define RWA_MASK	2
 #define READ 0
@@ -123,13 +128,13 @@ extern int leases_enable, dir_notify_enable, lease_break_time;
 
 #define S_SYNC		1	/* Writes are synced at once */
 #define S_NOATIME	2	/* Do not update access times */
-#define S_QUOTA		4	/* Quota initialized for file */
-#define S_APPEND	8	/* Append-only file */
-#define S_IMMUTABLE	16	/* Immutable file */
-#define S_DEAD		32	/* removed, but still open directory */
-#define S_NOQUOTA	64	/* Inode is not counted to quota */
-#define S_DIRSYNC	128	/* Directory modifications are synchronous */
-#define S_NOCMTIME	256	/* Do not update file c/mtime */
+#define S_APPEND	4	/* Append-only file */
+#define S_IMMUTABLE	8	/* Immutable file */
+#define S_DEAD		16	/* removed, but still open directory */
+#define S_NOQUOTA	32	/* Inode is not counted to quota */
+#define S_DIRSYNC	64	/* Directory modifications are synchronous */
+#define S_NOCMTIME	128	/* Do not update file c/mtime */
+#define S_SWAPFILE	256	/* Do not truncate: swapon got its bmaps */
 
 /*
  * Note that nosuid etc flags are inode-specific: setting some file-system
@@ -153,7 +158,6 @@ extern int leases_enable, dir_notify_enable, lease_break_time;
 					((inode)->i_flags & (S_SYNC|S_DIRSYNC)))
 #define IS_MANDLOCK(inode)	__IS_FLG(inode, MS_MANDLOCK)
 
-#define IS_QUOTAINIT(inode)	((inode)->i_flags & S_QUOTA)
 #define IS_NOQUOTA(inode)	((inode)->i_flags & S_NOQUOTA)
 #define IS_APPEND(inode)	((inode)->i_flags & S_APPEND)
 #define IS_IMMUTABLE(inode)	((inode)->i_flags & S_IMMUTABLE)
@@ -164,6 +168,7 @@ extern int leases_enable, dir_notify_enable, lease_break_time;
 
 #define IS_DEADDIR(inode)	((inode)->i_flags & S_DEAD)
 #define IS_NOCMTIME(inode)	((inode)->i_flags & S_NOCMTIME)
+#define IS_SWAPFILE(inode)	((inode)->i_flags & S_SWAPFILE)
 
 /* the read-only stuff doesn't really belong here, but any other place is
    probably as bad and I don't want to create yet another include file. */
