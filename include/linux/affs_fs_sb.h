@@ -13,29 +13,6 @@ struct affs_bm_info {
 	u32 bm_free;			/* Free blocks in here */
 };
 
-struct affs_sb_info {
-	int s_partition_size;		/* Partition size in blocks. */
-	int s_reserved;			/* Number of reserved blocks. */
-	//u32 s_blksize;			/* Initial device blksize */
-	u32 s_data_blksize;		/* size of the data block w/o header */
-	u32 s_root_block;		/* FFS root block number. */
-	int s_hashsize;			/* Size of hash table. */
-	unsigned long s_flags;		/* See below. */
-	uid_t s_uid;			/* uid to override */
-	gid_t s_gid;			/* gid to override */
-	umode_t s_mode;			/* mode to override */
-	struct buffer_head *s_root_bh;	/* Cached root block. */
-	struct semaphore s_bmlock;	/* Protects bitmap access. */
-	struct affs_bm_info *s_bitmap;	/* Bitmap infos. */
-	u32 s_bmap_count;		/* # of bitmap blocks. */
-	u32 s_bmap_bits;		/* # of bits in one bitmap blocks */
-	u32 s_last_bmap;
-	struct buffer_head *s_bmap_bh;
-	char *s_prefix;			/* Prefix for volumes and assigns. */
-	int s_prefix_len;		/* Length of prefix. */
-	char s_volume[32];		/* Volume prefix for absolute symlinks. */
-};
-
 #define SF_INTL		0x0001		/* International filesystem. */
 #define SF_BM_VALID	0x0002		/* Bitmap is valid. */
 #define SF_IMMUTABLE	0x0004		/* Protection bits cannot be changed */
@@ -49,10 +26,6 @@ struct affs_sb_info {
 #define SF_VERBOSE	0x0800		/* Talk about fs when mounting */
 #define SF_READONLY	0x1000		/* Don't allow to remount rw */
 
-/* short cut to get to the affs specific sb data */
-static inline struct affs_sb_info *AFFS_SB(struct super_block *sb)
-{
-	return sb->s_fs_info;
-}
+
 
 #endif

@@ -824,32 +824,6 @@ struct v4l2_streamparm
 #define BASE_VIDIOC_PRIVATE	192		/* 192-255 are private */
 
 
-#ifdef __KERNEL__
-/*
- *
- *	V 4 L 2   D R I V E R   H E L P E R   A P I
- *
- *	Some commonly needed functions for drivers (v4l2-common.o module)
- */
-#include <linux/fs.h>
-
-/*  Video standard functions  */
-extern unsigned int v4l2_video_std_fps(struct v4l2_standard *vs);
-extern int v4l2_video_std_construct(struct v4l2_standard *vs,
-				    int id, char *name);
-
-/*  Compatibility layer interface  */
-typedef int (*v4l2_kioctl)(struct inode *inode, struct file *file,
-			   unsigned int cmd, void *arg);
-int v4l_compat_translate_ioctl(struct inode *inode, struct file *file,
-			       int cmd, void *arg, v4l2_kioctl driver_ioctl);
-
-/* names for fancy debug output */
-extern char *v4l2_field_names[];
-extern char *v4l2_type_names[];
-extern char *v4l2_ioctl_names[];
-
-#endif /* __KERNEL__ */
 #endif /* __LINUX_VIDEODEV2_H */
 
 /*

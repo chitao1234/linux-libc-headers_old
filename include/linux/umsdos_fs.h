@@ -31,25 +31,6 @@
 #endif
 
 
-#ifdef __KERNEL__
-/* #Specification: convention / PRINTK Printk and printk
- * Here is the convention for the use of printk inside fs/umsdos
- * 
- * printk carry important message (error or status).
- * Printk is for debugging (it is a macro defined at the beginning of
- * most source.
- * PRINTK is a nulled Printk macro.
- * 
- * This convention makes the source easier to read, and Printk easier
- * to shut off.
- */
-#	define PRINTK(x)
-#	ifdef UMSDOS_DEBUG
-#		define Printk(x) printk x
-#	else
-#		define Printk(x)
-#	endif
-#endif	/* __KERNEL__ */
 
 
 struct umsdos_fake_info {
@@ -164,19 +145,5 @@ struct umsdos_ioctl {
 /* Different macros to access struct umsdos_dirent */
 #define EDM_ENTRY_ISUSED(e) ((e)->name_len!=0)
 
-#ifdef __KERNEL__
-
-#ifndef LINUX_FS_H
-#include <linux/fs.h>
-#endif
-
-extern struct inode_operations umsdos_dir_inode_operations;
-extern struct inode_operations umsdos_rdir_inode_operations;
-extern struct file_operations umsdos_dir_operations;
-extern struct file_operations umsdos_rdir_operations;
-
-#include <linux/umsdos_fs.p>
-
-#endif				/* __KERNEL__ */
 
 #endif

@@ -21,7 +21,6 @@
 #include <linux/types.h>
 #include <linux/fs.h>
 #include <linux/sched.h>
-#include <linux/buffer_head.h>
 
 #include <endian.h>
 #include <byteswap.h>
@@ -130,36 +129,9 @@ static inline const char *hfs_mdb_name(hfs_sysmdb sys_mdb) {
  */
 typedef struct dentry *hfs_sysentry[4];
 
-/*
- * hfs_buffer
- */
-typedef struct buffer_head *hfs_buffer;
-
 #define HFS_BAD_BUFFER NULL
 
 /* In sysdep.c, since it needs HFS_SECTOR_SIZE */
-extern hfs_buffer hfs_buffer_get(hfs_sysmdb, int, int);
-
-static inline int hfs_buffer_ok(hfs_buffer buffer) {
-	return (buffer != NULL);
-}
-
-static inline void hfs_buffer_put(hfs_buffer buffer) {
-	brelse(buffer);
-}
-
-static inline void hfs_buffer_dirty(hfs_buffer buffer) {
-	mark_buffer_dirty(buffer);
-}
-
-static inline void hfs_buffer_sync(hfs_buffer buffer) {
-	if (buffer_dirty(buffer))
-		sync_dirty_buffer(buffer);
-}
-
-static inline void *hfs_buffer_data(const hfs_buffer buffer) {
-	return buffer->b_data;
-}
 
 
 /*
