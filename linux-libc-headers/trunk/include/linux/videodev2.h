@@ -14,7 +14,8 @@
  *		et al.
  */
 #include <sys/time.h> /* need struct timeval */
-
+#include <asm/types.h> /* needed __u64 */
+			    
 /*
  *	M I S C E L L A N E O U S
  */
