@@ -15,22 +15,8 @@
  * Macros used for converting between virtual and physical mappings.
  */
 
-#ifdef __KERNEL__
-
-#include <linux/config.h>
-#include <asm/setup.h>
-
-#ifdef CONFIG_MMU
-
-#define phys_to_virt(vaddr)	((void *) ((unsigned long)(vaddr) + PAGE_OFFSET))
-#define virt_to_phys(vaddr)	((unsigned long) (vaddr) - PAGE_OFFSET)
-
-#else
-
 #define phys_to_virt(vaddr)	((void *) (vaddr))
 #define virt_to_phys(vaddr)	((unsigned long) (vaddr))
-
-#endif
 
 #define virt_to_bus virt_to_phys
 #define bus_to_virt phys_to_virt
