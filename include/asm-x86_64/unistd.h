@@ -725,8 +725,8 @@ asmlinkage long sys_iopl(unsigned int level, struct pt_regs regs);
 asmlinkage long sys_ioperm(unsigned long from, unsigned long num, int turn_on);
 struct sigaction;
 asmlinkage long sys_rt_sigaction(int sig,
-				const struct sigaction __user *act,
-				struct sigaction __user *oact,
+				const struct sigaction *act,
+				struct sigaction *oact,
 				size_t sigsetsize);
 
 #endif	/* __ASSEMBLY__ */
