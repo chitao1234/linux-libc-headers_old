@@ -29,6 +29,7 @@
 
 #include <endian.h>
 #include <byteswap.h>
+#include <asm/types.h>
 
 typedef unsigned long	aio_context_t;
 
