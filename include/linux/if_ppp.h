@@ -34,6 +34,10 @@
 #ifndef _IF_PPP_H_
 #define _IF_PPP_H_
 
+#include <asm/types.h>
+#include <linux/if.h>
+#include <linux/ppp_defs.h>
+
 /*
  * Packet sizes
  */
