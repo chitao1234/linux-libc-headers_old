@@ -2,7 +2,7 @@
 
 cd $LLHDIR/linux-libc-headers/include
 
-FILES=`find asm-* linux sound scsi -name '*.h'`
+FILES=`find asm-* linux sound scsi mtd -name '*.h'`
 
 cd $LLHDIR/2.6
 
