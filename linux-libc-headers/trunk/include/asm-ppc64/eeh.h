@@ -49,7 +49,6 @@ void __init pci_addr_cache_build(void);
  * device (including config space i/o).  Call eeh_add_device_late
  * to finish the eeh setup for this device.
  */
-struct device_node;
 void eeh_add_device_early(struct device_node *);
 void eeh_add_device_late(struct pci_dev *);
 
@@ -66,8 +65,6 @@ void eeh_remove_device(struct pci_dev *);
 #define EEH_ENABLE		1
 #define EEH_RELEASE_LOADSTORE	2
 #define EEH_RELEASE_DMA		3
-int eeh_set_option(struct pci_dev *dev, int options);
-
 
 /**
  * Notifier event flags.
@@ -103,6 +100,18 @@ int eeh_unregister_notifier(struct notifier_block *nb);
  * bytes: 1, 2, or 4) for comparing with the result of a read.
  */
 #define EEH_IO_ERROR_VALUE(size)	(~0U >> ((4 - (size)) * 8))
+
+#else
+#define eeh_init()
+#define eeh_check_failure(token, val) (val)
+#define eeh_dn_check_failure(dn, dev) (0)
+#define pci_addr_cache_build()
+#define eeh_add_device_early(dn)
+#define eeh_add_device_late(dev)
+#define eeh_remove_device(dev)
+#define EEH_POSSIBLE_ERROR(val, type) (0)
+#define EEH_IO_ERROR_VALUE(size) (-1UL)
+#endif
 
 /* 
  * MMIO read/write operations with EEH support.

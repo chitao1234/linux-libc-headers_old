@@ -135,6 +135,8 @@ extern int nand_read_raw (struct mtd_info *mtd, uint8_t *buf, loff_t from, size_
 #define NAND_ECC_HW6_512	4
 /* Hardware ECC 8 byte ECC per 512 Byte data */
 #define NAND_ECC_HW8_512	6
+/* Hardware ECC 12 byte ECC per 2048 Byte data */
+#define NAND_ECC_HW12_2048	7
 
 /*
  * Constants for Hardware ECC
@@ -250,6 +252,7 @@ struct nand_hw_control {
  * @scan_bbt:		[REPLACEABLE] function to scan bad block table
  * @eccmode:		[BOARDSPECIFIC] mode of ecc, see defines 
  * @eccsize: 		[INTERN] databytes used per ecc-calculation
+ * @eccbytes: 		[INTERN] number of ecc bytes per ecc-calculation step
  * @eccsteps:		[INTERN] number of ecc calculation steps per page
  * @chip_delay:		[BOARDSPECIFIC] chip dependent delay for transfering data from array to read regs (tR)
  * @chip_lock:		[INTERN] spinlock used to protect access to this structure and the chip
@@ -274,6 +277,7 @@ struct nand_hw_control {
  * @bbt:		[INTERN] bad block table pointer
  * @bbt_td:		[REPLACEABLE] bad block table descriptor for flash lookup
  * @bbt_md:		[REPLACEABLE] bad block table mirror descriptor
+ * @badblock_pattern:	[REPLACEABLE] bad block scan pattern used for initial bad block scan 
  * @controller:		[OPTIONAL] a pointer to a hardware controller structure which is shared among multiple independend devices
  * @priv:		[OPTIONAL] pointer to private chip date
  */
@@ -304,6 +308,7 @@ struct nand_chip {
 	int		(*scan_bbt)(struct mtd_info *mtd);
 	int		eccmode;
 	int		eccsize;
+	int		eccbytes;
 	int		eccsteps;
 	int 		chip_delay;
 	spinlock_t	chip_lock;
@@ -327,6 +332,7 @@ struct nand_chip {
 	uint8_t		*bbt;
 	struct nand_bbt_descr	*bbt_td;
 	struct nand_bbt_descr	*bbt_md;
+	struct nand_bbt_descr	*badblock_pattern;
 	struct nand_hw_control  *controller;
 	void		*priv;
 };

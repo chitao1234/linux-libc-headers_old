@@ -38,10 +38,10 @@ extern unsigned int csum_partial(const unsigned char * buff, int len, unsigned i
  * better 64-bit) boundary
  */
 
-extern unsigned int __csum_partial_copy_sparc_generic (const char *, char *);
+extern unsigned int __csum_partial_copy_sparc_generic (const unsigned char *, unsigned char *);
 
 static inline unsigned int 
-csum_partial_copy_nocheck (const char *src, char *dst, int len, 
+csum_partial_copy_nocheck (const unsigned char *src, unsigned char *dst, int len,
 			   unsigned int sum)
 {
 	register unsigned int ret asm("o0") = (unsigned int)src;
@@ -60,7 +60,7 @@ csum_partial_copy_nocheck (const char *src, char *dst, int len,
 }
 
 static inline unsigned int 
-csum_partial_copy_from_user(const char *src, char *dst, int len, 
+csum_partial_copy_from_user(const unsigned char *src, unsigned char *dst, int len,
 			    unsigned int sum, int *err)
   {
 	if (!access_ok (VERIFY_READ, src, len)) {
@@ -68,7 +68,7 @@ csum_partial_copy_from_user(const char *src, char *dst, int len,
 		memset (dst, 0, len);
 		return sum;
 	} else {
-		register unsigned int ret asm("o0") = (unsigned int)src;
+		register unsigned long ret asm("o0") = (unsigned long)src;
 		register char *d asm("o1") = dst;
 		register int l asm("g1") = len;
 		register unsigned int s asm("g7") = sum;
@@ -90,14 +90,14 @@ csum_partial_copy_from_user(const char *src, char *dst, int len,
   }
   
 static inline unsigned int 
-csum_partial_copy_to_user(const char *src, char *dst, int len, 
+csum_partial_copy_to_user(const unsigned char *src, unsigned char *dst, int len,
 			  unsigned int sum, int *err)
 {
 	if (!access_ok (VERIFY_WRITE, dst, len)) {
 		*err = -EFAULT;
 		return sum;
 	} else {
-		register unsigned int ret asm("o0") = (unsigned int)src;
+		register unsigned long ret asm("o0") = (unsigned long)src;
 		register char *d asm("o1") = dst;
 		register int l asm("g1") = len;
 		register unsigned int s asm("g7") = sum;

@@ -347,14 +347,12 @@ static inline uint8_t cfi_read_query(struct map_info *map, uint32_t addr)
 
 static inline void cfi_udelay(int us)
 {
-	unsigned long t = us * HZ / 1000000;
-	if (t) {
-		set_current_state(TASK_UNINTERRUPTIBLE);
-		schedule_timeout(t);
-		return;
+	if (us >= 1000) {
+		msleep((us+999)/1000);
+	} else {
+		udelay(us);
+		cond_resched();
 	}
-	udelay(us);
-	cond_resched();
 }
 
 static inline void cfi_spin_lock(spinlock_t *mutex)

@@ -77,7 +77,7 @@ struct stat64 {
 	unsigned long long	st_ino;
 } __attribute__((packed));
 
-typedef struct siginfo32 {
+typedef struct compat_siginfo{
 	int si_signo;
 	int si_errno;
 	int si_code;
@@ -127,7 +127,7 @@ typedef struct siginfo32 {
 			int _fd;
 		} _sigpoll;
 	} _sifields;
-} siginfo_t32;
+} compat_siginfo_t;
 
 struct sigframe32
 {
@@ -144,7 +144,7 @@ struct rt_sigframe32
         int sig;
         u32 pinfo;
         u32 puc;
-        struct siginfo32 info;
+        compat_siginfo_t info;
         struct ucontext_ia32 uc;
         struct _fpstate_ia32 fpstate;
 };

@@ -96,6 +96,9 @@ extern unsigned long avenrun[];		/* Load averages */
 #define set_current_state(state_value)		\
 	set_mb(current->state, (state_value))
 
+/* Task command name length */
+#define TASK_COMM_LEN 16
+
 /*
  * Scheduling policies
  */

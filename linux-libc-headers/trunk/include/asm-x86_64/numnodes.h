@@ -2,7 +2,10 @@
 #define _ASM_X8664_NUMNODES_H 1
 
 
-/* Max 8 Nodes - APIC limit currently */
-#define NODES_SHIFT	3
+#ifdef CONFIG_NUMA
+#define NODES_SHIFT	6
+#else
+#define NODES_SHIFT	0
+#endif
 
 #endif

@@ -259,5 +259,8 @@ typedef struct __user_cap_data_struct {
 
 #define CAP_LEASE            28
 
+#define CAP_AUDIT_WRITE      29
+
+#define CAP_AUDIT_CONTROL    30
 
 #endif /* !_LINUX_CAPABILITY_H */

@@ -11,18 +11,11 @@ enum ip_nat_manip_type
 	IP_NAT_MANIP_DST
 };
 
-#ifndef CONFIG_IP_NF_NAT_LOCAL
-/* SRC manip occurs only on POST_ROUTING */
-#define HOOK2MANIP(hooknum) ((hooknum) != NF_IP_POST_ROUTING)
-#else
 /* SRC manip occurs POST_ROUTING or LOCAL_IN */
 #define HOOK2MANIP(hooknum) ((hooknum) != NF_IP_POST_ROUTING && (hooknum) != NF_IP_LOCAL_IN)
-#endif
 
 #define IP_NAT_RANGE_MAP_IPS 1
 #define IP_NAT_RANGE_PROTO_SPECIFIED 2
-/* Used internally by get_unique_tuple(). */
-#define IP_NAT_RANGE_FULL 4
 
 /* NAT sequence number modifications */
 struct ip_nat_seq {
@@ -72,5 +65,7 @@ struct ip_nat_info_manip
 	/* Manipulations to occur at each conntrack in this dirn. */
 	struct ip_conntrack_manip manip;
 };
+
+#define ip_nat_multi_range ip_nat_multi_range_compat
 
 #endif

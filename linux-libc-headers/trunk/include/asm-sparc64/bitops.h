@@ -9,16 +9,12 @@
 
 #include <asm/byteorder.h>
 
-extern long ___test_and_set_bit(unsigned long nr, volatile unsigned long *addr);
-extern long ___test_and_clear_bit(unsigned long nr, volatile unsigned long *addr);
-extern long ___test_and_change_bit(unsigned long nr, volatile unsigned long *addr);
-
-#define test_and_set_bit(nr,addr)	({___test_and_set_bit(nr,addr)!=0;})
-#define test_and_clear_bit(nr,addr)	({___test_and_clear_bit(nr,addr)!=0;})
-#define test_and_change_bit(nr,addr)	({___test_and_change_bit(nr,addr)!=0;})
-#define set_bit(nr,addr)		((void)___test_and_set_bit(nr,addr))
-#define clear_bit(nr,addr)		((void)___test_and_clear_bit(nr,addr))
-#define change_bit(nr,addr)		((void)___test_and_change_bit(nr,addr))
+extern int test_and_set_bit(unsigned long nr, volatile unsigned long *addr);
+extern int test_and_clear_bit(unsigned long nr, volatile unsigned long *addr);
+extern int test_and_change_bit(unsigned long nr, volatile unsigned long *addr);
+extern void set_bit(unsigned long nr, volatile unsigned long *addr);
+extern void clear_bit(unsigned long nr, volatile unsigned long *addr);
+extern void change_bit(unsigned long nr, volatile unsigned long *addr);
 
 /* "non-atomic" versions... */
 
@@ -73,8 +69,13 @@ static __inline__ int __test_and_change_bit(int nr, volatile unsigned long *addr
 	return ((old & mask) != 0);
 }
 
-#define smp_mb__before_clear_bit()	do { } while(0)
-#define smp_mb__after_clear_bit()	do { } while(0)
+#ifdef CONFIG_SMP
+#define smp_mb__before_clear_bit()	membar("#StoreLoad | #LoadLoad")
+#define smp_mb__after_clear_bit()	membar("#StoreLoad | #StoreStore")
+#else
+#define smp_mb__before_clear_bit()	barrier()
+#define smp_mb__after_clear_bit()	barrier()
+#endif
 
 static __inline__ int test_bit(int nr, __const__ volatile unsigned long *addr)
 {
@@ -142,15 +143,16 @@ extern unsigned long find_next_bit(const unsigned long *, unsigned long,
  * on Linus's ALPHA routines, which are pretty portable BTW.
  */
 
-extern unsigned long find_next_zero_bit(unsigned long *, unsigned long, unsigned long);
+extern unsigned long find_next_zero_bit(const unsigned long *,
+					unsigned long, unsigned long);
 
 #define find_first_zero_bit(addr, size) \
         find_next_zero_bit((addr), (size), 0)
 
 #define test_and_set_le_bit(nr,addr)	\
-	({ ___test_and_set_bit((nr) ^ 0x38, (addr)) != 0; })
+	test_and_set_bit((nr) ^ 0x38, (addr))
 #define test_and_clear_le_bit(nr,addr)	\
-	({ ___test_and_clear_bit((nr) ^ 0x38, (addr)) != 0; })
+	test_and_clear_bit((nr) ^ 0x38, (addr))
 
 static __inline__ int test_le_bit(int nr, __const__ unsigned long * addr)
 {

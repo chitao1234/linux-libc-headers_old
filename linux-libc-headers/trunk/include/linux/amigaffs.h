@@ -5,30 +5,6 @@
 #include <endian.h>
 #include <byteswap.h>
 
-/* AmigaOS allows file names with up to 30 characters length.
- * Names longer than that will be silently truncated. If you
- * want to disallow this, comment out the following #define.
- * Creating filesystem objects with longer names will then
- * result in an error (ENAMETOOLONG).
- */
-/*#define AFFS_NO_TRUNCATE */
-
-/* Ugly macros make the code more pretty. */
-
-#define GET_END_PTR(st,p,sz)		 ((st *)((char *)(p)+((sz)-sizeof(st))))
-#define AFFS_GET_HASHENTRY(data,hashkey) be32_to_cpu(((struct dir_front *)data)->hashtable[hashkey])
-#define AFFS_BLOCK(sb, bh, blk)		(AFFS_HEAD(bh)->table[AFFS_SB(sb)->s_hashsize-1-(blk)])
-
-
-
-#ifdef __LITTLE_ENDIAN
-#define BO_EXBITS	0x18UL
-#elif defined(__BIG_ENDIAN)
-#define BO_EXBITS	0x00UL
-#else
-#error Endianness must be known for affs to work.
-#endif
-
 #define FS_OFS		0x444F5300
 #define FS_FFS		0x444F5301
 #define FS_INTLOFS	0x444F5302
@@ -55,13 +31,6 @@
 #define ST_LINKDIR	4
 
 #define AFFS_ROOT_BMAPS		25
-
-#define AFFS_HEAD(bh)		((struct affs_head *)(bh)->b_data)
-#define AFFS_TAIL(sb, bh)	((struct affs_tail *)((bh)->b_data+(sb)->s_blocksize-sizeof(struct affs_tail)))
-#define AFFS_ROOT_HEAD(bh)	((struct affs_root_head *)(bh)->b_data)
-#define AFFS_ROOT_TAIL(sb, bh)	((struct affs_root_tail *)((bh)->b_data+(sb)->s_blocksize-sizeof(struct affs_root_tail)))
-#define AFFS_DATA_HEAD(bh)	((struct affs_data_head *)(bh)->b_data)
-#define AFFS_DATA(bh)		(((struct affs_data_head *)(bh)->b_data)->data)
 
 struct affs_date {
 	__be32 days;
