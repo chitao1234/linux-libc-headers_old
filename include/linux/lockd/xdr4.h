@@ -11,7 +11,6 @@
 
 #include <linux/fs.h>
 #include <linux/nfs.h>
-#include <linux/sunrpc/xdr.h>
 #include <linux/lockd/xdr.h>
 
 /* error codes new to NLMv4 */

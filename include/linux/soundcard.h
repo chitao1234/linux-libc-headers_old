@@ -1025,7 +1025,6 @@ typedef struct mixer_vol_table {
  */
 #define LOCL_STARTAUDIO		1
 
-#if (!defined(__KERNEL__) && !defined(KERNEL) && !defined(INKERNEL) && !defined(_KERNEL)) || defined(USE_SEQ_MACROS) 
 /*
  *	Some convenience macros to simplify programming of the
  *	/dev/sequencer interface
@@ -1294,5 +1293,4 @@ extern int OSS_write_patch2(int fd, unsigned char *buf, int len);
 		(SEQ_DUMPBUF(), write(seqfd, (char*)(patchx), len))
 #endif
 
-#endif
 #endif

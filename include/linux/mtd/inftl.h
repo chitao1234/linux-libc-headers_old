@@ -3,7 +3,7 @@
  *
  *	(C) Copyright 2002, Greg Ungerer (gerg@snapgear.com)
  *
- *	$Id: inftl.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
+ *	$Id: inftl.h,v 1.2 2004/01/01 19:42:56 mmazur Exp $
  */
 
 #ifndef __MTD_INFTL_H__
@@ -95,35 +95,5 @@ struct INFTLMediaHeader {
 #define	INFTL_BINARY	0x20000000
 #define	INFTL_BDTL	0x40000000
 #define	INFTL_LAST	0x80000000
-
-
-#ifdef __KERNEL__
-
-struct INFTLrecord {
-	struct mtd_blktrans_dev mbd;
-	__u16 MediaUnit, SpareMediaUnit;
-	__u32 EraseSize;
-	struct INFTLMediaHeader MediaHdr;
-	int usecount;
-	unsigned char heads;
-	unsigned char sectors;
-	unsigned short cylinders;
-	__u16 numvunits;
-	__u16 firstEUN;
-	__u16 lastEUN;
-	__u16 numfreeEUNs;
-	__u16 LastFreeEUN; 		/* To speed up finding a free EUN */
-	int head,sect,cyl;
-	__u16 *PUtable;	 		/* Physical Unit Table  */
-	__u16 *VUtable; 		/* Virtual Unit Table */
-        unsigned int nb_blocks;		/* number of physical blocks */
-        unsigned int nb_boot_blocks;	/* number of blocks used by the bios */
-        struct erase_info instr;
-};
-
-int INFTL_mount(struct INFTLrecord *s);
-int INFTL_formatblock(struct INFTLrecord *s, int block);
-
-#endif /* __KERNEL__ */
 
 #endif /* __MTD_INFTL_H__ */

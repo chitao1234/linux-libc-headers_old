@@ -12,7 +12,6 @@
 #include <linux/timer.h>
 #include <linux/sunrpc/types.h>
 #include <linux/wait.h>
-#include <linux/sunrpc/xdr.h>
 
 /*
  * This is the actual RPC procedure call info.

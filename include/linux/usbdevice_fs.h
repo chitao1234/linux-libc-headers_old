@@ -23,7 +23,7 @@
  *  History:
  *   0.1  04.01.2000  Created
  *
- *  $Id: usbdevice_fs.h,v 1.2 2003/12/26 19:03:32 mmazur Exp $
+ *  $Id: usbdevice_fs.h,v 1.3 2004/01/01 19:42:53 mmazur Exp $
  */
 
 /*****************************************************************************/
@@ -143,41 +143,6 @@ struct usbdevfs_hub_portinfo {
 #define USBDEVFS_CLEAR_HALT        _IOR('U', 21, unsigned int)
 #define USBDEVFS_DISCONNECT        _IO('U', 22)
 #define USBDEVFS_CONNECT           _IO('U', 23)
-
-/* --------------------------------------------------------------------- */
-
-#ifdef __KERNEL__
-
-#include <linux/list.h>
-#include <asm/semaphore.h>
-
-
-struct dev_state {
-	struct list_head list;      /* state list */
-	struct rw_semaphore devsem; /* protects modifications to dev (dev == NULL indicating disconnect) */ 
-	struct usb_device *dev;
-	struct file *file;
-	spinlock_t lock;            /* protects the async urb lists */
-	struct list_head async_pending;
-	struct list_head async_completed;
-	wait_queue_head_t wait;     /* wake up if a request completed */
-	unsigned int discsignr;
-	struct task_struct *disctask;
-	void *disccontext;
-	unsigned long ifclaimed;
-};
-
-/* internal methods & data */
-extern struct usb_driver usbdevfs_driver;
-extern struct file_operations usbdevfs_drivers_fops;
-extern struct file_operations usbdevfs_devices_fops;
-extern struct file_operations usbdevfs_device_file_operations;
-extern struct inode_operations usbdevfs_device_inode_operations;
-extern struct inode_operations usbdevfs_bus_inode_operations;
-extern struct file_operations usbdevfs_bus_file_operations;
-extern void usbdevfs_conn_disc_event(void);
-
-#endif /* __KERNEL__ */
 
 /* --------------------------------------------------------------------- */
 #endif /* _LINUX_USBDEVICE_FS_H */

@@ -55,14 +55,6 @@
  * 	Port numbers are stored in HOST byte order.
  */
 
-#ifdef __KERNEL__
-#include <linux/icmp.h>
-#include <linux/in.h>
-#include <linux/ip.h>
-#include <linux/tcp.h>
-#include <linux/udp.h>
-#endif
-
 struct ip_fw
 {
 	struct ip_fw  *fw_next;			/* Next firewall on chain */
@@ -215,42 +207,4 @@ struct ip_fw_masqctl
 
 struct ip_fw_masq;
 
-/*
- *	Main firewall chains definitions and global var's definitions.
- */
-
-#ifdef __KERNEL__
-
-/* Modes used in the ip_fw_chk() routine. */
-#define IP_FW_MODE_FW		0x00	/* kernel firewall check */
-#define IP_FW_MODE_ACCT_IN	0x01	/* accounting (incoming) */
-#define IP_FW_MODE_ACCT_OUT	0x02	/* accounting (outgoing) */
-#define IP_FW_MODE_CHK		0x04	/* check requested by user */
-
-#include <linux/config.h>
-#ifdef CONFIG_IP_FIREWALL
-extern struct ip_fw *ip_fw_in_chain;
-extern struct ip_fw *ip_fw_out_chain;
-extern struct ip_fw *ip_fw_fwd_chain;
-extern int ip_fw_in_policy;
-extern int ip_fw_out_policy;
-extern int ip_fw_fwd_policy;
-extern int ip_fw_ctl(int, void *, int);
-#endif
-#ifdef CONFIG_IP_ACCT
-extern struct ip_fw *ip_acct_chain;
-extern int ip_acct_ctl(int, void *, int);
-#endif
-#ifdef CONFIG_IP_MASQUERADE
-extern int ip_masq_ctl(int, void *, int);
-#endif
-#ifdef CONFIG_IP_MASQUERADE
-extern int ip_masq_ctl(int, void *, int);
-#endif
-
-extern int ip_fw_masq_timeouts(void *user, int len);
-
-extern int ip_fw_chk(struct sk_buff **, struct net_device *, __u16 *,
-		     struct ip_fw *, int, int);
-#endif /* KERNEL */
 #endif /* _IP_FW_H */

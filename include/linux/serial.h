@@ -10,26 +10,6 @@
 #ifndef _LINUX_SERIAL_H
 #define _LINUX_SERIAL_H
 
-#ifdef __KERNEL__
-#include <asm/page.h>
-
-/*
- * Counters of the input lines (CTS, DSR, RI, CD) interrupts
- */
-
-struct async_icount {
-	__u32	cts, dsr, rng, dcd, tx, rx;
-	__u32	frame, parity, overrun, brk;
-	__u32	buf_overrun;
-};
-
-/*
- * The size of the serial xmit buffer is 1 page, or 4096 bytes
- */
-#define SERIAL_XMIT_SIZE PAGE_SIZE
-
-#endif
-
 struct serial_struct {
 	int	type;
 	int	line;
@@ -173,15 +153,4 @@ struct serial_icounter_struct {
 	int reserved[9];
 };
 
-
-#ifdef __KERNEL__
-/* Export to allow PCMCIA to use this - Dave Hinds */
-extern int register_serial(struct serial_struct *req);
-extern void unregister_serial(int line);
-
-/* Allow architectures to override entries in serial8250_ports[] at run time: */
-struct uart_port;	/* forward declaration */
-extern int early_serial_setup(struct uart_port *port);
-
-#endif /* __KERNEL__ */
 #endif /* _LINUX_SERIAL_H */

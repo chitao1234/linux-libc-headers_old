@@ -24,13 +24,8 @@
 #ifndef _DVBVIDEO_H_
 #define _DVBVIDEO_H_
 
-#ifdef __KERNEL__
-#include <linux/types.h>
-#else
 #include <stdint.h>
 #include <time.h>
-#endif
-
 
 typedef enum {
 	VIDEO_FORMAT_4_3,     /* Select 4:3 format */ 

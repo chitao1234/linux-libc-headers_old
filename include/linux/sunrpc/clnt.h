@@ -9,12 +9,9 @@
 #ifndef _LINUX_SUNRPC_CLNT_H
 #define _LINUX_SUNRPC_CLNT_H
 
-#include <linux/sunrpc/msg_prot.h>
 #include <linux/sunrpc/sched.h>
 #include <linux/sunrpc/xprt.h>
-#include <linux/sunrpc/auth.h>
 #include <linux/sunrpc/stats.h>
-#include <linux/sunrpc/xdr.h>
 #include <linux/sunrpc/timer.h>
 #include <asm/signal.h>
 
@@ -103,46 +100,4 @@ struct rpc_procinfo {
 #define RPC_CONGESTED(clnt)	(RPCXPRT_CONGESTED((clnt)->cl_xprt))
 #define RPC_PEERADDR(clnt)	(&(clnt)->cl_xprt->addr)
 
-#ifdef __KERNEL__
-
-struct rpc_clnt *rpc_create_client(struct rpc_xprt *xprt, char *servname,
-				struct rpc_program *info,
-				u32 version, rpc_authflavor_t authflavor);
-int		rpc_shutdown_client(struct rpc_clnt *);
-int		rpc_destroy_client(struct rpc_clnt *);
-void		rpc_release_client(struct rpc_clnt *);
-void		rpc_getport(struct rpc_task *, struct rpc_clnt *);
-int		rpc_register(u32, u32, int, unsigned short, int *);
-
-void		rpc_call_setup(struct rpc_task *, struct rpc_message *, int);
-
-int		rpc_call_async(struct rpc_clnt *clnt, struct rpc_message *msg,
-			       int flags, rpc_action callback, void *clntdata);
-int		rpc_call_sync(struct rpc_clnt *clnt, struct rpc_message *msg,
-			      int flags);
-void		rpc_restart_call(struct rpc_task *);
-void		rpc_clnt_sigmask(struct rpc_clnt *clnt, sigset_t *oldset);
-void		rpc_clnt_sigunmask(struct rpc_clnt *clnt, sigset_t *oldset);
-void		rpc_setbufsize(struct rpc_clnt *, unsigned int, unsigned int);
-
-static __inline__
-int rpc_call(struct rpc_clnt *clnt, u32 proc, void *argp, void *resp, int flags)
-{
-	struct rpc_message msg = {
-		.rpc_proc	= &clnt->cl_procinfo[proc],
-		.rpc_argp	= argp,
-		.rpc_resp	= resp,
-		.rpc_cred	= NULL
-	};
-	return rpc_call_sync(clnt, &msg, flags);
-}
-		
-extern void rpciod_wake_up(void);
-
-/*
- * Helper function for NFSroot support
- */
-int		rpc_getport_external(struct sockaddr_in *, __u32, __u32, int);
-
-#endif /* __KERNEL__ */
 #endif /* _LINUX_SUNRPC_CLNT_H */

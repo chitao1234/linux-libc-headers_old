@@ -11,7 +11,6 @@
 
 #include <linux/fs.h>
 #include <linux/nfs.h>
-#include <linux/sunrpc/xdr.h>
 
 #define NLM_MAXSTRLEN		1024
 
