@@ -46,7 +46,7 @@ typedef union _divert_cf_arg
 	u32		uint32;
 	s64		int64;
 	u64		uint64;
-	void	__user *ptr;
+	void	*ptr;
 } divert_cf_arg;
 
 

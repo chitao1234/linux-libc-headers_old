@@ -408,7 +408,7 @@ static inline _syscall3(int,open,const char *,file,int,flag,int,mode)
 static inline _syscall1(int,close,int,fd)
 static inline _syscall3(pid_t,waitpid,pid_t,pid,int *,wait_stat,int,options)
 
-asmlinkage int sys_modify_ldt(int func, void __user *ptr, unsigned long bytecount);
+asmlinkage int sys_modify_ldt(int func, void *ptr, unsigned long bytecount);
 asmlinkage long sys_mmap2(unsigned long addr, unsigned long len,
 			unsigned long prot, unsigned long flags,
 			unsigned long fd, unsigned long pgoff);
@@ -416,13 +416,13 @@ asmlinkage int sys_execve(struct pt_regs regs);
 asmlinkage int sys_clone(struct pt_regs regs);
 asmlinkage int sys_fork(struct pt_regs regs);
 asmlinkage int sys_vfork(struct pt_regs regs);
-asmlinkage int sys_pipe(unsigned long __user *fildes);
+asmlinkage int sys_pipe(unsigned long *fildes);
 asmlinkage int sys_ptrace(long request, long pid, long addr, long data);
 asmlinkage long sys_iopl(unsigned long unused);
 struct sigaction;
 asmlinkage long sys_rt_sigaction(int sig,
-				const struct sigaction __user *act,
-				struct sigaction __user *oact,
+				const struct sigaction *act,
+				struct sigaction *oact,
 				size_t sigsetsize);
 
 #endif

@@ -547,18 +547,18 @@ static inline pid_t waitpid(int pid, int *wait_stat, int flags)
 	return sys_wait4(pid, wait_stat, flags, NULL);
 }
 struct mmap_arg_struct;
-asmlinkage long sys_mmap2(struct mmap_arg_struct __user *arg);
+asmlinkage long sys_mmap2(struct mmap_arg_struct *arg);
 
 asmlinkage long sys_execve(struct pt_regs regs);
 asmlinkage long sys_clone(struct pt_regs regs);
 asmlinkage long sys_fork(struct pt_regs regs);
 asmlinkage long sys_vfork(struct pt_regs regs);
-asmlinkage long sys_pipe(unsigned long __user *fildes);
+asmlinkage long sys_pipe(unsigned long *fildes);
 asmlinkage long sys_ptrace(long request, long pid, long addr, long data);
 struct sigaction;
 asmlinkage long sys_rt_sigaction(int sig,
-				const struct sigaction __user *act,
-				struct sigaction __user *oact,
+				const struct sigaction *act,
+				struct sigaction *oact,
 				size_t sigsetsize);
 
 #endif

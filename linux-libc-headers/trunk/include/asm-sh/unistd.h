@@ -464,8 +464,8 @@ asmlinkage ssize_t sys_pwrite_wrapper(unsigned int fd, const char *buf,
 				size_t count, long dummy, loff_t pos);
 struct sigaction;
 asmlinkage long sys_rt_sigaction(int sig,
-				const struct sigaction __user *act,
-				struct sigaction __user *oact,
+				const struct sigaction *act,
+				struct sigaction *oact,
 				size_t sigsetsize);
 
 #endif

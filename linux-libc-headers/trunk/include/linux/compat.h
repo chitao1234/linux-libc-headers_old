@@ -105,15 +105,15 @@ typedef struct compat_sigevent {
 } compat_sigevent_t;
 
 
-long compat_sys_semctl(int first, int second, int third, void __user *uptr);
-long compat_sys_msgsnd(int first, int second, int third, void __user *uptr);
+long compat_sys_semctl(int first, int second, int third, void *uptr);
+long compat_sys_msgsnd(int first, int second, int third, void *uptr);
 long compat_sys_msgrcv(int first, int second, int msgtyp, int third,
-		int version, void __user *uptr);
-long compat_sys_msgctl(int first, int second, void __user *uptr);
+		int version, void *uptr);
+long compat_sys_msgctl(int first, int second, void *uptr);
 long compat_sys_shmat(int first, int second, compat_uptr_t third, int version,
-		void __user *uptr);
-long compat_sys_shmctl(int first, int second, void __user *uptr);
-long compat_sys_semtimedop(int semid, struct sembuf __user *tsems,
-		unsigned nsems, const struct compat_timespec __user *timeout);
+		void *uptr);
+long compat_sys_shmctl(int first, int second, void *uptr);
+long compat_sys_semtimedop(int semid, struct sembuf *tsems,
+		unsigned nsems, const struct compat_timespec *timeout);
 #endif /* CONFIG_COMPAT */
 #endif /* _LINUX_COMPAT_H */

@@ -422,8 +422,8 @@ int sys_request_irq(unsigned int,
 void sys_free_irq(unsigned int, void *);
 struct sigaction;
 asmlinkage long sys_rt_sigaction(int sig,
-				const struct sigaction __user *act,
-				struct sigaction __user *oact,
+				const struct sigaction *act,
+				struct sigaction *oact,
 				size_t sigsetsize);
 
 #endif
