@@ -39,6 +39,8 @@
 #ifndef _LINUX_NFSD_XDR4_H
 #define _LINUX_NFSD_XDR4_H
 
+#include <asm/types.h>
+
 #include <linux/nfs4.h>
 
 #define NFSD4_MAX_TAGLEN	128

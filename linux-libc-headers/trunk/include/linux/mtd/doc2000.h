@@ -13,6 +13,8 @@
 #ifndef __MTD_DOC2000_H__
 #define __MTD_DOC2000_H__
 
+#include <asm/types.h>
+
 #include <linux/mtd/mtd.h>
 #include <asm/semaphore.h>
 

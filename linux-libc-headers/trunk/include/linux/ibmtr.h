@@ -1,6 +1,8 @@
 #ifndef __LINUX_IBMTR_H__
 #define __LINUX_IBMTR_H__
 
+#include <asm/types.h>
+
 /* Definitions for an IBM Token Ring card. */
 /* This file is distributed under the GNU GPL   */
 

@@ -9,6 +9,8 @@
 #ifndef _LINUX_SUNRPC_XPRT_H
 #define _LINUX_SUNRPC_XPRT_H
 
+#include <asm/types.h>
+
 #include <linux/uio.h>
 #include <sys/socket.h>
 #include <linux/in.h>

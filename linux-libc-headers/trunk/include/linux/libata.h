@@ -23,6 +23,8 @@
 #ifndef __LINUX_LIBATA_H__
 #define __LINUX_LIBATA_H__
 
+#include <asm/types.h>
+
 #include <linux/delay.h>
 #include <linux/interrupt.h>
 #include <linux/pci.h>

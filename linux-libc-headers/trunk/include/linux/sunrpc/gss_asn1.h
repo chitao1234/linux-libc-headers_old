@@ -38,6 +38,8 @@
  */
 
 
+#include <asm/types.h>
+
 
 #define SIZEOF_INT 4
 

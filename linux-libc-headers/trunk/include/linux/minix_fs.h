@@ -11,6 +11,8 @@
  * pointers.
  */
 
+#include <asm/types.h>
+
 #define MINIX_ROOT_INO 1
 
 /* Not the same as the bogus LINK_MAX in <linux/limits.h>. Oh well. */

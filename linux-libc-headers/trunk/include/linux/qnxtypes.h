@@ -12,6 +12,8 @@
 #ifndef _QNX4TYPES_H
 #define _QNX4TYPES_H
 
+#include <asm/types.h>
+
 typedef __u16 qnx4_nxtnt_t;
 typedef __u8  qnx4_ftype_t;
 

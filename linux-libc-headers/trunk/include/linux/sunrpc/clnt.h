@@ -9,6 +9,8 @@
 #ifndef _LINUX_SUNRPC_CLNT_H
 #define _LINUX_SUNRPC_CLNT_H
 
+#include <asm/types.h>
+
 #include <linux/sunrpc/sched.h>
 #include <linux/sunrpc/xprt.h>
 #include <linux/sunrpc/stats.h>

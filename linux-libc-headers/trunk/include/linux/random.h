@@ -7,6 +7,8 @@
 #ifndef _LINUX_RANDOM_H
 #define _LINUX_RANDOM_H
 
+#include <asm/types.h>
+
 #include <linux/ioctl.h>
 
 /* ioctl()'s for the random number generator */

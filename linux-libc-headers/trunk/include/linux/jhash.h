@@ -20,6 +20,8 @@
  * any bugs present are surely my fault.  -DaveM
  */
 
+#include <asm/types.h>
+
 /* NOTE: Arguments are modified. */
 #define __jhash_mix(a, b, c) \
 { \

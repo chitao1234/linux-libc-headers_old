@@ -29,7 +29,7 @@
 #define _LINUX
 #endif
 
-
+#include <asm/types.h>
 #include <acpi/acpi.h>
 #include <acpi/acpi_bus.h>
 #include <acpi/acpi_drivers.h>

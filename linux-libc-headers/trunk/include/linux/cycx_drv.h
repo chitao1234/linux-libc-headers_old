@@ -24,6 +24,8 @@
 #ifndef	_CYCX_DRV_H
 #define	_CYCX_DRV_H
 
+#include <asm/types.h>
+
 #define	CYCX_WINDOWSIZE	0x4000	/* default dual-port memory window size */
 #define	GEN_CYCX_INTR	0x02
 #define	RST_ENABLE	0x04

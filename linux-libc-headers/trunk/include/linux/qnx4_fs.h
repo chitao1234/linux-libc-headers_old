@@ -10,6 +10,8 @@
 #ifndef _LINUX_QNX4_FS_H
 #define _LINUX_QNX4_FS_H
 
+#include <asm/types.h>
+
 #include <linux/qnxtypes.h>
 
 #define QNX4_ROOT_INO 1

@@ -1,6 +1,8 @@
 #ifndef	AFFS_HARDBLOCKS_H
 #define	AFFS_HARDBLOCKS_H
 
+#include <asm/types.h>
+
 /* Just the needed definitions for the RDB of an Amiga HD. */
 
 struct RigidDiskBlock {

@@ -5,6 +5,8 @@
 #ifndef _IPT_CONNTRACK_H
 #define _IPT_CONNTRACK_H
 
+#include <asm/types.h>
+
 #define IPT_CONNTRACK_STATE_BIT(ctinfo) (1 << ((ctinfo)%IP_CT_IS_REPLY+1))
 #define IPT_CONNTRACK_STATE_INVALID (1 << 0)
 

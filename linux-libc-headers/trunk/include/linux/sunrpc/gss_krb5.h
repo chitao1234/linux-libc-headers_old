@@ -36,6 +36,8 @@
  *
  */
 
+#include <asm/types.h>
+
 #include <linux/sunrpc/gss_asn1.h>
 
 struct krb5_ctx {

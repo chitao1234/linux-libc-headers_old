@@ -1,6 +1,8 @@
 #ifndef _TCP_DIAG_H_
 #define _TCP_DIAG_H_ 1
 
+#include <asm/types.h>
+
 /* Just some random number */
 #define TCPDIAG_GETSOCK 18
 

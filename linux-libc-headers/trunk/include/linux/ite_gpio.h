@@ -33,6 +33,8 @@
 #ifndef __ITE_GPIO_H
 #define __ITE_GPIO_H
 
+#include <asm/types.h>
+
 #include <linux/ioctl.h>
 
 struct ite_gpio_ioctl_data {

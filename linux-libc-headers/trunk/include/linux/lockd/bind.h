@@ -9,6 +9,8 @@
 #ifndef LINUX_LOCKD_BIND_H
 #define LINUX_LOCKD_BIND_H
 
+#include <asm/types.h>
+
 #include <linux/lockd/nlm.h>
 
 /* Dummy declarations */

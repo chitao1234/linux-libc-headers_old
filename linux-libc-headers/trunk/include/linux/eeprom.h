@@ -1,3 +1,5 @@
+#include <asm/types.h>
+
 /* credit winbond-840.c
  */
 struct eeprom_ops {

@@ -50,7 +50,6 @@
 #endif
 
 #include <linux/types.h>
-#include <asm/types.h>
 
 struct agp_version {
 	__u16 major;

@@ -1,6 +1,8 @@
 #ifndef _LINUX_ICMPV6_H
 #define _LINUX_ICMPV6_H
 
+#include <asm/types.h>
+
 #include <endian.h>
 #include <byteswap.h>
 

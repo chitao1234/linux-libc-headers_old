@@ -9,6 +9,8 @@
 #ifndef LOCKD_XDR_H
 #define LOCKD_XDR_H
 
+#include <asm/types.h>
+
 #include <linux/fs.h>
 #include <linux/nfs.h>
 

@@ -9,6 +9,8 @@
 #ifndef _LINUX_SUNRPC_SCHED_H_
 #define _LINUX_SUNRPC_SCHED_H_
 
+#include <asm/types.h>
+
 #include <linux/sunrpc/types.h>
 #include <linux/spinlock.h>
 #include <linux/wait.h>

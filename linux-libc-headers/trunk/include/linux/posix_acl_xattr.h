@@ -9,6 +9,8 @@
 #ifndef _POSIX_ACL_XATTR_H
 #define _POSIX_ACL_XATTR_H
 
+#include <asm/types.h>
+
 #include <linux/posix_acl.h>
 
 /* Extended attribute names */

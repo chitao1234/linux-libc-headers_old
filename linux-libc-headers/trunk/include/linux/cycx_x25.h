@@ -26,6 +26,8 @@
 #define PACKED __attribute__((packed))
 #endif 
 
+#include <asm/types.h>
+
 /* X.25 shared memory layout. */
 #define	X25_MBOX_OFFS	0x300	/* general mailbox block */
 #define	X25_RXMBOX_OFFS	0x340	/* receive mailbox */

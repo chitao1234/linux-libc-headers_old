@@ -1,3 +1,5 @@
+#include <asm/types.h>
+
 
 __u32 scx200_gpio_configure(int index, __u32 set, __u32 clear);
 void scx200_gpio_dump(unsigned index);

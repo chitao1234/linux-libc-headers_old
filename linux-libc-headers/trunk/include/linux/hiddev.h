@@ -32,6 +32,8 @@
  * The event structure itself
  */
 
+#include <asm/types.h>
+
 struct hiddev_event {
 	unsigned hid;
 	signed int value;

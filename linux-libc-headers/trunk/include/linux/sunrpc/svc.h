@@ -10,6 +10,8 @@
 #ifndef SUNRPC_SVC_H
 #define SUNRPC_SVC_H
 
+#include <asm/types.h>
+
 #include <linux/in.h>
 #include <linux/sunrpc/types.h>
 #include <linux/wait.h>

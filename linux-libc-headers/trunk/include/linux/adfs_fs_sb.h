@@ -7,6 +7,8 @@
 #ifndef _ADFS_FS_SB
 #define _ADFS_FS_SB
 
+#include <asm/types.h>
+
 /*
  * Forward-declare this
  */

@@ -9,6 +9,8 @@
 #ifndef LINUX_LOCKD_SHARE_H
 #define LINUX_LOCKD_SHARE_H
 
+#include <asm/types.h>
+
 /*
  * DOS share for a specific file
  */

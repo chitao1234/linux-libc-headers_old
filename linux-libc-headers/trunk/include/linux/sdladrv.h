@@ -19,6 +19,8 @@
 #ifndef	_SDLADRV_H
 #define	_SDLADRV_H
 
+#include <asm/types.h>
+
 
 #define	SDLA_MAXIORANGE	4	/* maximum I/O port range */
 #define	SDLA_WINDOWSIZE	0x2000	/* default dual-port memory window size */
