@@ -88,19 +88,4 @@ struct exec
   ((long) N_MAGIC(x) == ZMAGIC ? 0 : \
    (sizeof(struct exec) + (x).fh.f_nscns*SCNHSZ + SCNROUND - 1) & ~(SCNROUND - 1))
 
-#ifdef __KERNEL__
-
-/* Assume that start addresses below 4G belong to a TASO application.
-   Unfortunately, there is no proper bit in the exec header to check.
-   Worse, we have to notice the start address before swapping to use
-   /sbin/loader, which of course is _not_ a TASO application.  */
-#define SET_AOUT_PERSONALITY(BFPM, EX) \
-	set_personality (((BFPM->sh_bang || EX.ah.entry < 0x100000000 \
-			   ? ADDR_LIMIT_32BIT : 0) | PER_OSF4))
-
-#define STACK_TOP \
-  (current->personality & ADDR_LIMIT_32BIT ? 0x80000000 : 0x00120000000UL)
-
-#endif
-
 #endif /* __A_OUT_GNU_H__ */

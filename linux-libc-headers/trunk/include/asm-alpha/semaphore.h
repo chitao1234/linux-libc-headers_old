@@ -8,11 +8,9 @@
  * (C) Copyright 1996, 2000 Richard Henderson
  */
 
-#include <asm/current.h>
 #include <asm/system.h>
 #include <asm/atomic.h>
 #include <linux/wait.h>
-#include <linux/rwsem.h>
 
 struct semaphore {
 	/* Careful, inline assembly knows about the position of these two.  */
