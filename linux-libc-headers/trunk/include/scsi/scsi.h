@@ -138,7 +138,7 @@ extern const char *const scsi_device_types[MAX_SCSI_DEVICE_CODE];
  * This returns true for known good conditions that may be treated as
  * command completed normally
  */
-static inline int scsi_status_is_good(int status)
+static int scsi_status_is_good(int status)
 {
 	/*
 	 * FIXME: bit0 is listed as reserved in SCSI-2, but is
