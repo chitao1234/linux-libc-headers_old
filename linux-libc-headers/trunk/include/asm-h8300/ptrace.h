@@ -39,14 +39,5 @@ struct pt_regs {
 #define PTRACE_GETREGS            12
 #define PTRACE_SETREGS            13
 
-#ifdef __KERNEL__
-#ifndef PS_S
-#define PS_S  (0x10)
-#endif
-
-#define user_mode(regs) (!((regs)->ccr & PS_S))
-#define instruction_pointer(regs) ((regs)->pc)
-extern void show_regs(struct pt_regs *);
-#endif /* __KERNEL__ */
 #endif /* __ASSEMBLY__ */
 #endif /* _H8300_PTRACE_H */
