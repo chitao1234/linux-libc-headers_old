@@ -1,4 +1,4 @@
-/* $Id: vaddrs.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $ */
+/* $Id: vaddrs.h,v 1.2 2004/01/17 22:43:05 mmazur Exp $ */
 #ifndef _SPARC_VADDRS_H
 #define _SPARC_VADDRS_H
 
@@ -16,6 +16,9 @@
 
 #define SRMMU_NOCACHE_VADDR	(KERNBASE + SRMMU_MAXMEM)
 				/* = 0x0fc000000 */
+/* XXX Empiricals - this needs to go away - KMW */
+#define SRMMU_MIN_NOCACHE_PAGES (550)
+#define SRMMU_MAX_NOCACHE_PAGES	(1280)
 
 /* The following constant is used in mm/srmmu.c::srmmu_nocache_calcsize()
  * to determine the amount of memory that will be reserved as nocache:

@@ -1,4 +1,4 @@
-/* $Id: page.h,v 1.2 2003/12/23 13:48:31 mmazur Exp $
+/* $Id: page.h,v 1.3 2004/01/17 22:43:05 mmazur Exp $
  * page.h:  Various defines and such for MMU operations on the Sparc for
  *          the Linux kernel.
  *
@@ -57,7 +57,7 @@ struct sparc_phys_banks {
 
 #define SPARC_PHYS_BANKS 32
 
-extern struct sparc_phys_banks sp_banks[SPARC_PHYS_BANKS];
+extern struct sparc_phys_banks sp_banks[SPARC_PHYS_BANKS+1];
 
 /* Cache alias structure.  Entry is valid if context != -1. */
 struct cache_palias {

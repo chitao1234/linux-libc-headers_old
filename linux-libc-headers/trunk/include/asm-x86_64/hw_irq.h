@@ -13,7 +13,7 @@
  *
  *	hacked by Andi Kleen for x86-64.
  * 
- *  $Id: hw_irq.h,v 1.3 2004/01/15 20:19:01 mmazur Exp $
+ *  $Id: hw_irq.h,v 1.4 2004/01/17 22:43:06 mmazur Exp $
  */
 
 #ifndef __ASSEMBLY__
@@ -71,7 +71,7 @@ struct hw_interrupt_type;
  * levels. (0x80 is the syscall vector)
  */
 #define FIRST_DEVICE_VECTOR	0x31
-#define FIRST_SYSTEM_VECTOR	0xef
+#define FIRST_SYSTEM_VECTOR	0xef   /* duplicated in irq.h */
 
 
 #ifndef __ASSEMBLY__
@@ -171,6 +171,8 @@ static inline void hw_resend_irq(struct hw_interrupt_type *h, unsigned int i) {
 #else
 static inline void hw_resend_irq(struct hw_interrupt_type *h, unsigned int i) {}
 #endif
+
+#define platform_legacy_irq(irq)	((irq) < 16)
 
 #endif
 
