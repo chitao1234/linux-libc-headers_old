@@ -24,30 +24,4 @@
 
 #define RLIM_NLIMITS	11
 
-#ifdef __KERNEL__
-
-/*
- * SuS says limits have to be unsigned.
- * Which makes a ton more sense anyway.
- */
-#define RLIM_INFINITY	(~0UL)
-
-
-#define INIT_RLIMITS							\
-{									\
-	{ RLIM_INFINITY, RLIM_INFINITY },		\
-	{ RLIM_INFINITY, RLIM_INFINITY },		\
-	{ RLIM_INFINITY, RLIM_INFINITY },		\
-	{      _STK_LIM, RLIM_INFINITY },		\
-	{             0, RLIM_INFINITY },		\
-	{ RLIM_INFINITY, RLIM_INFINITY },		\
-	{             0,             0 },		\
-	{      INR_OPEN,     INR_OPEN  },		\
-	{ RLIM_INFINITY, RLIM_INFINITY },		\
-	{ RLIM_INFINITY, RLIM_INFINITY },		\
-	{ RLIM_INFINITY, RLIM_INFINITY },		\
-}
-
-#endif /* __KERNEL__ */
-
 #endif /* _PPC64_RESOURCE_H */

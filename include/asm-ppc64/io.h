@@ -113,51 +113,6 @@ extern void _outsl_ns(volatile u32 *port, const void *buf, int nl);
 
 #define IO_SPACE_LIMIT ~(0UL)
 
-
-#ifdef __KERNEL__
-/*
- * Map in an area of physical address space, for accessing
- * I/O devices etc.
- */
-extern void *__ioremap(unsigned long address, unsigned long size,
-		       unsigned long flags);
-extern void *ioremap(unsigned long address, unsigned long size);
-#define ioremap_nocache(addr, size)	ioremap((addr), (size))
-extern void iounmap(void *addr);
-
-/*
- * Change virtual addresses to physical addresses and vv, for
- * addresses in the area where the kernel has the RAM mapped.
- */
-static inline unsigned long virt_to_phys(volatile void * address)
-{
-#ifdef __IO_DEBUG
-	printk("virt_to_phys: 0x%08lx -> 0x%08lx\n", 
-			(unsigned long) address,
-			__pa((unsigned long)address));
-#endif
-	return __pa((unsigned long)address);
-}
-
-static inline void * phys_to_virt(unsigned long address)
-{
-#ifdef __IO_DEBUG
-	printk("phys_to_virt: 0x%08lx -> 0x%08lx\n", address, __va(address));
-#endif
-	return (void *) __va(address);
-}
-
-/*
- * Change "struct page" to physical address.
- */
-#define page_to_phys(page)	(page_to_pfn(page) << PAGE_SHIFT)
-
-#if 0
-#define BIO_VMERGE_BOUNDARY	4096
-#endif
-
-#endif /* __KERNEL__ */
-
 static inline void iosync(void)
 {
         __asm__ __volatile__ ("sync" : : : "memory");

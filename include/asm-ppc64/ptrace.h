@@ -109,9 +109,6 @@ struct pt_regs32 {
 
 #define PT_NIP	32
 #define PT_MSR	33
-#ifdef __KERNEL__
-#define PT_ORIG_R3 34
-#endif
 #define PT_CTR	35
 #define PT_LNK	36
 #define PT_XER	37
@@ -120,12 +117,7 @@ struct pt_regs32 {
 #define PT_RESULT 43
 
 #define PT_FPR0	48
-#ifdef __KERNEL__
-#define PT_FPSCR (PT_FPR0 + 32 + 1)	  /* each FP reg occupies 1 slot in this space */
-#define PT_FPSCR32 (PT_FPR0 + 2*32 + 1)	  /* To the 32-bit user - each FP reg occupies 2 slots in this space */
-#else
 #define PT_FPSCR (PT_FPR0 + 2*32 + 1)	/* each FP reg occupies 2 slots in this space -- Fix when 64-bit apps. */
-#endif
 
 /* Additional PTRACE requests implemented on PowerPC. */
 #define PPC_PTRACE_GETREGS	      0x99  /* Get GPRs 0 - 31 */

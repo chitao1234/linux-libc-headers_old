@@ -41,38 +41,4 @@ typedef struct {
 
 #endif /* __ASSEMBLY__ */
 
-#ifdef __KERNEL__
-/*
- * These aren't exported outside the kernel to avoid name space clashes
- */
-#define BITS_PER_LONG 64
-
-#ifndef __ASSEMBLY__
-
-typedef signed char s8;
-typedef unsigned char u8;
-
-typedef signed short s16;
-typedef unsigned short u16;
-
-typedef signed int s32;
-typedef unsigned int u32;
-
-typedef signed long s64;
-typedef unsigned long u64;
-
-typedef __vector128 vector128;
-
-typedef u32 dma_addr_t;
-typedef u64 dma64_addr_t;
-
-typedef struct {
-	unsigned long entry;
-	unsigned long toc;
-	unsigned long env;
-} func_descr_t;
-#endif /* __ASSEMBLY__ */
-
-#endif /* __KERNEL__ */
-
 #endif /* _PPC64_TYPES_H */
