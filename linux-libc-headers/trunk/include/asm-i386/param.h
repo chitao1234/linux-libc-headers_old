@@ -1,12 +1,6 @@
 #ifndef _ASMi386_PARAM_H
 #define _ASMi386_PARAM_H
 
-#ifdef __KERNEL__
-# define HZ		1000		/* Internal kernel timer frequency */
-# define USER_HZ	100		/* .. some user interfaces are in "ticks" */
-# define CLOCKS_PER_SEC	(USER_HZ)	/* like times() */
-#endif
-
 #ifndef HZ
 #include <unistd.h>
 #define HZ sysconf(_SC_CLK_TCK)
