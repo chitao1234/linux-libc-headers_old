@@ -6,6 +6,6 @@
 
 #define SIGEV_PAD_SIZE			((SIGEV_MAX_SIZE/sizeof(int)) - 4)
 
-#include <asm-generic/siginfo.h>
+#include <linux/siginfo.h>
 
 #endif

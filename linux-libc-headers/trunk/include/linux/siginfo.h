@@ -110,16 +110,6 @@ typedef struct siginfo {
 #define si_band		_sifields._sigpoll._band
 #define si_fd		_sifields._sigpoll._fd
 
-#ifdef __KERNEL__
-#define __SI_MASK	0xffff0000u
-#define __SI_KILL	(0 << 16)
-#define __SI_TIMER	(1 << 16)
-#define __SI_POLL	(2 << 16)
-#define __SI_FAULT	(3 << 16)
-#define __SI_CHLD	(4 << 16)
-#define __SI_RT		(5 << 16)
-#define __SI_CODE(T,N)	((T) | ((N) & 0xffff))
-#else
 #define __SI_KILL	0
 #define __SI_TIMER	0
 #define __SI_POLL	0
@@ -127,7 +117,6 @@ typedef struct siginfo {
 #define __SI_CHLD	0
 #define __SI_RT		0
 #define __SI_CODE(T,N)	(N)
-#endif
 
 /*
  * si_code values
@@ -259,29 +248,5 @@ typedef struct sigevent {
 #define sigev_notify_function	_sigev_un._sigev_thread._function
 #define sigev_notify_attributes	_sigev_un._sigev_thread._attribute
 #define sigev_notify_thread_id	 _sigev_un._tid
-
-#ifdef __KERNEL__
-
-struct siginfo;
-void do_schedule_next_timer(struct siginfo *info);
-
-#ifndef HAVE_ARCH_COPY_SIGINFO
-
-#include <linux/string.h>
-
-static inline void copy_siginfo(struct siginfo *to, struct siginfo *from)
-{
-	if (from->si_code < 0)
-		memcpy(to, from, sizeof(*to));
-	else
-		/* _sigchld is currently the largest know union member */
-		memcpy(to, from, __ARCH_SI_PREAMBLE_SIZE + sizeof(from->_sifields._sigchld));
-}
-
-#endif
-
-extern int copy_siginfo_to_user(struct siginfo __user *to, struct siginfo *from);
-
-#endif /* __KERNEL__ */
 
 #endif

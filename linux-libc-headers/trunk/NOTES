@@ -8,4 +8,5 @@
   sparc)
 - any changes to asm-generic/errno* (removed) should be reflected in
   linux/errno.h and in errno.h for alpha, mips, parisc, sparc, sparc64
-  
+- changes to asm-generic/siginfo.h should be reflected in linux/signal.h
+  (currently linux/siginfo.h, but that will get fixed)

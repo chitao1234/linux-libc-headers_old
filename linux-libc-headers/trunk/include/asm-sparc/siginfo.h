@@ -1,4 +1,4 @@
-/* $Id: siginfo.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/* $Id: siginfo.h,v 1.2 2003/12/26 02:44:47 mmazur Exp $
  * siginfo.c:
  */
 
@@ -8,7 +8,7 @@
 #define __ARCH_SI_UID_T		unsigned int
 #define __ARCH_SI_TRAPNO
 
-#include <asm-generic/siginfo.h>
+#include <linux/siginfo.h>
 
 #define SI_NOINFO	32767		/* no information in siginfo_t */
 

@@ -3,7 +3,7 @@
 
 #define HAVE_ARCH_COPY_SIGINFO_TO_USER
 
-#include <asm-generic/siginfo.h>
+#include <linux/siginfo.h>
 
 /*
  * SIGTRAP si_codes
