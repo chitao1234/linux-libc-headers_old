@@ -12,7 +12,6 @@
 #include <linux/kmod.h>
 #include <linux/elf.h>
 #include <linux/stringify.h>
-#include <asm/local.h>
 
 #include <asm/module.h>
 

@@ -1,7 +1,3 @@
-#ifndef _LINUX_SIGNAL_H
-#define _LINUX_SIGNAL_H
+#warning "You should include <signal.h>. This time I will do it for you."
+#include <signal.h>
 
-#include <asm/signal.h>
-#include <linux/siginfo.h>
-
-#endif /* _LINUX_SIGNAL_H */
