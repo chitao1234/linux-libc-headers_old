@@ -1,4 +1,4 @@
-/* $Id: ioctl.h,v 1.1 2003/12/15 18:46:59 mmazur Exp $
+/* $Id: ioctl.h,v 1.2 2003/12/30 03:14:43 qboosh Exp $
  *
  * linux/ioctl.h for Linux by H.H. Bergman.
  */
@@ -45,7 +45,7 @@
 	 ((size) << _IOC_SIZESHIFT))
 
 /* provoke compile error for invalid uses of size argument */
-extern int __invalid_size_argument_for_IOC;
+extern unsigned __invalid_size_argument_for_IOC;
 #define _IOC_TYPECHECK(t) \
 	((sizeof(t) == sizeof(t[1]) && \
 	  sizeof(t) < (1 << _IOC_SIZEBITS)) ? \
