@@ -23,8 +23,6 @@
 extern void ia64_bad_param_for_setreg (void);
 extern void ia64_bad_param_for_getreg (void);
 
-register unsigned long ia64_r13 asm ("r13") __attribute_used__;
-
 #define ia64_setreg(regnum, val)						\
 ({										\
 	switch (regnum) {							\
@@ -57,6 +55,7 @@ register unsigned long ia64_r13 asm ("r13") __attribute_used__;
 #define ia64_getreg(regnum)							\
 ({										\
 	__u64 ia64_intri_res;							\
+	register unsigned long ia64_r13 asm ("r13") __attribute_used__;		\
 										\
 	switch (regnum) {							\
 	case _IA64_REG_GP:							\
