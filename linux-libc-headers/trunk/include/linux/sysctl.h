@@ -144,7 +144,7 @@ enum
 	VM_UNUSED8=8,		/* was: struct: Control kswapd behaviour */
 	VM_UNUSED9=9,		/* was: struct: Set page table cache parameters */
 	VM_PAGE_CLUSTER=10,	/* int: set number of pages to swap together */
-	VM_MAX_MAP_COUNT=11,	/* [<2.6] int: Maximum number of active map areas */
+	/*VM_MAX_MAP_COUNT=11,	[<2.6] int: Maximum number of active map areas */
 	VM_MIN_READAHEAD=12,    /* [<2.6] Min file readahead */
 	VM_MAX_READAHEAD=13,    /* [<2.6] Max file readahead */
 	VM_DIRTY_BACKGROUND=11,	/* dirty_background_ratio */
@@ -158,7 +158,7 @@ enum
 	VM_SWAPPINESS=19,	/* Tendency to steal mapped memory */
 	VM_LOWER_ZONE_PROTECTION=20,/* Amount of protection of lower zones */
 	VM_MIN_FREE_KBYTES=21,	/* Minimum free kilobytes to maintain */
-	/* VM_MAX_MAP_COUNT=22,	int: Maximum number of mmaps/address-space */
+	VM_MAX_MAP_COUNT=22,	/* int: Maximum number of mmaps/address-space */
 };
 
 
