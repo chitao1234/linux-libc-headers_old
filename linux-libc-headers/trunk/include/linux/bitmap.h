@@ -4,7 +4,6 @@
 #ifndef __ASSEMBLY__
 
 #include <linux/types.h>
-#include <linux/kernel.h>
 #include <linux/bitops.h>
 
 int bitmap_empty(const unsigned long *bitmap, int bits);

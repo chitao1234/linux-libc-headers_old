@@ -42,12 +42,12 @@
 #define __init		__attribute__ ((__section__ (".init.text")))
 #define __initdata	__attribute__ ((__section__ (".init.data")))
 #define __exitdata	__attribute__ ((__section__(".exit.data")))
-#define __exit_call	__attribute_used__ __attribute__ ((__section__ (".exitcall.exit")))
+#define __exit_call	__attribute__ ((__section__ (".exitcall.exit")))
 
 #ifdef MODULE
 #define __exit		__attribute__ ((__section__(".exit.text")))
 #else
-#define __exit		__attribute_used__ __attribute__ ((__section__(".exit.text")))
+#define __exit		__attribute__ ((__section__(".exit.text")))
 #endif
 
 /* For assembly routines */
@@ -78,7 +78,7 @@ extern initcall_t __security_initcall_start, __security_initcall_end;
  */
 
 #define __define_initcall(level,fn) \
-	static initcall_t __initcall_##fn __attribute_used__ \
+	static initcall_t __initcall_##fn \
 	__attribute__((__section__(".initcall" level ".init"))) = fn
 
 #define core_initcall(fn)		__define_initcall("1",fn)
@@ -96,11 +96,11 @@ extern initcall_t __security_initcall_start, __security_initcall_end;
 
 #define console_initcall(fn) \
 	static initcall_t __initcall_##fn \
-	__attribute_used__ __attribute__((__section__(".con_initcall.init")))=fn
+	__attribute__((__section__(".con_initcall.init")))=fn
 
 #define security_initcall(fn) \
 	static initcall_t __initcall_##fn \
-	__attribute_used__ __attribute__((__section__(".security_initcall.init"))) = fn
+	__attribute__((__section__(".security_initcall.init"))) = fn
 
 struct obs_kernel_param {
 	const char *str;
@@ -111,7 +111,6 @@ struct obs_kernel_param {
 #define __setup_param(str, unique_id, fn)			\
 	static char __setup_str_##unique_id[] __initdata = str;	\
 	static struct obs_kernel_param __setup_##unique_id	\
-		 __attribute_used__				\
 		 __attribute__((__section__(".init.setup")))	\
 		= { __setup_str_##unique_id, fn }
 

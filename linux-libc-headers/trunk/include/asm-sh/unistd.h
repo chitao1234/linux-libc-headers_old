@@ -403,6 +403,7 @@ __syscall_return(type,__sc0); \
 #ifdef __KERNEL_SYSCALLS__
 
 #include <linux/types.h>
+#include <linux/linkage.h>
 #include <asm/ptrace.h>
 
 /*
