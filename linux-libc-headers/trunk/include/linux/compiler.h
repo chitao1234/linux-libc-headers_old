@@ -9,14 +9,7 @@
 # define __kernel
 #endif
 
-#if !defined(__KERNEL__)
-/* Debian: Most of these are inappropriate for userspace.  */
-/* We don't define likely, unlikely, or barrier; they're namespace-intrusive
-   and should not be needed outside of __KERNEL__.  */
-# define __attribute_pure__
-# define __attribute_used__
-# define __deprecated
-#else
+#if defined(__KERNEL__)
 
 #ifndef __ASSEMBLY__
 #if __GNUC__ > 3
