@@ -7,9 +7,9 @@ touch $OUT
 cd $LLHDIR/skrypty/.tmp
 
 for arch in asm-alpha asm-arm asm-arm26 asm-cris asm-h8300 \
-	asm-i386 asm-ia64 asm-m68k asm-mips asm-parisc asm-ppc asm-ppc64 \
-	asm-s390 asm-sh asm-sh64 asm-sparc asm-sparc64 asm-um asm-v850 \
-	asm-x86_64; do 
+	asm-i386 asm-ia64 asm-m32r asm-m68k asm-mips asm-parisc asm-ppc \
+   	asm-ppc64 asm-s390 asm-sh asm-sh64 asm-sparc asm-sparc64 asm-um \
+	asm-v850 asm-x86_64; do 
 	
 	(cd $LLHDIR/linux-libc-headers/include
 	rm -f asm
