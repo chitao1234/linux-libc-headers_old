@@ -311,9 +311,6 @@ extern inline _syscall1(int,close,int,fd)
  * complaints.  We don't want to use -fno-builtin, so just use a
  * different name when in the kernel.
  */
-#ifdef __KERNEL__
-#define _exit kernel_syscall_exit
-#endif
 extern inline _syscall1(int,_exit,int,exitcode)
 extern inline _syscall3(pid_t,waitpid,pid_t,pid,int *,wait_stat,int,options)
 #endif
