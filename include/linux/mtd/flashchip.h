@@ -6,7 +6,6 @@
  *
  * (C) 2000 Red Hat. GPLd.
  *
- * $Id: flashchip.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
  *
  */
 

@@ -1,7 +1,6 @@
 /*
  * (C) 2001, 2001 Red Hat, Inc.
  * GPL'd
- * $Id: gen_probe.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
  */
 
 #ifndef __LINUX_MTD_GEN_PROBE_H__

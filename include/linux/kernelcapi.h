@@ -1,5 +1,4 @@
 /*
- * $Id: kernelcapi.h,v 1.3 2004/01/11 11:21:36 qboosh Exp $
  * 
  * Kernel CAPI 2.0 Interface for Linux
  * 

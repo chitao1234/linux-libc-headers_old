@@ -2,7 +2,6 @@
 #define _HIDDEV_H
 
 /*
- * $Id: hiddev.h,v 1.2 2004/01/01 18:23:40 mmazur Exp $
  *
  *  Copyright (c) 1999-2000 Vojtech Pavlik
  *

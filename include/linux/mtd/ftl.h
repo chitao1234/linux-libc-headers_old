@@ -1,5 +1,4 @@
 /*
- * $Id: ftl.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
  * 
  * Derived from (and probably identical to):
  * ftl.h 1.7 1999/10/25 20:23:17

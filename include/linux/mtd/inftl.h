@@ -3,7 +3,6 @@
  *
  *	(C) Copyright 2002, Greg Ungerer (gerg@snapgear.com)
  *
- *	$Id: inftl.h,v 1.2 2004/01/01 19:42:56 mmazur Exp $
  */
 
 #ifndef __MTD_INFTL_H__

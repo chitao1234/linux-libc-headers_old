@@ -3,15 +3,17 @@
  *
  * Copyright (C) 2001 Stefan Eletzhofer <stefan.eletzhofer@eletztrick.de>
  *
- * $Id: system3.h,v 1.1 2003/12/15 18:47:05 mmazur Exp $
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  *
  * $Log: system3.h,v $
- * Revision 1.1  2003/12/15 18:47:05  mmazur
- * Initial revision
+ * Revision 1.2  2004/03/05 18:06:41  mmazur
+ * - removing cvs tags part IV
+ *
+ * Revision 1.1.1.1  2003/12/15 18:47:05  mmazur
+ * Initial from debian
  *
  * Revision 1.2.4.2  2001/12/04 14:58:50  seletz
  * - removed neponset hack

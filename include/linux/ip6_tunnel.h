@@ -1,5 +1,4 @@
 /*
- * $Id: ip6_tunnel.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
  */
 
 #ifndef _IP6_TUNNEL_H
