@@ -59,10 +59,6 @@ struct ipv6_opt_hdr {
 #define ipv6_destopt_hdr ipv6_opt_hdr
 #define ipv6_hopopt_hdr  ipv6_opt_hdr
 
-#ifdef __KERNEL__
-#define ipv6_optlen(p)  (((p)->hdrlen+1) << 3)
-#endif
-
 /*
  *	routing header type 0 (used in cmsghdr struct)
  */
@@ -104,10 +100,10 @@ struct ipv6_comp_hdr {
  */
 
 struct ipv6hdr {
-#if defined(__LITTLE_ENDIAN_BITFIELD)
+#if defined(__LITTLE_ENDIAN)
 	__u8			priority:4,
 				version:4;
-#elif defined(__BIG_ENDIAN_BITFIELD)
+#elif defined(__BIG_ENDIAN)
 	__u8			version:4,
 				priority:4;
 #else
@@ -137,7 +133,7 @@ struct ipv6_devconf {
 	__s32		rtr_solicits;
 	__s32		rtr_solicit_interval;
 	__s32		rtr_solicit_delay;
-#ifdef CONFIG_IPV6_PRIVACY
+#if 1 || defined(CONFIG_IPV6_PRIVACY)
 	__s32		use_tempaddr;
 	__s32		temp_valid_lft;
 	__s32		temp_prefered_lft;
@@ -159,129 +155,12 @@ enum {
 	DEVCONF_RTR_SOLICITS,
 	DEVCONF_RTR_SOLICIT_INTERVAL,
 	DEVCONF_RTR_SOLICIT_DELAY,
-#ifdef CONFIG_IPV6_PRIVACY
 	DEVCONF_USE_TEMPADDR,
 	DEVCONF_TEMP_VALID_LFT,
 	DEVCONF_TEMP_PREFERED_LFT,
 	DEVCONF_REGEN_MAX_RETRY,
 	DEVCONF_MAX_DESYNC_FACTOR,
-#endif
 	DEVCONF_MAX
 };
-
-#ifdef __KERNEL__
-#include <linux/in6.h>          /* struct sockaddr_in6 */
-#include <linux/icmpv6.h>
-#include <net/if_inet6.h>       /* struct ipv6_mc_socklist */
-#include <linux/tcp.h>
-#include <linux/udp.h>
-
-/* 
-   This structure contains results of exthdrs parsing
-   as offsets from skb->nh.
- */
-
-struct inet6_skb_parm
-{
-	int			iif;
-	__u16			ra;
-	__u16			hop;
-	__u16			auth;
-	__u16			dst0;
-	__u16			srcrt;
-	__u16			dst1;
-};
-
-struct ipv6_pinfo {
-	struct in6_addr 	saddr;
-	struct in6_addr 	rcv_saddr;
-	struct in6_addr		daddr;
-	struct in6_addr		*daddr_cache;
-
-	__u32			flow_label;
-	__u32			frag_size;
-	int			hop_limit;
-	int			mcast_hops;
-	int			mcast_oif;
-
-	/* pktoption flags */
-	union {
-		struct {
-			__u8	srcrt:2,
-			        rxinfo:1,
-				rxhlim:1,
-				hopopts:1,
-				dstopts:1,
-                                authhdr:1,
-                                rxflow:1;
-		} bits;
-		__u8		all;
-	} rxopt;
-
-	/* sockopt flags */
-	__u8			mc_loop:1,
-	                        recverr:1,
-	                        sndflow:1,
-				pmtudisc:2,
-				ipv6only:1;
-
-	struct ipv6_mc_socklist	*ipv6_mc_list;
-	struct ipv6_ac_socklist	*ipv6_ac_list;
-	struct ipv6_fl_socklist *ipv6_fl_list;
-	__u32			dst_cookie;
-
-	struct ipv6_txoptions	*opt;
-	struct sk_buff		*pktoptions;
-	struct {
-		struct ipv6_txoptions *opt;
-		struct rt6_info	*rt;
-		int hop_limit;
-	} cork;
-};
-
-struct raw6_opt {
-	__u32			checksum;	/* perform checksum */
-	__u32			offset;		/* checksum offset  */
-
-	struct icmp6_filter	filter;
-};
-
-/* WARNING: don't change the layout of the members in {raw,udp,tcp}6_sock! */
-struct raw6_sock {
-	struct sock	  sk;
-	struct ipv6_pinfo *pinet6;
-	struct inet_opt   inet;
-	struct raw6_opt   raw6;
-	struct ipv6_pinfo inet6;
-};
-
-struct udp6_sock {
-	struct sock	  sk;
-	struct ipv6_pinfo *pinet6;
-	struct inet_opt   inet;
-	struct udp_opt	  udp;
-	struct ipv6_pinfo inet6;
-};
-
-struct tcp6_sock {
-	struct sock	  sk;
-	struct ipv6_pinfo *pinet6;
-	struct inet_opt   inet;
-	struct tcp_opt	  tcp;
-	struct ipv6_pinfo inet6;
-};
-
-#define inet6_sk(__sk) ((struct raw6_sock *)__sk)->pinet6
-#define raw6_sk(__sk) (&((struct raw6_sock *)__sk)->raw6)
-
-#if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
-#define __ipv6_only_sock(sk)	(inet6_sk(sk)->ipv6only)
-#define ipv6_only_sock(sk)	((sk)->sk_family == PF_INET6 && __ipv6_only_sock(sk))
-#else
-#define __ipv6_only_sock(sk)	0
-#define ipv6_only_sock(sk)	0
-#endif
-
-#endif
 
 #endif
