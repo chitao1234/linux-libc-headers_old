@@ -14,7 +14,6 @@
 #define _LINUX_NFS4_H
 
 #include <linux/types.h>
-#include <linux/list.h>
 
 #define NFS4_VERIFIER_SIZE	8
 #define NFS4_FHSIZE		128
@@ -94,20 +93,6 @@ enum nfs4_acl_whotype {
 	NFS4_ACL_WHO_OWNER,
 	NFS4_ACL_WHO_GROUP,
 	NFS4_ACL_WHO_EVERYONE,
-};
-
-struct nfs4_ace {
-	uint32_t	type;
-	uint32_t	flag;
-	uint32_t	access_mask;
-	int		whotype;
-	uid_t		who;
-	struct list_head l_ace;
-};
-
-struct nfs4_acl {
-	uint32_t	naces;
-	struct list_head ace_head;
 };
 
 typedef struct { char data[NFS4_VERIFIER_SIZE]; } nfs4_verifier;
