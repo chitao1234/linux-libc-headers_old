@@ -6,6 +6,8 @@
  *
  * Copyright (C) 2001-2004 Paul Mackerras <paulus@au.ibm.com>, IBM
  * Copyright (C) 2001 Anton Blanchard <anton@au.ibm.com>, IBM
+ * Copyright (C) 2002 Dave Engebretsen <engebret@us.ibm.com>, IBM
+ *	Rework to support virtual processors
  *
  * Type of int is used as a full 64b word is not necessary.
  *
@@ -17,5 +19,9 @@
 typedef struct {
 	volatile unsigned int lock;
 } spinlock_t;
+
+typedef struct {
+	volatile signed int lock;
+} rwlock_t;
 
 #endif /* __ASM_SPINLOCK_H */

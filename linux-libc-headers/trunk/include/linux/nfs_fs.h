@@ -78,6 +78,7 @@
 #define NFSDBG_XDR		0x0020
 #define NFSDBG_FILE		0x0040
 #define NFSDBG_ROOT		0x0080
+#define NFSDBG_CALLBACK		0x0100
 #define NFSDBG_ALL		0xFFFF
 
 #endif

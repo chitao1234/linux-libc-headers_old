@@ -22,6 +22,15 @@
  * it will be a bad memory reference since we want to store in chunks
  * of unsigned long (64 bits here) size.
  *
+ * There are a few little-endian macros used mostly for filesystem bitmaps,
+ * these work on similar bit arrays layouts, but byte-oriented:
+ *
+ *   |7...0|15...8|23...16|31...24|39...32|47...40|55...48|63...56|
+ *
+ * The main difference is that bit 3-5 in the bit number field needs to be
+ * reversed compared to the big-endian bit fields. This can be achieved
+ * by XOR with 0b111000 (0x38).
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version

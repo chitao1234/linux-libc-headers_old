@@ -197,8 +197,8 @@ struct el_t2_procdata_mcheck {
 
 struct el_t2_logout_header {
 	unsigned int	elfl_size;	/* size in bytes of logout area. */
-	int		elfl_sbz1:31;	/* Should be zero. */
-	char		elfl_retry:1;	/* Retry flag. */
+	unsigned int	elfl_sbz1:31;	/* Should be zero. */
+	unsigned int	elfl_retry:1;	/* Retry flag. */
 	unsigned int	elfl_procoffset; /* Processor-specific offset. */
 	unsigned int	elfl_sysoffset;	 /* Offset of system-specific. */
 	unsigned int	elfl_error_type;	/* PAL error type code. */
