@@ -70,7 +70,7 @@
 
 #endif
 
-#if CONFIG_MIPS64
+#ifdef __mips64
 
 #define EF_R0			 0
 #define EF_R1			 1
