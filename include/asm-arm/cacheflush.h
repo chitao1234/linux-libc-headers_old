@@ -13,7 +13,6 @@
 #include <linux/sched.h>
 
 #include <asm/mman.h>
-#include <asm/glue.h>
 
 /*
  *	Cache Model
