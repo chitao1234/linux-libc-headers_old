@@ -88,6 +88,8 @@
  *	being very small might be worth keeping for clean configuration.
  */
 
+#ifndef _NET_IF_H
+
 struct ifmap 
 {
 	unsigned long mem_start;
@@ -98,6 +100,8 @@ struct ifmap
 	unsigned char port;
 	/* 3 bytes spare */
 };
+
+#endif
 
 struct if_settings
 {
@@ -124,6 +128,8 @@ struct if_settings
  * remainder may be interface specific.
  */
 
+#ifndef _NET_IF_H
+
 struct ifreq 
 {
 #define IFHWADDRLEN	6
@@ -148,6 +154,8 @@ struct ifreq
 		struct	if_settings ifru_settings;
 	} ifr_ifru;
 };
+
+#endif
 
 #define ifr_name	ifr_ifrn.ifrn_name	/* interface name 	*/
 #define ifr_hwaddr	ifr_ifru.ifru_hwaddr	/* MAC address 		*/
@@ -174,6 +182,8 @@ struct ifreq
  * must know all networks accessible).
  */
 
+#ifndef _NET_IF_H
+
 struct ifconf 
 {
 	int	ifc_len;			/* size of buffer	*/
@@ -183,6 +193,9 @@ struct ifconf
 		struct	ifreq 		*ifcu_req;
 	} ifc_ifcu;
 };
+
+#endif
+
 #define	ifc_buf	ifc_ifcu.ifcu_buf		/* buffer address	*/
 #define	ifc_req	ifc_ifcu.ifcu_req		/* array of structures	*/
 
