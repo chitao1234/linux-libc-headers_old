@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_SOCKIOS_H
 #define _ASM_M32R_SOCKIOS_H
 
-/* $Id: sockios.h,v 1.1 2004/10/21 15:15:38 mmazur Exp $ */
+/* $Id$ */
 
 /* Socket-level I/O control calls. */
 #define FIOSETOWN 	0x8901
