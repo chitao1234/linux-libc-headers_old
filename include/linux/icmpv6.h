@@ -22,13 +22,13 @@ struct icmp6hdr {
 		} u_echo;
 
                 struct icmpv6_nd_advt {
-#if defined(__LITTLE_ENDIAN_BITFIELD)
+#if defined(__LITTLE_ENDIAN)
                         __u32		reserved:5,
                         		override:1,
                         		solicited:1,
                         		router:1,
 					reserved2:24;
-#elif defined(__BIG_ENDIAN_BITFIELD)
+#elif defined(__BIG_ENDIAN)
                         __u32		router:1,
 					solicited:1,
                         		override:1,
@@ -40,12 +40,12 @@ struct icmp6hdr {
 
                 struct icmpv6_nd_ra {
 			__u8		hop_limit;
-#if defined(__LITTLE_ENDIAN_BITFIELD)
+#if defined(__LITTLE_ENDIAN)
 			__u8		reserved:6,
 					other:1,
 					managed:1;
 
-#elif defined(__BIG_ENDIAN_BITFIELD)
+#elif defined(__BIG_ENDIAN)
 			__u8		managed:1,
 					other:1,
 					reserved:6;
@@ -140,24 +140,5 @@ struct icmp6hdr {
 struct icmp6_filter {
 	__u32		data[8];
 };
-
-#ifdef __KERNEL__
-
-#include <linux/netdevice.h>
-#include <linux/skbuff.h>
-
-
-extern void				icmpv6_send(struct sk_buff *skb,
-						    int type, int code,
-						    __u32 info, 
-						    struct net_device *dev);
-
-extern int				icmpv6_init(struct net_proto_family *ops);
-extern int				icmpv6_err_convert(int type, int code,
-							   int *err);
-extern void				icmpv6_cleanup(void);
-extern void				icmpv6_param_prob(struct sk_buff *skb,
-							  int code, int pos);
-#endif
 
 #endif
