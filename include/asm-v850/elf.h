@@ -1,6 +1,8 @@
 #ifndef __V850_ELF_H__
 #define __V850_ELF_H__
 
+#include <asm/ptrace.h>
+
 /*
  * ELF register definitions..
  */

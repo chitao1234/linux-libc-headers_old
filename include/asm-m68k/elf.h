@@ -1,6 +1,8 @@
 #ifndef __ASMm68k_ELF_H
 #define __ASMm68k_ELF_H
 
+#include <asm/user.h>
+
 /*
  * ELF register definitions..
  */

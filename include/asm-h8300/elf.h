@@ -1,6 +1,8 @@
 #ifndef __ASMH8300_ELF_H
 #define __ASMH8300_ELF_H
 
+#include <asm/user.h>
+
 /*
  * ELF register definitions..
  */
@@ -48,4 +50,4 @@ typedef struct user_m68kfp_struct elf_fpregset_t;
 
 #define ELF_PLATFORM  (NULL)
 
-#endif
+
