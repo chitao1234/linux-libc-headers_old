@@ -479,19 +479,6 @@ extern long kernel_thread(int (*fn)(void *), void *arg, unsigned long flags);
 extern struct task_struct *last_task_used_math;
 
 
-#ifdef __KERNEL__
-/* 64-bit user address space is 41-bits (2TBs user VM) */
-#define TASK_SIZE_USER64 (0x0000020000000000UL)
-
-/* 
- * 32-bit user address space is 4GB - 1 page 
- * (this 1 page is needed so referencing of 0xFFFFFFFF generates EFAULT
- */
-#define TASK_SIZE_USER32 (0x0000000100000000UL - (1*PAGE_SIZE))
-
-#define TASK_SIZE (test_thread_flag(TIF_32BIT) ? \
-		TASK_SIZE_USER32 : TASK_SIZE_USER64)
-#endif /* __KERNEL__ */
 
 
 /* This decides where the kernel will search for a free chunk of vm

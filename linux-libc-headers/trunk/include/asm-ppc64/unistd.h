@@ -266,9 +266,6 @@
 #define __NR_fstatfs64		253
 
 #define __NR_syscalls		254
-#ifdef __KERNEL__
-#define NR_syscalls	__NR_syscalls
-#endif
 
 #ifndef __ASSEMBLY__
 

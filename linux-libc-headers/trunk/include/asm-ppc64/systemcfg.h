@@ -15,14 +15,6 @@
  * End Change Activity 
  */
 
-
-#ifndef __KERNEL__
-#include <unistd.h>
-#include <fcntl.h>
-#include <sys/mman.h>
-#include <linux/types.h>
-#endif
-
 /*
  * If the major version changes we are incompatible.
  * Minor version changes are a hint.
@@ -57,9 +49,6 @@ struct systemcfg {
 	__u8  reserved0[3984];		/* Reserve rest of page		0x70 */
 };
 
-#ifdef __KERNEL__
-extern struct systemcfg *systemcfg;
-#else
 
 /* Processor Version Register (PVR) field extraction */
 #define PVR_VER(pvr)  (((pvr) >>  16) & 0xFFFF) /* Version field */
@@ -98,7 +87,6 @@ static inline volatile struct systemcfg *systemcfg_init(void)
 	}
 	return ret;
 }
-#endif /* __KERNEL__ */
 
 #endif /* __ASSEMBLY__ */
 
