@@ -9,7 +9,7 @@ linux:
   atmarp.h, atmclip.h, atmdev.h (!ifNdef), auto_fs.h, bfs_fs.h, binfmts.h,
   blkpg.h, capability.h, capi.h (!ifNdef), cdrom.h (!ifNdef), coda.h, 
   coda_fs_i.h, concap.h, config.h, cramfs_fs.h (!ifNdef), cuda.h, cyclades.h,
-  cyclomx.h, dcache.h, dio.h, divert.h, elfcore.h (!ifNdef), errno.h, 
+  cyclomx.h, dcache.h, dio.h, divert.h, elfcore.h (!ifNdef), 
   errqueue.h, etherdevice.h, ethtool.h, ext2_fs.h, fb.h, fcdevice.h, fcntl.h
   fd.h, fddidevice.h, filter.h, fs_struct.h, ftape.h, genhd.h, 
   hayesesp.h... oh fuck it... there are just too many files... will check it
@@ -65,7 +65,6 @@ alpha:
 - param.h: ignored ifdef __KERNEL__
 - rwsem.h, semaphore.h: ignored changing includes from linux/compiler.h to
   asm/compiler.h. Seems wierd.
-- smp.h: ignored. Looks like kernel only header.
 - smplock.h doesn't exist
 - ignored addition of syscall.h... it's empty
 - vga.h: ignored addition of some things - if it's not defined here, it's
@@ -73,9 +72,9 @@ alpha:
 
 i386:
 - consider removal: apic.h, apicdef.h, bugs.h, cobalt.h, current.h, delay.h,
-  desc.h, div64.h, fixmap.h, floppy.h, hardirq.h, io_apic.h, kmap_types.h,
+  desc.h, fixmap.h, floppy.h, hardirq.h, io_apic.h, kmap_types.h,
   linux_logo.h, lithium.h, mca_dma.h, mmu_context.h, mmx.h, parport.h, 
-  pgtable-level2.h, pgtable-level3.h, pgtable.h, smp.h, smpboot.h, smplock.h,
+  pgtable-level2.h, pgtable-level3.h, pgtable.h, smpboot.h, smplock.h,
   softirq.h, uaccess.h, xor.h
 - Userspace warnings (or above): atomic.h, bitops.h, checksum.h,
   dma.h, ide.h, io.h, kernel.h, module.h, mpspec.h, msr.h, pci.h, rwlock.h,
@@ -107,8 +106,8 @@ ppc:
   pgtable.h, pnp.h, ppc4xx.h, ppc4xx_serial.h, ppcboot.h, prep_nvram.h, 
   processor.h, prom.h, ptrace.h, raven.h, residual.h, resource.h, 
   rpxclassic.h, rpxlite.h, rwsem.h, scatterlist.h, sections.h, semaphore.h,
-  serial.h, setup.h, siginfo.h, signal.h, smp.h, smplock.h, socket.h, 
+  serial.h, setup.h, siginfo.h, signal.h, smplock.h, socket.h, 
   softirq.h, spinlock.h, stat.h, string.h, system.h, termios.h, time.h, 
-  timex.h, types.h, uaccess.h, unaligned.h, uninorth.h, user.h, vc_ioctl.h,
+  timex.h, types.h, uaccess.h, uninorth.h, user.h, vc_ioctl.h,
   vga.h, walnut.h, 
 

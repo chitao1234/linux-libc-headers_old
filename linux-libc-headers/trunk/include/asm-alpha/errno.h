@@ -1,12 +1,103 @@
 #ifndef _ALPHA_ERRNO_H
 #define _ALPHA_ERRNO_H
 
-#include <asm-generic/errno-base.h>
+#ifndef _LINUX_ERRNO_H
+ #error "Do not include this header directly. Include linux/errno.h instead."
+#endif
 
-#undef	EAGAIN			/* 11 in errno-base.h */
+#undef	EAGAIN
+#undef	EDEADLK
+#undef	ENAMETOOLONG
+#undef	ENOLCK
+#undef	ENOSYS
+#undef	ENOTEMPTY
+#undef	ELOOP
+#undef	EWOULDBLOCK
+#undef	ENOMSG
+#undef	EIDRM
+#undef	ECHRNG
+#undef	EL2NSYNC
+#undef	EL3HLT
+#undef	EL3RST
+#undef	ELNRNG
+#undef	EUNATCH
+#undef	ENOCSI
+#undef	EL2HLT
+#undef	EBADE
+#undef	EBADR
+#undef	EXFULL
+#undef	ENOANO
+#undef	EBADRQC
+#undef	EBADSLT
+#undef	EDEADLOCK
+#undef	EBFONT
+#undef	ENOSTR
+#undef	ENODATA
+#undef	ETIME
+#undef	ENOSR
+#undef	ENONET
+#undef	ENOPKG
+#undef	EREMOTE
+#undef	ENOLINK
+#undef	EADV
+#undef	ESRMNT
+#undef	ECOMM
+#undef	EPROTO
+#undef	EMULTIHOP
+#undef	EDOTDOT
+#undef	EBADMSG
+#undef	EOVERFLOW
+#undef	ENOTUNIQ
+#undef	EBADFD
+#undef	EREMCHG
+#undef	ELIBACC
+#undef	ELIBBAD
+#undef	ELIBSCN
+#undef	ELIBMAX
+#undef	ELIBEXEC
+#undef	EILSEQ
+#undef	ERESTART
+#undef	ESTRPIPE
+#undef	EUSERS
+#undef	ENOTSOCK
+#undef	EDESTADDRREQ
+#undef	EMSGSIZE
+#undef	EPROTOTYPE
+#undef	ENOPROTOOPT
+#undef	EPROTONOSUPPORT
+#undef	ESOCKTNOSUPPORT
+#undef	EOPNOTSUPP
+#undef	EPFNOSUPPORT
+#undef	EAFNOSUPPORT
+#undef	EADDRINUSE
+#undef	EADDRNOTAVAIL
+#undef	ENETDOWN
+#undef	ENETUNREACH
+#undef	ENETRESET
+#undef	ECONNABORTED
+#undef	ECONNRESET
+#undef	ENOBUFS
+#undef	EISCONN
+#undef	ENOTCONN
+#undef	ESHUTDOWN
+#undef	ETOOMANYREFS
+#undef	ETIMEDOUT
+#undef	ECONNREFUSED
+#undef	EHOSTDOWN
+#undef	EHOSTUNREACH
+#undef	EALREADY
+#undef	EINPROGRESS
+#undef	ESTALE
+#undef	EUCLEAN
+#undef	ENOTNAM
+#undef	ENAVAIL
+#undef	EISNAM
+#undef	EREMOTEIO
+#undef	EDQUOT
+#undef	ENOMEDIUM
+#undef	EMEDIUMTYPE
 
 #define	EDEADLK		11	/* Resource deadlock would occur */
-
 #define	EAGAIN		35	/* Try again */
 #define	EWOULDBLOCK	EAGAIN	/* Operation would block */
 #define	EINPROGRESS	36	/* Operation now in progress */

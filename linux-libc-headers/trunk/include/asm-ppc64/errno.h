@@ -8,7 +8,9 @@
  * 2 of the License, or (at your option) any later version.
  */
 
-#include <asm-generic/errno.h>
+#ifndef _LINUX_ERRNO_H
+ #error "Do not include this header directly. Include linux/errno.h instead."
+#endif
 
 #undef	EDEADLOCK
 #define	EDEADLOCK	58	/* File locking deadlock error */
