@@ -16,7 +16,7 @@
 #ifndef __LINUX_USB_CH9_H
 #define __LINUX_USB_CH9_H
 
-#include <asm/types.h>		/* __u8 etc */
+#include <linux/types.h>		/* __u8 etc */
 
 /*-------------------------------------------------------------------------*/
 
