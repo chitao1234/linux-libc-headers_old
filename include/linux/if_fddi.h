@@ -25,6 +25,7 @@
 #define _LINUX_IF_FDDI_H
 
 #include <asm/types.h>
+#include <linux/netdevice.h>
 
 /*
  *  Define max and min legal sizes.  The frame sizes do not include
