@@ -1,3 +1,3 @@
-#warning "Use <sys/socket.h> instead"
-#include <linux/err_kernel_only.h>
+#warning "You should include <sys/socket.h>. This time I will do it for you."
+#include <sys/socket.h>
 
