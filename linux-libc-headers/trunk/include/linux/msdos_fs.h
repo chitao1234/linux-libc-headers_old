@@ -5,7 +5,6 @@
  * The MS-DOS filesystem constants/structures
  */
 #include <linux/buffer_head.h>
-#include <linux/string.h>
 
 struct statfs;
 

@@ -15,7 +15,6 @@
 #include <asm/types.h>
 #include <linux/errno.h>
 
-#include <linux/string.h>
 #include <linux/interrupt.h>
 #include <linux/config.h>
 

@@ -50,7 +50,6 @@
  * as published by the Free Software Foundation; either version
  * 2 of the License, or (at your option) any later version.
  */
-#include <asm/ptrace.h>
 
 #define ELF_NGREG	48	/* includes nip, msr, lr, etc. */
 #define ELF_NFPREG	33	/* includes fpscr */
@@ -97,38 +96,6 @@ typedef elf_fpreg_t elf_fpregset_t[ELF_NFPREG];
 
 #define ELF_ET_DYN_BASE         (0x08000000)
 
-#ifdef __KERNEL__
-
-/* Common routine for both 32-bit and 64-bit processes */
-static inline void ppc64_elf_core_copy_regs(elf_gregset_t elf_regs,
-					    struct pt_regs *regs)
-{
-	int i;
-	int gprs = sizeof(struct pt_regs)/sizeof(elf_greg_t64);
-
-	if (gprs > ELF_NGREG)
-		gprs = ELF_NGREG;
-
-	for (i=0; i < gprs; i++)
-		elf_regs[i] = (elf_greg_t)((elf_greg_t64 *)regs)[i];
-}
-#define ELF_CORE_COPY_REGS(gregs, regs) ppc64_elf_core_copy_regs(gregs, regs);
-
-static inline int dump_task_regs(struct task_struct *tsk,
-				 elf_gregset_t *elf_regs)
-{
-	struct pt_regs *regs = tsk->thread.regs;
-	if (regs)
-		ppc64_elf_core_copy_regs(*elf_regs, regs);
-
-	return 1;
-}
-#define ELF_CORE_COPY_TASK_REGS(tsk, elf_regs) dump_task_regs(tsk, elf_regs)
-
-extern int dump_task_fpu(struct task_struct *, elf_fpregset_t *); 
-#define ELF_CORE_COPY_FPREGS(tsk, elf_fpregs) dump_task_fpu(tsk, elf_fpregs)
-
-#endif
 
 /* This yields a mask that user programs can use to figure out what
    instruction set this cpu supports.  This could be done in userspace,
@@ -151,23 +118,6 @@ extern int dump_task_fpu(struct task_struct *, elf_fpregset_t *);
 	_r->gpr[2] = load_addr; \
 } while (0)
 
-#ifdef __KERNEL__
-#define SET_PERSONALITY(ex, ibcs2)				\
-do {								\
-	unsigned long new_flags = 0;				\
-	if ((ex).e_ident[EI_CLASS] == ELFCLASS32)		\
-		new_flags = _TIF_32BIT;				\
-	if ((current_thread_info()->flags & _TIF_32BIT)		\
-	    != new_flags)					\
-		set_thread_flag(TIF_ABI_PENDING);		\
-	else							\
-		clear_thread_flag(TIF_ABI_PENDING);		\
-	if (ibcs2)						\
-		set_personality(PER_SVR4);			\
-	else if (current->personality != PER_LINUX32)		\
-		set_personality(PER_LINUX);			\
-} while (0)
-#endif
 
 /*
  * We need to put in some extra aux table entries to tell glibc what

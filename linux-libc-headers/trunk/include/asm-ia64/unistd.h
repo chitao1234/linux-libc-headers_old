@@ -259,7 +259,6 @@ extern long __ia64_syscall (long a0, long a1, long a2, long a3, long a4, long nr
 
 #ifdef __KERNEL_SYSCALLS__
 
-#include <linux/string.h>
 #include <linux/signal.h>
 #include <asm/ptrace.h>
 #include <linux/stringify.h>

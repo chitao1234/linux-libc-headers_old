@@ -6,7 +6,6 @@
 #ifndef _ASM_ELF_H
 #define _ASM_ELF_H
 
-#include <linux/config.h>
 
 /* ELF header e_flags defines. */
 /* MIPS architecture level. */
@@ -189,40 +188,6 @@ typedef elf_fpreg_t elf_fpregset_t[ELF_NFPREG];
 
 #endif /* !defined(ELF_ARCH) */
 
-#ifdef __KERNEL__
-
-#ifdef CONFIG_MIPS32
-
-#define SET_PERSONALITY(ex, ibcs2)			\
-do {							\
-	if (ibcs2)					\
-		set_personality(PER_SVR4);		\
-	set_personality(PER_LINUX);			\
-} while (0)
-
-#endif /* CONFIG_MIPS32 */
-
-#ifdef CONFIG_MIPS64
-
-#define SET_PERSONALITY(ex, ibcs2)				\
-do {	current->thread.mflags &= ~MF_ABI_MASK;			\
-	if ((ex).e_ident[EI_CLASS] == ELFCLASS32) {		\
-		if ((((ex).e_flags & EF_MIPS_ABI2) != 0) &&	\
-		     ((ex).e_flags & EF_MIPS_ABI) == 0)		\
-			current->thread.mflags |= MF_N32;	\
-		else						\
-			current->thread.mflags |= MF_O32;	\
-	} else							\
-		current->thread.mflags |= MF_N64;		\
-	if (ibcs2)						\
-		set_personality(PER_SVR4);			\
-	else if (current->personality != PER_LINUX32)		\
-		set_personality(PER_LINUX);			\
-} while (0)
-
-#endif /* CONFIG_MIPS64 */
-
-#endif /* __KERNEL__ */
 
 /* This one accepts IRIX binaries.  */
 #define irix_elf_check_arch(hdr)	((hdr)->e_machine == EM_MIPS)

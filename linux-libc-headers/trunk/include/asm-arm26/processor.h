@@ -25,7 +25,6 @@
 
 #include <asm/atomic.h>
 #include <asm/ptrace.h>
-#include <linux/string.h>
 
 #define KERNEL_STACK_SIZE 4096
 

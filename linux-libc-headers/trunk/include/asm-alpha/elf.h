@@ -145,10 +145,4 @@ extern int dump_elf_task_fp(elf_fpreg_t *dest, struct task_struct *task);
 	_v0 == 0 ? "ev4" : "ev5";		\
 })
 
-#ifdef __KERNEL__
-#define SET_PERSONALITY(EX, IBCS2)				\
-	set_personality(((EX).e_flags & EF_ALPHA_32BIT)		\
-	   ? PER_LINUX_32BIT : (IBCS2) ? PER_SVR4 : PER_LINUX)
-#endif
-
 #endif

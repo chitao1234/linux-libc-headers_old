@@ -3,7 +3,6 @@
 
 #include <linux/types.h>
 #include <linux/buffer_head.h>
-#include <linux/string.h>
 #include <endian.h>
 #include <byteswap.h>
 

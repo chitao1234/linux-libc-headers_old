@@ -5,7 +5,6 @@
  * ELF register definitions..
  */
 
-#include <asm/ptrace.h>
 
 /* SVR4/i386 ABI (pages 3-31, 3-32) says that when the program
    starts (a register; assume first param register for CRIS)

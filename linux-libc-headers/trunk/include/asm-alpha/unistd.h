@@ -546,7 +546,6 @@ type name (type1 arg1,type2 arg2,type3 arg3,type4 arg4,type5 arg5, type6 arg6)\
 
 #ifdef __KERNEL_SYSCALLS__
 
-#include <linux/string.h>
 #include <linux/signal.h>
 #include <asm/ptrace.h>
 

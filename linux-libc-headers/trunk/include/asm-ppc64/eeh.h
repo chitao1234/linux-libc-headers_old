@@ -25,7 +25,6 @@
 #ifndef _EEH_H
 #define _EEH_H
 
-#include <linux/string.h>
 
 struct pci_dev;
 

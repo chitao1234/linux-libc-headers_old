@@ -105,7 +105,6 @@ struct termio {
 
 #ifdef __KERNEL__
 
-#include <linux/string.h>
 
 /*
  * Translate a "termio" structure into a "termios". Ugh.

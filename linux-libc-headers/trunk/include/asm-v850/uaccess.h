@@ -6,7 +6,6 @@
  */
 
 #include <linux/errno.h>
-#include <linux/string.h>
 
 #include <asm/segment.h>
 #include <asm/machdep.h>

@@ -1,4 +1,4 @@
-/* $Id: elf.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $ */
+/* $Id: elf.h,v 1.2 2003/12/29 00:26:40 mmazur Exp $ */
 #ifndef __ASMSPARC_ELF_H
 #define __ASMSPARC_ELF_H
 
@@ -6,10 +6,6 @@
  * ELF register definitions..
  */
 
-#include <linux/config.h>
-#include <asm/ptrace.h>
-#include <asm/mbus.h>
-#include <asm/uaccess.h>
 
 /*
  * Sparc section types
@@ -163,8 +159,5 @@ typedef struct {
 
 #define ELF_PLATFORM	(NULL)
 
-#ifdef __KERNEL__
-#define SET_PERSONALITY(ex, ibcs2) set_personality((ibcs2)?PER_SVR4:PER_LINUX)
-#endif
 
 #endif /* !(__ASMSPARC_ELF_H) */

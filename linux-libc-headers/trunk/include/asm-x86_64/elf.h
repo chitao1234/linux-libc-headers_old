@@ -5,9 +5,6 @@
  * ELF register definitions..
  */
 
-#include <asm/ptrace.h>
-#include <asm/user.h>
-#include <asm/processor.h>
 
 /* x86-64 relocation types */
 #define R_X86_64_NONE		0	/* No reloc */
@@ -140,16 +137,5 @@ typedef struct user_i387_struct elf_fpregset_t;
 /* I'm not sure if we can use '-' here */
 #define ELF_PLATFORM  ("x86_64")
 
-#ifdef __KERNEL__
-extern void set_personality_64bit(void);
-#define SET_PERSONALITY(ex, ibcs2) set_personality_64bit()
-	
-extern int dump_task_regs (struct task_struct *, elf_gregset_t *);
-extern int dump_task_fpu (struct task_struct *, elf_fpregset_t *);
-
-#define ELF_CORE_COPY_TASK_REGS(tsk, elf_regs) dump_task_regs(tsk, elf_regs)
-#define ELF_CORE_COPY_FPREGS(tsk, elf_fpregs) dump_task_fpu(tsk, elf_fpregs)
-
-#endif
 
 #endif

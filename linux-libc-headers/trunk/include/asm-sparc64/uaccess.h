@@ -1,4 +1,4 @@
-/* $Id: uaccess.h,v 1.2 2003/12/26 19:03:27 mmazur Exp $ */
+/* $Id: uaccess.h,v 1.3 2003/12/29 00:26:41 mmazur Exp $ */
 #ifndef _ASM_UACCESS_H
 #define _ASM_UACCESS_H
 
@@ -8,7 +8,6 @@
 
 #ifdef __KERNEL__
 #include <linux/sched.h>
-#include <linux/string.h>
 #include <asm/a.out.h>
 #include <asm/asi.h>
 #include <asm/system.h>

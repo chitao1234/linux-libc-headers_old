@@ -8,10 +8,6 @@
  *	David Mosberger-Tang <davidm@hpl.hp.com>
  */
 
-#include <linux/config.h>
-
-#include <asm/fpu.h>
-#include <asm/page.h>
 
 /*
  * This is used to ensure we don't load something for the wrong architecture.
@@ -182,76 +178,5 @@ extern void ia64_elf_core_copy_regs (struct pt_regs *src, elf_gregset_t dst);
 #define AT_SYSINFO	32
 #define AT_SYSINFO_EHDR	33
 
-#ifdef __KERNEL__
-struct elf64_hdr;
-extern void ia64_set_personality (struct elf64_hdr *elf_ex, int ibcs2_interpreter);
-#define SET_PERSONALITY(ex, ibcs2)	ia64_set_personality(&(ex), ibcs2)
-
-struct task_struct;
-
-extern int dump_task_regs(struct task_struct *, elf_gregset_t *);
-extern int dump_task_fpu (struct task_struct *, elf_fpregset_t *);
-
-#define ELF_CORE_COPY_TASK_REGS(tsk, elf_gregs) dump_task_regs(tsk, elf_gregs)
-#define ELF_CORE_COPY_FPREGS(tsk, elf_fpregs) dump_task_fpu(tsk, elf_fpregs)
-
-#define GATE_EHDR	((const struct elfhdr *) GATE_ADDR)
-
-#define ARCH_DLINFO								\
-do {										\
-	extern char __kernel_syscall_via_epc[];					\
-	NEW_AUX_ENT(AT_SYSINFO, (unsigned long) __kernel_syscall_via_epc);	\
-	NEW_AUX_ENT(AT_SYSINFO_EHDR, (unsigned long) GATE_EHDR);		\
-} while (0)
-
-
-/*
- * These macros parameterize elf_core_dump in fs/binfmt_elf.c to write out
- * extra segments containing the gate DSO contents.  Dumping its
- * contents makes post-mortem fully interpretable later without matching up
- * the same kernel and hardware config to see what PC values meant.
- * Dumping its extra ELF program headers includes all the other information
- * a debugger needs to easily find how the gate DSO was being used.
- */
-#define ELF_CORE_EXTRA_PHDRS		(GATE_EHDR->e_phnum)
-#define ELF_CORE_WRITE_EXTRA_PHDRS						\
-do {										\
-	const struct elf_phdr *const gate_phdrs =			      \
-		(const struct elf_phdr *) (GATE_ADDR + GATE_EHDR->e_phoff);   \
-	int i;									\
-	Elf64_Off ofs = 0;						      \
-	for (i = 0; i < GATE_EHDR->e_phnum; ++i) {				\
-		struct elf_phdr phdr = gate_phdrs[i];			      \
-		if (phdr.p_type == PT_LOAD) {					\
-			phdr.p_memsz = PAGE_ALIGN(phdr.p_memsz);	      \
-			phdr.p_filesz = phdr.p_memsz;			      \
-			if (ofs == 0) {					      \
-				ofs = phdr.p_offset = offset;		      \
-			offset += phdr.p_filesz;				\
-		}							      \
-		else							      \
-				phdr.p_offset = ofs;			      \
-		}							      \
-		else							      \
-			phdr.p_offset += ofs;					\
-		phdr.p_paddr = 0; /* match other core phdrs */			\
-		DUMP_WRITE(&phdr, sizeof(phdr));				\
-	}									\
-} while (0)
-#define ELF_CORE_WRITE_EXTRA_DATA					\
-do {									\
-	const struct elf_phdr *const gate_phdrs =			      \
-		(const struct elf_phdr *) (GATE_ADDR + GATE_EHDR->e_phoff);   \
-	int i;								\
-	for (i = 0; i < GATE_EHDR->e_phnum; ++i) {			\
-		if (gate_phdrs[i].p_type == PT_LOAD) {			      \
-			DUMP_WRITE((void *) gate_phdrs[i].p_vaddr,	      \
-				   PAGE_ALIGN(gate_phdrs[i].p_memsz));	      \
-			break;						      \
-		}							      \
-	}								\
-} while (0)
-
-#endif /* __KERNEL__ */
 
 #endif /* _ASM_IA64_ELF_H */

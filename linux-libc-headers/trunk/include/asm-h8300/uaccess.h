@@ -6,7 +6,6 @@
  */
 #include <linux/sched.h>
 #include <linux/mm.h>
-#include <linux/string.h>
 
 #include <asm/segment.h>
 

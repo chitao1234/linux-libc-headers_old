@@ -5,10 +5,6 @@
  * ELF register definitions..
  */
 
-#include <linux/config.h>
-#include <asm/ptrace.h>
-#include <asm/user.h>
-
 typedef unsigned long elf_greg_t;
 
 #define ELF_NGREG (sizeof(struct user_regs_struct) / sizeof(elf_greg_t))
@@ -86,9 +82,5 @@ typedef struct user_m68kfp_struct elf_fpregset_t;
    intent than poking at uname or /proc/cpuinfo.  */
 
 #define ELF_PLATFORM  (NULL)
-
-#ifdef __KERNEL__
-#define SET_PERSONALITY(ex, ibcs2) set_personality((ibcs2)?PER_SVR4:PER_LINUX)
-#endif
 
 #endif
