@@ -1,4 +1,4 @@
-/* $Id: unistd.h,v 1.2 2003/12/22 12:02:12 mmazur Exp $ */
+/* $Id: unistd.h,v 1.3 2004/01/21 19:59:58 mmazur Exp $ */
 #ifndef _SPARC64_UNISTD_H
 #define _SPARC64_UNISTD_H
 
@@ -247,9 +247,6 @@
 #define __NR_setfsuid           228 /* Linux Specific                              */
 #define __NR_setfsgid           229 /* Linux Specific                              */
 #define __NR__newselect         230 /* Linux Specific                              */
-#ifdef __KERNEL__
-#define __NR_time		231 /* Linux sparc32                               */
-#endif
 /* #define __NR_oldstat         232    Linux Specific                              */
 #define __NR_stime              233 /* Linux Specific                              */
 #define __NR_statfs64           234 /* Linux Specific                              */
@@ -442,17 +439,6 @@ static __inline__ _syscall3(pid_t,waitpid,pid_t,pid,int *,wait_stat,int,options)
 
 #endif /* __KERNEL_SYSCALLS__ */
 
-#ifdef __KERNEL__
-/* sysconf options, for SunOS compatibility */
-#define   _SC_ARG_MAX             1
-#define   _SC_CHILD_MAX           2
-#define   _SC_CLK_TCK             3
-#define   _SC_NGROUPS_MAX         4
-#define   _SC_OPEN_MAX            5
-#define   _SC_JOB_CONTROL         6
-#define   _SC_SAVED_IDS           7
-#define   _SC_VERSION             8
-#endif
 
 /*
  * "Conditional" syscalls

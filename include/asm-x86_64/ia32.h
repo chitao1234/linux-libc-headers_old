@@ -161,13 +161,6 @@ struct ustat32 {
 
 #define IA32_STACK_TOP IA32_PAGE_OFFSET
 
-#ifdef __KERNEL__
-struct user_desc;
-int do_get_thread_area(struct thread_struct *t, struct user_desc *u_info);
-int do_set_thread_area(struct thread_struct *t, struct user_desc *u_info);
-int ia32_child_tls(struct task_struct *p, struct pt_regs *childregs);
-#endif
-
 #endif /* !CONFIG_IA32_SUPPORT */
  
 #endif 

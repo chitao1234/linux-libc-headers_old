@@ -3,7 +3,6 @@
 
 #include <linux/linkage.h>
 #include <linux/wait.h>
-#include <linux/rwsem.h>
 
 #include <asm/atomic.h>
 

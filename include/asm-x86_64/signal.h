@@ -9,32 +9,11 @@
 /* Avoid too many header ordering problems.  */
 struct siginfo;
 
-#ifdef __KERNEL__
-/* Most things should be clean enough to redefine this at will, if care
-   is taken to make libc match.  */
-
-#define _NSIG		64
-#define _NSIG_BPW	64
-#define _NSIG_WORDS	(_NSIG / _NSIG_BPW)
-
-typedef unsigned long old_sigset_t;		/* at least 32 bits */
-
-typedef struct {
-	unsigned long sig[_NSIG_WORDS];
-} sigset_t;
-
-
-struct pt_regs; 
-asmlinkage int do_signal(struct pt_regs *regs, sigset_t *oldset);
-
-
-#else
 /* Here we must cater to libcs that poke about in kernel headers.  */
 
 #define NSIG		32
 typedef unsigned long sigset_t;
 
-#endif /* __KERNEL__ */
 #endif
 
 #define SIGHUP		 1
@@ -116,20 +95,6 @@ typedef unsigned long sigset_t;
 #define MINSIGSTKSZ	2048
 #define SIGSTKSZ	8192
 
-#ifdef __KERNEL__
-
-/*
- * These values of sa_flags are used only by the kernel as part of the
- * irq handling routines.
- *
- * SA_INTERRUPT is also used by the irq handling routines.
- * SA_SHIRQ is for shared interrupt support on PCI and EISA.
- */
-#define SA_PROBE		SA_ONESHOT
-#define SA_SAMPLE_RANDOM	SA_RESTART
-#define SA_SHIRQ		0x04000000
-#endif
-
 #define SIG_BLOCK          0	/* for blocking signals */
 #define SIG_UNBLOCK        1	/* for unblocking signals */
 #define SIG_SETMASK        2	/* for setting the signal mask */
@@ -158,52 +123,5 @@ typedef struct sigaltstack {
 	int ss_flags;
 	size_t ss_size;
 } stack_t;
-
-#ifdef __KERNEL__
-#include <asm/sigcontext.h>
-
-#undef __HAVE_ARCH_SIG_BITOPS
-#if 0
-
-extern __inline__ void sigaddset(sigset_t *set, int _sig)
-{
-	__asm__("btsq %1,%0" : "=m"(*set) : "Ir"(_sig - 1) : "cc");
-}
-
-extern __inline__ void sigdelset(sigset_t *set, int _sig)
-{
-	__asm__("btrq %1,%0" : "=m"(*set) : "Ir"(_sig - 1) : "cc");
-}
-
-extern __inline__ int __const_sigismember(sigset_t *set, int _sig)
-{
-	unsigned long sig = _sig - 1;
-	return 1 & (set->sig[sig / _NSIG_BPW] >> (sig & ~(_NSIG_BPW-1)));
-}
-
-extern __inline__ int __gen_sigismember(sigset_t *set, int _sig)
-{
-	int ret;
-	__asm__("btq %2,%1\n\tsbbq %0,%0"
-		: "=r"(ret) : "m"(*set), "Ir"(_sig-1) : "cc");
-	return ret;
-}
-
-#define sigismember(set,sig)			\
-	(__builtin_constant_p(sig) ?		\
-	 __const_sigismember((set),(sig)) :	\
-	 __gen_sigismember((set),(sig)))
-
-extern __inline__ int sigfindinword(unsigned long word)
-{
-	__asm__("bsfq %1,%0" : "=r"(word) : "rm"(word) : "cc");
-	return word;
-}
-#endif
-#endif
-
-#define ptrace_signal_deliver(regs, cookie) do { } while (0)
-
-#endif /* __KERNEL__ */
 
 #endif

@@ -1,4 +1,4 @@
-/* $Id: ptrace.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $ */
+/* $Id: ptrace.h,v 1.2 2004/01/21 19:59:58 mmazur Exp $ */
 #ifndef _SPARC64_PTRACE_H
 #define _SPARC64_PTRACE_H
 
@@ -93,14 +93,6 @@ struct sparc_trapf {
 #define TRACEREG32_SZ	sizeof(struct pt_regs32)
 #define STACKFRAME32_SZ	sizeof(struct sparc_stackf32)
 
-#ifdef __KERNEL__
-#define force_successful_syscall_return()	\
-	set_thread_flag(TIF_SYSCALL_SUCCESS)
-#define user_mode(regs) (!((regs)->tstate & TSTATE_PRIV))
-#define instruction_pointer(regs) ((regs)->tpc)
-extern void show_regs(struct pt_regs *);
-#endif
-
 #else /* __ASSEMBLY__ */
 /* For assembly code. */
 #define TRACEREG_SZ		0xa0
@@ -108,10 +100,6 @@ extern void show_regs(struct pt_regs *);
 
 #define TRACEREG32_SZ		0x50
 #define STACKFRAME32_SZ		0x60
-#endif
-
-#ifdef __KERNEL__
-#define STACK_BIAS		2047
 #endif
 
 /* These are for pt_regs. */

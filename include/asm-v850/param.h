@@ -28,9 +28,4 @@
 
 #define MAXHOSTNAMELEN	64	/* max length of hostname */
 
-#ifdef __KERNEL__
-# define USER_HZ	100
-# define CLOCKS_PER_SEC	USER_HZ
-#endif
-
 #endif /* __V850_PARAM_H__ */

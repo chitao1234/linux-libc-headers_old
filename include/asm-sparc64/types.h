@@ -1,4 +1,4 @@
-/* $Id: types.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $ */
+/* $Id: types.h,v 1.2 2004/01/21 19:59:58 mmazur Exp $ */
 #ifndef _SPARC64_TYPES_H
 #define _SPARC64_TYPES_H
 
@@ -32,32 +32,5 @@ typedef __signed__ long __s64;
 typedef unsigned long __u64;
 
 #endif /* __ASSEMBLY__ */
-
-#ifdef __KERNEL__
-
-#define BITS_PER_LONG 64
-
-#ifndef __ASSEMBLY__
-
-typedef __signed__ char s8;
-typedef unsigned char u8;
-
-typedef __signed__ short s16;
-typedef unsigned short u16;
-
-typedef __signed__ int s32;
-typedef unsigned int u32;
-
-typedef __signed__ long s64;
-typedef unsigned long u64;
-
-/* Dma addresses come in generic and 64-bit flavours.  */
-
-typedef u32 dma_addr_t;
-typedef u64 dma64_addr_t;
-
-#endif /* __ASSEMBLY__ */
-
-#endif /* __KERNEL__ */
 
 #endif /* defined(_SPARC64_TYPES_H) */

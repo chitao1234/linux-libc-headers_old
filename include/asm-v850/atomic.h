@@ -25,48 +25,6 @@ typedef struct { int counter; } atomic_t;
 
 #define ATOMIC_INIT(i)	{ (i) }
 
-#ifdef __KERNEL__
-
-#define atomic_read(v)		((v)->counter)
-#define atomic_set(v,i)		(((v)->counter) = (i))
-
-extern __inline__ int atomic_add_return (int i, volatile atomic_t *v)
-{
-	unsigned long flags;
-	int res;
-
-	local_irq_save (flags);
-	res = v->counter + i;
-	v->counter = res;
-	local_irq_restore (flags);
-
-	return res;
-}
-
-static __inline__ int atomic_sub_return (int i, volatile atomic_t *v)
-{
-	unsigned long flags;
-	int res;
-
-	local_irq_save (flags);
-	res = v->counter - i;
-	v->counter = res;
-	local_irq_restore (flags);
-
-	return res;
-}
-
-static __inline__ void atomic_clear_mask (unsigned long mask, unsigned long *addr)
-{
-	unsigned long flags;
-
-	local_irq_save (flags);
-	*addr &= ~mask;
-	local_irq_restore (flags);
-}
-
-#endif
-
 #define atomic_add(i, v)	atomic_add_return ((i), (v))
 #define atomic_sub(i, v)	atomic_sub_return ((i), (v))
 
