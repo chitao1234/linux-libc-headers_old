@@ -29,7 +29,7 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- * Version: $Id: quota.h,v 1.3 2004/01/15 20:19:03 mmazur Exp $
+ * Version: $Id: quota.h,v 1.4 2004/01/29 21:08:06 qboosh Exp $
  */
 
 #ifndef _LINUX_QUOTA_
@@ -43,9 +43,6 @@
 
 typedef __kernel_uid32_t qid_t; /* Type in which we store ids in memory */
 typedef __u64 qsize_t;          /* Type in which we store sizes */
-
-extern spinlock_t dq_list_lock;
-extern spinlock_t dq_data_lock;
 
 /* Size of blocks in which are counted size limits */
 #define QUOTABLOCK_BITS 10
