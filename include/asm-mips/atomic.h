@@ -16,6 +16,9 @@
 
 
 typedef struct { volatile int counter; } atomic_t;
+
+#ifdef __mips64
 typedef struct { volatile __s64 counter; } atomic64_t;
+#endif
 
 #endif /* _ASM_ATOMIC_H */
