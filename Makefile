@@ -13,6 +13,7 @@ release: VERSION
 	[ -d release ] || mkdir release
 	cp -a include .tmp/${name}
 	rm -rf .tmp/${name}/include/asm-generic
+	TZ=UTC svn log -v --xml | aux/svn2log.py -x ChangeLog -u aux/users -F
 	cp ChangeLog LICENSE README AUTHORS FAQ .tmp/${name}/doc
 	find .tmp -name '*~'|xargs rm -f
 	find .tmp -name .svn|xargs rm -rf
