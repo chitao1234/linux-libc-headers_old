@@ -14,7 +14,7 @@
 #define __ARCH_SI_PREAMBLE_SIZE (4 * sizeof(int))
 #endif
 
-#include <asm-generic/siginfo.h>
+#include <linux/siginfo.h>
 
 /*
  * SIGILL si_codes

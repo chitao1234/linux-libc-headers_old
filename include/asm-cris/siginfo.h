@@ -1,6 +1,6 @@
 #ifndef _CRIS_SIGINFO_H
 #define _CRIS_SIGINFO_H
 
-#include <asm-generic/siginfo.h>
+#include <linux/siginfo.h>
 
 #endif

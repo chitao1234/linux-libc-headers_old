@@ -4,7 +4,7 @@
 #define HAVE_ARCH_SIGINFO_T
 #define HAVE_ARCH_COPY_SIGINFO
 
-#include <asm-generic/siginfo.h>
+#include <linux/siginfo.h>
 
 typedef struct siginfo {
 	int si_signo;
@@ -67,26 +67,7 @@ typedef struct siginfo {
  * How these fields are to be accessed.
  */
 #undef si_uid
-#ifdef __KERNEL__
-#define si_uid		_sifields._kill._uid32
-#define si_uid16	_sifields._kill._uid
-#else
 #define si_uid		_sifields._kill._uid
-#endif
 
-#ifdef __KERNEL__
-
-#include <linux/string.h>
-
-static inline void copy_siginfo(struct siginfo *to, struct siginfo *from)
-{
-	if (from->si_code < 0)
-		memcpy(to, from, sizeof(*to));
-	else
-		/* _sigchld is currently the largest know union member */
-		memcpy(to, from, 3*sizeof(int) + sizeof(from->_sifields._sigchld));
-}
-
-#endif /* __KERNEL__ */
 
 #endif

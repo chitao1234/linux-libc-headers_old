@@ -11,6 +11,6 @@
 #define __ARCH_SI_PREAMBLE_SIZE	(4 * sizeof(int))
 #define SI_PAD_SIZE32		((SI_MAX_SIZE/sizeof(int)) - 3)
 
-#include <asm-generic/siginfo.h>
+#include <linux/siginfo.h>
 
 #endif /* _PPC64_SIGINFO_H */

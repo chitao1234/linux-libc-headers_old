@@ -18,13 +18,13 @@
 #define HAVE_ARCH_SIGEVENT_T
 
 /*
- * We duplicate the generic versions - <asm-generic/siginfo.h> is just borked
+ * We duplicate the generic versions - <linux/siginfo.h> is just borked
  * by design ...
  */
 #define HAVE_ARCH_COPY_SIGINFO
 struct siginfo;
 
-#include <asm-generic/siginfo.h>
+#include <linux/siginfo.h>
 
 /* This structure matches the 32/n32 ABIs for source compatibility but
    has Linux extensions.  */
@@ -95,77 +95,6 @@ typedef struct siginfo {
 	} _sifields;
 } siginfo_t;
 
-#if defined(__KERNEL__) && defined(CONFIG_COMPAT)
-
-#include <linux/compat.h>
-
-#define SI_PAD_SIZE32   ((SI_MAX_SIZE/sizeof(int)) - 3)
-
-typedef union sigval32 {
-	int sival_int;
-	s32 sival_ptr;
-} sigval_t32;
-
-typedef struct siginfo32 {
-	int si_signo;
-	int si_code;
-	int si_errno;
-
-	union {
-		int _pad[SI_PAD_SIZE32];
-
-		/* kill() */
-		struct {
-			compat_pid_t _pid;	/* sender's pid */
-			compat_uid_t _uid;	/* sender's uid */
-		} _kill;
-
-		/* SIGCHLD */
-		struct {
-			compat_pid_t _pid;	/* which child */
-			compat_uid_t _uid;	/* sender's uid */
-			compat_clock_t _utime;
-			int _status;		/* exit code */
-			compat_clock_t _stime;
-		} _sigchld;
-
-		/* IRIX SIGCHLD */
-		struct {
-			compat_pid_t _pid;	/* which child */
-			compat_clock_t _utime;
-			int _status;		/* exit code */
-			compat_clock_t _stime;
-		} _irix_sigchld;
-
-		/* SIGILL, SIGFPE, SIGSEGV, SIGBUS */
-		struct {
-			s32 _addr; /* faulting insn/memory ref. */
-		} _sigfault;
-
-		/* SIGPOLL, SIGXFSZ (To do ...)  */
-		struct {
-			int _band;	/* POLL_IN, POLL_OUT, POLL_MSG */
-			int _fd;
-		} _sigpoll;
-
-		/* POSIX.1b timers */
-		struct {
-			unsigned int _timer1;
-			unsigned int _timer2;
-		} _timer;
-
-		/* POSIX.1b signals */
-		struct {
-			compat_pid_t _pid;	/* sender's pid */
-			compat_uid_t _uid;	/* sender's uid */
-			sigval_t32 _sigval;
-		} _rt;
-
-	} _sifields;
-} siginfo_t32;
-
-#endif /* defined(__KERNEL__) && defined(CONFIG_COMPAT) */
-
 /*
  * si_code values
  * Again these have been choosen to be IRIX compatible.
@@ -209,22 +138,5 @@ typedef struct sigevent {
 	} _sigev_un;
 } sigevent_t;
 
-#ifdef __KERNEL__
-
-/*
- * Duplicated here because of <asm-generic/siginfo.h> braindamage ...
- */
-#include <linux/string.h>
-
-static inline void copy_siginfo(struct siginfo *to, struct siginfo *from)
-{
-	if (from->si_code < 0)
-		memcpy(to, from, sizeof(*to));
-	else
-		/* _sigchld is currently the largest know union member */
-		memcpy(to, from, 3*sizeof(int) + sizeof(from->_sifields._sigchld));
-}
-
-#endif
 
 #endif /* _ASM_SIGINFO_H */

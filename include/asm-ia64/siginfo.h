@@ -14,7 +14,7 @@
 #define HAVE_ARCH_COPY_SIGINFO
 #define HAVE_ARCH_COPY_SIGINFO_TO_USER
 
-#include <asm-generic/siginfo.h>
+#include <linux/siginfo.h>
 
 typedef struct siginfo {
 	int si_signo;
@@ -121,21 +121,5 @@ typedef struct siginfo {
 #undef NSIGTRAP
 #define NSIGTRAP	4
 
-#ifdef __KERNEL__
-#include <linux/string.h>
-
-static inline void
-copy_siginfo (siginfo_t *to, siginfo_t *from)
-{
-	if (from->si_code < 0)
-		memcpy(to, from, sizeof(siginfo_t));
-	else
-		/* _sigchld is currently the largest know union member */
-		memcpy(to, from, 4*sizeof(int) + sizeof(from->_sifields._sigchld));
-}
-
-extern int copy_siginfo_from_user(siginfo_t *to, siginfo_t *from);
-
-#endif /* __KERNEL__ */
 
 #endif /* _ASM_IA64_SIGINFO_H */
