@@ -3,9 +3,6 @@
 
 /* Sparc can't handle unaligned accesses. */
 
-#include <linux/string.h>
-
-
 /* Use memmove here, so gcc does not insert a __builtin_memcpy. */
 
 #define get_unaligned(ptr) \

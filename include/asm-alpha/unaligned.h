@@ -1,6 +1,8 @@
 #ifndef __ALPHA_UNALIGNED_H
 #define __ALPHA_UNALIGNED_H
 
+#include <linux/types.h>
+
 /* 
  * The main single-value unaligned transfer routines.
  */
