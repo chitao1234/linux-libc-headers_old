@@ -10,7 +10,7 @@ install:
 release: VERSION
 	rm -rf .tmp
 	mkdir -p .tmp/${name}
-	mkdir release
+	[ -d release ] || mkdir release
 	cp -a include .tmp/${name}
 	find .tmp -name '*~'|xargs rm -f
 	find .tmp -name CVS|xargs rm -rf
