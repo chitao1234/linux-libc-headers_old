@@ -152,10 +152,10 @@
 #define __NR_adjtimex			(__NR_SYSCALL_BASE+124)
 #define __NR_mprotect			(__NR_SYSCALL_BASE+125)
 #define __NR_sigprocmask		(__NR_SYSCALL_BASE+126)
-					/* 127 was sys_create_module */
+#define __NR_create_module	        (__NR_SYSCALL_BASE+127)
 #define __NR_init_module		(__NR_SYSCALL_BASE+128)
 #define __NR_delete_module		(__NR_SYSCALL_BASE+129)
-					/* 130 was sys_get_kernel_syms */
+#define __NR_get_kernel_syms		(__NR_SYSCALL_BASE+130)
 #define __NR_quotactl			(__NR_SYSCALL_BASE+131)
 #define __NR_getpgid			(__NR_SYSCALL_BASE+132)
 #define __NR_fchdir			(__NR_SYSCALL_BASE+133)
@@ -192,7 +192,7 @@
 #define __NR_setresuid			(__NR_SYSCALL_BASE+164)
 #define __NR_getresuid			(__NR_SYSCALL_BASE+165)
 					/* 166 was sys_vm86 */
-					/* 167 was sys_query_module */
+#define __NR_query_module		(__NR_SYSCALL_BASE+167)
 #define __NR_poll			(__NR_SYSCALL_BASE+168)
 #define __NR_nfsservctl			(__NR_SYSCALL_BASE+169)
 #define __NR_setresgid			(__NR_SYSCALL_BASE+170)
