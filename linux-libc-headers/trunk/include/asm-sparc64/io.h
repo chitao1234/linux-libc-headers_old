@@ -1,4 +1,4 @@
-/* $Id: io.h,v 1.2 2004/01/21 19:59:58 mmazur Exp $ */
+/* $Id: io.h,v 1.3 2004/02/10 20:08:24 mmazur Exp $ */
 #ifndef __SPARC64_IO_H
 #define __SPARC64_IO_H
 
@@ -19,7 +19,7 @@ extern unsigned long bus_to_virt_not_defined_use_pci_map(volatile void *addr);
 #define bus_to_virt bus_to_virt_not_defined_use_pci_map
 
 /* BIO layer definitions. */
-extern unsigned long phys_base;
+extern unsigned long phys_base, kern_base, kern_size;
 #define page_to_phys(page)	((((page) - mem_map) << PAGE_SHIFT)+phys_base)
 #define BIO_VMERGE_BOUNDARY	8192
 

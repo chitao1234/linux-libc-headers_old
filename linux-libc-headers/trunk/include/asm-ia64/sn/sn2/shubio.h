@@ -1,5 +1,4 @@
-/* $Id: shubio.h,v 1.2 2004/01/21 17:40:47 mmazur Exp $
- *
+/*
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive
  * for more details.
@@ -219,8 +218,6 @@
 #define    IIO_IPCR                  0x00430000    /* IO Performance Control */
 #define    IIO_IPPR                  0x00430008    /* IO Performance Profiling */
 
-
-#ifndef __ASSEMBLY__
 
 /************************************************************************
  *                                                                      *
@@ -2844,8 +2841,6 @@ typedef union ii_ippr_u {
 	} ii_ippr_fld_s;
 } ii_ippr_u_t;
 
-
-#endif /* __ASSEMBLY__ */
 
 /**************************************************************************
  *                                                                        *

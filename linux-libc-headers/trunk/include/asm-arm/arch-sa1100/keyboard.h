@@ -10,7 +10,6 @@
 
 extern void gc_kbd_init_hw(void);
 extern void smartio_kbd_init_hw(void);
-extern void cerf_kbd_init_hw(void);
 
 static inline void kbd_init_hw(void)
 {
@@ -18,10 +17,6 @@ static inline void kbd_init_hw(void)
 		gc_kbd_init_hw();
 	if (machine_is_adsbitsy())
 		smartio_kbd_init_hw();
-#ifdef CONFIG_SA1100_CERF_CPLD
-	if (machine_is_cerf())
-		cerf_kbd_init_hw();
-#endif
 }
 
 #endif  /* _SA1100_KEYBOARD_H */

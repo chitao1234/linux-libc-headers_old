@@ -1,4 +1,4 @@
-/* $Id: floppy.h,v 1.3 2004/01/15 20:18:58 mmazur Exp $
+/* $Id: floppy.h,v 1.4 2004/02/10 20:08:24 mmazur Exp $
  * asm-sparc64/floppy.h: Sparc specific parts of the Floppy driver.
  *
  * Copyright (C) 1996 David S. Miller (davem@caip.rutgers.edu)
@@ -319,10 +319,9 @@ static void sun_pci_fd_lde_broken_outb(unsigned char val, unsigned long port)
 
 static void sun_pci_fd_enable_dma(void)
 {
-	if ((NULL == sun_pci_dma_pending.buf) 	||
+	BUG_ON((NULL == sun_pci_dma_pending.buf) 	||
 	    (0	  == sun_pci_dma_pending.len) 	||
-	    (0	  == sun_pci_dma_pending.direction))
-		BUG();
+	    (0	  == sun_pci_dma_pending.direction));
 
 	sun_pci_dma_current.buf = sun_pci_dma_pending.buf;
 	sun_pci_dma_current.len = sun_pci_dma_pending.len;

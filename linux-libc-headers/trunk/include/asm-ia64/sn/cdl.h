@@ -1,5 +1,4 @@
-/* $Id: cdl.h,v 1.1 2003/12/15 18:47:01 mmazur Exp $
- *
+/*
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive
  * for more details.
@@ -8,8 +7,6 @@
  */
 #ifndef _ASM_IA64_SN_CDL_H
 #define _ASM_IA64_SN_CDL_H
-
-#include <asm/sn/sgi.h>
 
 struct cdl {
 	int part_num;			/* Part part number */

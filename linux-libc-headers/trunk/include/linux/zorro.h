@@ -1,7 +1,7 @@
 /*
  *  linux/zorro.h -- Amiga AutoConfig (Zorro) Bus Definitions
  *
- *  Copyright (C) 1995--2000 Geert Uytterhoeven
+ *  Copyright (C) 1995--2003 Geert Uytterhoeven
  *
  *  This file is subject to the terms and conditions of the GNU General Public
  *  License.  See the file COPYING in the main directory of this archive
@@ -12,6 +12,9 @@
 #define _LINUX_ZORRO_H
 
 #ifndef __ASSEMBLY__
+
+#include <linux/device.h>
+
 
     /*
      *  Each Zorro board has a 32-bit ID of the form
@@ -96,17 +99,17 @@ struct ExpansionRom {
 #define ERTF_MEMLIST	(1<<5)
 
 struct ConfigDev {
-    struct Node 	cd_Node;
-    __u8  		cd_Flags;	/* (read/write) */
-    __u8  		cd_Pad; 	/* reserved */
-    struct ExpansionRom cd_Rom; 	/* copy of board's expansion ROM */
+    struct Node		cd_Node;
+    __u8		cd_Flags;	/* (read/write) */
+    __u8		cd_Pad;		/* reserved */
+    struct ExpansionRom cd_Rom;		/* copy of board's expansion ROM */
     void		*cd_BoardAddr;	/* where in memory the board was placed */
-    __u32 		cd_BoardSize;	/* size of board in bytes */
-    __u16  		cd_SlotAddr;	/* which slot number (PRIVATE) */
-    __u16  		cd_SlotSize;	/* number of slots (PRIVATE) */
+    __u32		cd_BoardSize;	/* size of board in bytes */
+    __u16		cd_SlotAddr;	/* which slot number (PRIVATE) */
+    __u16		cd_SlotSize;	/* number of slots (PRIVATE) */
     void		*cd_Driver;	/* pointer to node of driver */
     struct ConfigDev	*cd_NextCD;	/* linked list of drivers to config */
-    __u32 		cd_Unused[4];	/* for whatever the driver wants */
+    __u32		cd_Unused[4];	/* for whatever the driver wants */
 } __attribute__ ((packed));
 
 #else /* __ASSEMBLY__ */
@@ -149,6 +152,6 @@ CD_sizeof	= CD_Unused+(4*4)
 #ifndef __ASSEMBLY__
 
 #define ZORRO_NUM_AUTO		16
-
+#endif
 
 #endif /* _LINUX_ZORRO_H */

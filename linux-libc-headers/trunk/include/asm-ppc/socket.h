@@ -51,4 +51,6 @@
 
 #define SO_ACCEPTCONN		30
 
+#define SO_PEERSEC     31
+
 #endif /* _ASM_SOCKET_H */

@@ -1,5 +1,4 @@
-/* $Id: bridge.h,v 1.2 2004/01/15 20:18:40 mmazur Exp $
- *
+/*
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive
  * for more details.
@@ -37,7 +36,6 @@
 #include <asm/sn/xtalk/xwidget.h>
 #include <asm/sn/pci/pic.h>
 
-extern int io_get_sh_swapper(nasid_t);
 #define BRIDGE_REG_GET32(reg) \
                 __swab32( *(volatile uint32_t *) (((uint64_t)reg)^4) )
 
@@ -46,11 +44,11 @@ extern int io_get_sh_swapper(nasid_t);
 
 /* I/O page size */
 
-#if _PAGESZ == 4096
+#if PAGE_SIZE == 4096
 #define IOPFNSHIFT		12	/* 4K per mapped page */
 #else
 #define IOPFNSHIFT		14	/* 16K per mapped page */
-#endif				/* _PAGESZ */
+#endif				/* PAGE_SIZE */
 
 #define IOPGSIZE		(1 << IOPFNSHIFT)
 #define IOPG(x)			((x) >> IOPFNSHIFT)
@@ -916,12 +914,8 @@ typedef volatile struct bridge_s {
 
 #define PCIBR_TYPE1_CFG(ps)         PCIBRIDGE_TYPE1_CFG((ps)->bs_busnum)
 #define PCIBR_BUS_TYPE0_CFG_DEV0(ps) PCIBR_TYPE0_CFG_DEV(ps, 0)
-#define PCIBR_TYPE0_CFG_DEV(ps, s) \
-    ((IS_PIC_SOFT(ps)) ? PCIBRIDGE_TYPE0_CFG_DEV((ps)->bs_busnum, s+1) : \
-		  	     PCIBRIDGE_TYPE0_CFG_DEV((ps)->bs_busnum, s))
-#define PCIBR_BUS_TYPE0_CFG_DEVF(ps,s,f) \
-    ((IS_PIC_SOFT(ps)) ? PCIBRIDGE_TYPE0_CFG_DEVF((ps)->bs_busnum,(s+1),f) : \
-			     PCIBRIDGE_TYPE0_CFG_DEVF((ps)->bs_busnum,s,f))
+#define PCIBR_TYPE0_CFG_DEV(ps, s) PCIBRIDGE_TYPE0_CFG_DEV((ps)->bs_busnum, s+1)
+#define PCIBR_BUS_TYPE0_CFG_DEVF(ps,s,f) PCIBRIDGE_TYPE0_CFG_DEVF((ps)->bs_busnum,(s+1),f)
 
 #endif				/* LANGUAGE_C */
 

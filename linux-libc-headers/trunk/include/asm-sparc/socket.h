@@ -1,4 +1,4 @@
-/* $Id: socket.h,v 1.2 2004/01/21 19:54:45 mmazur Exp $ */
+/* $Id: socket.h,v 1.3 2004/02/10 20:08:24 mmazur Exp $ */
 #ifndef _ASM_SOCKET_H
 #define _ASM_SOCKET_H
 
@@ -44,6 +44,8 @@
 #define SO_PEERNAME		0x001c
 #define SO_TIMESTAMP		0x001d
 #define SCM_TIMESTAMP		SO_TIMESTAMP
+
+#define SO_PEERSEC     0x100e
 
 /* Security levels - as per NRL IPv6 - don't actually do anything */
 #define SO_SECURITY_AUTHENTICATION		0x5001

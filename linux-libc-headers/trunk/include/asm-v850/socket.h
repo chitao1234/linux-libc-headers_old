@@ -45,4 +45,6 @@
 
 #define SO_ACCEPTCONN		30
 
+#define SO_PEERSEC     31
+
 #endif /* __V850_SOCKET_H__ */
