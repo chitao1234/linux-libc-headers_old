@@ -3,16 +3,46 @@ in rm file... or better: error "What the fuck are you trying to include in
 user space"
 
 linux:
-- consider removal: ac97_codec.h, bootmem.h, 
+- consider removal: ac97_codec.h, bootmem.h, elevator.h, mtd/gen_probe.h,
+  pagemap.h, rbtree.h, spinlock.h, sunrpc/types.h, vmalloc.h
 - Removal of __KERNEL__: acct.h, acpi.h, adb.h, adfs_fs.h, agpgart.h (whatch it
   !!!! it's #ifNdef, else), apm_bios.h, arcdevice.h, atalk.h, atm.h, atm_tcp.h,
   atmarp.h, atmclip.h, atmdev.h (!ifNdef), auto_fs.h, bfs_fs.h, binfmts.h,
-  blkpg.h, capability.h, capi.h (!ifNdef)
+  blkpg.h, capability.h, capi.h (!ifNdef), cdrom.h (!ifNdef), coda.h, 
+  coda_fs_i.h, concap.h, config.h, cramfs_fs.h (!ifNdef), cuda.h, cyclades.h,
+  cyclomx.h, dcache.h, dio.h, divert.h, elfcore.h (!ifNdef), errno.h, 
+  errqueue.h, etherdevice.h, ethtool.h, ext2_fs.h, fb.h, fcdevice.h, fcntl.h
+  fd.h, fddidevice.h, filter.h, fs.h, fs_struct.h, ftape.h, genhd.h, 
+  hayesesp.h... oh fuck it... there are just too many files... will check it
+  later
 - acpi.h: file changed. Unpatchable.
 - amigaffs.h: didn't add MIN macro. Dunno what it's for
 - auto_fs.h: check archs
 - blkdev.h: changes too big
-
+- defvs.h, devfs_fs_kernel.h: didn't apply patches... look wierd
+- fsfilter.h: did not add this file... dunno what it's for
+- genhd.h: changes ignored, but should be kept in mind... look interesting
+- highmem.h: changes seem dangerous... not applying
+- hostfs*.h: addition ignored
+- i2c* and i2o*: changes ignored... probably should be kernel synced
+- ide.h: changes ignored... dunno what they're for
+- add intermezzo and other fs's?
+- irda.h: changes look dangerous... ignored
+- lockd/* mostly ignored
+- major.h: changes ignored
+- module.h: I don't want to touch that
+- mtd/*: changes ignored
+- didn't touch netfilter
+- nfs.h: exporting __KERNEL__ outside... not so sure about it
+- auth.h: exporting __KERNEL__ outside... not so sure about it
+- cache.h: exporting __KERNEL__ outside... not so sure about it
+- nfsd/*: exporting __KERNEL__ outside... not so sure about it
+- raid/*: ignored
+- multiple small changes ignored: mostly defines
+- sunrpc/*: changes ignored
+- swapctl.h: changes ignored
+- udfs*: changes ignored
+- vtbuffer.h: dunno what changes do
 
 all-asms:
 - fcntl.h: switch back for O_DIRECT from 02000000 to 040000 ignored;
