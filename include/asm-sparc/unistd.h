@@ -470,9 +470,9 @@ asmlinkage unsigned long sys_mmap2(
 				unsigned long fd, unsigned long pgoff);
 struct sigaction;
 asmlinkage long sys_rt_sigaction(int sig,
-				const struct sigaction __user *act,
-				struct sigaction __user *oact,
-				void __user *restorer,
+				const struct sigaction *act,
+				struct sigaction *oact,
+				void *restorer,
 				size_t sigsetsize);
 
 #endif /* __KERNEL_SYSCALLS__ */
