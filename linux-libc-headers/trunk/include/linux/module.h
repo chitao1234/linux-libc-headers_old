@@ -10,7 +10,6 @@
 #include <linux/cache.h>
 #include <linux/kmod.h>
 #include <linux/stringify.h>
-#include <linux/kobject.h>
 #include <linux/moduleparam.h>
 
 
