@@ -15,7 +15,7 @@
 #include <linux/sem.h>
 #include <linux/signal.h>
 #include <linux/securebits.h>
-#include <linux/fs_struct.h>
+#include <linux/fs.h>
 #include <linux/completion.h>
 #include <linux/pid.h>
 
