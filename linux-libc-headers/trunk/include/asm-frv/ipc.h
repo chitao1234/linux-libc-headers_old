@@ -7,7 +7,7 @@
  * See arch/frv/kernel/sys_frv.c for ugly details..
  */
 struct ipc_kludge {
-	struct msgbuf __user *msgp;
+	struct msgbuf *msgp;
 	long msgtyp;
 };
 
