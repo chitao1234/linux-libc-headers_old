@@ -222,7 +222,7 @@ typedef unsigned char	byte;	/* used everywhere */
  * allowing each to have about 256 entries (8 bytes each) from this.
  */
 #define PRD_BYTES       8
-#define PRD_ENTRIES     (PAGE_SIZE / (2 * PRD_BYTES))
+#define PRD_ENTRIES	256
 
 /*
  * Some more useful definitions
@@ -549,6 +549,10 @@ typedef union {
 #endif
 	} b;
 } atapi_error_t;
+
+#ifdef CONFIG_BLK_DEV_IDEPCI
+void ide_pci_create_host_proc(const char *, get_info_t *);
+#endif
 
 /*
  * ATAPI floppy Drive Select Register

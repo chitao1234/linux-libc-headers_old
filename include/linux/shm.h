@@ -2,6 +2,7 @@
 #define _LINUX_SHM_H_
 
 #include <linux/ipc.h>
+#include <linux/errno.h>
 #include <asm/page.h>
 
 /*

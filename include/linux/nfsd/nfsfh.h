@@ -60,8 +60,9 @@ struct nfs_fhbase_old {
  *     0  - 4 byte device id (ms-2-bytes major, ls-2-bytes minor), 4byte inode number
  *        NOTE: we cannot use the kdev_t device id value, because kdev_t.h
  *              says we mustn't.  We must break it up and reassemble.
- *  Possible future encodings:
  *     1  - 4 byte user specified identifier
+ *     2  - 4 byte major, 4 byte minor, 4 byte inode number - DEPRECATED
+ *     3  - 4 byte device id, encoded for user-space, 4 byte inode number
  *
  * The fileid_type identified how the file within the filesystem is encoded.
  * This is (will be) passed to, and set by, the underlying filesystem if it supports
@@ -108,6 +109,7 @@ struct knfsd_fh {
 #define	fh_auth_type		fh_base.fh_new.fb_auth_type
 #define	fh_fileid_type		fh_base.fh_new.fb_fileid_type
 #define	fh_auth			fh_base.fh_new.fb_auth
+#define	fh_fsid			fh_base.fh_new.fb_auth
 
 
 #endif /* _LINUX_NFSD_FH_H */

@@ -1,4 +1,4 @@
-#define acornfb_valid_pixrate(rate) (rate >= 39325 && rate <= 40119)
+#define acornfb_valid_pixrate(var) (var->pixclock >= 39325 && var->pixclock <= 40119)
 
 static inline void
 acornfb_vidc20_find_rates(struct vidc_timing *vidc,
