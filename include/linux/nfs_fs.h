@@ -10,7 +10,6 @@
 #define _LINUX_NFS_FS_H
 
 #include <linux/in.h>
-#include <linux/rwsem.h>
 #include <linux/wait.h>
 #include <linux/uio.h>
 
