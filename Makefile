@@ -13,10 +13,10 @@ release: VERSION
 	[ -d release ] || mkdir release
 	cp -a include .tmp/${name}
 	rm -rf .tmp/${name}/include/asm-generic
+	cp ChangeLog LICENSE README AUTHORS FAQ .tmp/${name}/doc
 	find .tmp -name '*~'|xargs rm -f
 	find .tmp -name CVS|xargs rm -rf
 	find .tmp -type d -empty|xargs rmdir
-	cp ChangeLog LICENSE README AUTHORS FAQ .tmp/${name}/doc
 	tar -cf release/${name}.tar.bz2 --bzip2 -C .tmp ${name}
 	rm -rf .tmp
 
