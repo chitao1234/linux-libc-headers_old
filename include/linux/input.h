@@ -56,10 +56,13 @@ struct input_absinfo {
 
 #define EVIOCGVERSION		_IOR('E', 0x01, int)			/* get driver version */
 #define EVIOCGID		_IOR('E', 0x02, struct input_id)	/* get device ID */
+#define EVIOCGREP		_IOR('E', 0x03, int[2])			/* [<2.6] get repeat settings */
+#define EVIOCSREP		_IOW('E', 0x03, int[2])			/* [<2.6] get repeat settings */
 #define EVIOCGKEYCODE		_IOR('E', 0x04, int[2])			/* get keycode */
 #define EVIOCSKEYCODE		_IOW('E', 0x04, int[2])			/* set keycode */
-
+#define EVIOCGKEY		_IOR('E', 0x05, int[2])			/* [<2.6] get key value */
 #define EVIOCGNAME(len)		_IOC(_IOC_READ, 'E', 0x06, len)		/* get device name */
+#define EVIOCGBUS		_IOR('E', 0x07, __s16[4])		/* [<2.6 ONLY] get bus address */
 #define EVIOCGPHYS(len)		_IOC(_IOC_READ, 'E', 0x07, len)		/* get physical location */
 #define EVIOCGUNIQ(len)		_IOC(_IOC_READ, 'E', 0x08, len)		/* get unique identifier */
 
@@ -73,6 +76,8 @@ struct input_absinfo {
 
 #define EVIOCSFF		_IOC(_IOC_WRITE, 'E', 0x80, sizeof(struct ff_effect))	/* send a force effect to a force feedback device */
 #define EVIOCRMFF		_IOW('E', 0x81, int)			/* Erase a force effect */
+#define EVIOCSGAIN		_IOW('E', 0x82, unsigned short)		/* [<2.6] Set overall gain */
+#define EVIOCSAUTOCENTER	_IOW('E', 0x83, unsigned short)		/* [<2.6] Enable or disable auto-centering */
 #define EVIOCGEFFECTS		_IOR('E', 0x84, int)			/* Report number of effects playable at the same time */
 
 #define EVIOCGRAB		_IOW('E', 0x90, int)			/* Grab/Release device */
@@ -81,6 +86,7 @@ struct input_absinfo {
  * Event types
  */
 
+#define EV_RST			0x00		/* [<2.6] */
 #define EV_SYN			0x00
 #define EV_KEY			0x01
 #define EV_REL			0x02
@@ -704,6 +710,21 @@ struct ff_effect {
 		struct ff_rumble_effect rumble;
 	} u;
 };
+
+/*
+ * Buttons that can trigger effects.  Use for example FF_BTN(BTN_TRIGGER) to
+ * access the bitmap.
+ */
+
+#define FF_BTN(x)	((x) - BTN_MISC + FF_BTN_OFFSET)
+#define FF_BTN_OFFSET	0x00
+
+/*
+ * Force feedback axis mappings. Use FF_ABS() to access the bitmap.
+ */
+
+#define FF_ABS(x)	((x) + FF_ABS_OFFSET)
+#define FF_ABS_OFFSET	0x40
 
 /*
  * Force feedback effect types
