@@ -80,6 +80,8 @@
 #define	IPOPT_TS_TSANDADDR	1		/* timestamps and addresses */
 #define	IPOPT_TS_PRESPEC	3		/* specified modules only */
 
+#ifndef __GLIBC__
+
 struct iphdr {
 #if defined(__LITTLE_ENDIAN)
 	__u8	ihl:4,
@@ -110,6 +112,8 @@ struct ip_auth_hdr {
 	__u32 seq_no;		/* Sequence number */
 	__u8  auth_data[0];	/* Variable len but >=4. Mind the 64 bit alignment! */
 };
+
+#endif
 
 struct ip_esp_hdr {
 	__u32 spi;
