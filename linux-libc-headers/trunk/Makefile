@@ -15,8 +15,7 @@ release: VERSION
 	rm -rf .tmp/${name}/include/asm-generic
 	cp ChangeLog LICENSE README AUTHORS FAQ .tmp/${name}/doc
 	find .tmp -name '*~'|xargs rm -f
-	find .tmp -name CVS|xargs rm -rf
-	find .tmp -type d -empty|xargs rmdir
+	find .tmp -name .svn|xargs rm -rf
 	find .tmp -type d|xargs chmod a+rx
 	chmod a+r -R .tmp
 	tar -cf release/${name}.tar.bz2 --bzip2 -C .tmp ${name}
