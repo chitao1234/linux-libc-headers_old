@@ -12,7 +12,6 @@
 #include <asm/page.h>
 #include <asm/ptrace.h>
 
-#include <linux/smp.h>
 #include <linux/sem.h>
 #include <linux/signal.h>
 #include <linux/securebits.h>
