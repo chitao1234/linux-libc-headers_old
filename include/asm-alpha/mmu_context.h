@@ -8,7 +8,6 @@
  */
 
 #include <asm/system.h>
-#include <asm/machvec.h>
 
 /*
  * Force a context reload. This is needed when we change the page

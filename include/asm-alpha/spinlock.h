@@ -3,7 +3,6 @@
 
 #include <asm/system.h>
 #include <linux/kernel.h>
-#include <asm/current.h>
 
 
 /*
