@@ -1,4 +1,4 @@
-/* $Id: a.out.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $ */
+/* $Id: a.out.h,v 1.2 2004/01/21 19:54:45 mmazur Exp $ */
 #ifndef __SPARC_A_OUT_H__
 #define __SPARC_A_OUT_H__
 
@@ -86,13 +86,5 @@ struct relocation_info /* used when header.a_machtype == M_SPARC */
 };
 
 #define N_RELOCATION_INFO_DECLARED 1
-
-#ifdef __KERNEL__
-
-#include <asm/page.h>
-
-#define STACK_TOP	(PAGE_OFFSET - PAGE_SIZE)
-
-#endif /* __KERNEL__ */
 
 #endif /* __SPARC_A_OUT_H__ */

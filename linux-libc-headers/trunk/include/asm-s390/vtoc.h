@@ -1,4 +1,3 @@
-#ifndef __KERNEL__
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
@@ -15,7 +14,6 @@
 #include <linux/hdreg.h>
 #include <linux/version.h>
 #include <asm/dasd.h>
-#endif
 
 
 #define LINE_LENGTH 80

@@ -455,11 +455,6 @@ struct user_regs_struct
 	/* Used to give failing instruction back to user for ieee exceptions */
 };
 
-#ifdef __KERNEL__
-#define user_mode(regs) (((regs)->psw.mask & PSW_MASK_PSTATE) != 0)
-#define instruction_pointer(regs) ((regs)->psw.addr & PSW_ADDR_INSN)
-extern void show_regs(struct pt_regs * regs);
-#endif
 
 #endif /* __ASSEMBLY__ */
 

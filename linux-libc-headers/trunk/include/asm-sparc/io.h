@@ -1,5 +1,5 @@
 /*
- * $Id: io.h,v 1.2 2003/12/22 12:02:10 mmazur Exp $
+ * $Id: io.h,v 1.3 2004/01/21 19:54:45 mmazur Exp $
  */
 #ifndef __SPARC_IO_H
 #define __SPARC_IO_H
@@ -203,40 +203,5 @@ static inline void *sbus_memset_io(void *__dst, int c, __kernel_size_t n)
 	}
 	return (void *) dst;
 }
-
-#ifdef __KERNEL__
-
-/*
- * Bus number may be embedded in the higher bits of the physical address.
- * This is why we have no bus number argument to ioremap().
- */
-extern void *ioremap(unsigned long offset, unsigned long size);
-#define ioremap_nocache(X,Y)	ioremap((X),(Y))
-extern void iounmap(void *addr);
-
-/*
- * Bus number may be in res->flags... somewhere.
- */
-extern unsigned long sbus_ioremap(struct resource *res, unsigned long offset,
-    unsigned long size, char *name);
-extern void sbus_iounmap(unsigned long vaddr, unsigned long size);
-
-
-/*
- * At the moment, we do not use CMOS_READ anywhere outside of rtc.c,
- * so rtc_port is static in it. This should not change unless a new
- * hardware pops up.
- */
-#define RTC_PORT(x)   (rtc_port + (x))
-#define RTC_ALWAYS_BCD  0
-
-/* Nothing to do */
-/* P3: Only IDE DMA may need these. XXX Verify that it still does... */
-
-#define dma_cache_inv(_start,_size)		do { } while (0)
-#define dma_cache_wback(_start,_size)		do { } while (0)
-#define dma_cache_wback_inv(_start,_size)	do { } while (0)
-
-#endif
 
 #endif /* !(__SPARC_IO_H) */

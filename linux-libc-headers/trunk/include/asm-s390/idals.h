@@ -17,7 +17,6 @@
 #include <linux/err.h>
 #include <linux/types.h>
 #include <linux/slab.h>
-#include <asm/cio.h>
 #include <asm/uaccess.h>
 
 #ifdef __s390x__

@@ -1,4 +1,4 @@
-/* $Id: pgtsrmmu.h,v 1.2 2004/01/17 22:43:05 mmazur Exp $
+/* $Id: pgtsrmmu.h,v 1.3 2004/01/21 19:54:45 mmazur Exp $
  * pgtsrmmu.h:  SRMMU page table defines and code.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)
@@ -9,9 +9,6 @@
 
 #include <asm/page.h>
 
-#ifdef __ASSEMBLY__
-#include <asm/thread_info.h>	/* TI_UWINMASK for WINDOW_FLUSH */
-#endif
 
 /* Number of contexts is implementation-dependent; 64k is the most we support */
 #define SRMMU_MAX_CONTEXTS	65536

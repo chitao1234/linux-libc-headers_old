@@ -63,10 +63,4 @@ struct pt_regs {
 	long tra;
 };
 
-#ifdef __KERNEL__
-#define user_mode(regs) (((regs)->sr & 0x40000000)==0)
-#define instruction_pointer(regs) ((regs)->pc)
-extern void show_regs(struct pt_regs *);
-#endif
-
 #endif /* __ASM_SH_PTRACE_H */

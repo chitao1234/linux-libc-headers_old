@@ -25,10 +25,6 @@ struct termios {
 	tcflag_t c_lflag;		/* local mode flags */
 	cc_t c_line;			/* line discipline */
 	cc_t c_cc[NCCS];		/* control characters */
-#ifdef __KERNEL__
-#define SIZEOF_USER_TERMIOS sizeof (struct termios) - (2*sizeof (cc_t))
-	cc_t _x_cc[2];                  /* We need them to hold vmin/vtime */
-#endif
 };
 
 /* c_cc characters */
@@ -55,13 +51,8 @@ struct termios {
 /* Kernel keeps vmin/vtime separated, user apps assume vmin/vtime is
  * shared with eof/eol
  */
-#ifdef __KERNEL__
-#define VMIN     16
-#define VTIME    17
-#else
 #define VMIN     VEOF
 #define VTIME    VEOL
-#endif
 
 /* c_iflag bits */
 #define IGNBRK	0x00000001

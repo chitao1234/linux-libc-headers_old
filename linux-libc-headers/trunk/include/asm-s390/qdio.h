@@ -11,12 +11,11 @@
 #ifndef __QDIO_H__
 #define __QDIO_H__
 
-#define VERSION_QDIO_H "$Revision: 1.1 $"
+#define VERSION_QDIO_H "$Revision: 1.2 $"
 
 /* note, that most of the typedef's are from ingo. */
 
 #include <linux/interrupt.h>
-#include <asm/cio.h>
 
 #define QDIO_NAME "qdio "
 
