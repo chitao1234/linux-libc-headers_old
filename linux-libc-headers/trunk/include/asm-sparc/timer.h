@@ -1,10 +1,9 @@
-/* $Id: timer.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/* $Id: timer.h,v 1.2 2004/01/15 20:18:58 mmazur Exp $
  * timer.h:  Definitions for the timer chips on the Sparc.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)
  */
 
-#include <linux/config.h>
 
 #ifndef _SPARC_TIMER_H
 #define _SPARC_TIMER_H

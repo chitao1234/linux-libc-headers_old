@@ -14,7 +14,6 @@
 
 #include <asm/io.h>
 
-#include <linux/config.h>
 
 #if defined(CONFIG_VGA_CONSOLE) || defined(CONFIG_MDA_CONSOLE)
 

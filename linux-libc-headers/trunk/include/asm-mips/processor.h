@@ -11,7 +11,6 @@
 #ifndef _ASM_PROCESSOR_H
 #define _ASM_PROCESSOR_H
 
-#include <linux/config.h>
 
 /*
  * Return current * instruction pointer ("program counter").

@@ -12,7 +12,6 @@
 #ifndef __ASM_ARM_MEMORY_H
 #define __ASM_ARM_MEMORY_H
 
-#include <linux/config.h>
 #include <asm/arch/memory.h>
 
 #ifndef __ASSEMBLY__

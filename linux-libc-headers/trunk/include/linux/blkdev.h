@@ -1,13 +1,10 @@
 #ifndef _LINUX_BLKDEV_H
 #define _LINUX_BLKDEV_H
 
-#include <linux/config.h>
 #include <linux/major.h>
 #include <linux/genhd.h>
-#include <linux/list.h>
 #include <linux/timer.h>
 #include <linux/workqueue.h>
-#include <linux/pagemap.h>
 #include <linux/backing-dev.h>
 #include <linux/wait.h>
 #include <linux/mempool.h>
@@ -241,8 +238,6 @@ struct request_pm_state
 	u32	pm_state;
 	void*	data;		/* for driver use */
 };
-
-#include <linux/elevator.h>
 
 typedef int (merge_request_fn) (request_queue_t *, struct request *,
 				struct bio *);

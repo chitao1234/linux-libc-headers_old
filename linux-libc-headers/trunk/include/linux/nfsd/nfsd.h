@@ -10,12 +10,10 @@
 #ifndef LINUX_NFSD_NFSD_H
 #define LINUX_NFSD_NFSD_H
 
-#include <linux/config.h>
 #include <linux/types.h>
 #include <linux/unistd.h>
 #include <linux/dirent.h>
 #include <linux/fs.h>
-#include <linux/mount.h>
 
 #include <linux/nfsd/debug.h>
 #include <linux/nfsd/nfsfh.h>

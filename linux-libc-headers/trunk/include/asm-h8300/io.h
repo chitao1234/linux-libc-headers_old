@@ -3,7 +3,6 @@
 
 #ifdef __KERNEL__
 
-#include <linux/config.h>
 #include <asm/virtconvert.h>
 
 /*

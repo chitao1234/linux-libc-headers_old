@@ -1,4 +1,4 @@
-/* $Id: rwsem.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $
+/* $Id: rwsem.h,v 1.2 2004/01/15 20:18:59 mmazur Exp $
  * rwsem.h: R/W semaphores implemented using CAS
  *
  * Written by David S. Miller (davem@redhat.com), 2001.
@@ -13,8 +13,6 @@
 
 #ifdef __KERNEL__
 
-#include <linux/list.h>
-#include <linux/spinlock.h>
 
 struct rwsem_waiter;
 

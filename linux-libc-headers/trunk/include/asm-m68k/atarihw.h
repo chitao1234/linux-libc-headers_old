@@ -132,7 +132,6 @@ extern struct atari_hw_present atari_hw_present;
 
 
 
-#include <linux/mm.h>
 #include <asm/cacheflush.h>
 
 static inline void dma_cache_maintenance( unsigned long paddr,

@@ -1,11 +1,9 @@
-/* $Id: pgalloc.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $ */
+/* $Id: pgalloc.h,v 1.2 2004/01/15 20:18:59 mmazur Exp $ */
 #ifndef _SPARC64_PGALLOC_H
 #define _SPARC64_PGALLOC_H
 
-#include <linux/config.h>
 #include <linux/kernel.h>
 #include <linux/sched.h>
-#include <linux/mm.h>
 
 #include <asm/page.h>
 #include <asm/spitfire.h>

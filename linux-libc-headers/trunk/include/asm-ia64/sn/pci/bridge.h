@@ -1,4 +1,4 @@
-/* $Id: bridge.h,v 1.1 2003/12/15 18:47:01 mmazur Exp $
+/* $Id: bridge.h,v 1.2 2004/01/15 20:18:40 mmazur Exp $
  *
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive
@@ -34,7 +34,6 @@
  * For a detailed PIC register layout see pic.h.
  */
 
-#include <linux/config.h>
 #include <asm/sn/xtalk/xwidget.h>
 #include <asm/sn/pci/pic.h>
 

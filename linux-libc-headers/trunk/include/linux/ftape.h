@@ -21,8 +21,8 @@
 
  *
  * $Source: /cvsroot/linux-libc-headers/include/linux/ftape.h,v $
- * $Revision: 1.2 $
- * $Date: 2004/01/01 18:23:40 $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/15 20:19:02 $
  *
  *      This file contains global definitions, typedefs and macro's
  *      for the QIC-40/80/3010/3020 floppy-tape driver for Linux.
@@ -31,7 +31,6 @@
 #define FTAPE_VERSION "ftape v3.04d 25/11/97"
 
 #include <linux/types.h>
-#include <linux/config.h>
 #include <linux/mtio.h>
 
 #define FT_SECTOR(x)		(x+1)	/* sector offset into real sector */

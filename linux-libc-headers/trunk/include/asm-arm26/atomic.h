@@ -18,7 +18,6 @@
 #ifndef __ASM_ARM_ATOMIC_H
 #define __ASM_ARM_ATOMIC_H
 
-#include <linux/config.h>
 
 #ifdef CONFIG_SMP
 #error SMP is NOT supported

@@ -1,4 +1,4 @@
-/* $Id: pciio.h,v 1.1 2003/12/15 18:47:01 mmazur Exp $
+/* $Id: pciio.h,v 1.2 2004/01/15 20:18:40 mmazur Exp $
  *
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive
@@ -13,7 +13,6 @@
  * pciio.h -- platform-independent PCI interface
  */
 
-#include <linux/config.h>
 #include <linux/ioport.h>
 #include <asm/sn/ioerror.h>
 #include <asm/sn/driver.h>

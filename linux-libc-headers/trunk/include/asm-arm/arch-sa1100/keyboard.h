@@ -6,7 +6,6 @@
 #ifndef _SA1100_KEYBOARD_H
 #define _SA1100_KEYBOARD_H
 
-#include <linux/config.h>
 #include <asm/mach-types.h>
 
 extern void gc_kbd_init_hw(void);

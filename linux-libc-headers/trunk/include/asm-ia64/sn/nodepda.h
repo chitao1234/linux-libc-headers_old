@@ -9,7 +9,6 @@
 #define _ASM_IA64_SN_NODEPDA_H
 
 
-#include <linux/config.h>
 #include <asm/sn/sgi.h>
 #include <asm/irq.h>
 #include <asm/topology.h>

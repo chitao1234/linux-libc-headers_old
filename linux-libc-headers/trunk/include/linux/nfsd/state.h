@@ -37,7 +37,6 @@
 #ifndef _NFSD4_STATE_H
 #define _NFSD4_STATE_H
 
-#include <linux/list.h>
 
 #define NFS4_OPAQUE_LIMIT 1024
 typedef struct {

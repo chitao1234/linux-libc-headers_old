@@ -12,7 +12,6 @@
 #define __ASM_SH_WATCHDOG_H
 
 #include <linux/types.h>
-#include <linux/config.h>
 #include <asm/cpu/watchdog.h>
 #include <asm/io.h>
 

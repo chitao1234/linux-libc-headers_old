@@ -10,8 +10,6 @@
 #ifndef _PPC_TLBFLUSH_H
 #define _PPC_TLBFLUSH_H
 
-#include <linux/config.h>
-#include <linux/mm.h>
 
 extern void _tlbie(unsigned long address);
 extern void _tlbia(void);

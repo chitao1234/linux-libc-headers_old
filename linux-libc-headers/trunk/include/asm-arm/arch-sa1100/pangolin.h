@@ -10,7 +10,6 @@
 #error "include <asm/hardware.h> instead"
 #endif
 
-#include <linux/config.h>
 
 #ifndef CONFIG_SA1100_PANGOLIN_PCMCIA_IDE
 

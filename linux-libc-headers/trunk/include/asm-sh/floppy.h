@@ -11,7 +11,6 @@
 #ifndef __ASM_SH_FLOPPY_H
 #define __ASM_SH_FLOPPY_H
 
-#include <linux/vmalloc.h>
 
 
 /*

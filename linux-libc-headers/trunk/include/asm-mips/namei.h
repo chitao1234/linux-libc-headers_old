@@ -4,7 +4,6 @@
 #ifndef _ASM_NAMEI_H
 #define _ASM_NAMEI_H
 
-#include <linux/config.h>
 
 /* Only one at this time. */
 #define IRIX32_EMUL "usr/gnemul/irix/"

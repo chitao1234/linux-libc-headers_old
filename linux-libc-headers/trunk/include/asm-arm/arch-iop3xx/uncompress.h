@@ -1,7 +1,6 @@
 /*
  *  linux/include/asm-arm/arch-iop80310/uncompress.h
  */
-#include <linux/config.h>
 #include <linux/serial_reg.h>
 #include <asm/hardware.h>
 

@@ -1,4 +1,4 @@
-/* $Id: xbow.h,v 1.1 2003/12/15 18:47:02 mmazur Exp $
+/* $Id: xbow.h,v 1.2 2004/01/15 20:18:41 mmazur Exp $
  *
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive
@@ -13,7 +13,6 @@
  * xbow.h - header file for crossbow chip and xbow section of xbridge
  */
 
-#include <linux/config.h>
 #include <asm/sn/xtalk/xtalk.h>
 #include <asm/sn/xtalk/xwidget.h>
 #include <asm/sn/xtalk/xswitch.h>

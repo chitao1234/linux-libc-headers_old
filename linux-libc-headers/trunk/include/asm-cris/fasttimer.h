@@ -1,11 +1,10 @@
-/* $Id: fasttimer.h,v 1.2 2003/12/26 19:03:09 mmazur Exp $
+/* $Id: fasttimer.h,v 1.3 2004/01/15 20:18:35 mmazur Exp $
  * linux/include/asm-cris/fasttimer.h
  *
  * Fast timers for ETRAX100LX
  * This may be useful in other OS than Linux so use 2 space indentation...
  * Copyright (C) 2000, 2002 Axis Communications AB
  */
-#include <linux/config.h>
 #include <sys/time.h> /* struct timeval */
 #include <linux/timex.h>
 

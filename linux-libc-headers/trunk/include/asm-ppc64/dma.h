@@ -14,9 +14,7 @@
 #ifndef _ASM_DMA_H
 #define _ASM_DMA_H
 
-#include <linux/config.h>
 #include <asm/io.h>
-#include <linux/spinlock.h>
 #include <asm/system.h>
 
 #ifndef MAX_DMA_CHANNELS

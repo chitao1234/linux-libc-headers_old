@@ -15,7 +15,6 @@
 
 #include <asm/io.h>
 
-#include <linux/vmalloc.h>
 
 asmlinkage irqreturn_t floppy_hardint(int irq, void *dev_id,
 				      struct pt_regs *regs);

@@ -1,8 +1,6 @@
 #ifndef _PARISC_CACHEFLUSH_H
 #define _PARISC_CACHEFLUSH_H
 
-#include <linux/config.h>
-#include <linux/mm.h>
 
 /* The usual comment is "Caches aren't brain-dead on the <architecture>".
  * Unfortunately, that doesn't apply to PA-RISC. */

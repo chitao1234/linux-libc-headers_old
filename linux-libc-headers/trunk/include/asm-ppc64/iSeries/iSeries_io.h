@@ -1,4 +1,3 @@
-#include <linux/config.h>
 
 #ifdef CONFIG_PPC_ISERIES
 #ifndef _ISERIES_IO_H

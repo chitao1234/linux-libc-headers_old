@@ -1,13 +1,12 @@
 
 /* Common Flash Interface structures 
  * See http://support.intel.com/design/flash/technote/index.htm
- * $Id: cfi.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
+ * $Id: cfi.h,v 1.2 2004/01/15 20:19:05 mmazur Exp $
  */
 
 #ifndef __MTD_CFI_H__
 #define __MTD_CFI_H__
 
-#include <linux/config.h>
 #include <linux/version.h>
 #include <linux/delay.h>
 #include <linux/types.h>

@@ -1,7 +1,6 @@
 #ifndef _NFS_FS_SB
 #define _NFS_FS_SB
 
-#include <linux/list.h>
 #include <linux/backing-dev.h>
 
 /*

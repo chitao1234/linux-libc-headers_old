@@ -11,7 +11,6 @@
 #define	m5282sim_h
 /****************************************************************************/
 
-#include <linux/config.h>
 
 /*
  *	Define the 5282 SIM register set addresses.

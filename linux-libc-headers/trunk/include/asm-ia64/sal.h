@@ -35,7 +35,6 @@
 
 #ifndef __ASSEMBLY__
 
-#include <linux/spinlock.h>
 #include <linux/efi.h>
 
 #include <asm/pal.h>

@@ -1,7 +1,6 @@
 #ifndef _M68K_CACHEFLUSH_H
 #define _M68K_CACHEFLUSH_H
 
-#include <linux/mm.h>
 
 /*
  * Cache handling functions

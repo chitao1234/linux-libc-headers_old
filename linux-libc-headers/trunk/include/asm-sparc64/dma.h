@@ -1,4 +1,4 @@
-/* $Id: dma.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $
+/* $Id: dma.h,v 1.2 2004/01/15 20:18:58 mmazur Exp $
  * include/asm-sparc64/dma.h
  *
  * Copyright 1996 (C) David S. Miller (davem@caip.rutgers.edu)
@@ -7,10 +7,8 @@
 #ifndef _ASM_SPARC64_DMA_H
 #define _ASM_SPARC64_DMA_H
 
-#include <linux/config.h>
 #include <linux/kernel.h>
 #include <linux/types.h>
-#include <linux/spinlock.h>
 
 #include <asm/sbus.h>
 #include <asm/delay.h>

@@ -1,8 +1,6 @@
 #ifndef _SPARC64_TLBFLUSH_H
 #define _SPARC64_TLBFLUSH_H
 
-#include <linux/config.h>
-#include <linux/mm.h>
 #include <asm/mmu_context.h>
 
 /* TLB flush operations. */

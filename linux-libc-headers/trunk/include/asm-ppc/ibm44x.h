@@ -17,7 +17,6 @@
 #ifndef __ASM_IBM44x_H__
 #define __ASM_IBM44x_H__
 
-#include <linux/config.h>
 
 #ifndef __ASSEMBLY__
 /*

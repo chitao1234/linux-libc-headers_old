@@ -1,7 +1,6 @@
 #ifndef __LINUX__AIO_H
 #define __LINUX__AIO_H
 
-#include <linux/list.h>
 #include <linux/workqueue.h>
 #include <linux/aio_abi.h>
 

@@ -1,4 +1,4 @@
-/* $Id: capilli.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
+/* $Id: capilli.h,v 1.2 2004/01/15 20:19:04 mmazur Exp $
  * 
  * Kernel CAPI 2.0 Driver Interface for Linux
  * 
@@ -13,7 +13,6 @@
 #define __CAPILLI_H__
 
 #include <linux/kernel.h>
-#include <linux/list.h>
 #include <linux/capi.h>
 #include <linux/kernelcapi.h>
 

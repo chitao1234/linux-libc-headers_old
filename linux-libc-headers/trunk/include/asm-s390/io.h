@@ -13,7 +13,6 @@
 
 #ifdef __KERNEL__
 
-#include <linux/vmalloc.h>
 #include <asm/page.h>
 
 #define IO_SPACE_LIMIT 0xffffffff

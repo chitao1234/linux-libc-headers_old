@@ -13,7 +13,6 @@
 #ifndef _ASM_I8259_H
 #define _ASM_I8259_H
 
-#include <linux/spinlock.h>
 
 #include <asm/io.h>
 #include <asm/system.h>

@@ -12,7 +12,6 @@
  *    Copyright (C) 1992, Linus Torvalds
  *
  */
-#include <linux/config.h>
 
 /*
  * 32 bit bitops format:

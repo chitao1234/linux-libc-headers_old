@@ -9,7 +9,6 @@
 #ifndef _ASM_CACHE_H
 #define _ASM_CACHE_H
 
-#include <linux/config.h>
 
 #if defined(CONFIG_CPU_R3000) || defined(CONFIG_CPU_R6000) || \
     defined(CONFIG_CPU_TX39XX)

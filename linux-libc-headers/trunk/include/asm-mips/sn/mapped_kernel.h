@@ -20,7 +20,6 @@
  * code. So no jumps can be done before we have switched to using
  * cksseg addresses.
  */
-#include <linux/config.h>
 #include <asm/addrspace.h>
 
 #ifdef CONFIG_MAPPED_KERNEL

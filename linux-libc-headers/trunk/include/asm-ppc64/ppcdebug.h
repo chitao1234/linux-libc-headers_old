@@ -15,7 +15,6 @@
  *
  ********************************************************************/
 
-#include <linux/config.h>
 #include <asm/udbg.h>
 #include <stdarg.h>
 

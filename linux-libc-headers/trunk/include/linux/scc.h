@@ -1,9 +1,8 @@
-/* $Id: scc.h,v 1.2 2004/01/01 19:42:52 mmazur Exp $ */
+/* $Id: scc.h,v 1.3 2004/01/15 20:19:03 mmazur Exp $ */
 
 #ifndef	_SCC_H
 #define	_SCC_H
 
-#include <linux/config.h>
 
 /* selection of hardware types */
 

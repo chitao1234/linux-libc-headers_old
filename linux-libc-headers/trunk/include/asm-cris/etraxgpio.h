@@ -1,4 +1,4 @@
-/* $Id: etraxgpio.h,v 1.1 2003/12/15 18:47:01 mmazur Exp $ */
+/* $Id: etraxgpio.h,v 1.2 2004/01/15 20:18:35 mmazur Exp $ */
 /*
  * The following devices are accessable using this driver using
  * GPIO_MAJOR (120) and a couple of minor numbers:
@@ -25,7 +25,6 @@
 #ifndef _ASM_ETRAXGPIO_H
 #define _ASM_ETRAXGPIO_H
 
-#include <linux/config.h>
 /* etraxgpio _IOC_TYPE, bits 8 to 15 in ioctl cmd */
 #ifdef CONFIG_ETRAX_ARCH_V10
 #define ETRAXGPIO_IOCTYPE 43

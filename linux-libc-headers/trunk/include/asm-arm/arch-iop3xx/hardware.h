@@ -4,7 +4,6 @@
 #ifndef __ASM_ARCH_HARDWARE_H
 #define __ASM_ARCH_HARDWARE_H
 
-#include <linux/config.h>
 
 /*
  * Note about PCI IO space mappings

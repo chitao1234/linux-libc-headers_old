@@ -1,4 +1,4 @@
-/* $Id: dvma.h,v 1.1 2003/12/15 18:47:02 mmazur Exp $
+/* $Id: dvma.h,v 1.2 2004/01/15 20:18:41 mmazur Exp $
  * include/asm-m68k/dma.h
  *
  * Copyright 1995 (C) David S. Miller (davem@caip.rutgers.edu)
@@ -9,7 +9,6 @@
 #ifndef __M68K_DVMA_H
 #define __M68K_DVMA_H
 
-#include <linux/config.h>
 
 #define DVMA_PAGE_SHIFT	13
 #define DVMA_PAGE_SIZE	(1UL << DVMA_PAGE_SHIFT)

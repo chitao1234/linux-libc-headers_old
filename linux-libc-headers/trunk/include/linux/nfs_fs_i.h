@@ -2,7 +2,6 @@
 #define _NFS_FS_I
 
 #include <asm/types.h>
-#include <linux/list.h>
 #include <linux/nfs.h>
 
 /*

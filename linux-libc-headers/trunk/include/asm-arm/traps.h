@@ -1,7 +1,6 @@
 #ifndef _ASMARM_TRAP_H
 #define _ASMARM_TRAP_H
 
-#include <linux/list.h>
 
 struct undef_hook {
 	struct list_head node;

@@ -1,4 +1,4 @@
-/* $Id: oplib.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/* $Id: oplib.h,v 1.2 2004/01/15 20:18:58 mmazur Exp $
  * oplib.h:  Describes the interface and available routines in the
  *           Linux Prom library.
  *
@@ -9,7 +9,6 @@
 #define __SPARC_OPLIB_H
 
 #include <asm/openprom.h>
-#include <linux/spinlock.h>
 
 /* The master romvec pointer... */
 extern struct linux_romvec *romvec;

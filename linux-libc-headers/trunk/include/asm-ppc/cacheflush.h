@@ -10,7 +10,6 @@
 #ifndef _PPC_CACHEFLUSH_H
 #define _PPC_CACHEFLUSH_H
 
-#include <linux/mm.h>
 
 /*
  * No cache flushing is required when address mappings are

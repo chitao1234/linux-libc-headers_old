@@ -1,7 +1,6 @@
 #ifndef _ABS_ADDR_H
 #define _ABS_ADDR_H
 
-#include <linux/config.h>
 
 /*
  * c 2001 PPC 64 Team, IBM Corp

@@ -13,9 +13,7 @@
  * Copyright (C) 2000, Goutham Rao <goutham.rao@intel.com>
  */
 
-#include <linux/config.h>
 
-#include <linux/mm.h>
 #include <linux/page-flags.h>
 #include <linux/threads.h>
 

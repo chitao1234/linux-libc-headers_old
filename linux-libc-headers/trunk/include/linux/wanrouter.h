@@ -44,7 +44,6 @@
 * Jan 02, 1997	Gene Kozin	Initial version (based on wanpipe.h).
 *****************************************************************************/
 
-#include <linux/spinlock.h>       /* Support for SMP Locking */
 
 #ifndef	_ROUTER_H
 #define	_ROUTER_H

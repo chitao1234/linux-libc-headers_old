@@ -13,7 +13,6 @@
 
 #include <linux/types.h>
 #include <linux/pci.h>
-#include <linux/spinlock.h>
 
 #include <asm/compiler.h>
 

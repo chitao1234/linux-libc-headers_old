@@ -1,4 +1,4 @@
-/* $Id: openprom.h,v 1.1 2003/12/15 18:47:02 mmazur Exp $ */
+/* $Id: openprom.h,v 1.2 2004/01/15 20:18:41 mmazur Exp $ */
 #ifndef __SPARC_OPENPROM_H
 #define __SPARC_OPENPROM_H
 
@@ -8,7 +8,6 @@
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)
  */
 
-#include <linux/config.h>
 
 /* Empirical constants... */
 #ifdef CONFIG_SUN3

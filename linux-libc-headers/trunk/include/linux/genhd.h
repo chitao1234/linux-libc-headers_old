@@ -9,7 +9,6 @@
  *		<drew@colorado.edu>
  */
 
-#include <linux/config.h>
 #include <linux/types.h>
 #include <linux/major.h>
 #include <linux/device.h>

@@ -10,7 +10,6 @@ struct pt_regs;
 
 struct task_struct;
 
-#include "linux/config.h"
 #include "linux/signal.h"
 #include "asm/ptrace.h"
 #include "asm/siginfo.h"

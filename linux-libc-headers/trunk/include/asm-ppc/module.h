@@ -2,7 +2,6 @@
 #define _ASM_PPC_MODULE_H
 /* Module stuff for PPC.  (C) 2001 Rusty Russell */
 
-#include <linux/list.h>
 #include <asm/bug.h>
 
 /* Thanks to Paul M for explaining this.

@@ -29,7 +29,7 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- * Version: $Id: quota.h,v 1.2 2003/12/30 20:42:57 mmazur Exp $
+ * Version: $Id: quota.h,v 1.3 2004/01/15 20:19:03 mmazur Exp $
  */
 
 #ifndef _LINUX_QUOTA_
@@ -37,7 +37,6 @@
 
 #include <linux/errno.h>
 #include <linux/types.h>
-#include <linux/spinlock.h>
 
 #define __DQUOT_VERSION__	"dquot_6.5.1"
 #define __DQUOT_NUM_VERSION__	6*10000+5*100+1

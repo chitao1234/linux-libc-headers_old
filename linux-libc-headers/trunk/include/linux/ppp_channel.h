@@ -19,7 +19,6 @@
  * ==FILEVERSION 20000322==
  */
 
-#include <linux/list.h>
 #include <linux/skbuff.h>
 #include <linux/poll.h>
 

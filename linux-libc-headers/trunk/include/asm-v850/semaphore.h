@@ -2,7 +2,6 @@
 #define __V850_SEMAPHORE_H__
 
 #include <linux/linkage.h>
-#include <linux/spinlock.h>
 #include <linux/wait.h>
 #include <linux/rwsem.h>
 

@@ -14,7 +14,6 @@
 #define OPROFILE_H
 
 #include <linux/types.h>
-#include <linux/spinlock.h>
 #include <asm/atomic.h>
  
 struct super_block;

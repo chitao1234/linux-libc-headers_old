@@ -9,7 +9,6 @@
 #ifndef _ASM_PAGE_64_H
 #define _ASM_PAGE_64_H
 
-#include <linux/config.h>
 
 /*
  * This handles the memory map.

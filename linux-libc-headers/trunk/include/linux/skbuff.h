@@ -14,14 +14,11 @@
 #ifndef _LINUX_SKBUFF_H
 #define _LINUX_SKBUFF_H
 
-#include <linux/config.h>
 #include <linux/kernel.h>
 #include <sys/time.h>
 #include <linux/cache.h>
 
 #include <asm/types.h>
-#include <linux/spinlock.h>
-#include <linux/mm.h>
 #include <linux/highmem.h>
 #include <linux/poll.h>
 #include <linux/net.h>

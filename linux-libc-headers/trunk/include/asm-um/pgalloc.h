@@ -7,7 +7,6 @@
 #ifndef __UM_PGALLOC_H
 #define __UM_PGALLOC_H
 
-#include "linux/mm.h"
 #include "asm/fixmap.h"
 
 #define pmd_populate_kernel(mm, pmd, pte) \

@@ -17,7 +17,6 @@
 #include <asm/msr.h>
 #include <asm/system.h>
 #include <linux/cache.h>
-#include <linux/config.h>
 #include <linux/threads.h>
 
 /* flag for disabling the tsc */

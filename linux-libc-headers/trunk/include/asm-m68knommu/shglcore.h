@@ -5,7 +5,6 @@
 #ifndef _M68K_SHGLCORE_H
 #define _M68K_SHGLCORE_H
 
-#include <linux/config.h>
 
 #ifdef CONFIG_SHGLCORE
 

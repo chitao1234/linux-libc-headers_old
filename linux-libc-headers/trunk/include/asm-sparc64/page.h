@@ -1,9 +1,8 @@
-/* $Id: page.h,v 1.2 2003/12/22 12:02:12 mmazur Exp $ */
+/* $Id: page.h,v 1.3 2004/01/15 20:18:59 mmazur Exp $ */
 
 #ifndef _SPARC64_PAGE_H
 #define _SPARC64_PAGE_H
 
-#include <linux/config.h>
 
 #define PAGE_SHIFT   13
 #ifndef __ASSEMBLY__

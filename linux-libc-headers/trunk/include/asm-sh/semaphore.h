@@ -13,7 +13,6 @@
  *  (Currently no asm implementation but generic C code...)
  */
 
-#include <linux/spinlock.h>
 #include <linux/rwsem.h>
 #include <linux/wait.h>
 

@@ -8,7 +8,6 @@
  * Copyright (C) 2000-2003 Silicon Graphics, Inc. All rights reserved.
  */
 
-#include <linux/config.h>
 
 #ifdef CONFIG_IA64_SGI_SN_SIM
 

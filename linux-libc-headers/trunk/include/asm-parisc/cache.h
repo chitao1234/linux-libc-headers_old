@@ -5,7 +5,6 @@
 #ifndef __ARCH_PARISC_CACHE_H
 #define __ARCH_PARISC_CACHE_H
 
-#include <linux/config.h>
 
 #ifndef __ASSEMBLY__
 /*

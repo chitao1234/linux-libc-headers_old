@@ -6,7 +6,6 @@
 #ifndef _M68K_SHGLPORTS_H
 #define _M68K_SHGLPORTS_H
 
-#include <linux/config.h>
 #include <linux/sched.h>
 
 #ifdef CONFIG_SHGLCORE
