@@ -4,7 +4,6 @@
 #include <asm/sun3mmu.h>
 
 #ifndef __ASSEMBLY__
-#include <asm/virtconvert.h>
 #include <linux/linkage.h>
 
 /*
