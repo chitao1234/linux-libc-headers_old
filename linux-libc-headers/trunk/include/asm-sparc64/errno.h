@@ -1,9 +1,9 @@
-/* $Id: errno.h,v 1.2 2003/12/25 11:43:23 mmazur Exp $ */
+/* $Id: errno.h,v 1.3 2003/12/28 00:21:55 mmazur Exp $ */
 #ifndef _SPARC64_ERRNO_H
 #define _SPARC64_ERRNO_H
 
 #ifndef _LINUX_ERRNO_H
- #error "Do not include this header directly. Include linux/errno.h instead."
+ #include <linux/errno.h>
 #endif
 
 #undef	EDEADLK
