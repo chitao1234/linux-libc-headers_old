@@ -24,10 +24,8 @@
 #ifndef __SOUND_AINSTR_FM_H
 #define __SOUND_AINSTR_FM_H
 
-#ifndef __KERNEL__
 #include <asm/types.h>
 #include <asm/byteorder.h>
-#endif
 
 /*
  *  share types (share ID 1)
@@ -117,16 +115,5 @@ typedef struct fm_xinstrument {
 	__u8 modes;
 	__u8 fix_key;
 } fm_xinstrument_t;
-
-#ifdef __KERNEL__
-
-#include "seq_instr.h"
-
-extern char *snd_seq_fm_id;
-
-int snd_seq_fm_init(snd_seq_kinstr_ops_t * ops,
-		    snd_seq_kinstr_ops_t * next);
-
-#endif
 
 #endif	/* __SOUND_AINSTR_FM_H */

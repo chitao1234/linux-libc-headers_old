@@ -24,10 +24,8 @@
 #ifndef __SOUND_AINSTR_IW_H
 #define __SOUND_AINSTR_IW_H
 
-#ifndef __KERNEL__
 #include <asm/types.h>
 #include <asm/byteorder.h>
-#endif
 
 /*
  *  share types (share ID 1)
@@ -346,30 +344,5 @@ typedef struct iwffff_info {
 	unsigned int max8_len;		/* maximum 8-bit wave length */
 	unsigned int max16_len;		/* maximum 16-bit wave length */
 } iwffff_info_t;
-
-#ifdef __KERNEL__
-
-#include "seq_instr.h"
-
-extern char *snd_seq_iwffff_id;
-
-typedef struct {
-	void *private_data;
-	int (*info)(void *private_data, iwffff_info_t *info);
-	int (*put_sample)(void *private_data, iwffff_wave_t *wave,
-	                  char *data, long len, int atomic);
-	int (*get_sample)(void *private_data, iwffff_wave_t *wave,
-			  char *data, long len, int atomic);
-	int (*remove_sample)(void *private_data, iwffff_wave_t *wave,
-			     int atomic);
-	void (*notify)(void *private_data, snd_seq_kinstr_t *instr, int what);
-	snd_seq_kinstr_ops_t kops;
-} snd_iwffff_ops_t;
-
-int snd_seq_iwffff_init(snd_iwffff_ops_t *ops,
-			void *private_data,
-                        snd_seq_kinstr_ops_t *next);
-
-#endif
 
 #endif /* __SOUND_AINSTR_IW_H */

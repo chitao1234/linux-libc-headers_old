@@ -24,10 +24,8 @@
 #ifndef __SOUND_AINSTR_SIMPLE_H
 #define __SOUND_AINSTR_SIMPLE_H
 
-#ifndef __KERNEL__
 #include <asm/types.h>
 #include <asm/byteorder.h>
-#endif
 
 /*
  *  share types (share ID 1)
@@ -129,30 +127,5 @@ typedef struct simple_xinstrument {
 	__u8 effect2;			/* effect 2 */
 	__u8 effect2_depth;		/* 0-127 */
 } simple_xinstrument_t;
-
-#ifdef __KERNEL__
-
-#include "seq_instr.h"
-
-extern char *snd_seq_simple_id;
-
-typedef struct {
-	void *private_data;
-	int (*info)(void *private_data, simple_instrument_info_t *info);
-	int (*put_sample)(void *private_data, simple_instrument_t *instr,
-	                  char *data, long len, int atomic);
-	int (*get_sample)(void *private_data, simple_instrument_t *instr,
-			  char *data, long len, int atomic);
-	int (*remove_sample)(void *private_data, simple_instrument_t *instr,
-			     int atomic);
-	void (*notify)(void *private_data, snd_seq_kinstr_t *instr, int what);
-	snd_seq_kinstr_ops_t kops;
-} snd_simple_ops_t;
-
-int snd_seq_simple_init(snd_simple_ops_t *ops,
-			void *private_data,
-			snd_seq_kinstr_ops_t *next);
-
-#endif
 
 #endif /* __SOUND_AINSTR_SIMPLE_H */
