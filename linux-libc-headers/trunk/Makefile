@@ -4,8 +4,8 @@ name="glibc-kernel-headers-${ver}"
 all: release
 
 install:
-	mv release/${name} ~/www/glibc-kernel-headers/
-	chmod a+r ~/www/glibc-kernel-headers/${name}
+	mv release/${name}.tar.bz2 ~/www/glibc-kernel-headers/
+	chmod a+r ~/www/glibc-kernel-headers/${name}.tar.bz2
 
 release: VERSION
 	rm -rf .tmp
