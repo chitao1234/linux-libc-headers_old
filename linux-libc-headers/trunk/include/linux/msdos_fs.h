@@ -116,6 +116,8 @@
 #define CT_LE_W(v) cpu_to_le16(v)
 #define CT_LE_L(v) cpu_to_le32(v)
 
+#include <asm/types.h>
+
 struct fat_boot_sector {
 	__u8	ignored[3];	/* Boot strap short or near jump */
 	__u8	system_id[8];	/* Name - can be used to special case
