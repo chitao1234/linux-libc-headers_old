@@ -94,6 +94,7 @@ struct rpc_rqst {
 	struct rpc_rqst *	rq_next;	/* free list */
 	int			rq_cong;	/* has incremented xprt->cong */
 	int			rq_received;	/* receive completed */
+	u32			rq_seqno;	/* gss seq no. used on req. */
 
 	struct list_head	rq_list;
 
@@ -161,6 +162,12 @@ struct rpc_xprt {
 				tcp_offset;	/* fragment offset */
 	unsigned long		tcp_copied,	/* copied to request */
 				tcp_flags;
+	/*
+	 * Disconnection of idle sockets
+	 */
+	struct work_struct	task_cleanup;
+	struct timer_list	timer;
+	unsigned long		last_used;
 
 	/*
 	 * Send stuff

@@ -199,6 +199,5 @@ struct atm_cirange {
     "SESSION",	"HASSAP",	"BOUND",	"CLOSE"
 
 
-#undef __AAL_STAT_ITEMS
 
 #endif

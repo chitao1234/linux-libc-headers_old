@@ -1,4 +1,4 @@
-/* $Id: processor.h,v 1.5 2004/02/03 11:47:57 mmazur Exp $
+/* $Id: processor.h,v 1.6 2004/02/28 23:31:47 mmazur Exp $
  * include/asm-sparc/processor.h
  *
  * Copyright (C) 1994 David S. Miller (davem@caip.rutgers.edu)
@@ -21,7 +21,6 @@
 #include <asm/segment.h>
 #include <asm/btfixup.h>
 #include <asm/page.h>
-#include <asm/atomic.h>
 
 /*
  * Bus types

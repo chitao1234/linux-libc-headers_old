@@ -132,17 +132,17 @@ typedef volatile struct widget_cfg {
 } widget_cfg_t;
 
 typedef struct {
-    unsigned                other:8;
-    unsigned                bo:1;
-    unsigned                error:1;
-    unsigned                vbpm:1;
-    unsigned                gbr:1;
-    unsigned                ds:2;
-    unsigned                ct:1;
-    unsigned                tnum:5;
-    unsigned                pactyp:4;
-    unsigned                sidn:4;
-    unsigned                didn:4;
+    unsigned int            other:8;
+    unsigned int            bo:1;
+    unsigned int            error:1;
+    unsigned int            vbpm:1;
+    unsigned int            gbr:1;
+    unsigned int            ds:2;
+    unsigned int            ct:1;
+    unsigned int            tnum:5;
+    unsigned int            pactyp:4;
+    unsigned int            sidn:4;
+    unsigned int            didn:4;
 } w_err_cmd_word_f;
 
 typedef union {

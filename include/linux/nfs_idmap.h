@@ -52,11 +52,11 @@
 #define IDMAP_STATUS_SUCCESS    0x08
 
 struct idmap_msg {
-	u_int8_t  im_type;
-	u_int8_t  im_conv;
-	char      im_name[IDMAP_NAMESZ];
-	u_int32_t im_id;
-	u_int8_t  im_status;
+	__u8  im_type;
+	__u8  im_conv;
+	char  im_name[IDMAP_NAMESZ];
+	__u32 im_id;
+	__u8  im_status;
 };
 
 #endif /* NFS_IDMAP_H */

@@ -11,8 +11,6 @@
 #include <linux/cache.h>
 #include <asm/percpu.h>
 #include <asm/system.h>
-#include <asm/processor.h>
-#include <asm/page.h>
 #include <asm/sn/bte.h>
 
 

@@ -1,5 +1,5 @@
 /*
- * $Id: io.h,v 1.3 2004/01/21 19:54:45 mmazur Exp $
+ * $Id: io.h,v 1.4 2004/02/28 23:31:47 mmazur Exp $
  */
 #ifndef __SPARC_IO_H
 #define __SPARC_IO_H
@@ -99,6 +99,9 @@ static inline void __writel(u32 b, unsigned long addr)
 #define readb(addr)	__readb((unsigned long)(addr))
 #define readw(addr)	__readw((unsigned long)(addr))
 #define readl(addr)	__readl((unsigned long)(addr))
+#define readb_relaxed(addr) readb(addr)
+#define readw_relaxed(addr) readw(addr)
+#define readl_relaxed(addr) readl(addr)
 
 #define writeb(b, addr)	__writeb((b),(unsigned long)(addr))
 #define writew(b, addr)	__writew((b),(unsigned long)(addr))
