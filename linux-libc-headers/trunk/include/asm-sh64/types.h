@@ -40,37 +40,5 @@ typedef unsigned long long __u64;
 /*
  * These aren't exported outside the kernel to avoid name space clashes
  */
-#ifdef __KERNEL__
-
-#ifndef __ASSEMBLY__
-
-typedef __signed__ char s8;
-typedef unsigned char u8;
-
-typedef __signed__ short s16;
-typedef unsigned short u16;
-
-typedef __signed__ int s32;
-typedef unsigned int u32;
-
-typedef __signed__ long long s64;
-typedef unsigned long long u64;
-
-/* DMA addresses come in generic and 64-bit flavours.  */
-
-#ifdef CONFIG_HIGHMEM64G
-typedef u64 dma_addr_t;
-#else
-typedef u32 dma_addr_t;
-#endif
-typedef u64 dma64_addr_t;
-
-typedef unsigned int kmem_bufctl_t;
-
-#endif /* __ASSEMBLY__ */
-
-#define BITS_PER_LONG 32
-
-#endif /* __KERNEL__ */
 
 #endif /* __ASM_SH64_TYPES_H */

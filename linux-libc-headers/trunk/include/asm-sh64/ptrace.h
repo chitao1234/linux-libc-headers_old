@@ -25,12 +25,6 @@ struct pt_regs {
 	unsigned long long pad[2];
 };
 
-#ifdef __KERNEL__
-#define user_mode(regs) (((regs)->sr & 0x40000000)==0)
-#define instruction_pointer(regs) ((regs)->pc)
-extern void show_regs(struct pt_regs *);
-#endif
-
 #define PTRACE_O_TRACESYSGOOD     0x00000001
 
 #endif /* __ASM_SH64_PTRACE_H */

@@ -14,16 +14,6 @@
 
 #include <linux/config.h>
 
-#ifdef __KERNEL__
-# ifdef CONFIG_SH_WDT
-#  define HZ		1000		/* Needed for high-res WOVF */
-# else
-#  define HZ		100
-# endif
-# define USER_HZ	100		/* User interfaces are in "ticks" */
-# define CLOCKS_PER_SEC	(USER_HZ)	/* frequency at which times() counts */
-#endif
-
 #ifndef HZ
 #define HZ 100
 #endif
