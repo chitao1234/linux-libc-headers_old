@@ -184,5 +184,12 @@
 				(M) == IDE6_MAJOR || (M) == IDE7_MAJOR || \
 				(M) == IDE8_MAJOR || (M) == IDE9_MAJOR)
 
+/*
+ * 2.4 definitions
+ */
+#define	LVM_BLK_MAJOR	58	/* Logical Volume Manager */
+#define	LVM_CHAR_MAJOR	109	/* Logical Volume Manager */
+#define	UMEM_MAJOR		116	/* http://www.umem.com/ Battery Backed RAM */
+
 
 #endif
