@@ -694,6 +694,8 @@ struct request_sense {
 #elif defined(__LITTLE_ENDIAN)
 	__u8 error_code		: 7;
 	__u8 valid		: 1;
+#else
+#error	"Endian problem - this didn't happen"
 #endif
 	__u8 segment_number;
 #if defined(__BIG_ENDIAN)
@@ -706,6 +708,8 @@ struct request_sense {
 	__u8 reserved2		: 1;
 	__u8 ili		: 1;
 	__u8 reserved1		: 2;
+#else
+#error	"Endian problem - this didn't happen"
 #endif
 	__u8 information[4];
 	__u8 add_sense_len;
