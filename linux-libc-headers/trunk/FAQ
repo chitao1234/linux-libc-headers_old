@@ -8,13 +8,13 @@ A: It's true that linux-libc-headers where started to get 2.6 kernel based
    main tree. So no need to worry (and try not to call them 'pld headers').
    
 Q: Compilation of $INSERTYOURAPP failed after inclusion of linux/config.h
-A: The llh package is distribution and kernel configuration agnostic. In an
-   ideal world all applications would have runtime detection of what kernel
-   does and doesn't support. Unfortunately applications don't do that and in
-   some specific situations it's advisable to link your current kernel's
-   config file to replace linux/config.h. That error message is there to
-   force users to be aware of this situation. Distribution vendors will most
-   likely want to remove it.
+A: The llh package is distribution and kernel configuration agnostic therefore
+   it can not provide any kernel config. In an ideal world all applications
+   would have runtime detection of what kernel does and doesn't support.
+   Unfortunately applications don't do that and in some specific situations
+   it's advisable to link your current kernel's config file to replace
+   linux/config.h. That error message is there to force users to be aware of
+   this situation. Distribution vendors will most likely want to remove it.
 
 Q: When compiling $INSERTYOURAPP I got an error message saying I shouldn't
    be including kernel only files.
