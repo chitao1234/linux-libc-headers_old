@@ -9,6 +9,7 @@
 
 extern unsigned long loops_per_jiffy;
 
+#include <linux/sched.h>
 #include <asm/delay.h>
 
 /*
