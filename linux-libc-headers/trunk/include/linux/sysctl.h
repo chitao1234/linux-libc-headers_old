@@ -18,12 +18,7 @@
 #ifndef _LINUX_SYSCTL_H
 #define _LINUX_SYSCTL_H
 
-#include <linux/kernel.h>
 #include <linux/types.h>
-#include <linux/list.h>
-#include <linux/compiler.h>
-
-struct file;
 
 #define CTL_MAXNAME 10		/* how many path components do we allow in a
 				   call to sysctl?   In other words, what is
@@ -43,12 +38,6 @@ struct __sysctl_args {
 /* Define sysctl names first */
 
 /* Top-level names: */
-
-/* For internal pattern-matching use only: */
-#ifdef __KERNEL__
-#define CTL_ANY		-1	/* Matches any name */
-#define CTL_NONE	0
-#endif
 
 enum
 {
@@ -729,118 +718,5 @@ enum
 	ABI_TRACE=5,		/* tracing flags */
 	ABI_FAKE_UTSNAME=6,	/* fake target utsname information */
 };
-
-#ifdef __KERNEL__
-
-extern asmlinkage long sys_sysctl(struct __sysctl_args __user *);
-extern void sysctl_init(void);
-
-typedef struct ctl_table ctl_table;
-
-typedef int ctl_handler (ctl_table *table, int __user *name, int nlen,
-			 void __user *oldval, size_t __user *oldlenp,
-			 void __user *newval, size_t newlen, 
-			 void **context);
-
-typedef int proc_handler (ctl_table *ctl, int write, struct file * filp,
-			  void __user *buffer, size_t *lenp);
-
-extern int proc_dostring(ctl_table *, int, struct file *,
-			 void __user *, size_t *);
-extern int proc_dointvec(ctl_table *, int, struct file *,
-			 void __user *, size_t *);
-extern int proc_dointvec_bset(ctl_table *, int, struct file *,
-			      void __user *, size_t *);
-extern int proc_dointvec_minmax(ctl_table *, int, struct file *,
-				void __user *, size_t *);
-extern int proc_dointvec_jiffies(ctl_table *, int, struct file *,
-				 void __user *, size_t *);
-extern int proc_doulongvec_minmax(ctl_table *, int, struct file *,
-				  void __user *, size_t *);
-extern int proc_doulongvec_ms_jiffies_minmax(ctl_table *table, int,
-				      struct file *, void __user *, size_t *);
-
-extern int do_sysctl (int __user *name, int nlen,
-		      void __user *oldval, size_t __user *oldlenp,
-		      void __user *newval, size_t newlen);
-
-extern int do_sysctl_strategy (ctl_table *table, 
-			       int __user *name, int nlen,
-			       void __user *oldval, size_t __user *oldlenp,
-			       void __user *newval, size_t newlen, void ** context);
-
-extern ctl_handler sysctl_string;
-extern ctl_handler sysctl_intvec;
-extern ctl_handler sysctl_jiffies;
-
-
-/*
- * Register a set of sysctl names by calling register_sysctl_table
- * with an initialised array of ctl_table's.  An entry with zero
- * ctl_name terminates the table.  table->de will be set up by the
- * registration and need not be initialised in advance.
- *
- * sysctl names can be mirrored automatically under /proc/sys.  The
- * procname supplied controls /proc naming.
- *
- * The table's mode will be honoured both for sys_sysctl(2) and
- * proc-fs access.
- *
- * Leaf nodes in the sysctl tree will be represented by a single file
- * under /proc; non-leaf nodes will be represented by directories.  A
- * null procname disables /proc mirroring at this node.
- * 
- * sysctl(2) can automatically manage read and write requests through
- * the sysctl table.  The data and maxlen fields of the ctl_table
- * struct enable minimal validation of the values being written to be
- * performed, and the mode field allows minimal authentication.
- * 
- * More sophisticated management can be enabled by the provision of a
- * strategy routine with the table entry.  This will be called before
- * any automatic read or write of the data is performed.
- * 
- * The strategy routine may return:
- * <0: Error occurred (error is passed to user process)
- * 0:  OK - proceed with automatic read or write.
- * >0: OK - read or write has been done by the strategy routine, so 
- *     return immediately.
- * 
- * There must be a proc_handler routine for any terminal nodes
- * mirrored under /proc/sys (non-terminals are handled by a built-in
- * directory handler).  Several default handlers are available to
- * cover common cases.
- */
-
-/* A sysctl table is an array of struct ctl_table: */
-struct ctl_table 
-{
-	int ctl_name;			/* Binary ID */
-	const char *procname;		/* Text ID for /proc/sys, or zero */
-	void *data;
-	int maxlen;
-	mode_t mode;
-	ctl_table *child;
-	proc_handler *proc_handler;	/* Callback for text formatting */
-	ctl_handler *strategy;		/* Callback function for all r/w */
-	struct proc_dir_entry *de;	/* /proc control block */
-	void *extra1;
-	void *extra2;
-};
-
-/* struct ctl_table_header is used to maintain dynamic lists of
-   ctl_table trees. */
-struct ctl_table_header
-{
-	ctl_table *ctl_table;
-	struct list_head ctl_entry;
-};
-
-struct ctl_table_header * register_sysctl_table(ctl_table * table, 
-						int insert_at_head);
-void unregister_sysctl_table(struct ctl_table_header * table);
-
-#else /* __KERNEL__ */
-
-#endif /* __KERNEL__ */
 
 #endif /* _LINUX_SYSCTL_H */
