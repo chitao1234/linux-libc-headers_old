@@ -8,7 +8,6 @@
 #include <linux/kernel.h>
 #include <linux/types.h>
 #include <linux/rbtree.h>
-#include <linux/thread_info.h>
 
 #include <asm/page.h>
 #include <asm/ptrace.h>
