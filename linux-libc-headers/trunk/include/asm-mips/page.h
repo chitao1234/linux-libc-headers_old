@@ -9,9 +9,10 @@
 #ifndef _ASM_PAGE_H
 #define _ASM_PAGE_H
 
-extern int getpagesize(void);
+#include <unistd.h>
+
 #define PAGE_SIZE ((unsigned long)getpagesize())
-#define PAGE_SHIFT ((unsigned long[]){12,13,14,-1,15,-1,-1,-1,16}[PAGE_SIZE>>13])
+#define PAGE_SHIFT ((PAGE_SIZE > 65536) ? -1 : ((unsigned long[]){12,13,14,-1,15,-1,-1,-1,16}[PAGE_SIZE>>13]))
 
 #endif /* _ASM_PAGE_H */
 #ifdef CONFIG_LIMITED_DMA
