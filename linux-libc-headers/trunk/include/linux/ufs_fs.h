@@ -33,7 +33,6 @@
 #include <linux/stat.h>
 #include <linux/fs.h>
 
-#include <linux/ufs_fs_sb.h>
 
 #define UFS_BBLOCK 0
 #define UFS_BBSIZE 8192
@@ -511,15 +510,6 @@ struct ufs_inode {
 #define UFS_SF_APPEND     0x00040000  /* append-only */
 #define UFS_SF_NOUNLINK   0x00100000  /* can't be removed or renamed */
 
-/*
- * This structure is used for reading disk structures larger
- * than the size of fragment.
- */
-struct ufs_buffer_head {
-	unsigned fragment;			/* first fragment */
-	unsigned count;				/* number of fragments */
-	struct buffer_head * bh[UFS_MAXFRAG];	/* buffers */
-};
 
 struct ufs_cg_private_info {
 	struct ufs_cylinder_group ucg;
@@ -539,72 +529,6 @@ struct ufs_cg_private_info {
 	__u32	c_clusteroff;	/* (u_int8) free cluster map */
 	__u32	c_nclusterblks;	/* number of clusters this cg */
 };	
-
-struct ufs_sb_private_info {
-	struct ufs_buffer_head s_ubh; /* buffer containing super block */
-	__u32	s_sblkno;	/* offset of super-blocks in filesys */
-	__u32	s_cblkno;	/* offset of cg-block in filesys */
-	__u32	s_iblkno;	/* offset of inode-blocks in filesys */
-	__u32	s_dblkno;	/* offset of first data after cg */
-	__u32	s_cgoffset;	/* cylinder group offset in cylinder */
-	__u32	s_cgmask;	/* used to calc mod fs_ntrak */
-	__u32	s_size;		/* number of blocks (fragments) in fs */
-	__u32	s_dsize;	/* number of data blocks in fs */
-	__u32	s_ncg;		/* number of cylinder groups */
-	__u32	s_bsize;	/* size of basic blocks */
-	__u32	s_fsize;	/* size of fragments */
-	__u32	s_fpb;		/* fragments per block */
-	__u32	s_minfree;	/* minimum percentage of free blocks */
-	__u32	s_bmask;	/* `blkoff'' calc of blk offsets */
-	__u32	s_fmask;	/* s_fsize mask */
-	__u32	s_bshift;	/* `lblkno'' calc of logical blkno */
-	__u32   s_fshift;	/* s_fsize shift */
-	__u32	s_fpbshift;	/* fragments per block shift */
-	__u32	s_fsbtodb;	/* fsbtodb and dbtofsb shift constant */
-	__u32	s_sbsize;	/* actual size of super block */
-	__u32   s_csmask;	/* csum block offset */
-	__u32	s_csshift;	/* csum block number */
-	__u32	s_nindir;	/* value of NINDIR */
-	__u32	s_inopb;	/* value of INOPB */
-	__u32	s_nspf;		/* value of NSPF */
-	__u32	s_npsect;	/* # sectors/track including spares */
-	__u32	s_interleave;	/* hardware sector interleave */
-	__u32	s_trackskew;	/* sector 0 skew, per track */
-	__u32	s_csaddr;	/* blk addr of cyl grp summary area */
-	__u32	s_cssize;	/* size of cyl grp summary area */
-	__u32	s_cgsize;	/* cylinder group size */
-	__u32	s_ntrak;	/* tracks per cylinder */
-	__u32	s_nsect;	/* sectors per track */
-	__u32	s_spc;		/* sectors per cylinder */
-	__u32	s_ipg;		/* inodes per group */
-	__u32	s_fpg;		/* fragments per group */
-	__u32	s_cpc;		/* cyl per cycle in postbl */
-	__s32	s_contigsumsize;/* size of cluster summary array, 44bsd */
-	__s64	s_qbmask;	/* ~usb_bmask */
-	__s64	s_qfmask;	/* ~usb_fmask */
-	__s32	s_postblformat;	/* format of positional layout tables */
-	__s32	s_nrpos;	/* number of rotational positions */
-        __s32	s_postbloff;	/* (__s16) rotation block list head */
-	__s32	s_rotbloff;	/* (__u8) blocks for each rotation */
-
-	__u32	s_fpbmask;	/* fragments per block mask */
-	__u32	s_apb;		/* address per block */
-	__u32	s_2apb;		/* address per block^2 */
-	__u32	s_3apb;		/* address per block^3 */
-	__u32	s_apbmask;	/* address per block mask */
-	__u32	s_apbshift;	/* address per block shift */
-	__u32	s_2apbshift;	/* address per block shift * 2 */
-	__u32	s_3apbshift;	/* address per block shift * 3 */
-	__u32	s_nspfshift;	/* number of sector per fragment shift */
-	__u32	s_nspb;		/* number of sector per block */
-	__u32	s_inopf;	/* inodes per fragment */
-	__u32	s_sbbase;	/* offset of NeXTstep superblock */
-	__u32	s_bpf;		/* bits per fragment */
-	__u32	s_bpfshift;	/* bits per fragment shift*/
-	__u32	s_bpfmask;	/* bits per fragment mask */
-
-	__u32	s_maxsymlinklen;/* upper limit on fast symlinks' size */
-};
 
 /*
  * Sizes of this structures are:

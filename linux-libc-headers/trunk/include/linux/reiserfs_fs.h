@@ -1069,17 +1069,6 @@ extern void make_empty_dir_item (char * body, __u32 dirid, __u32 objid,
 #define I_DEH_N_ENTRY_LENGTH(ih,deh,i) \
 ((i) ? (deh_location((deh)-1) - deh_location((deh))) : (ih_item_len((ih)) - deh_location((deh))))
 */
-static inline int entry_length (const struct buffer_head * bh, 
-								const struct item_head * ih, int pos_in_item)
-{
-    struct reiserfs_de_head * deh;
-
-    deh = B_I_DEH (bh, ih) + pos_in_item;
-    if (pos_in_item)
-	return deh_location(deh-1) - deh_location(deh);
-
-    return ih_item_len(ih) - deh_location(deh);
-}
 
 
 
@@ -1094,27 +1083,6 @@ static inline int entry_length (const struct buffer_head * bh,
 #define REISERFS_MAX_NAME(block_size) 255
 
 
-/* this structure is used for operations on directory entries. It is
-   not a disk structure. */
-/* When reiserfs_find_entry or search_by_entry_key find directory
-   entry, they return filled reiserfs_dir_entry structure */
-struct reiserfs_dir_entry
-{
-  struct buffer_head * de_bh;
-  int de_item_num;
-  struct item_head * de_ih;
-  int de_entry_num;
-  struct reiserfs_de_head * de_deh;
-  int de_entrylen;
-  int de_namelen;
-  char * de_name;
-  char * de_gen_number_bit_string;
-
-  __u32 de_dir_id;
-  __u32 de_objectid;
-
-  struct cpu_key de_entry_key;
-};
    
 /* these defines are useful when a particular member of a reiserfs_dir_entry is needed */
 
@@ -1194,11 +1162,6 @@ struct disk_child {
    is looking through a leaf node bin_search will find the position of the item which has key either
    equal to given key, or which is the maximal key less than the given key. */
 
-struct  path_element  {
-  struct buffer_head *	pe_buffer;    /* Pointer to the buffer at the path in the tree. */
-  int         		pe_position;  /* Position in the tree node which is placed in the */
-                                      /* buffer above.                                  */
-};
 
 #define MAX_HEIGHT 5 /* maximal height of a tree. don't change this without changing JOURNAL_PER_BALANCE_CNT */
 #define EXTENDED_MAX_HEIGHT         7 /* Must be equals MAX_HEIGHT + FIRST_PATH_ELEMENT_OFFSET */
@@ -1227,19 +1190,9 @@ gods only know how we are going to SMP the code that uses them.
 znodes are the way! */
 
 
-struct  path {
-  int                   path_length;                      	/* Length of the array above.   */
-  struct  path_element  path_elements[EXTENDED_MAX_HEIGHT];	/* Array of the path elements.  */
-  int			pos_in_item;
-};
 
-#define pos_in_item(path) ((path)->pos_in_item)
 
-#define INITIALIZE_PATH(var) \
-struct path var = {ILLEGAL_PATH_ELEMENT_OFFSET, }
 
-/* Get path element by path and path position. */
-#define PATH_OFFSET_PELEMENT(p_s_path,n_offset)  ((p_s_path)->path_elements +(n_offset))
 
 /* Get buffer header at the path by path and path position. */
 #define PATH_OFFSET_PBUFFER(p_s_path,n_offset)   (PATH_OFFSET_PELEMENT(p_s_path,n_offset)->pe_buffer)
@@ -1399,74 +1352,6 @@ struct direntry_uarea {
 /* maximum number of FEB blocknrs on a single level */
 #define MAX_AMOUNT_NEEDED 2
 
-/* someday somebody will prefix every field in this struct with tb_ */
-struct tree_balance
-{
-  int tb_mode;
-  int need_balance_dirty;
-  struct super_block * tb_sb;
-  struct reiserfs_transaction_handle *transaction_handle ;
-  struct path * tb_path;
-  struct buffer_head * L[MAX_HEIGHT];        /* array of left neighbors of nodes in the path */
-  struct buffer_head * R[MAX_HEIGHT];        /* array of right neighbors of nodes in the path*/
-  struct buffer_head * FL[MAX_HEIGHT];       /* array of fathers of the left  neighbors      */
-  struct buffer_head * FR[MAX_HEIGHT];       /* array of fathers of the right neighbors      */
-  struct buffer_head * CFL[MAX_HEIGHT];      /* array of common parents of center node and its left neighbor  */
-  struct buffer_head * CFR[MAX_HEIGHT];      /* array of common parents of center node and its right neighbor */
-
-  struct buffer_head * FEB[MAX_FEB_SIZE]; /* array of empty buffers. Number of buffers in array equals
-					     cur_blknum. */
-  struct buffer_head * used[MAX_FEB_SIZE];
-  struct buffer_head * thrown[MAX_FEB_SIZE];
-  int lnum[MAX_HEIGHT];	/* array of number of items which must be
-			   shifted to the left in order to balance the
-			   current node; for leaves includes item that
-			   will be partially shifted; for internal
-			   nodes, it is the number of child pointers
-			   rather than items. It includes the new item
-			   being created. The code sometimes subtracts
-			   one to get the number of wholly shifted
-			   items for other purposes. */
-  int rnum[MAX_HEIGHT];	/* substitute right for left in comment above */
-  int lkey[MAX_HEIGHT];               /* array indexed by height h mapping the key delimiting L[h] and
-					       S[h] to its item number within the node CFL[h] */
-  int rkey[MAX_HEIGHT];               /* substitute r for l in comment above */
-  int insert_size[MAX_HEIGHT];        /* the number of bytes by we are trying to add or remove from
-					       S[h]. A negative value means removing.  */
-  int blknum[MAX_HEIGHT];             /* number of nodes that will replace node S[h] after
-					       balancing on the level h of the tree.  If 0 then S is
-					       being deleted, if 1 then S is remaining and no new nodes
-					       are being created, if 2 or 3 then 1 or 2 new nodes is
-					       being created */
-
-  /* fields that are used only for balancing leaves of the tree */
-  int cur_blknum;	/* number of empty blocks having been already allocated			*/
-  int s0num;             /* number of items that fall into left most  node when S[0] splits	*/
-  int s1num;             /* number of items that fall into first  new node when S[0] splits	*/
-  int s2num;             /* number of items that fall into second new node when S[0] splits	*/
-  int lbytes;            /* number of bytes which can flow to the left neighbor from the	left	*/
-  /* most liquid item that cannot be shifted from S[0] entirely		*/
-  /* if -1 then nothing will be partially shifted */
-  int rbytes;            /* number of bytes which will flow to the right neighbor from the right	*/
-  /* most liquid item that cannot be shifted from S[0] entirely		*/
-  /* if -1 then nothing will be partially shifted                           */
-  int s1bytes;		/* number of bytes which flow to the first  new node when S[0] splits	*/
-            			/* note: if S[0] splits into 3 nodes, then items do not need to be cut	*/
-  int s2bytes;
-  struct buffer_head * buf_to_free[MAX_FREE_BLOCK]; /* buffers which are to be freed after do_balance finishes by unfix_nodes */
-  char * vn_buf;		/* kmalloced memory. Used to create
-				   virtual node and keep map of
-				   dirtied bitmap blocks */
-  int vn_buf_size;		/* size of the vn_buf */
-  struct virtual_node * tb_vn;	/* VN starts after bitmap of bitmap blocks */
-
-  int fs_gen;                  /* saved value of `reiserfs_generation' counter
-			          see FILESYSTEM_CHANGED() macro in reiserfs_fs.h */
-#ifdef DISPLACE_NEW_PACKING_LOCALITIES
-  struct key  key;	      /* key pointer, to pass to block allocator or
-				 another low-level subsystem */
-#endif
-} ;
 
 /* These are modes of balancing */
 
@@ -1497,15 +1382,6 @@ struct tree_balance
 
 #define FIRST_TO_LAST 0
 #define LAST_TO_FIRST 1
-
-/* used in do_balance for passing parent of node information that has
-   been gotten from tb struct */
-struct buffer_info {
-    struct tree_balance * tb;
-    struct buffer_head * bi_bh;
-    struct buffer_head * bi_parent;
-    int bi_position;
-};
 
 
 /* there are 4 types of items: stat data, directory item, indirect, direct.
@@ -1705,14 +1581,11 @@ void reiserfs_wait_on_write_block(struct super_block *s) ;
 void reiserfs_block_writes(struct reiserfs_transaction_handle *th) ;
 void reiserfs_allow_writes(struct super_block *s) ;
 void reiserfs_check_lock_depth(char *caller) ;
-void reiserfs_prepare_for_journal(struct super_block *, struct buffer_head *bh, int wait) ;
-void reiserfs_restore_prepared_buffer(struct super_block *, struct buffer_head *bh) ;
 int journal_init(struct super_block *, const char * j_dev_name, int old_format) ;
 int journal_release(struct reiserfs_transaction_handle*, struct super_block *) ;
 int journal_release_error(struct reiserfs_transaction_handle*, struct super_block *) ;
 int journal_end(struct reiserfs_transaction_handle *, struct super_block *, unsigned long) ;
 int journal_end_sync(struct reiserfs_transaction_handle *, struct super_block *, unsigned long) ;
-int journal_mark_dirty_nolog(struct reiserfs_transaction_handle *, struct super_block *, struct buffer_head *bh) ;
 int journal_mark_freed(struct reiserfs_transaction_handle *, struct super_block *, b_blocknr_t blocknr) ;
 int push_journal_writer(char *w) ;
 int pop_journal_writer(int windex) ;
@@ -1721,41 +1594,11 @@ int reiserfs_in_journal(struct super_block *p_s_sb, int bmap_nr, int bit_nr, int
 int journal_begin(struct reiserfs_transaction_handle *, struct super_block *p_s_sb, unsigned long) ;
 void flush_async_commits(struct super_block *p_s_sb) ;
 
-int buffer_journaled(const struct buffer_head *bh) ;
-int mark_buffer_journal_new(struct buffer_head *bh) ;
-int reiserfs_add_page_to_flush_list(struct reiserfs_transaction_handle *,
-                                    struct inode *, struct buffer_head *) ;
 int reiserfs_remove_page_from_flush_list(struct reiserfs_transaction_handle *,
                                          struct inode *) ;
 
 int reiserfs_allocate_list_bitmaps(struct super_block *s, struct reiserfs_list_bitmap *, int) ;
 
-				/* why is this kerplunked right here? */
-static inline int reiserfs_buffer_prepared(const struct buffer_head *bh) {
-  if (bh && test_bit(BH_JPrepared, &bh->b_state))
-    return 1 ;
-  else
-    return 0 ;
-}
-
-/* buffer was journaled, waiting to get to disk */
-static inline int buffer_journal_dirty(const struct buffer_head *bh) {
-  if (bh)
-    return test_bit(BH_JDirty_wait, &bh->b_state) ;
-  else
-    return 0 ;
-}
-static inline int mark_buffer_notjournal_dirty(struct buffer_head *bh) {
-  if (bh)
-    clear_bit(BH_JDirty_wait, &bh->b_state) ;
-  return 0 ;
-}
-static inline int mark_buffer_notjournal_new(struct buffer_head *bh) {
-  if (bh) {
-    clear_bit(BH_JNew, &bh->b_state) ;
-  }
-  return 0 ;
-}
 
 void add_save_link (struct reiserfs_transaction_handle * th,
 					struct inode * inode, int truncate);
@@ -1766,11 +1609,6 @@ __u32 reiserfs_get_unused_objectid (struct reiserfs_transaction_handle *th);
 void reiserfs_release_objectid (struct reiserfs_transaction_handle *th, __u32 objectid_to_release);
 int reiserfs_convert_objectid_map_v1(struct super_block *) ;
 
-/* stree.c */
-int B_IS_IN_TREE(const struct buffer_head *);
-extern inline void copy_short_key (void * to, const void * from);
-extern inline void copy_item_head(struct item_head * p_v_to, 
-								  const struct item_head * p_v_from);
 
 // first key is in cpu form, second - le
 extern inline int comp_keys (const struct key * le_key, 
@@ -1811,9 +1649,6 @@ static inline void copy_key (struct key *to, const struct key *from)
 }
 
 
-int comp_items (const struct item_head * stored_ih, const struct path * p_s_path);
-const struct key * get_rkey (const struct path * p_s_chk_path, 
-							 const struct super_block  * p_s_sb);
 inline int bin_search (const void * p_v_key, const void * p_v_base, 
 					   int p_n_num, int p_n_width, int * p_n_pos);
 int search_by_key (struct super_block *, const struct cpu_key *, 
@@ -1822,7 +1657,6 @@ int search_by_key (struct super_block *, const struct cpu_key *,
 int search_for_position_by_key (struct super_block * p_s_sb, 
 								const struct cpu_key * p_s_cpu_key, 
 								struct path * p_s_search_path);
-extern inline void decrement_bcount (struct buffer_head * p_s_bh);
 void decrement_counters_in_path (struct path * p_s_search_path);
 void pathrelse (struct path * p_s_search_path);
 int reiserfs_check_path(struct path *p) ;
@@ -1844,12 +1678,6 @@ int reiserfs_cut_from_item (struct reiserfs_transaction_handle *th,
 			    struct inode * inode,
 			    struct page *page,
 			    loff_t new_file_size);
-
-int reiserfs_delete_item (struct reiserfs_transaction_handle *th,
-			  struct path * path, 
-			  const struct cpu_key * key,
-			  struct inode * inode, 
-			  struct buffer_head  * p_s_un_bh);
 
 void reiserfs_delete_solid_item (struct reiserfs_transaction_handle *th,
                                                                 struct key * key);
@@ -1951,97 +1779,6 @@ int reiserfs_global_version_in_proc( char *buffer, char **start, off_t offset,
 #define PROC_INFO_BH_STAT( p_s_sb, p_s_bh, n_node_level ) VOID_V
 #endif
 
-/* dir.c */
-extern struct inode_operations reiserfs_dir_inode_operations;
-extern struct file_operations reiserfs_dir_operations;
-
-/* tail_conversion.c */
-int direct2indirect (struct reiserfs_transaction_handle *, struct inode *, struct path *, struct buffer_head *, loff_t);
-int indirect2direct (struct reiserfs_transaction_handle *, struct inode *, struct page *, struct path *, const struct cpu_key *, loff_t, char *);
-void reiserfs_unmap_buffer(struct buffer_head *) ;
-
-
-/* file.c */
-extern struct inode_operations reiserfs_file_inode_operations;
-extern struct file_operations reiserfs_file_operations;
-extern struct address_space_operations reiserfs_address_space_operations ;
-
-/* fix_nodes.c */
-#ifdef CONFIG_REISERFS_CHECK
-void * reiserfs_kmalloc (size_t size, int flags, struct super_block * s);
-void reiserfs_kfree (const void * vp, size_t size, struct super_block * s);
-#else
-#define reiserfs_kmalloc(x, y, z) kmalloc(x, y)
-#define reiserfs_kfree(x, y, z) kfree(x)
-#endif
-
-int fix_nodes (int n_op_mode, struct tree_balance * p_s_tb, 
-	       struct item_head * p_s_ins_ih, const void *);
-void unfix_nodes (struct tree_balance *);
-void free_buffers_in_tb (struct tree_balance * p_s_tb);
-
-
-/* prints.c */
-void reiserfs_panic (struct super_block * s, const char * fmt, ...)
-__attribute__ ( ( noreturn ) );/* __attribute__( ( format ( printf, 2, 3 ) ) ) */
-void reiserfs_debug (struct super_block *s, int level, const char * fmt, ...);
-/* __attribute__( ( format ( printf, 3, 4 ) ) ); */
-void print_virtual_node (struct virtual_node * vn);
-void print_indirect_item (struct buffer_head * bh, int item_num);
-void store_print_tb (struct tree_balance * tb);
-void print_cur_tb (char * mes);
-void print_de (struct reiserfs_dir_entry * de);
-void print_bi (struct buffer_info * bi, char * mes);
-#define PRINT_LEAF_ITEMS 1   /* print all items */
-#define PRINT_DIRECTORY_ITEMS 2 /* print directory items */
-#define PRINT_DIRECT_ITEMS 4 /* print contents of direct items */
-void print_block (struct buffer_head * bh, ...);
-void print_path (struct tree_balance * tb, struct path * path);
-void print_bmap (struct super_block * s, int silent);
-void print_bmap_block (int i, char * data, int size, int silent);
-/*void print_super_block (struct super_block * s, char * mes);*/
-void print_objectid_map (struct super_block * s);
-void print_block_head (struct buffer_head * bh, char * mes);
-void check_leaf (struct buffer_head * bh);
-void check_internal (struct buffer_head * bh);
-void print_statistics (struct super_block * s);
-char * reiserfs_hashname(int code);
-
-/* lbalance.c */
-int leaf_move_items (int shift_mode, struct tree_balance * tb, int mov_num, int mov_bytes, struct buffer_head * Snew);
-int leaf_shift_left (struct tree_balance * tb, int shift_num, int shift_bytes);
-int leaf_shift_right (struct tree_balance * tb, int shift_num, int shift_bytes);
-void leaf_delete_items (struct buffer_info * cur_bi, int last_first, int first, int del_num, int del_bytes);
-void leaf_insert_into_buf (struct buffer_info * bi, int before, 
-                           struct item_head * inserted_item_ih, const char * inserted_item_body, int zeros_number);
-void leaf_paste_in_buffer (struct buffer_info * bi, int pasted_item_num, 
-                           int pos_in_item, int paste_size, const char * body, int zeros_number);
-void leaf_cut_from_buffer (struct buffer_info * bi, int cut_item_num, int pos_in_item, 
-                           int cut_size);
-void leaf_paste_entries (struct buffer_head * bh, int item_num, int before, 
-                         int new_entry_count, struct reiserfs_de_head * new_dehs, const char * records, int paste_size);
-/* ibalance.c */
-int balance_internal (struct tree_balance * , int, int, struct item_head * , 
-                      struct buffer_head **);
-
-/* do_balance.c */
-inline void do_balance_mark_leaf_dirty (struct tree_balance * tb, 
-					struct buffer_head * bh, int flag);
-#define do_balance_mark_internal_dirty do_balance_mark_leaf_dirty
-#define do_balance_mark_sb_dirty do_balance_mark_leaf_dirty
-
-void do_balance (struct tree_balance * tb, struct item_head * ih, 
-                 const char * body, int flag);
-void reiserfs_invalidate_buffer (struct tree_balance * tb, struct buffer_head * bh);
-
-int get_left_neighbor_position (struct tree_balance * tb, int h);
-int get_right_neighbor_position (struct tree_balance * tb, int h);
-void replace_key (struct tree_balance * tb, struct buffer_head *, int, struct buffer_head *, int);
-void replace_lkey (struct tree_balance *, int, struct item_head *);
-void replace_rkey (struct tree_balance *, int, struct item_head *);
-void make_empty_node (struct buffer_info *);
-struct buffer_head * get_FEB (struct tree_balance *);
-
 /* bitmap.c */
 
 /* structure contains hints for block allocator, and it is a container for
@@ -2072,19 +1809,7 @@ int reiserfs_parse_alloc_options (struct super_block *, char *);
 int is_reusable (struct super_block * s, b_blocknr_t block, int bit_value);
 void reiserfs_free_block (struct reiserfs_transaction_handle *th, b_blocknr_t);
 int reiserfs_allocate_blocknrs(reiserfs_blocknr_hint_t *, b_blocknr_t * , int, int);
-extern inline int reiserfs_new_form_blocknrs (struct tree_balance * tb,
-					      b_blocknr_t *new_blocknrs, int amount_needed)
-{
-    reiserfs_blocknr_hint_t hint = {
-	.th = tb->transaction_handle,
-	.path = tb->tb_path,
-	.inode = NULL,
-	.key = tb->key,
-	.block = 0,
-	.formatted_node = 1
-    };
-    return reiserfs_allocate_blocknrs(&hint, new_blocknrs, amount_needed, 0);
-}
+
 
 extern inline int reiserfs_new_unf_blocknrs (struct reiserfs_transaction_handle *th,
 					     struct inode *inode,
