@@ -3,6 +3,8 @@
 
 #include <asm/types.h>
 
+#ifndef _BITS_SIGCONTEXT_H
+
 /* FXSAVE frame */
 /* Note: reserved1/2 may someday contain valuable data. Always save/restore
    them when you change signal frames. */
@@ -50,5 +52,6 @@ struct sigcontext {
 	struct _fpstate *fpstate;	/* zero when no FPU context */
 	unsigned long reserved1[8];
 };
+#endif /* _BITS_SIGCONTEXT_H */
 
 #endif
