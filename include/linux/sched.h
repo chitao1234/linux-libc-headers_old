@@ -78,7 +78,6 @@ extern unsigned long avenrun[];		/* Load averages */
 #include <sys/time.h>
 #include <linux/param.h>
 #include <linux/resource.h>
-#include <linux/timer.h>
 
 #include <asm/processor.h>
 
