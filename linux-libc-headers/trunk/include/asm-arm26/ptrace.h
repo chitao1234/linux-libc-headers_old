@@ -56,46 +56,6 @@ struct pt_regs {
 #define ARM_r0		uregs[0]
 #define ARM_ORIG_r0	uregs[16]
 
-#ifdef __KERNEL__
-
-#define processor_mode(regs) \
-	((regs)->ARM_pc & MODE_MASK)
-
-#define user_mode(regs) \
-	(processor_mode(regs) == MODE_USR26)
-
-#define interrupts_enabled(regs) \
-	(!((regs)->ARM_pc & PSR_I_BIT))
-
-#define fast_interrupts_enabled(regs) \
-	(!((regs)->ARM_pc & PSR_F_BIT))
-
-#define condition_codes(regs) \
-	((regs)->ARM_pc & (PSR_V_BIT|PSR_C_BIT|PSR_Z_BIT|PSR_N_BIT))
-
-/* Are the current registers suitable for user mode?
- * (used to maintain security in signal handlers)
- */
-static inline int valid_user_regs(struct pt_regs *regs)
-{
-	if (user_mode(regs) &&
-	    (regs->ARM_pc & (PSR_F_BIT | PSR_I_BIT)) == 0)
-		return 1;
-
-	/*
-	 * force it to be something sensible
-	 */
-	regs->ARM_pc &= ~(MODE_MASK | PSR_F_BIT | PSR_I_BIT);
-
-	return 0;
-}
-
-extern void show_regs(struct pt_regs *);
-
-#define predicate(x)    (x & 0xf0000000)
-#define PREDICATE_ALWAYS        0xe0000000
-
-#endif	/* __KERNEL__ */
 
 #endif	/* __ASSEMBLY__ */
 
