@@ -1,11 +1,11 @@
 #ifndef _X86_64_BITOPS_H
 #define _X86_64_BITOPS_H
 
+/* non-atomic version which could be used in userspace (but shouldn't anyway) */
+
 /*
  * Copyright 1992, Linus Torvalds.
  */
-
-#include <linux/config.h>
 
 /*
  * These have to be done with inline assembly: that way the bit-setting
@@ -15,7 +15,7 @@
  * bit 0 is the LSB of addr; bit 32 is the LSB of (addr+1).
  */
 
-#ifdef CONFIG_SMP
+#if 0 && defined(CONFIG_SMP)
 #define LOCK_PREFIX "lock ; "
 #else
 #define LOCK_PREFIX ""
@@ -83,9 +83,6 @@ static __inline__ void __clear_bit(int nr, volatile void * addr)
 		:"=m" (ADDR)
 		:"dIr" (nr));
 }
-
-#define smp_mb__before_clear_bit()	barrier()
-#define smp_mb__after_clear_bit()	barrier()
 
 /**
  * __change_bit - Toggle a bit in memory
@@ -386,12 +383,6 @@ static __inline__ int find_next_bit(const unsigned long * addr, int size, int of
 	return (offset + set + res);
 }
 
-/* 
- * Find string of zero bits in a bitmap. -1 when not found.
- */ 
-extern unsigned long 
-find_next_zero_string(unsigned long *bitmap, long start, long nbits, int len);
-
 static inline void set_bit_string(unsigned long *bitmap, unsigned long i, 
 				  int len) 
 { 
@@ -439,78 +430,5 @@ static __inline__ unsigned long __ffs(unsigned long word)
 		:"rm" (word));
 	return word;
 }
-
-#ifdef __KERNEL__
-
-static inline int sched_find_first_bit(const unsigned long *b)
-{
-	if (b[0])
-		return __ffs(b[0]);
-	if (b[1])
-		return __ffs(b[1]) + 64;
-	if (b[2])
-		return __ffs(b[2]) + 128;
-}
-
-/**
- * ffs - find first bit set
- * @x: the word to search
- *
- * This is defined the same way as
- * the libc and compiler builtin ffs routines, therefore
- * differs in spirit from the above ffz (man ffs).
- */
-static __inline__ int ffs(int x)
-{
-	int r;
-
-	__asm__("bsfl %1,%0\n\t"
-		"cmovzl %2,%0" 
-		: "=r" (r) : "g" (x), "r" (-1));
-	return r+1;
-}
-
-/**
- * hweightN - returns the hamming weight of a N-bit word
- * @x: the word to weigh
- *
- * The Hamming Weight of a number is the total number of bits set in it.
- */
-
-#define hweight64(x) generic_hweight64(x)
-#define hweight32(x) generic_hweight32(x)
-#define hweight16(x) generic_hweight16(x)
-#define hweight8(x) generic_hweight8(x)
-
-#endif /* __KERNEL__ */
-
-#ifdef __KERNEL__
-
-#define ext2_set_bit(nr,addr) \
-	__test_and_set_bit((nr),(unsigned long*)addr)
-#define ext2_set_bit_atomic(lock,nr,addr) \
-	        test_and_set_bit((nr),(unsigned long*)addr)
-#define ext2_clear_bit(nr, addr) \
-	__test_and_clear_bit((nr),(unsigned long*)addr)
-#define ext2_clear_bit_atomic(lock,nr,addr) \
-	        test_and_clear_bit((nr),(unsigned long*)addr)
-#define ext2_test_bit(nr, addr)      test_bit((nr),(unsigned long*)addr)
-#define ext2_find_first_zero_bit(addr, size) \
-	find_first_zero_bit((unsigned long*)addr, size)
-#define ext2_find_next_zero_bit(addr, size, off) \
-	find_next_zero_bit((unsigned long*)addr, size, off)
-
-/* Bitmap functions for the minix filesystem.  */
-#define minix_test_and_set_bit(nr,addr) __test_and_set_bit(nr,(void*)addr)
-#define minix_set_bit(nr,addr) __set_bit(nr,(void*)addr)
-#define minix_test_and_clear_bit(nr,addr) __test_and_clear_bit(nr,(void*)addr)
-#define minix_test_bit(nr,addr) test_bit(nr,(void*)addr)
-#define minix_find_first_zero_bit(addr,size) \
-	find_first_zero_bit((void*)addr,size)
-
-/* find last set bit */
-#define fls(x) generic_fls(x)
-
-#endif /* __KERNEL__ */
 
 #endif /* _X86_64_BITOPS_H */
