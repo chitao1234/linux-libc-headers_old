@@ -2,7 +2,6 @@
 
 /* TIMER rate define */
 #ifdef H8300_TIMER_DEFINE
-#include <linux/config.h>
 #define H8300_TIMER_COUNT_DATA 20000*10/8192
 #define H8300_TIMER_FREQ 20000*1000/8192
 #endif

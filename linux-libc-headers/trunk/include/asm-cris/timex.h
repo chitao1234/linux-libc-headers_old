@@ -16,9 +16,4 @@
 
 typedef unsigned int cycles_t;
 
-extern inline cycles_t get_cycles(void)
-{
-        return 0;
-}
-
 #endif

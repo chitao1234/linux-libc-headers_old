@@ -10,9 +10,6 @@
  *			Also removed cacheflush_time as it's entirely unused.
  */
 
-#include <asm/intrinsics.h>
-#include <asm/processor.h>
-
 typedef unsigned long cycles_t;
 
 /*
@@ -27,14 +24,5 @@ typedef unsigned long cycles_t;
  * 100MHz.
  */
 #define CLOCK_TICK_RATE		(HZ * 100000UL)
-
-static inline cycles_t
-get_cycles (void)
-{
-	cycles_t ret;
-
-	ret = ia64_getreg(_IA64_REG_AR_ITC);
-	return ret;
-}
 
 #endif /* _ASM_IA64_TIMEX_H */
