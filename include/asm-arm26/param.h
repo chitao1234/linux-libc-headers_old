@@ -14,13 +14,7 @@
 #define __KERNEL_HZ	100
 #endif
 
-#ifdef __KERNEL__
-# define HZ		__KERNEL_HZ	/* Internal kernel timer frequency */
-# define USER_HZ	100		/* User interfaces are in "ticks" */
-# define CLOCKS_PER_SEC	(USER_HZ)	/* like times() */
-#else
-# define HZ		100
-#endif
+#define HZ		100
 
 #ifndef NGROUPS
 #define NGROUPS         32
