@@ -16,7 +16,8 @@
 #ifndef __LINUX_IF_PPPOX_H
 #define __LINUX_IF_PPPOX_H
 
-
+#include <linux/if.h>
+#include <linux/if_ether.h>
 #include <asm/types.h>
 #include <endian.h>
 #include <byteswap.h>
