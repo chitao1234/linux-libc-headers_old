@@ -6,6 +6,7 @@
  * structures etc.
  */
 
+#include <linux/limits.h>
 #include <linux/kdev_t.h>
 #include <linux/ioctl.h>
 
