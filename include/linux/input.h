@@ -190,6 +190,7 @@ struct input_absinfo {
 #define KEY_KP3			81
 #define KEY_KP0			82
 #define KEY_KPDOT		83
+#define KEY_103RD		84
 
 #define KEY_ZENKAKUHANKAKU	85
 #define KEY_102ND		86
