@@ -7,7 +7,7 @@
 #ifndef _IP_QUEUE_H
 #define _IP_QUEUE_H
 
-#include <net/if.h>
+#include <linux/if.h>
 
 /* Messages sent from kernel */
 typedef struct ipq_packet_msg {
