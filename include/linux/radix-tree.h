@@ -19,6 +19,8 @@
 #ifndef _LINUX_RADIX_TREE_H
 #define _LINUX_RADIX_TREE_H
 
+#ifdef __KERNEL__
+
 #include <linux/preempt.h>
 
 struct radix_tree_node;
@@ -54,4 +56,5 @@ static inline void radix_tree_preload_end(void)
 	preempt_enable();
 }
 
+#endif /* __KERNEL__ */
 #endif /* _LINUX_RADIX_TREE_H */
