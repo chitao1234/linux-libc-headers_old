@@ -86,6 +86,7 @@ Major new features in SG 3.x driver (cf SG 2.x drivers)
  	http://www.linuxdoc.org/HOWTO/SCSI-2.4-HOWTO
 */
 
+#include <linux/types.h>
 
 /* New interface introduced in the 3.x SG drivers follows */
 
