@@ -21,6 +21,8 @@
 #include <linux/types.h>
 #include <sys/socket.h>
 
+#ifndef _NETINET_IN_H
+
 /* Standard well-defined IP protocols.  */
 enum {
   IPPROTO_IP = 0,		/* Dummy protocol for TCP		*/
@@ -53,6 +55,8 @@ enum {
 struct in_addr {
 	__u32	s_addr;
 };
+
+#endif
 
 #define IP_TOS		1
 #define IP_TTL		2
@@ -105,6 +109,8 @@ struct in_addr {
 #define IP_DEFAULT_MULTICAST_TTL        1
 #define IP_DEFAULT_MULTICAST_LOOP       1
 
+#ifndef _NETINET_IN_H
+
 /* Request struct for multicast socket ops */
 
 struct ip_mreq 
@@ -119,6 +125,8 @@ struct ip_mreqn
 	struct in_addr	imr_address;		/* local IP address of interface */
 	int		imr_ifindex;		/* Interface index */
 };
+
+#endif
 
 struct ip_mreq_source {
 	__u32		imr_multiaddr;
@@ -164,6 +172,8 @@ struct group_filter
 	(sizeof(struct group_filter) - sizeof(struct sockaddr_storage) \
 	+ (numsrc) * sizeof(struct sockaddr_storage))
 
+#ifndef _NETINET_IN_H
+	
 struct in_pktinfo
 {
 	int		ipi_ifindex;
@@ -182,6 +192,9 @@ struct sockaddr_in {
   unsigned char		__pad[__SOCK_SIZE__ - sizeof(short int) -
 			sizeof(unsigned short int) - sizeof(struct in_addr)];
 };
+
+#endif
+
 #define sin_zero	__pad		/* for BSD UNIX comp. -FvK	*/
 
 
