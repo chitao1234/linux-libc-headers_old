@@ -7,7 +7,6 @@
 #define _ASMi386_TIMEX_H
 
 #include <linux/config.h>
-#include <asm/msr.h>
 
 #ifdef CONFIG_X86_PC9800
    extern int CLOCK_TICK_RATE;
