@@ -11,7 +11,9 @@
 #ifndef	_LINUX_CDROM_H
 #define	_LINUX_CDROM_H
 
-#include <asm/byteorder.h>
+#include <asm/types.h>
+#include <endian.h>
+#include <byteswap.h>
 
 /*******************************************************
  * As of Linux 2.1.x, all Linux CD-ROM application programs will use this 
