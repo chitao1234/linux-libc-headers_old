@@ -10,7 +10,6 @@
 #define _LINUX_SMB_FS_H
 
 #include <linux/smb.h>
-#include <linux/smb_fs_sb.h>
 #include <linux/fs.h>
 
 /*

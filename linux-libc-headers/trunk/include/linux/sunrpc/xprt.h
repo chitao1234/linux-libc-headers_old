@@ -13,7 +13,6 @@
 #include <sys/socket.h>
 #include <linux/in.h>
 #include <linux/sunrpc/sched.h>
-#include <linux/sunrpc/xdr.h>
 
 /*
  * The transport code maintains an estimate on the maximum number of out-
@@ -179,34 +178,5 @@ struct rpc_xprt {
 
 	wait_queue_head_t	cong_wait;
 };
-
-#ifdef __KERNEL__
-
-struct rpc_xprt *	xprt_create_proto(int proto, struct sockaddr_in *addr,
-					struct rpc_timeout *toparms);
-int			xprt_destroy(struct rpc_xprt *);
-void			xprt_shutdown(struct rpc_xprt *);
-void			xprt_default_timeout(struct rpc_timeout *, int);
-void			xprt_set_timeout(struct rpc_timeout *, unsigned int,
-					unsigned long);
-
-void			xprt_reserve(struct rpc_task *);
-int			xprt_prepare_transmit(struct rpc_task *);
-void			xprt_transmit(struct rpc_task *);
-void			xprt_receive(struct rpc_task *);
-int			xprt_adjust_timeout(struct rpc_timeout *);
-void			xprt_release(struct rpc_task *);
-void			xprt_connect(struct rpc_task *);
-int			xprt_clear_backlog(struct rpc_xprt *);
-void			xprt_sock_setbufsize(struct rpc_xprt *);
-
-#define XPRT_CONNECT	0
-
-#define xprt_connected(xp)		(test_bit(XPRT_CONNECT, &(xp)->sockstate))
-#define xprt_set_connected(xp)		(set_bit(XPRT_CONNECT, &(xp)->sockstate))
-#define xprt_test_and_set_connected(xp)	(test_and_set_bit(XPRT_CONNECT, &(xp)->sockstate))
-#define xprt_clear_connected(xp)	(clear_bit(XPRT_CONNECT, &(xp)->sockstate))
-
-#endif /* __KERNEL__*/
 
 #endif /* _LINUX_SUNRPC_XPRT_H */

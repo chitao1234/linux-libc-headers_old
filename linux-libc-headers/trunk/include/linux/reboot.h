@@ -32,23 +32,4 @@
 #define	LINUX_REBOOT_CMD_RESTART2	0xA1B2C3D4
 #define	LINUX_REBOOT_CMD_SW_SUSPEND	0xD000FCE2
 
-
-#ifdef __KERNEL__
-
-#include <linux/notifier.h>
-
-extern int register_reboot_notifier(struct notifier_block *);
-extern int unregister_reboot_notifier(struct notifier_block *);
-
-
-/*
- * Architecture-specific implementations of sys_reboot commands.
- */
-
-extern void machine_restart(char *cmd);
-extern void machine_halt(void);
-extern void machine_power_off(void);
-
-#endif
-
 #endif /* _LINUX_REBOOT_H */

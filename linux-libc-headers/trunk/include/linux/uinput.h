@@ -25,24 +25,6 @@
  *	0.1	20/06/2002
  *		- first public version
  */
-#ifdef __KERNEL__
-#define UINPUT_MINOR		223
-#define UINPUT_NAME		"uinput"
-#define UINPUT_BUFFER_SIZE	16
-
-/* state flags => bit index for {set|clear|test}_bit ops */
-#define UIST_CREATED		0
-
-struct uinput_device {
-	struct input_dev	*dev;
-	unsigned long		state;
-	wait_queue_head_t	waitq;
-	unsigned char		ready,
-				head,
-				tail;
-	struct input_event	buff[UINPUT_BUFFER_SIZE];
-};
-#endif	/* __KERNEL__ */
 
 /* ioctl */
 #define UINPUT_IOCTL_BASE	'U'

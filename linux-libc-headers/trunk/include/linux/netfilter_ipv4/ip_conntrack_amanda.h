@@ -2,15 +2,6 @@
 #define _IP_CONNTRACK_AMANDA_H
 /* AMANDA tracking. */
 
-#ifdef __KERNEL__
-
-#include <linux/netfilter_ipv4/lockhelp.h>
-
-/* Protects amanda part of conntracks */
-DECLARE_LOCK_EXTERN(ip_amanda_lock);
-
-#endif
-
 struct ip_ct_amanda_expect
 {
 	u_int16_t port;		/* port number of this expectation */

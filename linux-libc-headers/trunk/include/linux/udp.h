@@ -33,35 +33,4 @@ struct udphdr {
 /* UDP encapsulation types */
 #define UDP_ENCAP_ESPINUDP	2 /* draft-ietf-ipsec-udp-encaps-06 */
 
-#ifdef __KERNEL__
-
-#include <linux/config.h>
-#include <net/sock.h>
-#include <linux/ip.h>
-
-struct udp_opt {
-	int		pending;	/* Any pending frames ? */
-	unsigned int	corkflag;	/* Cork is required */
-  	__u16		encap_type;	/* Is this an Encapsulation socket? */
-	/*
-	 * Following member retains the infomation to create a UDP header
-	 * when the socket is uncorked.
-	 */
-	__u16		len;		/* total length of pending frames */
-};
-
-/* WARNING: don't change the layout of the members in udp_sock! */
-struct udp_sock {
-	struct sock	  sk;
-#if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
-	struct ipv6_pinfo *pinet6;
-#endif
-	struct inet_opt	  inet;
-	struct udp_opt	  udp;
-};
-
-#define udp_sk(__sk) (&((struct udp_sock *)__sk)->udp)
-
-#endif
-
 #endif	/* _LINUX_UDP_H */

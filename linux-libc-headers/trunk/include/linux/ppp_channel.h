@@ -44,38 +44,4 @@ struct ppp_channel {
 	int		latency;	/* overhead time in milliseconds */
 };
 
-#ifdef __KERNEL__
-/* Called by the channel when it can send some more data. */
-extern void ppp_output_wakeup(struct ppp_channel *);
-
-/* Called by the channel to process a received PPP packet.
-   The packet should have just the 2-byte PPP protocol header. */
-extern void ppp_input(struct ppp_channel *, struct sk_buff *);
-
-/* Called by the channel when an input error occurs, indicating
-   that we may have missed a packet. */
-extern void ppp_input_error(struct ppp_channel *, int code);
-
-/* Attach a channel to a given PPP unit. */
-extern int ppp_register_channel(struct ppp_channel *);
-
-/* Detach a channel from its PPP unit (e.g. on hangup). */
-extern void ppp_unregister_channel(struct ppp_channel *);
-
-/* Get the channel number for a channel */
-extern int ppp_channel_index(struct ppp_channel *);
-
-/* Get the unit number associated with a channel, or -1 if none */
-extern int ppp_unit_number(struct ppp_channel *);
-
-/*
- * SMP locking notes:
- * The channel code must ensure that when it calls ppp_unregister_channel,
- * nothing is executing in any of the procedures above, for that
- * channel.  The generic layer will ensure that nothing is executing
- * in the start_xmit and ioctl routines for the channel by the time
- * that ppp_unregister_channel returns.
- */
-
-#endif /* __KERNEL__ */
 #endif

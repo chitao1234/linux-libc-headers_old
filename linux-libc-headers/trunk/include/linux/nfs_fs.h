@@ -20,7 +20,6 @@
 #include <linux/nfs_fs_sb.h>
 
 #include <linux/sunrpc/debug.h>
-#include <linux/sunrpc/auth.h>
 #include <linux/sunrpc/clnt.h>
 
 #include <linux/nfs.h>

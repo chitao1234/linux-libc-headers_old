@@ -1,17 +1,6 @@
 #ifndef _LINUX_TYPES_H
 #define _LINUX_TYPES_H
 
-#ifdef	__KERNEL__
-#include <linux/config.h>
-
-#define BITS_TO_LONGS(bits) \
-	(((bits)+BITS_PER_LONG-1)/BITS_PER_LONG)
-#define DECLARE_BITMAP(name,bits) \
-	unsigned long name[BITS_TO_LONGS(bits)]
-#define CLEAR_BITMAP(name,bits) \
-	memset(name, 0, BITS_TO_LONGS(bits)*sizeof(unsigned long))
-#endif
-
 #include <linux/posix_types.h>
 #include <asm/types.h>
 
@@ -32,25 +21,8 @@ typedef __kernel_suseconds_t	suseconds_t;
 typedef __kernel_timer_t	timer_t;
 typedef __kernel_clockid_t	clockid_t;
 
-#ifdef __KERNEL__
-typedef __kernel_uid32_t	uid_t;
-typedef __kernel_gid32_t	gid_t;
-typedef __kernel_uid16_t        uid16_t;
-typedef __kernel_gid16_t        gid16_t;
-
-#ifdef CONFIG_UID16
-/* This is defined by include/asm-{arch}/posix_types.h */
-typedef __kernel_old_uid_t	old_uid_t;
-typedef __kernel_old_gid_t	old_gid_t;
-#endif /* CONFIG_UID16 */
-
-/* libc5 includes this file to define uid_t, thus uid_t can never change
- * when it is included by non-kernel code
- */
-#else
 typedef __kernel_uid_t		uid_t;
 typedef __kernel_gid_t		gid_t;
-#endif /* __KERNEL__ */
 
 #if defined(__GNUC__) && !defined(__STRICT_ANSI__)
 typedef __kernel_loff_t		loff_t;
