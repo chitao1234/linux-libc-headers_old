@@ -20,13 +20,5 @@
  */
 
 typedef unsigned int cycles_t;
-extern cycles_t cacheflush_time;
-
-static inline cycles_t get_cycles (void)
-{
-	cycles_t ret;
-	__asm__ __volatile__ ("rpcc %0" : "=r"(ret));
-	return ret;
-}
 
 #endif
