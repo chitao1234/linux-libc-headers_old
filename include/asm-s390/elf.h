@@ -96,9 +96,6 @@
  * ELF register definitions..
  */
 
-#include <asm/ptrace.h>
-#include <asm/user.h>
-
 
 typedef s390_fp_regs elf_fpregset_t;
 typedef s390_regs elf_gregset_t;
@@ -174,19 +171,5 @@ typedef s390_regs elf_gregset_t;
 
 #define ELF_PLATFORM (NULL)
 
-#ifdef __KERNEL__
-#ifndef __s390x__
-#define SET_PERSONALITY(ex, ibcs2) set_personality((ibcs2)?PER_SVR4:PER_LINUX)
-#else /* __s390x__ */
-#define SET_PERSONALITY(ex, ibcs2)			\
-do {							\
-	if (ibcs2)					\
-		set_personality(PER_SVR4);		\
-	else if (current->personality != PER_LINUX32)	\
-		set_personality(PER_LINUX);		\
-	clear_thread_flag(TIF_31BIT);			\
-} while (0)
-#endif /* __s390x__ */
-#endif
 
 #endif

@@ -1,4 +1,4 @@
-/* $Id: uaccess.h,v 1.2 2003/12/26 19:03:24 mmazur Exp $
+/* $Id: uaccess.h,v 1.3 2003/12/29 00:26:40 mmazur Exp $
  * uaccess.h: User space memore access functions.
  *
  * Copyright (C) 1996 David S. Miller (davem@caip.rutgers.edu)
@@ -9,7 +9,6 @@
 
 #ifdef __KERNEL__
 #include <linux/sched.h>
-#include <linux/string.h>
 #include <linux/errno.h>
 #include <asm/vac-ops.h>
 #include <asm/a.out.h>

@@ -9,7 +9,6 @@
 #include <linux/sched.h>
 #include <linux/kernel.h>
 #include <linux/param.h>
-#include <linux/string.h>
 #include <linux/mm.h>
 #include <linux/interrupt.h>
 #include <sys/time.h>

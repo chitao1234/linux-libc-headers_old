@@ -1,4 +1,4 @@
-/* $Id: elf.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $ */
+/* $Id: elf.h,v 1.2 2003/12/29 00:26:41 mmazur Exp $ */
 #ifndef __ASM_SPARC64_ELF_H
 #define __ASM_SPARC64_ELF_H
 
@@ -6,11 +6,6 @@
  * ELF register definitions..
  */
 
-#include <asm/ptrace.h>
-#ifdef __KERNEL__
-#include <asm/processor.h>
-#include <asm/uaccess.h>
-#endif
 
 /*
  * Sparc section types
@@ -157,25 +152,5 @@ typedef struct {
 
 #define ELF_PLATFORM	(NULL)
 
-#ifdef __KERNEL__
-#define SET_PERSONALITY(ex, ibcs2)			\
-do {	unsigned long new_flags = current_thread_info()->flags; \
-	new_flags &= _TIF_32BIT;			\
-	if ((ex).e_ident[EI_CLASS] == ELFCLASS32)	\
-		new_flags |= _TIF_32BIT;		\
-	else						\
-		new_flags &= ~_TIF_32BIT;		\
-	if ((current_thread_info()->flags & _TIF_32BIT) \
-	    != new_flags)				\
-		set_thread_flag(TIF_ABI_PENDING);	\
-	else						\
-		clear_thread_flag(TIF_ABI_PENDING);	\
-	/* flush_thread will update pgd cache */	\
-	if (ibcs2)					\
-		set_personality(PER_SVR4);		\
-	else if (current->personality != PER_LINUX32)	\
-		set_personality(PER_LINUX);		\
-} while (0)
-#endif
 
 #endif /* !(__ASM_SPARC64_ELF_H) */

@@ -8,7 +8,6 @@
 #ifndef _LINUX_BACKING_DEV_H
 #define _LINUX_BACKING_DEV_H
 
-#include <asm/atomic.h>
 
 /*
  * Bits in backing_dev_info.state

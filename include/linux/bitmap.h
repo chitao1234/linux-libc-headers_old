@@ -7,7 +7,6 @@
 #include <linux/types.h>
 #include <linux/kernel.h>
 #include <linux/bitops.h>
-#include <linux/string.h>
 
 static inline int bitmap_empty(const unsigned long *bitmap, int bits)
 {

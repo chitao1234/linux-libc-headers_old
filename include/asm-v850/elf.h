@@ -5,9 +5,6 @@
  * ELF register definitions..
  */
 
-#include <asm/ptrace.h>
-#include <asm/user.h>
-#include <asm/byteorder.h>
 
 typedef unsigned long elf_greg_t;
 
@@ -94,8 +91,5 @@ typedef struct user_fpu_struct elf_fpregset_t;
 	0;								      \
   } while (0)
 
-#ifdef __KERNEL__
-#define SET_PERSONALITY(ex, ibcs2) set_personality(PER_LINUX_32BIT)
-#endif
 
 #endif /* __V850_ELF_H__ */

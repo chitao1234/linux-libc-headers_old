@@ -5,8 +5,6 @@
  * ELF register definitions..
  */
 
-#include <asm/ptrace.h>
-#include <asm/procinfo.h>
 
 //FIXME - is it always 32K ?
 

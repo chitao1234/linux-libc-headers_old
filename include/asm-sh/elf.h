@@ -46,8 +46,6 @@
  * ELF register definitions..
  */
 
-#include <asm/ptrace.h>
-#include <asm/user.h>
 
 typedef unsigned long elf_greg_t;
 
@@ -109,13 +107,5 @@ typedef struct user_fpu_struct elf_fpregset_t;
        _r->regs[12]=0; _r->regs[13]=0; _r->regs[14]=0; \
        _r->sr = SR_FD; } while (0)
 
-#ifdef __KERNEL__
-#define SET_PERSONALITY(ex, ibcs2) set_personality(PER_LINUX_32BIT)
-extern int dump_task_regs (struct task_struct *, elf_gregset_t *);
-extern int dump_task_fpu (struct task_struct *, elf_fpregset_t *);
-
-#define ELF_CORE_COPY_TASK_REGS(tsk, elf_regs) dump_task_regs(tsk, elf_regs)
-#define ELF_CORE_COPY_FPREGS(tsk, elf_fpregs) dump_task_fpu(tsk, elf_fpregs)
-#endif
 
 #endif /* __ASM_SH_ELF_H */

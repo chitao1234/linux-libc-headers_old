@@ -12,7 +12,6 @@
  *	Stephane Eranian <eranian@hpl.hp.com>
  */
 #include <linux/init.h>
-#include <linux/string.h>
 #include <sys/time.h>
 #include <linux/types.h>
 #include <linux/proc_fs.h>

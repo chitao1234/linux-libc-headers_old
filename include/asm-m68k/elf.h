@@ -5,10 +5,6 @@
  * ELF register definitions..
  */
 
-#include <linux/config.h>
-#include <asm/ptrace.h>
-#include <asm/user.h>
-
 /*
  * 68k ELF relocation types
  */
@@ -115,8 +111,5 @@ typedef struct user_m68kfp_struct elf_fpregset_t;
 
 #define ELF_PLATFORM  (NULL)
 
-#ifdef __KERNEL__
-#define SET_PERSONALITY(ex, ibcs2) set_personality((ibcs2)?PER_SVR4:PER_LINUX)
-#endif
 
 #endif
