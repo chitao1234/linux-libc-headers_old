@@ -128,6 +128,8 @@ typedef unsigned long sector_t;
 
 #endif /* WANT_KERNEL_TYPES || !defined(__GLIBC__) */
 
+#endif /* __KERNEL_STRICT_NAMES */
+
 #ifdef __CHECKER__
 #define __bitwise __attribute__((bitwise))
 #else
@@ -141,7 +143,6 @@ typedef __u32 __bitwise __be32;
 typedef __u64 __bitwise __le64;
 typedef __u64 __bitwise __be64;
 
-#endif /* __KERNEL_STRICT_NAMES */
 
 /*
  * Below are truly Linux-specific types that should never collide with
