@@ -13,60 +13,6 @@
 #define LO_NAME_SIZE	64
 #define LO_KEY_SIZE	32
 
-#ifdef __KERNEL__
-#include <linux/bio.h>
-#include <linux/blkdev.h>
-#include <linux/spinlock.h>
-
-/* Possible states of device */
-enum {
-	Lo_unbound,
-	Lo_bound,
-	Lo_rundown,
-};
-
-struct loop_func_table;
-
-struct loop_device {
-	int		lo_number;
-	int		lo_refcnt;
-	loff_t		lo_offset;
-	loff_t		lo_sizelimit;
-	int		lo_flags;
-	int		(*transfer)(struct loop_device *, int cmd,
-				    char *raw_buf, char *loop_buf, int size,
-				    sector_t real_block);
-	char		lo_file_name[LO_NAME_SIZE];
-	char		lo_crypt_name[LO_NAME_SIZE];
-	char		lo_encrypt_key[LO_KEY_SIZE];
-	int		lo_encrypt_key_size;
-	struct loop_func_table *lo_encryption;
-	__u32           lo_init[2];
-	uid_t		lo_key_owner;	/* Who set the key */
-	int		(*ioctl)(struct loop_device *, int cmd, 
-				 unsigned long arg); 
-
-	struct file *	lo_backing_file;
-	struct block_device *lo_device;
-	unsigned	lo_blocksize;
-	void		*key_data; 
-
-	int		old_gfp_mask;
-
-	spinlock_t		lo_lock;
-	struct bio 		*lo_bio;
-	struct bio		*lo_biotail;
-	int			lo_state;
-	struct semaphore	lo_sem;
-	struct semaphore	lo_ctl_mutex;
-	struct semaphore	lo_bh_mutex;
-	atomic_t		lo_pending;
-
-	request_queue_t		*lo_queue;
-};
-
-#endif /* __KERNEL__ */
-
 /*
  * Loop flags
  */
@@ -124,23 +70,6 @@ struct loop_info64 {
 #define LO_CRYPT_CRYPTOAPI	18
 #define MAX_LO_CRYPT		20
 
-#ifdef __KERNEL__
-/* Support for loadable transfer modules */
-struct loop_func_table {
-	int number;	/* filter type */ 
-	int (*transfer)(struct loop_device *lo, int cmd, char *raw_buf,
-			char *loop_buf, int size, sector_t real_block);
-	int (*init)(struct loop_device *, const struct loop_info64 *); 
-	/* release is called from loop_unregister_transfer or clr_fd */
-	int (*release)(struct loop_device *); 
-	int (*ioctl)(struct loop_device *, int cmd, unsigned long arg);
-	struct module *owner;
-}; 
-
-int loop_register_transfer(struct loop_func_table *funcs);
-int loop_unregister_transfer(int number); 
-
-#endif
 /*
  * IOCTL commands --- we will commandeer 0x4C ('L')
  */

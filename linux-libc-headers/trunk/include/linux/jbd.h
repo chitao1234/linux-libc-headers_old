@@ -16,7 +16,7 @@
 #ifndef _LINUX_JBD_H
 #define _LINUX_JBD_H
 
-#if defined(CONFIG_JBD) || defined(CONFIG_JBD_MODULE) || !defined(__KERNEL__)
+#if defined(CONFIG_JBD) || defined(CONFIG_JBD_MODULE)
 
 /* Allow this file to be included directly into e2fsprogs */
 #include "jfs_compat.h"
@@ -234,7 +234,7 @@ static inline int jbd_space_needed(journal_t *journal)
  
 
 
-#endif	/* CONFIG_JBD || CONFIG_JBD_MODULE || !__KERNEL__ */
+#endif	/* CONFIG_JBD || CONFIG_JBD_MODULE */
 
 /*
  * Compatibility no-ops which allow the kernel to compile without CONFIG_JBD

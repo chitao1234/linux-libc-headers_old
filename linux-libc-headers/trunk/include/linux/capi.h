@@ -1,4 +1,4 @@
-/* $Id: capi.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
+/* $Id: capi.h,v 1.2 2004/01/01 18:23:40 mmazur Exp $
  * 
  * CAPI 2.0 Interface for Linux
  * 
@@ -14,9 +14,7 @@
 
 #include <asm/types.h>
 #include <linux/ioctl.h>
-#ifndef __KERNEL__
 #include <linux/kernelcapi.h>
-#endif
 
 /*
  * CAPI_REGISTER

@@ -12,45 +12,11 @@
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  *  GNU General Public License for more details.
  *
- *  $Id: if_tun.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
+ *  $Id: if_tun.h,v 1.2 2004/01/01 18:23:40 mmazur Exp $
  */
 
 #ifndef __IF_TUN_H
 #define __IF_TUN_H
-
-/* Uncomment to enable debugging */
-/* #define TUN_DEBUG 1 */
-
-#ifdef __KERNEL__
-
-#ifdef TUN_DEBUG
-#define DBG  if(tun->debug)printk
-#define DBG1 if(debug==2)printk
-#else
-#define DBG( a... )
-#define DBG1( a... )
-#endif
-
-struct tun_struct {
-	struct list_head        list;
-	unsigned long 		flags;
-	int			attached;
-	uid_t			owner;
-
-	wait_queue_head_t	read_wait;
-	struct sk_buff_head	readq;
-
-	struct net_device	*dev;
-	struct net_device_stats	stats;
-
-	struct fasync_struct    *fasync;
-
-#ifdef TUN_DEBUG	
-	int debug;
-#endif  
-};
-
-#endif /* __KERNEL__ */
 
 /* Read queue size */
 #define TUN_READQ_SIZE	10

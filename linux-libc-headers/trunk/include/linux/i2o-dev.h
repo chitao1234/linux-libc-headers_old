@@ -122,13 +122,9 @@ struct i2o_evt_get
 #define I2O_BUS_CARDBUS 7
 #define I2O_BUS_UNKNOWN 0x80
 
-#ifndef __KERNEL__
-
 typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
-
-#endif /* __KERNEL__ */
 
 typedef struct _i2o_pci_bus
 {

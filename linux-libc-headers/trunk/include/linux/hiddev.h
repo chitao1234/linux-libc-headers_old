@@ -2,7 +2,7 @@
 #define _HIDDEV_H
 
 /*
- * $Id: hiddev.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
+ * $Id: hiddev.h,v 1.2 2004/01/01 18:23:40 mmazur Exp $
  *
  *  Copyright (c) 1999-2000 Vojtech Pavlik
  *
@@ -193,30 +193,4 @@ struct hiddev_usage_ref {
  *  }
  */
 
-
-#ifdef __KERNEL__
-
-/*
- * In-kernel definitions.
- */
-
-#ifdef CONFIG_USB_HIDDEV
-int hiddev_connect(struct hid_device *);
-void hiddev_disconnect(struct hid_device *);
-void hiddev_hid_event(struct hid_device *hid, struct hid_field *field,
-		      struct hid_usage *usage, __s32 value, struct pt_regs *regs);
-void hiddev_report_event(struct hid_device *hid, struct hid_report *report);
-int __init hiddev_init(void);
-void hiddev_exit(void);
-#else
-static inline int hiddev_connect(struct hid_device *hid) { return -1; }
-static inline void hiddev_disconnect(struct hid_device *hid) { }
-static inline void hiddev_hid_event(struct hid_device *hid, struct hid_field *field,
-		      struct hid_usage *usage, __s32 value, struct pt_regs *regs) { }
-static inline void hiddev_report_event(struct hid_device *hid, struct hid_report *report) { }
-static inline int hiddev_init(void) { return 0; }
-static inline void hiddev_exit(void) { }
-#endif
-
-#endif
 #endif

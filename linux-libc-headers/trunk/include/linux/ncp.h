@@ -154,10 +154,6 @@ struct nw_info_struct {
 	__u32 NSCreator __attribute__((packed));
 	__u8 nameLen __attribute__((packed));
 	__u8 entryName[256] __attribute__((packed));
-	/* libncp may depend on there being nothing after entryName */
-#ifdef __KERNEL__
-	struct nw_nfs_info nfs;
-#endif
 };
 
 /* modify mask - use with MODIFY_DOS_INFO structure */

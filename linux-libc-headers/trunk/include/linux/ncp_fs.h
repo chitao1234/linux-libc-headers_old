@@ -12,7 +12,6 @@
 #include <linux/in.h>
 #include <linux/types.h>
 
-#include <linux/ncp_fs_sb.h>
 #include <linux/ipx.h>
 #include <linux/ncp_no.h>
 
