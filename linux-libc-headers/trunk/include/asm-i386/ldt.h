@@ -24,6 +24,11 @@ struct user_desc {
 	unsigned int  useable:1;
 };
 
+/* probably the best what can we do for 2.4-compatibility...
+ * this struct used to be named modify_ldt_ldt_s before 2.6,
+ * so allow apps to use the old name as well */
+#define modify_ldt_ldt_s user_desc
+
 #define MODIFY_LDT_CONTENTS_DATA	0
 #define MODIFY_LDT_CONTENTS_STACK	1
 #define MODIFY_LDT_CONTENTS_CODE	2
