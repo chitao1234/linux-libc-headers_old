@@ -39,37 +39,6 @@ struct pt_regs {
 
 #endif /* __ASSEMBLY__ */
 
-#ifdef __KERNEL__
-#define STACK_FRAME_OVERHEAD	16	/* size of minimum stack frame */
-
-/* Size of stack frame allocated when calling signal handler. */
-#define __SIGNAL_FRAMESIZE	64
-
-#ifndef __ASSEMBLY__
-#define instruction_pointer(regs) ((regs)->nip)
-#define user_mode(regs) (((regs)->msr & MSR_PR) != 0)
-
-#define force_successful_syscall_return()   set_thread_flag(TIF_FORCE_NOERROR)
-
-/*
- * We use the least-significant bit of the trap field to indicate
- * whether we have saved the full set of registers, or only a
- * partial set.  A 1 there means the partial set.
- * On 4xx we use the next bit to indicate whether the exception
- * is a critical exception (1 means it is).
- */
-#define FULL_REGS(regs)		(((regs)->trap & 1) == 0)
-#define IS_CRITICAL_EXC(regs)	(((regs)->trap & 2) == 0)
-#define TRAP(regs)		((regs)->trap & ~0xF)
-
-#define CHECK_FULL_REGS(regs)						      \
-do {									      \
-	if ((regs)->trap & 1)						      \
-		printk(KERN_CRIT "%s: partial register set\n", __FUNCTION__); \
-} while (0)
-#endif /* __ASSEMBLY__ */
-
-#endif /* __KERNEL__ */
 
 /*
  * Offsets used by 'ptrace' system call interface.
@@ -111,9 +80,6 @@ do {									      \
 
 #define PT_NIP	32
 #define PT_MSR	33
-#ifdef __KERNEL__
-#define PT_ORIG_R3 34
-#endif
 #define PT_CTR	35
 #define PT_LNK	36
 #define PT_XER	37

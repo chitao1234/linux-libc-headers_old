@@ -2,7 +2,6 @@
 #define __OF_DEVICE_H__
 
 #include <linux/device.h>
-#include <asm/prom.h>
 
 /*
  * The of_platform_bus_type is a bus type used by drivers that do not

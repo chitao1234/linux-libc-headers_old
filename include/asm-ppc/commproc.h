@@ -17,8 +17,6 @@
 #ifndef __CPM_8XX__
 #define __CPM_8XX__
 
-#include <asm/8xx_immap.h>
-
 /* CPM Command register.
 */
 #define CPM_CR_RST	((ushort)0x8000)

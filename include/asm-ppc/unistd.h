@@ -362,45 +362,5 @@ type name(type1 arg1, type2 arg2, type3 arg3, type4 arg4, type5 arg5)	\
 	__syscall_nr(5, type, name, arg1, arg2, arg3, arg4, arg5);	\
 }
 
-#ifdef __KERNEL__
-
-#define __NR__exit __NR_exit
-#define NR_syscalls	__NR_syscalls
-
-/*
- * Forking from kernel space will result in the child getting a new,
- * empty kernel stack area.  Thus the child cannot access automatic
- * variables set in the parent unless they are in registers, and the
- * procedure where the fork was done cannot return to its caller in
- * the child.
- */
-
-#ifdef __KERNEL_SYSCALLS__
-/*
- * System call prototypes.
- */
-extern pid_t setsid(void);
-extern int write(int fd, const char *buf, off_t count);
-extern int read(int fd, char *buf, off_t count);
-extern off_t lseek(int fd, off_t offset, int count);
-extern int dup(int fd);
-extern int execve(const char *file, char **argv, char **envp);
-extern int open(const char *file, int flag, int mode);
-extern int close(int fd);
-extern pid_t waitpid(pid_t pid, int *wait_stat, int options);
-
-#endif /* __KERNEL_SYSCALLS__ */
-
-/*
- * "Conditional" syscalls
- *
- * What we want is __attribute__((weak,alias("sys_ni_syscall"))),
- * but it doesn't work on all toolchains, so we just do it by hand
- */
-#ifndef cond_syscall
-#define cond_syscall(x) asm(".weak\t" #x "\n\t.set\t" #x ",sys_ni_syscall");
-#endif
-
-#endif /* __KERNEL__ */
 
 #endif /* _ASM_PPC_UNISTD_H_ */
