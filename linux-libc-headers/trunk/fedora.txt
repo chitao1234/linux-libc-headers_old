@@ -1,3 +1,7 @@
+NOTE: 99,9% of this 'warning' and 'remove file' checks should probably result
+in rm file... or better: error "What the fuck are you trying to include in
+user space"
+
 
 all-asms:
 - fcntl.h: switch back for O_DIRECT from 02000000 to 040000 ignored;
@@ -49,3 +53,23 @@ i386:
 - string-486.h: added warning
 - syscall.h: dunno if this file is used. Needs checking.
 
+ppc:
+- consider removal: 
+- Userspace warnings (or above):
+- Removal of __KERNEL__: 8xx_immap.h, amigahw.h, amigaints.h, amigappc.h, 
+  atomic.h, backlight.h, bitops.h, board.h, bootinfo.h, btext.h, cache.h,
+  checksum.h, commproc.h, cpm_8260.h, cputable.h, current.h, dbdma.h, 
+  delay.h, dma.h, elf.h, feature.h, floppy.h, gemini.h, gemini_serial.h,
+  hardirq.h, highmem.h, hw_irq.h, hydra.h, ide.h, immap_8260.h, io.h, irq.h,
+  keyboard.h, kgdb.h, kmap_types.h, linux_logo.h, machdep.h, mbx.h, 
+  mc146818rtc.h, md.h, mediabay.h, mmu.h, mmu_context.h, mpc8260.h, mpc8xx.h,
+  namei.h, nvram.h, oak.h, page.h, param.h, pci-bridge.h, pci.h, pgalloc.h,
+  pgtable.h, pnp.h, ppc4xx.h, ppc4xx_serial.h, ppcboot.h, prep_nvram.h, 
+  processor.h, prom.h, ptrace.h, raven.h, residual.h, resource.h, 
+  rpxclassic.h, rpxlite.h, rwsem.h, scatterlist.h, sections.h, semaphore.h,
+  serial.h, setup.h, siginfo.h, signal.h, smp.h, smplock.h, socket.h, 
+  softirq.h, spinlock.h, stat.h, string.h, system.h, termios.h, time.h, 
+  timex.h, types.h, uaccess.h, unaligned.h, uninorth.h, user.h, vc_ioctl.h,
+  vga.h, walnut.h, 
+- byteorder.h: interesting... it's altered and made available to userspace
+  and I've deleted just three hours ago
