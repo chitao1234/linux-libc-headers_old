@@ -101,14 +101,10 @@ typedef unsigned long long u_quad_t;
 #if defined(__linux__)
 #include <sys/time.h>
 #define cdev_t u_quad_t
-#ifndef __KERNEL__
 #if !defined(_UQUAD_T_) && (!defined(__GLIBC__) || __GLIBC__ < 2)
 #define _UQUAD_T_ 1
 typedef unsigned long long u_quad_t;
 #endif
-#else /*__KERNEL__ */
-typedef unsigned long long u_quad_t;
-#endif /* __KERNEL__ */
 #else
 #define cdev_t dev_t
 #endif
@@ -660,10 +656,6 @@ struct coda_open_by_fd_in {
 struct coda_open_by_fd_out {
     struct coda_out_hdr oh;
     int fd;
-
-#ifdef __KERNEL__
-    struct file *fh; /* not passed from userspace but used in-kernel only */
-#endif
 };
 
 /* coda_open_by_path: */

@@ -4,7 +4,7 @@
  *	Authors:
  *	Lennert Buytenhek		<buytenh@gnu.org>
  *
- *	$Id: if_bridge.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
+ *	$Id: if_bridge.h,v 1.2 2004/01/01 18:23:40 mmazur Exp $
  *
  *	This program is free software; you can redistribute it and/or
  *	modify it under the terms of the GNU General Public License
@@ -93,18 +93,5 @@ struct __fdb_entry
 	__u32 ageing_timer_value;
 	__u32 unused;
 };
-
-#ifdef __KERNEL__
-
-#include <linux/netdevice.h>
-
-struct net_bridge;
-struct net_bridge_port;
-
-extern void brioctl_set(int (*ioctl_hook)(unsigned long));
-extern int (*br_handle_frame_hook)(struct sk_buff *skb);
-extern int (*br_should_route_hook)(struct sk_buff **pskb);
-
-#endif
 
 #endif

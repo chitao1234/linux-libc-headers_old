@@ -23,14 +23,6 @@
 	may increase the number of keymaps beyond MAX_NR_OF_USER_KEYMAPS. */
 #define MAX_NR_OF_USER_KEYMAPS 256 	/* should be at least 7 */
 
-#ifdef __KERNEL__
-extern const int NR_TYPES;
-extern const int max_vals[];
-extern unsigned short *key_maps[MAX_NR_KEYMAPS];
-extern unsigned short plain_map[NR_KEYS];
-extern unsigned char keyboard_type;
-#endif
-
 #define MAX_NR_FUNC	256	/* max nr of strings assigned to keys */
 
 #define KT_LATIN	0	/* we depend on this being zero */

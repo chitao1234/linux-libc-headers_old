@@ -128,27 +128,4 @@ enum nfs_ftype {
 	NFFIFO = 8
 };
 
-#if defined(__KERNEL__)
-/*
- * This is the kernel NFS client file handle representation
- */
-#define NFS_MAXFHSIZE		128
-struct nfs_fh {
-	unsigned short		size;
-	unsigned char		data[NFS_MAXFHSIZE];
-};
-
-/*
- * This is really a general kernel constant, but since nothing like
- * this is defined in the kernel headers, I have to do it here.
- */
-#define NFS_OFFSET_MAX		((__s64)((~(__u64)0) >> 1))
-
-
-enum nfs3_stable_how {
-	NFS_UNSTABLE = 0,
-	NFS_DATA_SYNC = 1,
-	NFS_FILE_SYNC = 2
-};
-#endif /* __KERNEL__ */
 #endif /* _LINUX_NFS_H */
