@@ -7,13 +7,10 @@
  * Rewritten again by Rusty Russell, 2002
  */
 #include <linux/sched.h>
-#include <linux/stat.h>
 #include <linux/cache.h>
 #include <linux/kmod.h>
-#include <linux/elf.h>
 #include <linux/stringify.h>
 
-#include <asm/module.h>
 
 /* Not Yet Implemented */
 #define MODULE_SUPPORTED_DEVICE(name)

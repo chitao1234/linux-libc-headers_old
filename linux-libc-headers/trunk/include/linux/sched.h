@@ -79,8 +79,6 @@ extern unsigned long avenrun[];		/* Load averages */
 #include <linux/param.h>
 #include <linux/resource.h>
 
-#include <asm/processor.h>
-
 #define TASK_RUNNING		0
 #define TASK_INTERRUPTIBLE	1
 #define TASK_UNINTERRUPTIBLE	2
