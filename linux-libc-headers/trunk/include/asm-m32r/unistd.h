@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_UNISTD_H
 #define _ASM_M32R_UNISTD_H
 
-/* $Id: unistd.h,v 1.2 2004/10/21 16:04:54 mmazur Exp $ */
+/* $Id: unistd.h,v 1.3 2004/10/22 16:23:30 mmazur Exp $ */
 
 #include <asm/syscall.h>	/* SYSCALL_* */
 
@@ -426,7 +426,7 @@ __syscall_return(type,__res); \
  */
 static __inline__ _syscall3(int,execve,const char *,file,char **,argv,char **,envp)
 
-asmlinkage int sys_modify_ldt(int func, void __user *ptr, unsigned long bytecount);
+asmlinkage int sys_modify_ldt(int func, void *ptr, unsigned long bytecount);
 asmlinkage long sys_mmap2(unsigned long addr, unsigned long len,
 			  unsigned long prot, unsigned long flags,
 			  unsigned long fd, unsigned long pgoff);
@@ -434,13 +434,13 @@ asmlinkage int sys_execve(struct pt_regs regs);
 asmlinkage int sys_clone(struct pt_regs regs);
 asmlinkage int sys_fork(struct pt_regs regs);
 asmlinkage int sys_vfork(struct pt_regs regs);
-asmlinkage int sys_pipe(unsigned long __user *fildes);
+asmlinkage int sys_pipe(unsigned long *fildes);
 asmlinkage int sys_ptrace(long request, long pid, long addr, long data);
 asmlinkage long sys_iopl(unsigned long unused);
 struct sigaction;
 asmlinkage long sys_rt_sigaction(int sig,
-				 const struct sigaction __user *act,
-				 struct sigaction __user *oact,
+				 const struct sigaction *act,
+				 struct sigaction *oact,
 				 size_t sigsetsize);
 
 #endif /* __KERNEL_SYSCALLS__ */
