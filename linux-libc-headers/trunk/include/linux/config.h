@@ -1,2 +1,2 @@
-#include <linux/err_kernel_only.h>
+#error "Compilation aborted. Go read the FAQ for linux-libc-headers package."
 
