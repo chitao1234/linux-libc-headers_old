@@ -16,7 +16,8 @@
  */
 #ifndef _LINUX_IP_H
 #define _LINUX_IP_H
-#include <asm/byteorder.h>
+#include <endian.h>
+#include <byteswap.h>
 
 #define IPTOS_TOS_MASK		0x1E
 #define IPTOS_TOS(tos)		((tos)&IPTOS_TOS_MASK)
