@@ -21,6 +21,8 @@
 
 #define HDSP_MATRIX_MIXER_SIZE 2048
 
+#include <linux/types.h>
+
 typedef enum {
 	Digiface,
 	Multiface,
@@ -32,13 +34,13 @@ typedef enum {
 typedef struct _snd_hdsp_peak_rms hdsp_peak_rms_t;
 
 struct _snd_hdsp_peak_rms {
-	u32 input_peaks[26];
-	u32 playback_peaks[26];
-	u32 output_peaks[28];
-	u64 input_rms[26];
-	u64 playback_rms[26];
+	__u32 input_peaks[26];
+	__u32 playback_peaks[26];
+	__u32 output_peaks[28];
+	__u64 input_rms[26];
+	__u64 playback_rms[26];
 	/* These are only used for H96xx cards */
-	u64 output_rms[26];
+	__u64 output_rms[26];
 };
 
 #define SNDRV_HDSP_IOCTL_GET_PEAK_RMS _IOR('H', 0x40, hdsp_peak_rms_t)

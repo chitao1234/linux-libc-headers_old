@@ -10,6 +10,8 @@
 #ifndef _LINUX_XATTR_H
 #define _LINUX_XATTR_H
 
+#include <linux/types.h>
+
 #define XATTR_CREATE	0x1	/* set value, fail if attr already exists */
 #define XATTR_REPLACE	0x2	/* set value, fail if attr does not exist */
 
