@@ -51,6 +51,12 @@
 #define __swab32(x) bswap_32(x)
 #define __swab64(x) bswap_64(x)
 
-/* ...p() and ...s() variants not defined yet - to be if they appear needed */
+#define __swab16p(x) __swab16(*(x))
+#define __swab32p(x) __swab32(*(x))
+#define __swab64p(x) __swab64(*(x))
+
+#define __swab16s(x) do { *(x) = __swab16p(x) } while (0)
+#define __swab32s(x) do { *(x) = __swab32p(x) } while (0)
+#define __swab64s(x) do { *(x) = __swab64p(x) } while (0)
 
 #endif /* _LINUX_BYTEORDER_SWAB_H */
