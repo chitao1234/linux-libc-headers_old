@@ -1,4 +1,4 @@
-/* $Id: tsunami.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/* $Id: tsunami.h,v 1.2 2003/12/22 12:02:10 mmazur Exp $
  * tsunami.h:  Module specific definitions for Tsunami V8 Sparcs
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)
@@ -45,16 +45,20 @@
 #define TSUNAMI_NF        0x00000002
 #define TSUNAMI_ME        0x00000001
 
-extern __inline__ void tsunami_flush_icache(void)
+static inline void tsunami_flush_icache(void)
 {
-	__asm__ __volatile__("sta %%g0, [%%g0] %0\n\t" : :
-			     "i" (ASI_M_IC_FLCLEAR) : "memory");
+	__asm__ __volatile__("sta %%g0, [%%g0] %0\n\t"
+			     : /* no outputs */
+			     : "i" (ASI_M_IC_FLCLEAR)
+			     : "memory");
 }
 
-extern __inline__ void tsunami_flush_dcache(void)
+static inline void tsunami_flush_dcache(void)
 {
-	__asm__ __volatile__("sta %%g0, [%%g0] %0\n\t" : :
-			     "i" (ASI_M_DC_FLCLEAR) : "memory");
+	__asm__ __volatile__("sta %%g0, [%%g0] %0\n\t"
+			     : /* no outputs */
+			     : "i" (ASI_M_DC_FLCLEAR)
+			     : "memory");
 }
 
 #endif /* !(_SPARC_TSUNAMI_H) */

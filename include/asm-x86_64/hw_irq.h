@@ -13,7 +13,7 @@
  *
  *	hacked by Andi Kleen for x86-64.
  * 
- *  $Id: hw_irq.h,v 1.1 2003/12/15 18:46:59 mmazur Exp $
+ *  $Id: hw_irq.h,v 1.2 2003/12/22 12:02:13 mmazur Exp $
  */
 
 #ifndef __ASSEMBLY__
@@ -76,8 +76,8 @@ struct hw_interrupt_type;
 
 
 #ifndef __ASSEMBLY__
-extern int irq_vector[NR_IRQS];
-#define IO_APIC_VECTOR(irq)	irq_vector[irq]
+extern u8 irq_vector[NR_IRQ_VECTORS];
+#define IO_APIC_VECTOR(irq)	((int)irq_vector[irq])
 
 /*
  * Various low-level irq details needed by irq.c, process.c,

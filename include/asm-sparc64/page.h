@@ -1,4 +1,4 @@
-/* $Id: page.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $ */
+/* $Id: page.h,v 1.2 2003/12/22 12:02:12 mmazur Exp $ */
 
 #ifndef _SPARC64_PAGE_H
 #define _SPARC64_PAGE_H
@@ -90,7 +90,13 @@ typedef unsigned long iopgprot_t;
 
 #endif /* (STRICT_MM_TYPECHECKS) */
 
+#if defined(CONFIG_HUGETLB_PAGE_SIZE_4MB)
 #define HPAGE_SHIFT		22
+#elif defined(CONFIG_HUGETLB_PAGE_SIZE_512K)
+#define HPAGE_SHIFT		19
+#elif defined(CONFIG_HUGETLB_PAGE_SIZE_64K)
+#define HPAGE_SHIFT		16
+#endif
 
 #ifdef CONFIG_HUGETLB_PAGE
 #define HPAGE_SIZE		((1UL) << HPAGE_SHIFT)

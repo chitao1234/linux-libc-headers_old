@@ -1,4 +1,4 @@
-/* $Id: processor.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/* $Id: processor.h,v 1.2 2003/12/22 12:02:10 mmazur Exp $
  * include/asm-sparc/processor.h
  *
  * Copyright (C) 1994 David S. Miller (davem@caip.rutgers.edu)
@@ -130,8 +130,12 @@ extern __inline__ void start_thread(struct pt_regs * regs, unsigned long pc,
 			     "std\t%%g0, [%0 + %3 + 0x30]\n\t"
 			     "st\t%1, [%0 + %3 + 0x38]\n\t"
 			     "st\t%%g0, [%0 + %3 + 0x3c]"
-			     : : "r" (regs), "r" (sp - sizeof(struct reg_window)), "r" (zero),
-			     "i" ((const unsigned long)(&((struct pt_regs *)0)->u_regs[0])));
+			     : /* no outputs */
+			     : "r" (regs),
+			       "r" (sp - sizeof(struct reg_window)),
+			       "r" (zero),
+			       "i" ((const unsigned long)(&((struct pt_regs *)0)->u_regs[0]))
+			     : "memory");
 }
 
 /* Free all resources held by a thread. */

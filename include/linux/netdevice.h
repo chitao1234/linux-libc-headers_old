@@ -470,6 +470,7 @@ struct net_device
 
 	/* class/net/name entry */
 	struct class_device	class_dev;
+	struct net_device_stats* (*last_stats)(struct net_device *);
 };
 
 #define SET_MODULE_OWNER(dev) do { } while (0)
@@ -494,10 +495,11 @@ extern struct net_device		loopback_dev;		/* The loopback */
 extern struct net_device		*dev_base;		/* All devices */
 extern rwlock_t				dev_base_lock;		/* Device list lock */
 
-extern void		probe_old_netdevs(void);
 extern int			netdev_boot_setup_add(char *name, struct ifmap *map);
 extern int 			netdev_boot_setup_check(struct net_device *dev);
 extern struct net_device    *dev_getbyhwaddr(unsigned short type, char *hwaddr);
+extern struct net_device *__dev_getfirstbyhwtype(unsigned short type);
+extern struct net_device *dev_getfirstbyhwtype(unsigned short type);
 extern void		dev_add_pack(struct packet_type *pt);
 extern void		dev_remove_pack(struct packet_type *pt);
 extern void		__dev_remove_pack(struct packet_type *pt);
@@ -512,7 +514,11 @@ extern struct net_device	*__dev_get_by_flags(unsigned short flags,
 						    unsigned short mask);
 extern struct net_device	*dev_get_by_name(const char *name);
 extern struct net_device	*__dev_get_by_name(const char *name);
-extern struct net_device	*dev_alloc(const char *name, int *err);
+extern struct net_device        *__dev_alloc(const char *name, int *err);
+static inline __deprecated struct net_device *dev_alloc(const char *name, int *err)
+{
+	return __dev_alloc(name, err);
+}
 extern int		dev_alloc_name(struct net_device *dev, const char *name);
 extern int		dev_open(struct net_device *dev);
 extern int		dev_close(struct net_device *dev);
@@ -902,6 +908,9 @@ extern int		netdev_fastroute_obstacles;
 extern void		dev_clear_fastroute(struct net_device *dev);
 #endif
 
+#ifdef CONFIG_SYSCTL
+extern char *net_sysctl_strdup(const char *s);
+#endif
 
 #endif /* __KERNEL__ */
 

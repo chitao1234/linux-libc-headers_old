@@ -1,4 +1,4 @@
-/* $Id: ioctl.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $ */
+/* $Id: ioctl.h,v 1.2 2003/12/22 12:02:10 mmazur Exp $ */
 #ifndef _SPARC_IOCTL_H
 #define _SPARC_IOCTL_H
 
@@ -54,7 +54,9 @@
                             (((nr) >> _IOC_DIRSHIFT) & _IOC_DIRMASK) )
 #define _IOC_TYPE(nr)       (((nr) >> _IOC_TYPESHIFT) & _IOC_TYPEMASK)
 #define _IOC_NR(nr)         (((nr) >> _IOC_NRSHIFT) & _IOC_NRMASK)
-#define _IOC_SIZE(nr)       (((nr) >> _IOC_SIZESHIFT) & _IOC_XSIZEMASK)
+#define _IOC_SIZE(nr)   \
+ ((((((nr) >> _IOC_DIRSHIFT) & _IOC_DIRMASK) & (_IOC_WRITE|_IOC_READ)) == 0)?    \
+                         0: (((nr) >> _IOC_SIZESHIFT) & _IOC_XSIZEMASK))
 
 /* ...and for the PCMCIA and sound. */
 #define IOC_IN          (_IOC_WRITE << _IOC_DIRSHIFT)

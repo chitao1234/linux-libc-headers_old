@@ -1,4 +1,4 @@
-/* $Id: namei.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $
+/* $Id: namei.h,v 1.2 2003/12/22 12:02:12 mmazur Exp $
  * linux/include/asm-sparc64/namei.h
  *
  * Routines to handle famous /usr/gnemul/s*.
@@ -8,8 +8,8 @@
 #ifndef __SPARC64_NAMEI_H
 #define __SPARC64_NAMEI_H
 
-#define SPARC_BSD_EMUL "usr/gnemul/sunos/"
-#define SPARC_SOL_EMUL "usr/gnemul/solaris/"
+#define SPARC_BSD_EMUL "/usr/gnemul/sunos/"
+#define SPARC_SOL_EMUL "/usr/gnemul/solaris/"
 
 static inline char * __emul_prefix(void)
 {
