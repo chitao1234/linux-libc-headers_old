@@ -133,16 +133,27 @@ enum
 /* CTL_VM names: */
 enum
 {
+	VM_SWAPCTL=1,		/* [<2.6 ONLY] struct: Set vm swapping control */
+	VM_SWAPOUT=2,		/* [<2.6 ONLY] int: Linear or sqrt() swapout for hogs */
+	VM_FREEPG=3,		/* [<2.6 ONLY] struct: Set free page thresholds */
+	VM_BDFLUSH=4,		/* [<2.6 ONLY] struct: Control buffer cache flushing */
 	VM_UNUSED1=1,		/* was: struct: Set vm swapping control */
 	VM_UNUSED2=2,		/* was; int: Linear or sqrt() swapout for hogs */
 	VM_UNUSED3=3,		/* was: struct: Set free page thresholds */
 	VM_UNUSED4=4,		/* Spare */
 	VM_OVERCOMMIT_MEMORY=5,	/* Turn off the virtual memory safety limit */
+	VM_BUFFERMEM=6,		/* [<2.6 ONLY] struct: Set buffer memory thresholds */
+	VM_PAGECACHE=7,		/* [<2.6 ONLY] struct: Set cache memory thresholds */
+	VM_PAGERDAEMON=8,	/* [<2.6 ONLY] struct: Control kswapd behaviour */
+	VM_PGT_CACHE=9,		/* [<2.6 ONLY] struct: Set page table cache parameters */
 	VM_UNUSED5=6,		/* was: struct: Set buffer memory thresholds */
 	VM_UNUSED7=7,		/* was: struct: Set cache memory thresholds */
 	VM_UNUSED8=8,		/* was: struct: Control kswapd behaviour */
 	VM_UNUSED9=9,		/* was: struct: Set page table cache parameters */
 	VM_PAGE_CLUSTER=10,	/* int: set number of pages to swap together */
+	VM_MAX_MAP_COUNT=11,	/* [<2.6] int: Maximum number of active map areas */
+	VM_MIN_READAHEAD=12,    /* [<2.6] Min file readahead */
+	VM_MAX_READAHEAD=13,    /* [<2.6] Max file readahead */
 	VM_DIRTY_BACKGROUND=11,	/* dirty_background_ratio */
 	VM_DIRTY_RATIO=12,	/* dirty_ratio */
 	VM_DIRTY_WB_CS=13,	/* dirty_writeback_centisecs */
@@ -176,6 +187,7 @@ enum
 	NET_TR=14,
 	NET_DECNET=15,
 	NET_ECONET=16,
+	NET_KHTTPD=17,				/* [<2.6] */
 	NET_SCTP=17, 
 };
 
@@ -560,6 +572,23 @@ enum {
 	NET_DECNET_CONF_DEV_FORWARDING = 5,
 	NET_DECNET_CONF_DEV_BLKSIZE = 6,
 	NET_DECNET_CONF_DEV_STATE = 7
+};
+
+/* /proc/sys/net/khttpd/ [<2.6 ONLY] */
+enum {
+	NET_KHTTPD_DOCROOT	= 1,
+	NET_KHTTPD_START	= 2,
+	NET_KHTTPD_STOP		= 3,
+	NET_KHTTPD_UNLOAD	= 4,
+	NET_KHTTPD_CLIENTPORT	= 5,
+	NET_KHTTPD_PERMREQ	= 6,
+	NET_KHTTPD_PERMFORBID	= 7,
+	NET_KHTTPD_LOGGING	= 8,
+	NET_KHTTPD_SERVERPORT	= 9,
+	NET_KHTTPD_DYNAMICSTRING= 10,
+	NET_KHTTPD_SLOPPYMIME   = 11,
+	NET_KHTTPD_THREADS	= 12,
+	NET_KHTTPD_MAXCONNECT	= 13
 };
 
 /* /proc/sys/net/sctp */
