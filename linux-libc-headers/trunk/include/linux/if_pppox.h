@@ -18,7 +18,8 @@
 
 
 #include <asm/types.h>
-#include <asm/byteorder.h>
+#include <endian.h>
+#include <byteswap.h>
 
 #ifdef  __KERNEL__
 #include <linux/if_ether.h>
