@@ -8,6 +8,7 @@
 #define __BIG_ENDIAN_BITFIELD
 #endif
 
+#include <asm/types.h>
 #include <linux/byteorder/swab.h>
 
 #define __constant_htonl(x) ((__u32)(x))
