@@ -2,16 +2,11 @@
 #define _ASMARM_PAGE_H
 
 
-/* PAGE_SHIFT determines the page size.  This is configurable. */
-#if defined(CONFIG_PAGESIZE_16)
-#define PAGE_SHIFT      14              /* 16K */
-#else           /* default */
-#define PAGE_SHIFT      15              /* 32K */
-#endif
-
 #define EXEC_PAGESIZE   32768
 
-#define PAGE_SIZE		(1UL << PAGE_SHIFT)
+extern int getpagesize(void);
+#define PAGE_SIZE ((unsigned long)getpagesize())
+#define PAGE_SHIFT ((unsigned long[]){12,13,14,-1,15,-1,-1,-1,16}[PAGE_SIZE>>13])
 #define PAGE_MASK		(~(PAGE_SIZE-1))
 
 /* to align the pointer to the (next) page boundary */
