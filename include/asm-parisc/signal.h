@@ -82,26 +82,6 @@
 #define MINSIGSTKSZ	2048
 #define SIGSTKSZ	8192
 
-#ifdef __KERNEL__
-
-#define _NSIG		64
-/* bits-per-word, where word apparently means 'long' not 'int' */
-#define _NSIG_BPW	BITS_PER_LONG
-#define _NSIG_WORDS	(_NSIG / _NSIG_BPW)
-
-/*
- * These values of sa_flags are used only by the kernel as part of the
- * irq handling routines.
- *
- * SA_INTERRUPT is also used by the irq handling routines.
- * SA_SHIRQ is for shared interrupt support on PCI and EISA.
- */
-#define SA_PROBE		SA_ONESHOT
-#define SA_SAMPLE_RANDOM	SA_RESTART
-#define SA_SHIRQ		0x04000000
-
-#endif /* __KERNEL__ */
-
 #define SIG_BLOCK          0	/* for blocking signals */
 #define SIG_UNBLOCK        1	/* for unblocking signals */
 #define SIG_SETMASK        2	/* for setting the signal mask */
@@ -134,32 +114,5 @@ typedef struct sigaltstack {
 	size_t ss_size;
 } stack_t;
 
-#ifdef __KERNEL__
-
-/* Most things should be clean enough to redefine this at will, if care
-   is taken to make libc match.  */
-
-typedef unsigned long old_sigset_t;		/* at least 32 bits */
-
-typedef struct {
-	/* next_signal() assumes this is a long - no choice */
-	unsigned long sig[_NSIG_WORDS];
-} sigset_t;
-
-struct sigaction {
-	__sighandler_t sa_handler;
-	unsigned long sa_flags;
-	sigset_t sa_mask;		/* mask last for extensibility */
-};
-
-struct k_sigaction {
-	struct sigaction sa;
-};
-
-#define ptrace_signal_deliver(regs, cookie) do { } while (0)
-
-#include <asm/sigcontext.h>
-
-#endif /* __KERNEL__ */
 #endif /* !__ASSEMBLY */
 #endif /* _ASM_PARISC_SIGNAL_H */
