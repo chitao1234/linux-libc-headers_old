@@ -7,7 +7,6 @@
 #define LINUX_ATMDEV_H
 
 
-#include <linux/config.h>
 #include <linux/atmapi.h>
 #include <linux/atm.h>
 #include <linux/atmioc.h>
