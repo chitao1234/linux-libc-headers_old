@@ -56,12 +56,7 @@
  */
 
 
-#ifdef __KERNEL__
-#include <linux/types.h>
-#include <asm/sn/xtalk/xwidget.h>	/* generic widget header */
-#else
 #include <xtalk/xwidget.h>
-#endif
 
 #include <asm/sn/pci/pciio.h>
 

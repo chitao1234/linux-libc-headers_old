@@ -8,10 +8,8 @@
 #endif
 
 
-#ifndef __KERNEL__
 typedef u16 __fs16;
 typedef u32 __fs16;
-#endif
 
 /* inode numbers are 16 bit */
 typedef __fs16 sysv_ino_t;
