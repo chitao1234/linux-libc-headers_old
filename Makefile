@@ -1,11 +1,11 @@
 ver=`cat VERSION`
-name="glibc-kernel-headers-${ver}"
+name="linux-libc-headers-${ver}"
 
 all: release
 
 install:
-	mv release/${name}.tar.bz2 ~/www/glibc-kernel-headers/
-	chmod a+r ~/www/glibc-kernel-headers/${name}.tar.bz2
+	mv release/${name}.tar.bz2 ~/www/linux-libc-headers/
+	chmod a+r ~/www/linux-libc-headers/${name}.tar.bz2
 
 release: VERSION
 	rm -rf .tmp
