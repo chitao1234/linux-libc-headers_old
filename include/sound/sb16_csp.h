@@ -111,5 +111,4 @@ typedef struct snd_sb_csp_info {
 /* restart CSP and DMA transfer */
 #define SNDRV_SB_CSP_IOCTL_RESTART	_IO('H', 0x16)
 
-
 #endif /* __SOUND_SB16_CSP */
