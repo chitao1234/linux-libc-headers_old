@@ -1,10 +1,8 @@
 The linux-libc-headers (llh) package (available at
 http://ep09.pld-linux.org/~mmazur/linux-libc-headers/) contains headers
 that export linux abi to userspace. These headers are a heavily modified and
-cleaned up version of what comes with original linux tarball. The first three
-digits of llh's version tag correspond to the version of linux kernel of which
-abi is exported, but keep in mind there are lots of 2.4 kernel compatibilities
-included.
+cleaned up version of what comes with original linux tarball. See the FAQ
+for more details.
 
 Userland usefulness is achieved by removing kernel only parts (which often
 generate errors) and using code provided by libc where possible (this allows
