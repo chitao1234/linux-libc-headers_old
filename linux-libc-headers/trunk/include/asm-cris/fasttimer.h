@@ -1,4 +1,4 @@
-/* $Id: fasttimer.h,v 1.1 2003/12/15 18:47:01 mmazur Exp $
+/* $Id: fasttimer.h,v 1.2 2003/12/26 19:03:09 mmazur Exp $
  * linux/include/asm-cris/fasttimer.h
  *
  * Fast timers for ETRAX100LX
@@ -6,7 +6,7 @@
  * Copyright (C) 2000, 2002 Axis Communications AB
  */
 #include <linux/config.h>
-#include <linux/time.h> /* struct timeval */
+#include <sys/time.h> /* struct timeval */
 #include <linux/timex.h>
 
 #ifdef CONFIG_ETRAX_FAST_TIMER

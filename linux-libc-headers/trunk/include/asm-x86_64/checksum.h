@@ -7,7 +7,6 @@
  * with some code from asm-i386/checksum.h
  */ 
 
-#include <linux/compiler.h>
 #include <asm/uaccess.h>
 #include <asm/byteorder.h>
 

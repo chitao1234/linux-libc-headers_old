@@ -190,7 +190,7 @@
 #define TICK_USEC_TO_NSEC(TUSEC) (SH_DIV (TUSEC * USER_HZ * 1000, ACTHZ, 8))
 
 
-#include <linux/time.h>
+#include <sys/time.h>
 /*
  * syscall interface - used (mainly by NTP daemon)
  * to discipline kernel clock oscillator

@@ -23,7 +23,7 @@
  *  History:
  *   0.1  04.01.2000  Created
  *
- *  $Id: usbdevice_fs.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
+ *  $Id: usbdevice_fs.h,v 1.2 2003/12/26 19:03:32 mmazur Exp $
  */
 
 /*****************************************************************************/
@@ -46,14 +46,14 @@ struct usbdevfs_ctrltransfer {
 	__u16 wIndex;
 	__u16 wLength;
 	__u32 timeout;  /* in milliseconds */
- 	void __user *data;
+ 	void *data;
 };
 
 struct usbdevfs_bulktransfer {
 	unsigned int ep;
 	unsigned int len;
 	unsigned int timeout; /* in milliseconds */
-	void __user *data;
+	void *data;
 };
 
 struct usbdevfs_setinterface {
@@ -97,7 +97,7 @@ struct usbdevfs_urb {
 	unsigned char endpoint;
 	int status;
 	unsigned int flags;
-	void __user *buffer;
+	void *buffer;
 	int buffer_length;
 	int actual_length;
 	int start_frame;
@@ -113,7 +113,7 @@ struct usbdevfs_ioctl {
 	int	ifno;		/* interface 0..N ; negative numbers reserved */
 	int	ioctl_code;	/* MUST encode size + direction of data so the
 				 * macros in <asm/ioctl.h> give correct values */
-	void __user *data;	/* param buffer (in, or out) */
+	void *data;	/* param buffer (in, or out) */
 };
 
 /* You can do most things with hubs just through control messages,

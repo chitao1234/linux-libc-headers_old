@@ -1779,7 +1779,7 @@ static inline int security_shm_shmctl (struct shmid_kernel * shp, int cmd)
 }
 
 static inline int security_shm_shmat (struct shmid_kernel * shp, 
-				      char __user *shmaddr, int shmflg)
+				      char *shmaddr, int shmflg)
 {
 	return security_ops->shm_shmat(shp, shmaddr, shmflg);
 }
@@ -2400,7 +2400,7 @@ static inline int security_shm_shmctl (struct shmid_kernel * shp, int cmd)
 }
 
 static inline int security_shm_shmat (struct shmid_kernel * shp, 
-				      char __user *shmaddr, int shmflg)
+				      char *shmaddr, int shmflg)
 {
 	return 0;
 }

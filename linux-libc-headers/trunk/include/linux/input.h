@@ -10,7 +10,7 @@
  */
 
 #ifdef __KERNEL__
-#include <linux/time.h>
+#include <sys/time.h>
 #include <linux/list.h>
 #else
 #include <sys/time.h>

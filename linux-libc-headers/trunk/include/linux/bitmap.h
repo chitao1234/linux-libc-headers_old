@@ -4,7 +4,6 @@
 #ifndef __ASSEMBLY__
 
 #include <linux/config.h>
-#include <linux/compiler.h>
 #include <linux/types.h>
 #include <linux/kernel.h>
 #include <linux/bitops.h>

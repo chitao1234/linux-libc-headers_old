@@ -30,7 +30,6 @@
  *	David Mosberger-Tang <davidm@hpl.hp.com>
  */
 
-#include <linux/compiler.h>
 #include <linux/errno.h>
 #include <linux/sched.h>
 

@@ -21,7 +21,6 @@
 
 #include <linux/config.h>
 #include <linux/errno.h>
-#include <linux/compiler.h>
 
 #ifdef CONFIG_KMOD
 extern int request_module(const char * name, ...) __attribute__ ((format (printf, 1, 2)));

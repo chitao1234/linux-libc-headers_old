@@ -7,7 +7,6 @@
 
 #include <asm/atomic.h>
 #include <linux/posix_types.h>
-#include <linux/compiler.h>
 #include <linux/spinlock.h>
 
 /*

@@ -11,7 +11,6 @@
 #include <linux/linkage.h>
 #include <linux/stddef.h>
 #include <linux/types.h>
-#include <linux/compiler.h>
 #include <asm/byteorder.h>
 #include <asm/bug.h>
 

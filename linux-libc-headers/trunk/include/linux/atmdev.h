@@ -205,7 +205,7 @@ struct atm_cirange {
 #else
 
 #include <linux/wait.h> /* wait_queue_head_t */
-#include <linux/time.h> /* struct timeval */
+#include <sys/time.h> /* struct timeval */
 #include <linux/net.h>
 #include <linux/skbuff.h> /* struct sk_buff */
 #include <linux/uio.h>

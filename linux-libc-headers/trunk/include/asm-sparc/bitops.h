@@ -1,4 +1,4 @@
-/* $Id: bitops.h,v 1.2 2003/12/22 12:02:10 mmazur Exp $
+/* $Id: bitops.h,v 1.3 2003/12/26 19:03:24 mmazur Exp $
  * bitops.h: Bit string operations on the Sparc.
  *
  * Copyright 1995 David S. Miller (davem@caip.rutgers.edu)
@@ -9,7 +9,6 @@
 #ifndef _SPARC_BITOPS_H
 #define _SPARC_BITOPS_H
 
-#include <linux/compiler.h>
 #include <asm/byteorder.h>
 
 #ifdef __KERNEL__

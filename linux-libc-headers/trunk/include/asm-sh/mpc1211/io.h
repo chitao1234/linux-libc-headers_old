@@ -9,7 +9,7 @@
 #ifndef _ASM_SH_IO_MPC1211_H
 #define _ASM_SH_IO_MPC1211_H
 
-#include <linux/time.h>
+#include <sys/time.h>
 #include <asm/io_generic.h>
 
 extern unsigned char mpc1211_inb(unsigned long port);

@@ -16,8 +16,7 @@
 
 #include <linux/config.h>
 #include <linux/kernel.h>
-#include <linux/compiler.h>
-#include <linux/time.h>
+#include <sys/time.h>
 #include <linux/cache.h>
 
 #include <asm/types.h>

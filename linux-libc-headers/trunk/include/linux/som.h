@@ -4,7 +4,7 @@
 /* File format definition for SOM executables / shared libraries */
 
 /* we need struct timespec */
-#include <linux/time.h>
+#include <sys/time.h>
 
 #define SOM_PAGESIZE 4096
 

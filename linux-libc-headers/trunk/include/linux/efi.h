@@ -13,7 +13,7 @@
  */
 #include <linux/init.h>
 #include <linux/string.h>
-#include <linux/time.h>
+#include <sys/time.h>
 #include <linux/types.h>
 #include <linux/proc_fs.h>
 

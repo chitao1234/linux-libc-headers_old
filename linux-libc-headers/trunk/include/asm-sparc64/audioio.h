@@ -14,7 +14,7 @@
 
 #if defined(__KERNEL__) || !defined(__GLIBC__) || (__GLIBC__ < 2)
 #include <linux/types.h>
-#include <linux/time.h>
+#include <sys/time.h>
 #include <linux/ioctl.h>
 #endif
 

@@ -1,7 +1,6 @@
 #ifndef _ASMi386_SIGCONTEXT_H
 #define _ASMi386_SIGCONTEXT_H
 
-#include <linux/compiler.h>
 
 /*
  * As documented in the iBCS2 standard..
@@ -76,7 +75,7 @@ struct sigcontext {
 	unsigned long eflags;
 	unsigned long esp_at_signal;
 	unsigned short ss, __ssh;
-	struct _fpstate __user * fpstate;
+	struct _fpstate * fpstate;
 	unsigned long oldmask;
 	unsigned long cr2;
 };

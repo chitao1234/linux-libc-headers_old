@@ -15,7 +15,7 @@
 #define __V850_HIGHRES_TIMER_H__
 
 #ifndef __ASSEMBLY__
-#include <linux/time.h>
+#include <sys/time.h>
 #endif
 
 #include <asm/entry.h>

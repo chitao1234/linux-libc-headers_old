@@ -15,7 +15,6 @@
 #include <linux/config.h>
 #include <linux/kernel.h>
 #include <linux/sched.h>
-#include <linux/compiler.h>
 
 #include <asm/intrinsics.h>
 #include <asm/processor.h>

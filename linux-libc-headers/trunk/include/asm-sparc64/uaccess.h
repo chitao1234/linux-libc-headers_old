@@ -1,4 +1,4 @@
-/* $Id: uaccess.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $ */
+/* $Id: uaccess.h,v 1.2 2003/12/26 19:03:27 mmazur Exp $ */
 #ifndef _ASM_UACCESS_H
 #define _ASM_UACCESS_H
 
@@ -7,7 +7,6 @@
  */
 
 #ifdef __KERNEL__
-#include <linux/compiler.h>
 #include <linux/sched.h>
 #include <linux/string.h>
 #include <asm/a.out.h>
@@ -53,7 +52,7 @@ do {										\
 #define __access_ok(addr,size) 1
 #define access_ok(type,addr,size) 1
 
-static inline int verify_area(int type, const void __user * addr, unsigned long size)
+static inline int verify_area(int type, const void * addr, unsigned long size)
 {
 	return 0;
 }
@@ -250,13 +249,13 @@ __asm__ __volatile__(							\
 
 extern int __get_user_bad(void);
 
-extern unsigned long __copy_from_user(void *to, const void __user *from,
+extern unsigned long __copy_from_user(void *to, const void *from,
 				      unsigned long size);
 
-extern unsigned long __copy_to_user(void __user *to, const void *from,
+extern unsigned long __copy_to_user(void *to, const void *from,
 				    unsigned long size);
 
-extern unsigned long __copy_in_user(void __user *to, const void __user *from,
+extern unsigned long __copy_in_user(void *to, const void *from,
 				    unsigned long size);
 
 #define copy_from_user __copy_from_user
@@ -265,7 +264,7 @@ extern unsigned long __copy_in_user(void __user *to, const void __user *from,
 
 extern unsigned long __bzero_noasi(void *, unsigned long);
 
-static inline unsigned long __clear_user(void __user *addr, unsigned long size)
+static inline unsigned long __clear_user(void *addr, unsigned long size)
 {
 	
 	return __bzero_noasi((void *) addr, size);
@@ -273,12 +272,12 @@ static inline unsigned long __clear_user(void __user *addr, unsigned long size)
 
 #define clear_user __clear_user
 
-extern long __strncpy_from_user(char *dest, const char __user *src, long count);
+extern long __strncpy_from_user(char *dest, const char *src, long count);
 
 #define strncpy_from_user __strncpy_from_user
 
-extern long __strlen_user(const char __user *);
-extern long __strnlen_user(const char __user *, long len);
+extern long __strlen_user(const char *);
+extern long __strnlen_user(const char *, long len);
 
 #define strlen_user __strlen_user
 #define strnlen_user __strnlen_user

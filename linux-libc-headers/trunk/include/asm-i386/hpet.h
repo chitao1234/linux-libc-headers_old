@@ -12,7 +12,7 @@
 #include <linux/string.h>
 #include <linux/mm.h>
 #include <linux/interrupt.h>
-#include <linux/time.h>
+#include <sys/time.h>
 #include <linux/delay.h>
 #include <linux/init.h>
 #include <linux/smp.h>

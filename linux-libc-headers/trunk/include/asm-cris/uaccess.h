@@ -3,8 +3,13 @@
  *	       Hans-Peter Nilsson (hp@axis.com)
  *
  * $Log: uaccess.h,v $
- * Revision 1.1  2003/12/15 18:47:01  mmazur
- * Initial revision
+ * Revision 1.2  2003/12/26 19:03:09  mmazur
+ * - removed linux/compiler* (and all references to it) and all __user macros
+ * - removed linux/time.h and changed all headers to use sys/time.h
+ * - releasing 2.6.0.2
+ *
+ * Revision 1.1.1.1  2003/12/15 18:47:01  mmazur
+ * Initial from debian
  *
  * Revision 1.8  2001/10/29 13:01:48  bjornw
  * Removed unused variable tmp2 in strnlen_user
@@ -94,7 +99,7 @@
 #define __access_ok(addr,size) (__kernel_ok || __user_ok((addr),(size)))
 #define access_ok(type,addr,size) __access_ok((unsigned long)(addr),(size))
 
-extern inline int verify_area(int type, const void __user * addr, unsigned long size)
+extern inline int verify_area(int type, const void * addr, unsigned long size)
 {
 	return access_ok(type,addr,size) ? 0 : -EFAULT;
 }
@@ -223,7 +228,7 @@ extern unsigned long __copy_user_zeroing(void *to, const void *from, unsigned lo
 extern unsigned long __do_clear_user(void *to, unsigned long n);
 
 extern inline unsigned long
-__generic_copy_to_user(void __user *to, const void *from, unsigned long n)
+__generic_copy_to_user(void *to, const void *from, unsigned long n)
 {
 	if (access_ok(VERIFY_WRITE, to, n))
 		return __copy_user(to,from,n);
@@ -231,7 +236,7 @@ __generic_copy_to_user(void __user *to, const void *from, unsigned long n)
 }
 
 extern inline unsigned long
-__generic_copy_from_user(void *to, const void __user *from, unsigned long n)
+__generic_copy_from_user(void *to, const void *from, unsigned long n)
 {
 	if (access_ok(VERIFY_READ, from, n))
 		return __copy_user_zeroing(to,from,n);
@@ -239,7 +244,7 @@ __generic_copy_from_user(void *to, const void __user *from, unsigned long n)
 }
 
 extern inline unsigned long
-__generic_clear_user(void __user *to, unsigned long n)
+__generic_clear_user(void *to, unsigned long n)
 {
 	if (access_ok(VERIFY_WRITE, to, n))
 		return __do_clear_user(to,n);
@@ -247,13 +252,13 @@ __generic_clear_user(void __user *to, unsigned long n)
 }
 
 extern inline long
-__strncpy_from_user(char *dst, const char __user *src, long count)
+__strncpy_from_user(char *dst, const char *src, long count)
 {
 	return __do_strncpy_from_user(dst, src, count);
 }
 
 extern inline long
-strncpy_from_user(char *dst, const char __user *src, long count)
+strncpy_from_user(char *dst, const char *src, long count)
 {
 	long res = -EFAULT;
 	if (access_ok(VERIFY_READ, src, 1))
@@ -266,7 +271,7 @@ strncpy_from_user(char *dst, const char __user *src, long count)
    don't do that.  */
 
 extern inline unsigned long
-__constant_copy_from_user(void *to, const void __user *from, unsigned long n)
+__constant_copy_from_user(void *to, const void *from, unsigned long n)
 {
 	unsigned long ret = 0;
 	if (n == 0)
@@ -316,7 +321,7 @@ __constant_copy_from_user(void *to, const void __user *from, unsigned long n)
 /* Ditto, don't make a switch out of this.  */
 
 extern inline unsigned long
-__constant_copy_to_user(void __user *to, const void *from, unsigned long n)
+__constant_copy_to_user(void *to, const void *from, unsigned long n)
 {
 	unsigned long ret = 0;
 	if (n == 0)
@@ -366,7 +371,7 @@ __constant_copy_to_user(void __user *to, const void *from, unsigned long n)
 /* No switch, please.  */
 
 extern inline unsigned long
-__constant_clear_user(void __user *to, unsigned long n)
+__constant_clear_user(void *to, unsigned long n)
 {
 	unsigned long ret = 0;
 	if (n == 0)

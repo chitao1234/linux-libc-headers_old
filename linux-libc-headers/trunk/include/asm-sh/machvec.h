@@ -12,7 +12,7 @@
 
 #include <linux/config.h>
 #include <linux/types.h>
-#include <linux/time.h>
+#include <sys/time.h>
 
 #include <asm/machtypes.h>
 

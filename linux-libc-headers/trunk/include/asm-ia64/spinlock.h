@@ -9,7 +9,6 @@
  * This file is used for SMP configurations only.
  */
 
-#include <linux/compiler.h>
 #include <linux/kernel.h>
 
 #include <asm/atomic.h>

@@ -7,7 +7,7 @@
  * See arch/ppc/kernel/syscalls.c for ugly details..
  */
 struct ipc_kludge {
-	struct msgbuf __user *msgp;
+	struct msgbuf *msgp;
 	long msgtyp;
 };
 

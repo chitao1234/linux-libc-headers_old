@@ -10,7 +10,6 @@
 #define _ASM_BITOPS_H
 
 #include <linux/config.h>
-#include <linux/compiler.h>
 #include <linux/types.h>
 #include <asm/byteorder.h>		/* sigh ... */
 
