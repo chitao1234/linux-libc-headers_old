@@ -1,4 +1,4 @@
-/* $Id: page.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/* $Id: page.h,v 1.2 2003/12/23 13:48:31 mmazur Exp $
  * page.h:  Various defines and such for MMU operations on the Sparc for
  *          the Linux kernel.
  *
@@ -8,12 +8,15 @@
 #ifndef _SPARC_PAGE_H
 #define _SPARC_PAGE_H
 
-#include <linux/config.h>
-#ifdef CONFIG_SUN4
-#define PAGE_SHIFT   13
-#else
+/*
+ * On SUN4 this should be set like this
+ * #ifdef CONFIG_SUN4
+ * #define PAGE_SHIFT   13
+ * #else
+*/
+
 #define PAGE_SHIFT   12
-#endif
+
 #ifndef __ASSEMBLY__
 /* I have my suspicions... -DaveM */
 #define PAGE_SIZE    (1UL << PAGE_SHIFT)
