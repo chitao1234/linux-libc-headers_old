@@ -178,7 +178,8 @@ extern unsigned long __zero_page(void);
 #error "EV6-only feature in a generic kernel"
 #endif
 #if defined(CONFIG_ALPHA_GENERIC) || \
-    (defined(CONFIG_ALPHA_EV6) && !defined(USE_48_BIT_KSEG))
+    ((defined(CONFIG_ALPHA_EV6) || defined(CONFIG_ALPHA_EV67)) && \
+	 !defined(USE_48_BIT_KSEG))
 #define KSEG_PFN	(0xc0000000000UL >> PAGE_SHIFT)
 #define PHYS_TWIDDLE(pfn) \
   ((((pfn) & KSEG_PFN) == (0x40000000000UL >> PAGE_SHIFT)) \
