@@ -116,7 +116,7 @@ extern struct resource * __request_region(struct resource *, unsigned long start
 extern int __check_region(struct resource *, unsigned long, unsigned long);
 extern void __release_region(struct resource *, unsigned long, unsigned long);
 
-static inline int __deprecated check_region(unsigned long s, unsigned long n)
+static inline int check_region(unsigned long s, unsigned long n)
 {
 	return __check_region(&ioport_resource, s, n);
 }

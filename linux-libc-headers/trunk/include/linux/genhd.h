@@ -11,8 +11,6 @@
 
 #include <linux/types.h>
 #include <linux/major.h>
-#include <linux/device.h>
-#include <linux/smp.h>
 #include <linux/fs.h>
 
 enum {
