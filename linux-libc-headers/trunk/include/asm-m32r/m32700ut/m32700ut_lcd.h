@@ -9,13 +9,12 @@
  * Public License.  See the file "COPYING" in the main directory of
  * this archive for more details.
  *
- * $Id: m32700ut_lcd.h,v 1.1 2004/10/21 15:15:39 mmazur Exp $
+ * $Id: m32700ut_lcd.h,v 1.2 2004/10/22 16:58:47 mmazur Exp $
  */
 
 #ifndef _M32700UT_M32700UT_LCD_H
 #define _M32700UT_M32700UT_LCD_H
 
-#include <linux/config.h>
 
 #ifndef __ASSEMBLY__
 /*

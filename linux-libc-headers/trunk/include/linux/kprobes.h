@@ -26,7 +26,6 @@
  * 2004-July	Suparna Bhattacharya <suparna@in.ibm.com> added jumper probes
  *		interface to access function arguments.
  */
-#include <linux/config.h>
 #include <linux/list.h>
 #include <linux/notifier.h>
 #include <linux/smp.h>

@@ -9,13 +9,12 @@
  * Public License.  See the file "COPYING" in the main directory of
  * this archive for more details.
  *
- * $Id: opsput_pld.h,v 1.1 2004/10/21 15:15:40 mmazur Exp $
+ * $Id: opsput_pld.h,v 1.2 2004/10/22 16:58:48 mmazur Exp $
  */
 
 #ifndef _OPSPUT_OPSPUT_PLD_H
 #define _OPSPUT_OPSPUT_PLD_H
 
-#include <linux/config.h>
 
 #define PLD_PLAT_BASE		0x1cc00000
 

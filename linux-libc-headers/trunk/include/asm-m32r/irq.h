@@ -1,9 +1,8 @@
 #ifndef _ASM_M32R_IRQ_H
 #define _ASM_M32R_IRQ_H
 
-/* $Id: irq.h,v 1.1 2004/10/21 15:15:37 mmazur Exp $ */
+/* $Id: irq.h,v 1.2 2004/10/22 16:58:47 mmazur Exp $ */
 
-#include <linux/config.h>
 
 #if defined(CONFIG_PLAT_M32700UT_Alpha) || defined(CONFIG_PLAT_USRV)
 /*

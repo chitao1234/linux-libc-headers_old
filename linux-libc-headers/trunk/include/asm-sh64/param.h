@@ -12,7 +12,6 @@
 #ifndef __ASM_SH64_PARAM_H
 #define __ASM_SH64_PARAM_H
 
-#include <linux/config.h>
 
 #ifndef HZ
 #define HZ 100

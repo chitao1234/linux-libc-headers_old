@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_TIMEX_H
 #define _ASM_M32R_TIMEX_H
 
-/* $Id: timex.h,v 1.2 2004/10/21 16:04:54 mmazur Exp $ */
+/* $Id: timex.h,v 1.3 2004/10/22 16:58:47 mmazur Exp $ */
 
 /*
  * linux/include/asm-m32r/timex.h
@@ -9,7 +9,6 @@
  * m32r architecture timex specifications
  */
 
-#include <linux/config.h>
 
 #define CLOCK_TICK_RATE	(CONFIG_BUS_CLOCK / CONFIG_TIMER_DIVIDE)
 #define CLOCK_TICK_FACTOR	20	/* Factor of both 1000000 and CLOCK_TICK_RATE */

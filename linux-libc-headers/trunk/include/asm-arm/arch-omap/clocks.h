@@ -29,7 +29,6 @@
 #ifndef __ASM_ARM_CLOCKS_H
 #define __ASM_ARM_CLOCKS_H
 
-#include <linux/config.h>
 
 /* ARM_CKCTL bit shifts */
 #define PERDIV			0

@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_SERIAL_H
 #define _ASM_M32R_SERIAL_H
 
-/* $Id: serial.h,v 1.1 2004/10/21 15:15:38 mmazur Exp $ */
+/* $Id: serial.h,v 1.2 2004/10/22 16:58:47 mmazur Exp $ */
 
 /* orig : i386 2.4.18 */
 
@@ -9,7 +9,6 @@
  * include/asm-m32r/serial.h
  */
 
-#include <linux/config.h>
 #include <asm/m32r.h>
 
 /*

@@ -1,7 +1,6 @@
 #ifndef _ASM_NUMNODES_H_
 #define _ASM_NUMNODES_H_
 
-#include <linux/config.h>
 
 #ifdef CONFIG_DISCONTIGMEM
 

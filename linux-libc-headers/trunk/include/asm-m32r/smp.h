@@ -1,9 +1,8 @@
 #ifndef _ASM_M32R_SMP_H
 #define _ASM_M32R_SMP_H
 
-/* $Id: smp.h,v 1.1 2004/10/21 15:15:38 mmazur Exp $ */
+/* $Id: smp.h,v 1.2 2004/10/22 16:58:47 mmazur Exp $ */
 
-#include <linux/config.h>
 
 #ifdef CONFIG_SMP
 #ifndef __ASSEMBLY__

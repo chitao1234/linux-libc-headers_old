@@ -4,7 +4,6 @@
  */
 #ifndef __ASM_ARCH_SYSTEM_H
 #define __ASM_ARCH_SYSTEM_H
-#include <linux/config.h>
 #include <asm/arch/hardware.h>
 
 static inline void arch_idle(void)
