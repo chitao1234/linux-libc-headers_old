@@ -1,7 +1,8 @@
 #ifndef _LINUX_ICMPV6_H
 #define _LINUX_ICMPV6_H
 
-#include <asm/byteorder.h>
+#include <endian.h>
+#include <byteswap.h>
 
 struct icmp6hdr {
 
