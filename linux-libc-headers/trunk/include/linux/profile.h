@@ -6,7 +6,7 @@
 #include <linux/kernel.h>
 #include <linux/config.h>
 #include <linux/init.h>
-#include <asm/errno.h>
+#include <linux/errno.h>
 
 /* parse command line */
 int __init profile_setup(char * str);

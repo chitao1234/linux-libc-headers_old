@@ -12,7 +12,7 @@
  * User space memory access functions
  */
 #include <linux/sched.h>
-#include <asm/errno.h>
+#include <linux/errno.h>
 #include <asm/arch/memory.h>
 #include <asm/domain.h>
 

@@ -13,7 +13,7 @@
 
 #include <asm/ptrace.h>
 #include <asm/types.h>
-#include <asm/errno.h>
+#include <linux/errno.h>
 
 #include <linux/string.h>
 #include <linux/interrupt.h>
