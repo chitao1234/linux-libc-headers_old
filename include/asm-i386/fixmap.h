@@ -14,7 +14,6 @@
 #define _ASM_FIXMAP_H
 
 #include <linux/kernel.h>
-#include <asm/acpi.h>
 #include <asm/apicdef.h>
 #include <asm/page.h>
 #ifdef CONFIG_HIGHMEM
