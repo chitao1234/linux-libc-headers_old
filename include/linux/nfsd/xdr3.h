@@ -9,6 +9,8 @@
 #ifndef _LINUX_NFSD_XDR3_H
 #define _LINUX_NFSD_XDR3_H
 
+#include <asm/types.h>
+
 #include <linux/nfsd/xdr.h>
 
 struct nfsd3_sattrargs {

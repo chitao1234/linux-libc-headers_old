@@ -2,6 +2,8 @@
 #define _IP_CONNTRACK_FTP_H
 /* FTP tracking. */
 
+#include <asm/types.h>
+
 enum ip_ct_ftp_type
 {
 	/* PORT command from client */

@@ -21,6 +21,8 @@
 #ifndef _SYSDEV_H_
 #define _SYSDEV_H_
 
+#include <asm/types.h>
+
 #include <linux/kobject.h>
 
 

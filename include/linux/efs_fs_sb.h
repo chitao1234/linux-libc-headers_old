@@ -9,6 +9,8 @@
 #ifndef __EFS_FS_SB_H__
 #define __EFS_FS_SB_H__
 
+#include <asm/types.h>
+
 /* statfs() magic number for EFS */
 #define EFS_SUPER_MAGIC	0x414A53
 

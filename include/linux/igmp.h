@@ -16,6 +16,8 @@
 #ifndef _LINUX_IGMP_H
 #define _LINUX_IGMP_H
 
+#include <asm/types.h>
+
 #include <endian.h>
 #include <byteswap.h>
 

@@ -11,6 +11,8 @@
 #ifndef _LINUX_ZORRO_H
 #define _LINUX_ZORRO_H
 
+#include <asm/types.h>
+
 #ifndef __ASSEMBLY__
 
 #include <linux/device.h>

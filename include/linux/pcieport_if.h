@@ -9,6 +9,8 @@
 #ifndef _PCIEPORT_IF_H_
 #define _PCIEPORT_IF_H_
 
+#include <asm/types.h>
+
 /* Port Type */
 #define PCIE_RC_PORT			4	/* Root port of RC */
 #define PCIE_SW_UPSTREAM_PORT		5	/* Upstream port of Switch */

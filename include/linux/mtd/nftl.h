@@ -7,6 +7,8 @@
 #ifndef __MTD_NFTL_H__
 #define __MTD_NFTL_H__
 
+#include <asm/types.h>
+
 #include <linux/mtd/mtd.h>
 #include <linux/mtd/blktrans.h>
 

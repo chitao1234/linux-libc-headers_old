@@ -12,6 +12,8 @@
 #ifndef _DRIVERS_BLOCK_MM_H
 #define _DRIVERS_BLOCK_MM_H
 
+#include <asm/types.h>
+
 
 #define IRQ_TIMEOUT (1 * HZ)
 

@@ -1,6 +1,8 @@
 #ifndef _NFS_FS_SB
 #define _NFS_FS_SB
 
+#include <asm/types.h>
+
 #include <linux/backing-dev.h>
 
 /*

@@ -25,6 +25,8 @@
  *
  */
 
+#include <asm/types.h>
+
 #define ___swahw32(x) \
 ({ \
 	__u32 __x = (x); \

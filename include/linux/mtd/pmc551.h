@@ -14,6 +14,8 @@
 #ifndef __MTD_PMC551_H__
 #define __MTD_PMC551_H__
 
+#include <asm/types.h>
+
 #include <linux/mtd/mtd.h>
 
 #define PMC551_VERSION "Id: pmc551.h,v 1.5 2003/01/24 16:49:53 dwmw2 Exp\n"\

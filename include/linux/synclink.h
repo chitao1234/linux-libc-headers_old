@@ -12,6 +12,8 @@
 #define _SYNCLINK_H_
 #define SYNCLINK_H_VERSION 3.6
 
+#include <asm/types.h>
+
 #define BOOLEAN int
 #define TRUE 1
 #define FALSE 0

@@ -37,6 +37,8 @@
 #ifndef _NFSD4_STATE_H
 #define _NFSD4_STATE_H
 
+#include <asm/types.h>
+
 #include <linux/kref.h>
 #include <linux/sunrpc/clnt.h>
 

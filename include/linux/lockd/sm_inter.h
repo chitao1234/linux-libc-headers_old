@@ -9,6 +9,8 @@
 #ifndef LINUX_LOCKD_SM_INTER_H
 #define LINUX_LOCKD_SM_INTER_H
 
+#include <asm/types.h>
+
 #define SM_PROGRAM	100024
 #define SM_VERSION	1
 #define SM_STAT		1

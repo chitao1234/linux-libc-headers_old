@@ -1,6 +1,8 @@
 #ifndef _LINUX_INETDEVICE_H
 #define _LINUX_INETDEVICE_H
 
+#include <asm/types.h>
+
 static __inline__ __u32 inet_make_mask(int logmask)
 {
 	if (logmask)

@@ -31,6 +31,8 @@
  * this one, or preferably to include <net/irda/irda.h> instead.
  * Jean II */
 
+#include <asm/types.h>
+
 /* Hint bit positions for first hint byte */
 #define HINT_PNP         0x01
 #define HINT_PDA         0x02

@@ -1,5 +1,7 @@
 #ifndef _IPX_H_
 #define _IPX_H_
+#include <asm/types.h>
+
 #include <linux/sockios.h>
 #include <sys/socket.h>
 #define IPX_NODE_LEN	6

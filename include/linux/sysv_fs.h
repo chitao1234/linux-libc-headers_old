@@ -1,6 +1,8 @@
 #ifndef _LINUX_SYSV_FS_H
 #define _LINUX_SYSV_FS_H
 
+#include <asm/types.h>
+
 #if defined(__GNUC__)
 # define __packed2__	__attribute__((packed, aligned(2)))
 #else

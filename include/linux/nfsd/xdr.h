@@ -7,6 +7,8 @@
 #ifndef LINUX_NFSD_H
 #define LINUX_NFSD_H
 
+#include <asm/types.h>
+
 #include <linux/fs.h>
 #include <linux/vfs.h>
 #include <linux/nfs.h>

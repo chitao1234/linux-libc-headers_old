@@ -9,6 +9,8 @@
 #ifndef _LINUX_XATTR_ACL_H
 #define _LINUX_XATTR_ACL_H
 
+#include <asm/types.h>
+
 #include <linux/posix_acl.h>
 
 #define XATTR_NAME_ACL_ACCESS	"system.posix_acl_access"

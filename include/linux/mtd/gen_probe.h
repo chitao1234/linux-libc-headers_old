@@ -6,6 +6,8 @@
 #ifndef __LINUX_MTD_GEN_PROBE_H__
 #define __LINUX_MTD_GEN_PROBE_H__
 
+#include <asm/types.h>
+
 #include <linux/mtd/flashchip.h>
 #include <linux/mtd/map.h> 
 #include <linux/mtd/cfi.h>
