@@ -1,6 +1,8 @@
-#ifndef __ASM_SH64_ERRNO_H
-#define __ASM_SH64_ERRNO_H
+#ifndef _SH64_ERRNO_H
+#define _SH64_ERRNO_H
 
-#include <asm-generic/errno.h>
+#ifndef _LINUX_ERRNO_H
+ #include <linux/errno.h>
+#endif
 
-#endif /* __ASM_SH64_ERRNO_H */
+#endif
