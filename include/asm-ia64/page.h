@@ -11,24 +11,11 @@
 #include <asm/intrinsics.h>
 #include <asm/types.h>
 
-/*
- * PAGE_SHIFT determines the actual kernel page size.
- */
-#if defined(CONFIG_IA64_PAGE_SIZE_4KB)
-# define PAGE_SHIFT	12
-#elif defined(CONFIG_IA64_PAGE_SIZE_8KB)
-# define PAGE_SHIFT	13
-#elif defined(CONFIG_IA64_PAGE_SIZE_16KB)
-# define PAGE_SHIFT	14
-#elif defined(CONFIG_IA64_PAGE_SIZE_64KB)
-# define PAGE_SHIFT	16
-#else
-/* take 16kB as default for llh */
-# define PAGE_SHIFT	14
-/* # error Unsupported page size! */
-#endif
+extern int getpagesize(void);
+#define PAGE_SIZE ((unsigned long)getpagesize())
+#define PAGE_SHIFT ((unsigned long[]){12,13,14,-1,15,-1,-1,-1,16}[PAGE_SIZE>>13])
 
-#define PAGE_SIZE		(__IA64_UL_CONST(1) << PAGE_SHIFT)
+
 #define PAGE_MASK		(~(PAGE_SIZE - 1))
 #define PAGE_ALIGN(addr)	(((addr) + PAGE_SIZE - 1) & PAGE_MASK)
 

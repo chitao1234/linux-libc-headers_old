@@ -2,17 +2,9 @@
 #define _M68K_PAGE_H
 
 
-/* PAGE_SHIFT determines the page size */
-#ifndef CONFIG_SUN3
-#define PAGE_SHIFT	(12)
-#else
-#define PAGE_SHIFT	(13)
-#endif
-#ifdef __ASSEMBLY__
-#define PAGE_SIZE	(1 << PAGE_SHIFT)
-#else
-#define PAGE_SIZE	(1UL << PAGE_SHIFT)
-#endif
+extern int getpagesize(void);
+#define PAGE_SIZE ((unsigned long)getpagesize())
+#define PAGE_SHIFT ((unsigned long[]){12,13,14,-1,15,-1,-1,-1,16}[PAGE_SIZE>>13])
 #define PAGE_MASK	(~(PAGE_SIZE-1))
 
 

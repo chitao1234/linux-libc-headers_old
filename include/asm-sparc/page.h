@@ -8,21 +8,9 @@
 #ifndef _SPARC_PAGE_H
 #define _SPARC_PAGE_H
 
-/*
- * On SUN4 this should be set like this
- * #ifdef CONFIG_SUN4
- * #define PAGE_SHIFT   13
- * #else
-*/
-
-#define PAGE_SHIFT   12
-
-#ifndef __ASSEMBLY__
-/* I have my suspicions... -DaveM */
-#define PAGE_SIZE    (1UL << PAGE_SHIFT)
-#else
-#define PAGE_SIZE    (1 << PAGE_SHIFT)
-#endif
+extern int getpagesize(void);
+#define PAGE_SIZE ((unsigned long)getpagesize())
+#define PAGE_SHIFT ((unsigned long[]){12,13,14,-1,15,-1,-1,-1,16}[PAGE_SIZE>>13])
 #define PAGE_MASK    (~(PAGE_SIZE-1))
 
 #endif /* _SPARC_PAGE_H */
