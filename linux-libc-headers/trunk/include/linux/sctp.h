@@ -53,6 +53,7 @@
 
 #include <linux/in.h>		/* We need in_addr.  */
 #include <linux/in6.h>		/* We need in6_addr.  */
+#include <asm/byteorder.h>
 
 
 /* Section 3.1.  SCTP Common Header Format */
