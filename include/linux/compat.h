@@ -8,7 +8,6 @@
 
 #ifdef CONFIG_COMPAT
 
-#include <linux/stat.h>
 #include <linux/param.h>	/* for HZ */
 #include <asm/compat.h>
 
