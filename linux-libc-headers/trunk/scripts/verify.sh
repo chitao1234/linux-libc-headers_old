@@ -9,7 +9,7 @@ cd $LLHDIR/skrypty/.tmp
 doarch()
 {
 	arch=$1
-	for file in `cd ../../linux-libc-headers/include; find/ sound/ scsi/ asm/ linux/ mtd/ -name '*.h'`; do
+	for file in `cd ../../linux-libc-headers/include; find sound/ scsi/ asm/ linux/ mtd/ -name '*.h'`; do
 		cat test.orig|sed -e "s,BLE,$file," >test.c
 		(gcc -I$LLHDIR/linux-libc-headers/include $CFLAGS test.c) >/dev/null 2>&1
 		if [ ! -f a.out ]; then
