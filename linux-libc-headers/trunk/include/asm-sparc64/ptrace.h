@@ -1,4 +1,3 @@
-/* $Id: ptrace.h,v 1.2 2004/01/21 19:59:58 mmazur Exp $ */
 #ifndef _SPARC64_PTRACE_H
 #define _SPARC64_PTRACE_H
 

@@ -23,7 +23,6 @@
 /* With some changes from Kyösti Mälkki <kmalkki@cc.hut.fi> and
    Frodo Looijaard <frodol@dds.nl> */
 
-/* $Id: i2c.h,v 1.1 2003/12/15 18:46:57 mmazur Exp $ */
 
 #ifndef _LINUX_I2C_H
 #define _LINUX_I2C_H

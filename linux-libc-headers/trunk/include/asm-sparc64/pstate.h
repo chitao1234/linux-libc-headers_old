@@ -1,4 +1,3 @@
-/* $Id: pstate.h,v 1.1 2003/12/15 18:47:05 mmazur Exp $ */
 #ifndef _SPARC64_PSTATE_H
 #define _SPARC64_PSTATE_H
 

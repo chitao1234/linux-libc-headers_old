@@ -1,4 +1,3 @@
-/* $Id: parport.h,v 1.2 2004/01/01 18:23:42 mmazur Exp $ */
 
 /*
  * Any part of this program may be used in documents licensed under

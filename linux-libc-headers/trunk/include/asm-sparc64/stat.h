@@ -1,4 +1,3 @@
-/* $Id: stat.h,v 1.2 2004/01/21 19:59:58 mmazur Exp $ */
 #ifndef _SPARC64_STAT_H
 #define _SPARC64_STAT_H
 

@@ -1,4 +1,3 @@
-/* $Id: sun3-head.h,v 1.1 2003/12/15 18:47:02 mmazur Exp $ */
 #ifndef __SUN3_HEAD_H
 #define __SUN3_HEAD_H
 
