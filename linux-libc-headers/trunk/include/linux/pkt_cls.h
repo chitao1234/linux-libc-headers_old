@@ -218,14 +218,12 @@ struct tc_u32_sel
 	struct tc_u32_key	keys[0];
 };
 
-#ifdef CONFIG_CLS_U32_PERF
 struct tc_u32_pcnt
 {
 	__u64 rcnt;
 	__u64 rhit;
 	__u64 kcnts[0];
 };
-#endif
 /* Flags */
 
 #define TC_U32_TERMINAL		1
