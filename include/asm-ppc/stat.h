@@ -1,6 +1,7 @@
 #ifndef _PPC_STAT_H
 #define _PPC_STAT_H
 
+#include <linux/types.h>
 
 struct __old_kernel_stat {
 	unsigned short st_dev;
