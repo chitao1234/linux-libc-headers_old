@@ -11,7 +11,7 @@ linux:
   coda_fs_i.h, concap.h, config.h, cramfs_fs.h (!ifNdef), cuda.h, cyclades.h,
   cyclomx.h, dcache.h, dio.h, divert.h, elfcore.h (!ifNdef), errno.h, 
   errqueue.h, etherdevice.h, ethtool.h, ext2_fs.h, fb.h, fcdevice.h, fcntl.h
-  fd.h, fddidevice.h, filter.h, fs.h, fs_struct.h, ftape.h, genhd.h, 
+  fd.h, fddidevice.h, filter.h, fs_struct.h, ftape.h, genhd.h, 
   hayesesp.h... oh fuck it... there are just too many files... will check it
   later
 - acpi.h: file changed. Unpatchable.
@@ -77,7 +77,7 @@ i386:
   linux_logo.h, lithium.h, mca_dma.h, mmu_context.h, mmx.h, parport.h, 
   pgtable-level2.h, pgtable-level3.h, pgtable.h, smp.h, smpboot.h, smplock.h,
   softirq.h, uaccess.h, xor.h
-- Userspace warnings (or above): atomic.h, bitops.h, byteorder.h, checksum.h,
+- Userspace warnings (or above): atomic.h, bitops.h, checksum.h,
   dma.h, ide.h, io.h, kernel.h, module.h, mpspec.h, msr.h, pci.h, rwlock.h,
 - Removal of __KERNEL__: bitops.h, highmem.h, page.h, ptrace.h, resource.h,
   rwsem.h, semaphore.h, siginfo.h, signal.h, spinlock.h, string.h, system.h,
@@ -111,5 +111,4 @@ ppc:
   softirq.h, spinlock.h, stat.h, string.h, system.h, termios.h, time.h, 
   timex.h, types.h, uaccess.h, unaligned.h, uninorth.h, user.h, vc_ioctl.h,
   vga.h, walnut.h, 
-- byteorder.h: interesting... it's altered and made available to userspace
-  and I've deleted just three hours ago
+
