@@ -42,8 +42,6 @@
  */
 #define ELF_ET_DYN_BASE		(TASK_UNMAPPED_BASE + 0x800000000)
 
-#define PT_IA_64_UNWIND		0x70000001
-
 /* IA-64 relocations: */
 #define R_IA64_NONE		0x00	/* none */
 #define R_IA64_IMM14		0x21	/* symbol + addend, add imm14 */
