@@ -23,7 +23,8 @@
 #include <linux/sched.h>
 #include <linux/buffer_head.h>
 
-#include <asm/byteorder.h>
+#include <endian.h>
+#include <byteswap.h>
 #include <asm/unaligned.h>
 
 extern struct timezone sys_tz;
