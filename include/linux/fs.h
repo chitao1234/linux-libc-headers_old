@@ -6,8 +6,8 @@
  * structures etc.
  */
 
+#include <linux/kdev_t.h>
 #include <linux/ioctl.h>
-
 
 struct iovec;
 struct nameidata;
