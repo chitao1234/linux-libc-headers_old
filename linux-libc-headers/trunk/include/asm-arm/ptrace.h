@@ -81,48 +81,6 @@ struct pt_regs {
 #define ARM_r0		uregs[0]
 #define ARM_ORIG_r0	uregs[17]
 
-#ifdef __KERNEL__
-
-#define user_mode(regs)	\
-	(((regs)->ARM_cpsr & 0xf) == 0)
-
-#ifdef CONFIG_ARM_THUMB
-#define thumb_mode(regs) \
-	(((regs)->ARM_cpsr & PSR_T_BIT))
-#else
-#define thumb_mode(regs) (0)
-#endif
-
-#define processor_mode(regs) \
-	((regs)->ARM_cpsr & MODE_MASK)
-
-#define interrupts_enabled(regs) \
-	(!((regs)->ARM_cpsr & PSR_I_BIT))
-
-#define fast_interrupts_enabled(regs) \
-	(!((regs)->ARM_cpsr & PSR_F_BIT))
-
-#define condition_codes(regs) \
-	((regs)->ARM_cpsr & (PSR_V_BIT|PSR_C_BIT|PSR_Z_BIT|PSR_N_BIT))
-	
-/* Are the current registers suitable for user mode?
- * (used to maintain security in signal handlers)
- */
-static inline int valid_user_regs(struct pt_regs *regs)
-{
-	if (user_mode(regs) &&
-	    (regs->ARM_cpsr & (PSR_F_BIT|PSR_I_BIT)) == 0)
-		return 1;
-
-	/*
-	 * Force CPSR to something logical...
-	 */
-	regs->ARM_cpsr &= PSR_f | PSR_s | PSR_x | PSR_T_BIT | MODE32_BIT;
-
-	return 0;
-}
-
-#endif	/* __KERNEL__ */
 
 #define pc_pointer(v) \
 	((v) & ~PCMASK)
@@ -130,13 +88,6 @@ static inline int valid_user_regs(struct pt_regs *regs)
 #define instruction_pointer(regs) \
 	(pc_pointer((regs)->ARM_pc))
 
-#ifdef __KERNEL__
-extern void show_regs(struct pt_regs *);
-
-#define predicate(x)	(x & 0xf0000000)
-#define PREDICATE_ALWAYS	0xe0000000
-
-#endif
 
 #endif /* __ASSEMBLY__ */
 
