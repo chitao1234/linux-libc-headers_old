@@ -1,12 +1,10 @@
 #ifndef _I386_PAGE_H
 #define _I386_PAGE_H
 
-/* PAGE_SHIFT determines the page size */
-#define PAGE_SHIFT	12
-#define PAGE_SIZE	(1UL << PAGE_SHIFT)
-#define PAGE_MASK	(~(PAGE_SIZE-1))
+#include <unistd.h>
 
-#define LARGE_PAGE_MASK (~(LARGE_PAGE_SIZE-1))
-#define LARGE_PAGE_SIZE (1UL << PMD_SHIFT)
+#define PAGE_SIZE ((unsigned long)getpagesize())
+#define PAGE_SHIFT ((PAGE_SIZE > 65536) ? -1 : ((unsigned long[]){12,13,14,-1,15,-1,-1,-1,16}[PAGE_SIZE>>13]))
+#define PAGE_MASK    (~(PAGE_SIZE-1))
 
 #endif /* _I386_PAGE_H */
