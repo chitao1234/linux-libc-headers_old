@@ -1,4 +1,4 @@
-/* $Id: rtc.h,v 1.2 2004/10/22 16:58:47 mmazur Exp $ */
+/* $Id$ */
 
 #ifndef __RTC_H__
 #define __RTC_H__
@@ -28,7 +28,7 @@
 #  define RTC_TCR_4KOHM 	0x02	/* xxxxxx10 4kOhm */
 #  define RTC_TCR_8KOHM 	0x03	/* xxxxxx11 8kOhm */
 
-#ifdef CONFIG_M32700UT_DS1302
+#ifdef CONFIG_DS1302
 extern unsigned char ds1302_readreg(int reg);
 extern void ds1302_writereg(int reg, unsigned char val);
 extern int ds1302_init(void);

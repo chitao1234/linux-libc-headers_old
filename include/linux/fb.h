@@ -98,6 +98,7 @@
 #define FB_ACCEL_I810           39      /* Intel 810/815                */
 #define FB_ACCEL_SIS_GLAMOUR_2  40	/* SiS 315, 650, 740		*/
 #define FB_ACCEL_SIS_XABRE      41	/* SiS 330 ("Xabre")		*/
+#define FB_ACCEL_I830           42      /* Intel 830M/845G/85x/865G     */
 
 #define FB_ACCEL_NEOMAGIC_NM2070 90	/* NeoMagic NM2070              */
 #define FB_ACCEL_NEOMAGIC_NM2090 91	/* NeoMagic NM2090              */
@@ -109,6 +110,21 @@
 #define FB_ACCEL_NEOMAGIC_NM2360 97	/* NeoMagic NM2360              */
 #define FB_ACCEL_NEOMAGIC_NM2380 98	/* NeoMagic NM2380              */
 
+#define FB_ACCEL_SAVAGE4        0x80	/* S3 Savage4                   */
+#define FB_ACCEL_SAVAGE3D       0x81	/* S3 Savage3D                  */
+#define FB_ACCEL_SAVAGE3D_MV    0x82	/* S3 Savage3D-MV               */
+#define FB_ACCEL_SAVAGE2000     0x83	/* S3 Savage2000                */
+#define FB_ACCEL_SAVAGE_MX_MV   0x84	/* S3 Savage/MX-MV              */
+#define FB_ACCEL_SAVAGE_MX      0x85	/* S3 Savage/MX                 */
+#define FB_ACCEL_SAVAGE_IX_MV   0x86	/* S3 Savage/IX-MV              */
+#define FB_ACCEL_SAVAGE_IX      0x87	/* S3 Savage/IX                 */
+#define FB_ACCEL_PROSAVAGE_PM   0x88	/* S3 ProSavage PM133           */
+#define FB_ACCEL_PROSAVAGE_KM   0x89	/* S3 ProSavage KM133           */
+#define FB_ACCEL_S3TWISTER_P    0x8a	/* S3 Twister                   */
+#define FB_ACCEL_S3TWISTER_K    0x8b	/* S3 TwisterK                  */
+#define FB_ACCEL_SUPERSAVAGE    0x8c    /* S3 Supersavage               */
+#define FB_ACCEL_PROSAVAGE_DDR  0x8d	/* S3 ProSavage DDR             */
+#define FB_ACCEL_PROSAVAGE_DDRK 0x8e	/* S3 ProSavage DDR-K           */
 
 struct fb_fix_screeninfo {
 	char id[16];			/* identification string eg "TT Builtin" */
@@ -238,6 +254,24 @@ struct fb_con2fbmap {
 #define VESA_HSYNC_SUSPEND      2
 #define VESA_POWERDOWN          3
 
+
+enum {
+	/* screen: unblanked, hsync: on,  vsync: on */
+	FB_BLANK_UNBLANK       = VESA_NO_BLANKING,
+
+	/* screen: blanked,   hsync: on,  vsync: on */
+	FB_BLANK_NORMAL        = VESA_NO_BLANKING + 1,
+
+	/* screen: blanked,   hsync: on,  vsync: off */
+	FB_BLANK_VSYNC_SUSPEND = VESA_VSYNC_SUSPEND + 1,
+
+	/* screen: blanked,   hsync: off, vsync: on */
+	FB_BLANK_HSYNC_SUSPEND = VESA_HSYNC_SUSPEND + 1,
+
+	/* screen: blanked,   hsync: off, vsync: off */
+	FB_BLANK_POWERDOWN     = VESA_POWERDOWN + 1
+};
+
 #define FB_VBLANK_VBLANKING	0x001	/* currently in a vertical blank */
 #define FB_VBLANK_HBLANKING	0x002	/* currently in a horizontal blank */
 #define FB_VBLANK_HAVE_VBLANK	0x004	/* vertical blanks can be detected */
@@ -294,7 +328,7 @@ struct fb_image {
  * hardware cursor control
  */
 
-#define FB_CUR_SETCUR   0x01
+#define FB_CUR_SETIMAGE 0x01
 #define FB_CUR_SETPOS   0x02
 #define FB_CUR_SETHOT   0x04
 #define FB_CUR_SETCMAP  0x08
@@ -313,8 +347,6 @@ struct fb_cursor {
 	const char *mask;	/* cursor mask bits */
 	struct fbcurpos hot;	/* cursor hot spot */
 	struct fb_image	image;	/* Cursor image */
-/* all fields below are for fbcon use only */
-	char  *data;             /* copy of bitmap */
 };
 
 

@@ -95,6 +95,11 @@
 #undef	EDQUOT
 #undef	ENOMEDIUM
 #undef	EMEDIUMTYPE
+#undef	ECANCELED
+#undef	ENOKEY
+#undef	EKEYEXPIRED
+#undef	EKEYREVOKED
+#undef	EKEYREJECTED
 
 /* These match the SunOS error numbering scheme. */
 
@@ -193,5 +198,10 @@
 
 #define ENOMEDIUM       125     /* No medium found */
 #define EMEDIUMTYPE     126     /* Wrong medium type */
+#define	ECANCELED	127	/* Operation Cancelled */
+#define	ENOKEY		128	/* Required key not available */
+#define	EKEYEXPIRED	129	/* Key has expired */
+#define	EKEYREVOKED	130	/* Key has been revoked */
+#define	EKEYREJECTED	131	/* Key was rejected by service */
 
 #endif /* !(_SPARC64_ERRNO_H) */

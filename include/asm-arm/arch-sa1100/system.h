@@ -9,13 +9,6 @@ static inline void arch_idle(void)
 	cpu_do_idle();
 }
 
-#ifdef CONFIG_SA1100_VICTOR
-
-/* power off unconditionally */
-#define arch_reset(x) machine_power_off()
-
-#else
-
 static inline void arch_reset(char mode)
 {
 	if (mode == 's') {
@@ -26,5 +19,3 @@ static inline void arch_reset(char mode)
 		RSRR = RSRR_SWR;
 	}
 }
-
-#endif

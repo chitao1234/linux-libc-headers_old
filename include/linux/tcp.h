@@ -186,6 +186,8 @@ struct tcp_info
 
 	__u32	tcpi_rcv_rtt;
 	__u32	tcpi_rcv_space;
+
+	__u32	tcpi_total_retrans;
 };
 
 #endif	/* _LINUX_TCP_H */

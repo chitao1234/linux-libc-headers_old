@@ -143,5 +143,4 @@ struct usbdevfs_hub_portinfo {
 #define USBDEVFS_DISCONNECT        _IO('U', 22)
 #define USBDEVFS_CONNECT           _IO('U', 23)
 
-/* --------------------------------------------------------------------- */
 #endif /* _LINUX_USBDEVICE_FS_H */

@@ -88,8 +88,8 @@
 #define WriteDOC_(d, adr, reg)  do{ *(volatile __u16 *)(((unsigned long)adr)+((reg)<<1)) = (__u16)d; wmb();} while(0)
 #define DOC_IOREMAP_LEN 0x4000
 #else
-#define ReadDOC_(adr, reg)      readb(((unsigned long)adr) + (reg))
-#define WriteDOC_(d, adr, reg)  writeb(d, ((unsigned long)adr) + (reg))
+#define ReadDOC_(adr, reg)      readb((void *)(((unsigned long)adr) + (reg)))
+#define WriteDOC_(d, adr, reg)  writeb(d, (void *)(((unsigned long)adr) + (reg)))
 #define DOC_IOREMAP_LEN 0x2000
 
 #endif
@@ -167,7 +167,7 @@ struct Nand {
 
 struct DiskOnChip {
 	unsigned long physadr;
-	unsigned long virtadr;
+	void *virtadr;
 	unsigned long totlen;
 	unsigned char ChipID; /* Type of DiskOnChip */
 	int ioreg;

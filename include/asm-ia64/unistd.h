@@ -259,5 +259,9 @@
 #define __NR_mq_getsetattr		1267
 #define __NR_kexec_load			1268
 #define __NR_vserver			1269
+#define __NR_waitid			1270
+#define __NR_add_key			1271
+#define __NR_request_key		1272
+#define __NR_keyctl			1273
 
 #endif /* _ASM_IA64_UNISTD_H */

@@ -3,6 +3,8 @@
 
 #include <linux/types.h>
 
+#include <linux/pkt_sched.h>
+
 /* I think i could have done better macros ; for now this is stolen from
  * some arch/mips code - jhs
 */
@@ -138,9 +140,9 @@ struct tc_police
 
 struct tcf_t
 {
-	__u32   install;
-	__u32   lastuse;
-	__u32   expires;
+	__u64   install;
+	__u64   lastuse;
+	__u64   expires;
 };
 
 struct tc_cnt

@@ -14,7 +14,7 @@ struct eeprom {
 	void *dev;
 	struct eeprom_ops *ops;
 
-	long		addr;
+	void  *	addr;
 
 	unsigned	ee_addr_bits;
 
@@ -42,7 +42,7 @@ enum EEPROM_Cmds {
         EE_WriteCmd=(5 << 6), EE_ReadCmd=(6 << 6), EE_EraseCmd=(7 << 6),
 };
 
-void setup_ee_mem_bitbanger(struct eeprom *ee, long memaddr, int eesel_bit, int eeclk_bit, int eedo_bit, int eedi_bit, unsigned polarity)
+void setup_ee_mem_bitbanger(struct eeprom *ee, void *memaddr, int eesel_bit, int eeclk_bit, int eedo_bit, int eedi_bit, unsigned polarity)
 {
 	ee->addr = memaddr;
 	ee->eesel = 1 << eesel_bit;

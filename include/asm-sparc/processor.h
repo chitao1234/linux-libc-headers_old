@@ -42,10 +42,12 @@
 
 struct task_struct;
 
+#ifdef __KERNEL__
 struct fpq {
 	unsigned long *insn_addr;
 	unsigned long insn;
 };
+#endif
 
 typedef struct {
 	int seg;

@@ -16,7 +16,7 @@
 
 struct plat_serial8250_port {
 	unsigned long	iobase;		/* io base address */
-	void __iomem	*membase;	/* ioremap cookie or NULL */
+	void 	*membase;	/* ioremap cookie or NULL */
 	unsigned long	mapbase;	/* resource base */
 	unsigned int	irq;		/* interrupt number */
 	unsigned int	uartclk;	/* UART clock rate */

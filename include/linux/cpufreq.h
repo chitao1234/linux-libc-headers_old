@@ -19,6 +19,7 @@
 #include <linux/kobject.h>
 #include <linux/sysfs.h>
 #include <linux/workqueue.h>
+#include <linux/cpumask.h>
 
 #define CPUFREQ_NAME_LEN 16
 
@@ -66,7 +67,8 @@ struct cpufreq_real_policy {
 };
 
 struct cpufreq_policy {
-	unsigned int		cpu;    /* cpu nr */
+	cpumask_t		cpus;	/* affected CPUs */
+	unsigned int		cpu;    /* cpu nr of registered CPU */
 	struct cpufreq_cpuinfo	cpuinfo;/* see above */
 
 	unsigned int		min;    /* in kHz */
@@ -256,8 +258,8 @@ int cpufreq_parse_governor (char *str_governor, unsigned int *policy, struct cpu
  *********************************************************************/
 #ifdef CONFIG_CPU_FREQ_24_API
 
-int cpufreq_setmax(unsigned int cpu);
-int cpufreq_set(unsigned int kHz, unsigned int cpu);
+int __deprecated cpufreq_setmax(unsigned int cpu);
+int __deprecated cpufreq_set(unsigned int kHz, unsigned int cpu);
 
 
 /* /proc/sys/cpu */
@@ -354,5 +356,24 @@ void cpufreq_frequency_table_get_attr(struct cpufreq_frequency_table *table,
 
 void cpufreq_frequency_table_put_attr(unsigned int cpu);
 
+
+/*********************************************************************
+ *                     UNIFIED DEBUG HELPERS                         *
+ *********************************************************************/
+
+#define CPUFREQ_DEBUG_CORE	1
+#define CPUFREQ_DEBUG_DRIVER	2
+#define CPUFREQ_DEBUG_GOVERNOR	4
+
+#ifdef CONFIG_CPU_FREQ_DEBUG
+
+extern void cpufreq_debug_printk(unsigned int type, const char *prefix, 
+				 const char *fmt, ...);
+
+#else
+
+#define cpufreq_debug_printk(msg...) do { } while(0)
+
+#endif /* CONFIG_CPU_FREQ_DEBUG */
 
 #endif /* _LINUX_CPUFREQ_H */
