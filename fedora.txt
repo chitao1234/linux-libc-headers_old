@@ -2,6 +2,17 @@ NOTE: 99,9% of this 'warning' and 'remove file' checks should probably result
 in rm file... or better: error "What the fuck are you trying to include in
 user space"
 
+linux:
+- consider removal: ac97_codec.h, bootmem.h, 
+- Removal of __KERNEL__: acct.h, acpi.h, adb.h, adfs_fs.h, agpgart.h (whatch it
+  !!!! it's #ifNdef, else), apm_bios.h, arcdevice.h, atalk.h, atm.h, atm_tcp.h,
+  atmarp.h, atmclip.h, atmdev.h (!ifNdef), auto_fs.h, bfs_fs.h, binfmts.h,
+  blkpg.h, capability.h, capi.h (!ifNdef)
+- acpi.h: file changed. Unpatchable.
+- amigaffs.h: didn't add MIN macro. Dunno what it's for
+- auto_fs.h: check archs
+- blkdev.h: changes too big
+
 
 all-asms:
 - fcntl.h: switch back for O_DIRECT from 02000000 to 040000 ignored;
