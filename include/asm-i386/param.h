@@ -8,7 +8,7 @@
 #endif
 
 #ifndef HZ
-#define HZ 100
+#define HZ sysconf(_SC_CLK_TCK)
 #endif
 
 #define EXEC_PAGESIZE	4096
