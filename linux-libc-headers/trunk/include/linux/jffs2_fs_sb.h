@@ -1,11 +1,10 @@
-/* $Id: jffs2_fs_sb.h,v 1.2 2004/01/15 20:19:02 mmazur Exp $ */
+/* $Id: jffs2_fs_sb.h,v 1.3 2004/02/03 13:00:00 mmazur Exp $ */
 
 #ifndef _JFFS2_FS_SB
 #define _JFFS2_FS_SB
 
 #include <linux/types.h>
 #include <linux/workqueue.h>
-#include <linux/completion.h>
 #include <asm/semaphore.h>
 #include <linux/timer.h>
 #include <linux/wait.h>

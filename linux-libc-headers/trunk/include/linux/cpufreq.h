@@ -5,7 +5,7 @@
  *            (C) 2002 - 2003 Dominik Brodowski <linux@brodo.de>
  *            
  *
- * $Id: cpufreq.h,v 1.3 2004/01/17 22:43:07 mmazur Exp $
+ * $Id: cpufreq.h,v 1.4 2004/02/03 13:00:00 mmazur Exp $
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -19,7 +19,6 @@
 #include <linux/device.h>
 #include <linux/kobject.h>
 #include <linux/sysfs.h>
-#include <linux/completion.h>
 
 #define CPUFREQ_NAME_LEN 16
 
