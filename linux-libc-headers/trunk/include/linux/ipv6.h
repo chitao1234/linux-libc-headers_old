@@ -1,9 +1,10 @@
 #ifndef _IPV6_H
 #define _IPV6_H
 
-#include <linux/config.h>
+#include <asm/types.h>
 #include <linux/in6.h>
-#include <asm/byteorder.h>
+#include <endian.h>
+#include <byteswap.h>
 
 /* The latest drafts declared increase in minimal mtu up to 1280. */
 
