@@ -1,149 +1,7 @@
 #ifndef _LINUX_SOCKET_H
 #define _LINUX_SOCKET_H
 
-/*
- * Desired design of maximum size and alignment (see RFC2553)
- */
-#define _K_SS_MAXSIZE	128	/* Implementation specific max size */
-#define _K_SS_ALIGNSIZE	(__alignof__ (struct sockaddr *))
-				/* Implementation specific desired alignment */
 
-struct __kernel_sockaddr_storage {
-	unsigned short	ss_family;		/* address family */
-	/* Following field(s) are implementation specific */
-	char		__data[_K_SS_MAXSIZE - sizeof(unsigned short)];
-				/* space to achieve desired size, */
-				/* _SS_MAXSIZE value minus size of ss_family */
-} __attribute__ ((aligned(_K_SS_ALIGNSIZE)));	/* force desired alignment */
-
-#if defined(__KERNEL__) || !defined(__GLIBC__) || (__GLIBC__ < 2)
-
-#include <linux/config.h>		/* for CONFIG_COMPAT */
-#include <linux/linkage.h>
-#include <asm/socket.h>			/* arch-dependent defines	*/
-#include <linux/sockios.h>		/* the SIOCxxx I/O controls	*/
-#include <linux/uio.h>			/* iovec support		*/
-#include <linux/types.h>		/* pid_t			*/
-
-typedef unsigned short	sa_family_t;
-
-/*
- *	1003.1g requires sa_family_t and that sa_data is char.
- */
- 
-struct sockaddr {
-	sa_family_t	sa_family;	/* address family, AF_xxx	*/
-	char		sa_data[14];	/* 14 bytes of protocol address	*/
-};
-
-struct linger {
-	int		l_onoff;	/* Linger active		*/
-	int		l_linger;	/* How long to linger for	*/
-};
-
-#define sockaddr_storage __kernel_sockaddr_storage
-
-/*
- *	As we do 4.4BSD message passing we use a 4.4BSD message passing
- *	system, not 4.3. Thus msg_accrights(len) are now missing. They
- *	belong in an obscure libc emulation or the bin.
- */
- 
-struct msghdr {
-	void	*	msg_name;	/* Socket name			*/
-	int		msg_namelen;	/* Length of name		*/
-	struct iovec *	msg_iov;	/* Data blocks			*/
-	__kernel_size_t	msg_iovlen;	/* Number of blocks		*/
-	void 	*	msg_control;	/* Per protocol magic (eg BSD file descriptor passing) */
-	__kernel_size_t	msg_controllen;	/* Length of cmsg list */
-	unsigned	msg_flags;
-};
-
-/*
- *	POSIX 1003.1g - ancillary data object information
- *	Ancillary data consits of a sequence of pairs of
- *	(cmsghdr, cmsg_data[])
- */
-
-struct cmsghdr {
-	__kernel_size_t	cmsg_len;	/* data byte count, including hdr */
-        int		cmsg_level;	/* originating protocol */
-        int		cmsg_type;	/* protocol-specific type */
-};
-
-/*
- *	Ancilliary data object information MACROS
- *	Table 5-14 of POSIX 1003.1g
- */
-
-#define __CMSG_NXTHDR(ctl, len, cmsg) __cmsg_nxthdr((ctl),(len),(cmsg))
-#define CMSG_NXTHDR(mhdr, cmsg) cmsg_nxthdr((mhdr), (cmsg))
-
-#define CMSG_ALIGN(len) ( ((len)+sizeof(long)-1) & ~(sizeof(long)-1) )
-
-#define CMSG_DATA(cmsg)	((void *)((char *)(cmsg) + CMSG_ALIGN(sizeof(struct cmsghdr))))
-#define CMSG_SPACE(len) (CMSG_ALIGN(sizeof(struct cmsghdr)) + CMSG_ALIGN(len))
-#define CMSG_LEN(len) (CMSG_ALIGN(sizeof(struct cmsghdr)) + (len))
-
-#define __CMSG_FIRSTHDR(ctl,len) ((len) >= sizeof(struct cmsghdr) ? \
-				  (struct cmsghdr *)(ctl) : \
-				  (struct cmsghdr *)NULL)
-#define CMSG_FIRSTHDR(msg)	__CMSG_FIRSTHDR((msg)->msg_control, (msg)->msg_controllen)
-
-/*
- *	This mess will go away with glibc
- */
- 
-#if  defined(__GNUC__) 
-#define __KINLINE static __inline__
-#elif defined(__cplusplus)
-#define __KINLINE static inline
-#else
-#define __KINLINE static
-#endif
-
-
-/*
- *	Get the next cmsg header
- *
- *	PLEASE, do not touch this function. If you think, that it is
- *	incorrect, grep kernel sources and think about consequences
- *	before trying to improve it.
- *
- *	Now it always returns valid, not truncated ancillary object
- *	HEADER. But caller still MUST check, that cmsg->cmsg_len is
- *	inside range, given by msg->msg_controllen before using
- *	ansillary object DATA.				--ANK (980731)
- */
- 
-__KINLINE struct cmsghdr * __cmsg_nxthdr(void *__ctl, __kernel_size_t __size,
-					       struct cmsghdr *__cmsg)
-{
-	struct cmsghdr * __ptr;
-
-	__ptr = (struct cmsghdr*)(((unsigned char *) __cmsg) +  CMSG_ALIGN(__cmsg->cmsg_len));
-	if ((unsigned long)((char*)(__ptr+1) - (char *) __ctl) > __size)
-		return (struct cmsghdr *)0;
-
-	return __ptr;
-}
-
-__KINLINE struct cmsghdr * cmsg_nxthdr (struct msghdr *__msg, struct cmsghdr *__cmsg)
-{
-	return __cmsg_nxthdr(__msg->msg_control, __msg->msg_controllen, __cmsg);
-}
-
-/* "Socket"-level control message types: */
-
-#define	SCM_RIGHTS	0x01		/* rw: access rights (array of int) */
-#define SCM_CREDENTIALS 0x02		/* rw: struct ucred		*/
-#define SCM_CONNECT	0x03		/* rw: struct scm_connect	*/
-
-struct ucred {
-	__u32	pid;
-	__u32	uid;
-	__u32	gid;
-};
 
 /* Supported address families. */
 #define AF_UNSPEC	0
@@ -242,10 +100,6 @@ struct ucred {
 #define MSG_CMSG_COMPAT	0		/* We never have 32 bit fixups */
 #endif
 
-extern asmlinkage long sys_sendmsg(int fd, struct msghdr *msg, unsigned flags);
-extern asmlinkage long sys_recvmsg(int fd, struct msghdr *msg, unsigned flags);
-
-
 
 /* Setsockoptions(2) level. Thanks to BSD these must match IPPROTO_xxx */
 #define SOL_IP		0
@@ -273,22 +127,4 @@ extern asmlinkage long sys_recvmsg(int fd, struct msghdr *msg, unsigned flags);
 /* IPX options */
 #define IPX_TYPE	1
 
-#ifdef __KERNEL__
-extern int memcpy_fromiovec(unsigned char *kdata, struct iovec *iov, int len);
-extern int memcpy_fromiovecend(unsigned char *kdata, struct iovec *iov, 
-				int offset, int len);
-extern int csum_partial_copy_fromiovecend(unsigned char *kdata, 
-					  struct iovec *iov, 
-					  int offset, 
-					  unsigned int len, int *csump);
-
-extern int verify_iovec(struct msghdr *m, struct iovec *iov, char *address, int mode);
-extern int memcpy_toiovec(struct iovec *v, unsigned char *kdata, int len);
-extern void memcpy_tokerneliovec(struct iovec *iov, unsigned char *kdata, int len);
-extern int move_addr_to_user(void *kaddr, int klen, void *uaddr, int *ulen);
-extern int move_addr_to_kernel(void *uaddr, int ulen, void *kaddr);
-extern int put_cmsg(struct msghdr*, int level, int type, int len, void *data);
-
-#endif
-#endif /* not kernel and not glibc */
 #endif /* _LINUX_SOCKET_H */
