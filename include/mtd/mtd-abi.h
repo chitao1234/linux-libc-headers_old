@@ -7,6 +7,8 @@
 #ifndef __MTD_ABI_H__
 #define __MTD_ABI_H__
 
+#include <stdint.h>
+
 struct erase_info_user {
 	uint32_t start;
 	uint32_t length;
