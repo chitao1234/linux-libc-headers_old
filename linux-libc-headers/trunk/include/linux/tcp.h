@@ -18,8 +18,7 @@
 #define _LINUX_TCP_H
 
 #include <linux/types.h>
-#include <endian.h>
-#include <byteswap.h>
+#include <asm/byteorder.h>
 
 struct tcphdr {
 	__u16	source;
