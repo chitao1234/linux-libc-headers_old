@@ -1,4 +1,4 @@
-/* $Id: a.out.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $ */
+/* $Id: a.out.h,v 1.2 2004/01/21 19:59:58 mmazur Exp $ */
 #ifndef __SPARC64_A_OUT_H__
 #define __SPARC64_A_OUT_H__
 
@@ -92,12 +92,6 @@ struct relocation_info /* used when header.a_machtype == M_SPARC */
 };
 
 #define N_RELOCATION_INFO_DECLARED 1
-
-#ifdef __KERNEL__
-
-#define STACK_TOP (test_thread_flag(TIF_32BIT) ? 0xf0000000 : 0x80000000000L)
-
-#endif
 
 #endif /* !(__ASSEMBLY__) */
 

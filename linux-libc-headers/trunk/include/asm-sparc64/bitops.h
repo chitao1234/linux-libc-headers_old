@@ -1,4 +1,4 @@
-/* $Id: bitops.h,v 1.2 2003/12/26 19:03:26 mmazur Exp $
+/* $Id: bitops.h,v 1.3 2004/01/21 19:59:58 mmazur Exp $
  * bitops.h: Bit string operations on the V9.
  *
  * Copyright 1996, 1997 David S. Miller (davem@caip.rutgers.edu)
@@ -116,86 +116,6 @@ static __inline__ unsigned long __ffs(unsigned long word)
  */
 
 #define fls(x) generic_fls(x)
-
-#ifdef __KERNEL__
-
-/*
- * Every architecture must define this function. It's the fastest
- * way of searching a 140-bit bitmap where the first 100 bits are
- * unlikely to be set. It's guaranteed that at least one of the 140
- * bits is cleared.
- */
-static inline int sched_find_first_bit(unsigned long *b)
-{
-	if (unlikely(b[0]))
-		return __ffs(b[0]);
-	if (unlikely(((unsigned int)b[1])))
-		return __ffs(b[1]) + 64;
-	if (b[1] >> 32)
-		return __ffs(b[1] >> 32) + 96;
-	return __ffs(b[2]) + 128;
-}
-
-/*
- * ffs: find first bit set. This is defined the same way as
- * the libc and compiler builtin ffs routines, therefore
- * differs in spirit from the above ffz (man ffs).
- */
-static __inline__ int ffs(int x)
-{
-	if (!x)
-		return 0;
-	return __ffs((unsigned long)x) + 1;
-}
-
-/*
- * hweightN: returns the hamming weight (i.e. the number
- * of bits set) of a N-bit word
- */
-
-#ifdef ULTRA_HAS_POPULATION_COUNT
-
-static __inline__ unsigned int hweight64(unsigned long w)
-{
-	unsigned int res;
-
-	__asm__ ("popc %1,%0" : "=r" (res) : "r" (w));
-	return res;
-}
-
-static __inline__ unsigned int hweight32(unsigned int w)
-{
-	unsigned int res;
-
-	__asm__ ("popc %1,%0" : "=r" (res) : "r" (w & 0xffffffff));
-	return res;
-}
-
-static __inline__ unsigned int hweight16(unsigned int w)
-{
-	unsigned int res;
-
-	__asm__ ("popc %1,%0" : "=r" (res) : "r" (w & 0xffff));
-	return res;
-}
-
-static __inline__ unsigned int hweight8(unsigned int w)
-{
-	unsigned int res;
-
-	__asm__ ("popc %1,%0" : "=r" (res) : "r" (w & 0xff));
-	return res;
-}
-
-#else
-
-#define hweight64(x) generic_hweight64(x)
-#define hweight32(x) generic_hweight32(x)
-#define hweight16(x) generic_hweight16(x)
-#define hweight8(x) generic_hweight8(x)
-
-#endif
-#endif /* __KERNEL__ */
 
 /**
  * find_next_bit - find the next set bit in a memory region
@@ -355,28 +275,5 @@ found_first:
 found_middle:
 	return result + ffz(tmp);
 }
-
-#ifdef __KERNEL__
-
-#define ext2_set_bit(nr,addr)		test_and_set_le_bit((nr),(unsigned long *)(addr))
-#define ext2_set_bit_atomic(lock,nr,addr) test_and_set_le_bit((nr),(unsigned long *)(addr))
-#define ext2_clear_bit(nr,addr)		test_and_clear_le_bit((nr),(unsigned long *)(addr))
-#define ext2_clear_bit_atomic(lock,nr,addr) test_and_clear_le_bit((nr),(unsigned long *)(addr))
-#define ext2_test_bit(nr,addr)		test_le_bit((nr),(unsigned long *)(addr))
-#define ext2_find_first_zero_bit(addr, size) \
-	find_first_zero_le_bit((unsigned long *)(addr), (size))
-#define ext2_find_next_zero_bit(addr, size, off) \
-	find_next_zero_le_bit((unsigned long *)(addr), (size), (off))
-
-/* Bitmap functions for the minix filesystem.  */
-#define minix_test_and_set_bit(nr,addr)	test_and_set_bit((nr),(unsigned long *)(addr))
-#define minix_set_bit(nr,addr)		set_bit((nr),(unsigned long *)(addr))
-#define minix_test_and_clear_bit(nr,addr) \
-	test_and_clear_bit((nr),(unsigned long *)(addr))
-#define minix_test_bit(nr,addr)		test_bit((nr),(unsigned long *)(addr))
-#define minix_find_first_zero_bit(addr,size) \
-	find_first_zero_bit((unsigned long *)(addr),(size))
-
-#endif /* __KERNEL__ */
 
 #endif /* defined(_SPARC64_BITOPS_H) */

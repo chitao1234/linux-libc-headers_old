@@ -1,12 +1,9 @@
-/* $Id: ttable.h,v 1.2 2004/01/15 20:18:59 mmazur Exp $ */
+/* $Id: ttable.h,v 1.3 2004/01/21 19:59:58 mmazur Exp $ */
 #ifndef _SPARC64_TTABLE_H
 #define _SPARC64_TTABLE_H
 
 #include <asm/utrap.h>
 
-#ifdef __ASSEMBLY__
-#include <asm/thread_info.h>
-#endif
 
 #define BOOT_KERNEL b sparc64_boot; nop; nop; nop; nop; nop; nop; nop;
 

@@ -14,7 +14,6 @@
 #include <asm/cpufeature.h>
 #include <linux/threads.h>
 #include <asm/msr.h>
-#include <asm/current.h>
 #include <asm/system.h>
 #include <asm/mmsegment.h>
 #include <linux/personality.h>

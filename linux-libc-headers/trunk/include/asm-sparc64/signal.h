@@ -1,16 +1,8 @@
-/* $Id: signal.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $ */
+/* $Id: signal.h,v 1.2 2004/01/21 19:59:58 mmazur Exp $ */
 #ifndef _ASMSPARC64_SIGNAL_H
 #define _ASMSPARC64_SIGNAL_H
 
 #include <asm/sigcontext.h>
-
-#ifdef __KERNEL__
-#ifndef __ASSEMBLY__
-#include <linux/personality.h>
-#include <linux/types.h>
-#include <linux/compat.h>
-#endif
-#endif
 
 /* On the Sparc the signal handlers get passed a 'sub-signal' code
  * for certain signal types, which we document here.
@@ -162,30 +154,6 @@ struct sigstack {
 #define MINSIGSTKSZ	4096
 #define SIGSTKSZ	16384
 
-#ifdef __KERNEL__
-/*
- * These values of sa_flags are used only by the kernel as part of the
- * irq handling routines.
- *
- * SA_INTERRUPT is also used by the irq handling routines.
- *
- * DJHR
- * SA_STATIC_ALLOC is used for the SPARC system to indicate that this
- * interrupt handler's irq structure should be statically allocated
- * by the request_irq routine.
- * The alternative is that arch/sparc/kernel/irq.c has carnal knowledge
- * of interrupt usage and that sucks. Also without a flag like this
- * it may be possible for the free_irq routine to attempt to free
- * statically allocated data.. which is NOT GOOD.
- *
- */
-#define SA_PROBE SA_ONESHOT
-#define SA_SAMPLE_RANDOM SA_RESTART
-#define SA_STATIC_ALLOC		0x80
-#endif
-
-/* Type of a signal handler.  */
-#ifdef __KERNEL__
 typedef void (*__sighandler_t)(int, struct sigcontext *);
 #else
 typedef void (*__sighandler_t)(int);
@@ -202,19 +170,6 @@ struct __new_sigaction {
 	__new_sigset_t		sa_mask;
 };
 
-#ifdef __KERNEL__
-struct __new_sigaction32 {
-	unsigned		sa_handler;
-	unsigned int    	sa_flags;
-	unsigned		sa_restorer;     /* not used by Linux/SPARC yet */
-	compat_sigset_t 	sa_mask;
-};
-
-struct k_sigaction {
-	struct __new_sigaction 	sa;
-	void			*ka_restorer;
-};
-#endif
 
 struct __old_sigaction {
 	__sighandler_t  	sa_handler;
@@ -223,57 +178,12 @@ struct __old_sigaction {
 	void 			(*sa_restorer)(void);     /* not used by Linux/SPARC yet */
 };
 
-#ifdef __KERNEL__
-struct __old_sigaction32 {
-	unsigned		sa_handler;
-	compat_old_sigset_t  	sa_mask;
-	unsigned int    	sa_flags;
-	unsigned		sa_restorer;     /* not used by Linux/SPARC yet */
-};
-#endif
 
 typedef struct sigaltstack {
 	void			*ss_sp;
 	int			ss_flags;
 	size_t			ss_size;
 } stack_t;
-
-#ifdef __KERNEL__
-typedef struct sigaltstack32 {
-	u32			ss_sp;
-	int			ss_flags;
-	compat_size_t		ss_size;
-} stack_t32;
-
-struct signal_deliver_cookie {
-	int restart_syscall;
-	unsigned long orig_i0;
-};
-
-#define ptrace_signal_deliver(REGS, COOKIE) \
-do {	struct signal_deliver_cookie *cp = (COOKIE); \
-	if (cp->restart_syscall && \
-	    (regs->u_regs[UREG_I0] == ERESTARTNOHAND || \
-	     regs->u_regs[UREG_I0] == ERESTARTSYS || \
-	     regs->u_regs[UREG_I0] == ERESTARTNOINTR)) { \
-		/* replay the system call when we are done */ \
-		regs->u_regs[UREG_I0] = cp->orig_i0; \
-		regs->tpc -= 4; \
-		regs->tnpc -= 4; \
-		cp->restart_syscall = 0; \
-	} \
-	if (cp->restart_syscall && \
-	    regs->u_regs[UREG_I0] == ERESTART_RESTARTBLOCK) { \
-		regs->u_regs[UREG_G1] = __NR_restart_syscall; \
-		regs->tpc -= 4; \
-		regs->tnpc -= 4; \
-		cp->restart_syscall = 0; \
-	} \
-} while (0)
-
-#define HAVE_ARCH_SYS_PAUSE
-
-#endif
 
 #endif /* !(__ASSEMBLY__) */
 

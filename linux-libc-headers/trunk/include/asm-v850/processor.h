@@ -14,9 +14,6 @@
 #ifndef __V850_PROCESSOR_H__
 #define __V850_PROCESSOR_H__
 
-#ifndef __ASSEMBLY__ /* <linux/thread_info.h> is not asm-safe.  */
-#include <linux/thread_info.h>
-#endif
 
 #include <asm/ptrace.h>
 #include <asm/entry.h>

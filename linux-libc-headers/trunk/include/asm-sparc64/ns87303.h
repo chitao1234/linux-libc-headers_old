@@ -1,4 +1,4 @@
-/* $Id: ns87303.h,v 1.2 2004/01/15 20:18:59 mmazur Exp $
+/* $Id: ns87303.h,v 1.3 2004/01/21 19:59:58 mmazur Exp $
  * ns87303.h: Configuration Register Description for the
  *            National Semiconductor PC87303 (SuperIO).
  *
@@ -75,44 +75,5 @@
 #define CS0CF1_RESERVED	0x08
 #define CS1CF0_RESERVED	0x00
 #define CS1CF1_RESERVED	0x08
-
-#ifdef __KERNEL__
-
-
-#include <asm/system.h>
-#include <asm/io.h>
-
-extern spinlock_t ns87303_lock;
-
-static __inline__ int ns87303_modify(unsigned long port, unsigned int index,
-				     unsigned char clr, unsigned char set)
-{
-	static unsigned char reserved[] = {
-		FER_RESERVED, FAR_RESERVED, PTR_RESERVED, FCR_RESERVED,
-		PCR_RESERVED, KRR_RESERVED, PMC_RESERVED, TUP_RESERVED,
-		SIP_RESERVED, ASC_RESERVED, CS0CF0_RESERVED, CS0CF1_RESERVED,
-		CS1CF0_RESERVED, CS1CF1_RESERVED
-	};
-	unsigned long flags;
-	unsigned char value;
-
-	if (index > 0x0d)
-		return -EINVAL;
-
-	spin_lock_irqsave(&ns87303_lock, flags);
-
-	outb(index, port);
-	value = inb(port + 1);
-	value &= ~(reserved[index] | clr);
-	value |= set;
-	outb(value, port + 1);
-	outb(value, port + 1);
-
-	spin_unlock_irqrestore(&ns87303_lock, flags);
-
-	return 0;
-}
-
-#endif /* __KERNEL__ */
 
 #endif /* !(_SPARC_NS87303_H) */

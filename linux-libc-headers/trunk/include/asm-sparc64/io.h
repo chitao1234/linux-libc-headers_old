@@ -1,4 +1,4 @@
-/* $Id: io.h,v 1.1 2003/12/15 18:47:05 mmazur Exp $ */
+/* $Id: io.h,v 1.2 2004/01/21 19:59:58 mmazur Exp $ */
 #ifndef __SPARC64_IO_H
 #define __SPARC64_IO_H
 
@@ -427,35 +427,5 @@ static inline int check_signature(unsigned long io_addr,
 out:
 	return retval;
 }
-
-#ifdef __KERNEL__
-
-/* On sparc64 we have the whole physical IO address space accessible
- * using physically addressed loads and stores, so this does nothing.
- */
-#define ioremap(__offset, __size)	((void *)(__offset))
-#define ioremap_nocache(X,Y)		ioremap((X),(Y))
-#define iounmap(__addr)			do { (void)(__addr); } while(0)
-
-/* Similarly for SBUS. */
-#define sbus_ioremap(__res, __offset, __size, __name) \
-({	unsigned long __ret; \
-	__ret  = (__res)->start + (((__res)->flags & 0x1ffUL) << 32UL); \
-	__ret += (unsigned long) (__offset); \
-	if (! request_region((__ret), (__size), (__name))) \
-		__ret = 0UL; \
-	__ret; \
-})
-
-#define sbus_iounmap(__addr, __size)	\
-	release_region((__addr), (__size))
-
-/* Nothing to do */
-
-#define dma_cache_inv(_start,_size)		do { } while (0)
-#define dma_cache_wback(_start,_size)		do { } while (0)
-#define dma_cache_wback_inv(_start,_size)	do { } while (0)
-
-#endif
 
 #endif /* !(__SPARC64_IO_H) */
