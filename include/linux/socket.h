@@ -93,9 +93,7 @@ struct cmsghdr {
  *	This mess will go away with glibc
  */
  
-#ifdef __KERNEL__
-#define __KINLINE static inline
-#elif  defined(__GNUC__) 
+#if  defined(__GNUC__) 
 #define __KINLINE static __inline__
 #elif defined(__cplusplus)
 #define __KINLINE static inline
