@@ -13,7 +13,6 @@
 
 #include <asm/sn/addrs.h>
 #include <asm/sn/arch.h>
-//#include <asm/sn/io.h>
 
 #if defined(CONFIG_SGI_IP27)
 #include <asm/sn/sn0/hub.h>
@@ -27,7 +26,7 @@
 
 #if defined(CONFIG_SGI_IP27)
 #define HUB_NIC_ADDR(_cpuid) 						   \
-	REMOTE_HUB_ADDR(COMPACT_TO_NASID_NODEID(cputocnode(_cpuid)),       \
+	REMOTE_HUB_ADDR(COMPACT_TO_NASID_NODEID(cpu_to_node(_cpuid)),       \
 		MD_MLAN_CTL)
 #endif
 

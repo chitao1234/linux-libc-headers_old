@@ -34,6 +34,11 @@
  */
 #undef JBD_PARANOID_IOFAIL
 
+/*
+ * The default maximum commit age, in seconds.
+ */
+#define JBD_DEFAULT_MAX_COMMIT_AGE 5
+
 #ifdef CONFIG_JBD_DEBUG
 /*
  * Define JBD_EXPENSIVE_CHECKING to enable more expensive internal
@@ -230,7 +235,8 @@ static inline int jbd_space_needed(journal_t *journal)
 #define BJ_Shadow	5	/* Buffer contents being shadowed to the log */
 #define BJ_LogCtl	6	/* Buffer contains log descriptors */
 #define BJ_Reserved	7	/* Buffer is reserved for access by journal */
-#define BJ_Types	8
+#define BJ_Locked	8	/* Locked for I/O during commit */
+#define BJ_Types	9
  
 
 

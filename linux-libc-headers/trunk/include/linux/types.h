@@ -22,6 +22,7 @@ typedef __kernel_key_t		key_t;		/* <sys/ipc.h>, <sys/types.h> */
 typedef __kernel_suseconds_t	suseconds_t;	/* <sys/select.h>, <sys/time.h>, <sys/types.h> */
 typedef __kernel_timer_t	timer_t;	/* <time.h> [also from <sys/types.h>] */
 typedef __kernel_clockid_t	clockid_t;	/* <time.h> [also from <sys/types.h>] */
+typedef	__kernel_mqd_t		mqd_t;
 
 typedef __kernel_uid_t		uid_t;		/* <pwd.h>, <signal.h>, <strops.h>... (lots) */
 typedef __kernel_gid_t		gid_t;		/* <grp.h>, <pwd.h>, <strops.h>... (lots) */

@@ -13,6 +13,7 @@
 #define NETLINK_XFRM		6	/* ipsec */
 #define NETLINK_SELINUX		7	/* SELinux event notifications */
 #define NETLINK_ARPD		8
+#define NETLINK_AUDIT		9	/* auditing */
 #define NETLINK_ROUTE6		11	/* af_inet6 route comm channel */
 #define NETLINK_IP6_FW		13
 #define NETLINK_DNRTMSG		14	/* DECnet routing messages */
@@ -55,6 +56,20 @@ struct nlmsghdr
 #define NLM_F_EXCL	0x200	/* Do not touch, if it exists	*/
 #define NLM_F_CREATE	0x400	/* Create, if it does not exist	*/
 #define NLM_F_APPEND	0x800	/* Add to end of list		*/
+
+/* finegrained unicast helpers: */
+struct sock *netlink_getsockbypid(struct sock *ssk, u32 pid);
+struct sock *netlink_getsockbyfilp(struct file *filp);
+int netlink_attachskb(struct sock *sk, struct sk_buff *skb, int nonblock, long timeo);
+void netlink_detachskb(struct sock *sk, struct sk_buff *skb);
+int netlink_sendskb(struct sock *sk, struct sk_buff *skb, int protocol);
+
+/* finegrained unicast helpers: */
+struct sock *netlink_getsockbypid(struct sock *ssk, u32 pid);
+struct sock *netlink_getsockbyfilp(struct file *filp);
+int netlink_attachskb(struct sock *sk, struct sk_buff *skb, int nonblock, long timeo);
+void netlink_detachskb(struct sock *sk, struct sk_buff *skb);
+int netlink_sendskb(struct sock *sk, struct sk_buff *skb, int protocol);
 
 /*
    4.4BSD ADD		NLM_F_CREATE|NLM_F_EXCL

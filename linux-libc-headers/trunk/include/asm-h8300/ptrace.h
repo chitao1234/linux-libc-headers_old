@@ -14,6 +14,7 @@
 #define PT_CCR	   8
 #define PT_PC	   9
 #define PT_USP	   10
+#define PT_EXR     12
 
 /* this struct defines the way the registers are stored on the
    stack during a system call. */

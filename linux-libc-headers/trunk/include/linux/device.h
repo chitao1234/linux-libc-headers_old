@@ -13,7 +13,6 @@
 
 #include <linux/ioport.h>
 #include <linux/types.h>
-#include <linux/ioport.h>
 #include <linux/module.h>
 #include <asm/semaphore.h>
 #include <asm/atomic.h>
