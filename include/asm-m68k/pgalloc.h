@@ -3,7 +3,6 @@
 #define M68K_PGALLOC_H
 
 #include <linux/highmem.h>
-#include <asm/setup.h>
 
 
 

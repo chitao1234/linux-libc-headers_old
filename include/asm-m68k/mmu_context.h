@@ -8,7 +8,6 @@ static inline void enter_lazy_tlb(struct mm_struct *mm, struct task_struct *tsk)
 
 #ifndef CONFIG_SUN3
 
-#include <asm/setup.h>
 #include <asm/page.h>
 #include <asm/pgalloc.h>
 
