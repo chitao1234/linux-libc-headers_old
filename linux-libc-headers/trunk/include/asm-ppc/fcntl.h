@@ -67,11 +67,6 @@
 #define LOCK_WRITE	128	/* ... Which allows concurrent write operations */
 #define LOCK_RW		192	/* ... Which allows concurrent read & write ops */
 
-#ifdef __KERNEL__
-#define F_POSIX		1
-#define F_FLOCK		2
-#define F_BROKEN	4	/* broken flock() emulation */
-#endif /* __KERNEL__ */
 
 struct flock {
 	short l_type;

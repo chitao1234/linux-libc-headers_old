@@ -1,9 +1,6 @@
 #ifndef _ASMPPC_SIGNAL_H
 #define _ASMPPC_SIGNAL_H
 
-#ifdef __KERNEL__
-#include <linux/types.h>
-#endif /* __KERNEL__ */
 
 /* Avoid too many header ordering problems.  */
 struct siginfo;
@@ -99,19 +96,6 @@ typedef struct {
 
 #define MINSIGSTKSZ	2048
 #define SIGSTKSZ	8192
-#ifdef __KERNEL__
-
-/*
- * These values of sa_flags are used only by the kernel as part of the
- * irq handling routines.
- *
- * SA_INTERRUPT is also used by the irq handling routines.
- * SA_SHIRQ is for shared interrupt support on PCI and EISA.
- */
-#define SA_PROBE		SA_ONESHOT
-#define SA_SAMPLE_RANDOM	SA_RESTART
-#define SA_SHIRQ		0x04000000
-#endif /* __KERNEL__ */
 
 #define SIG_BLOCK          0	/* for blocking signals */
 #define SIG_UNBLOCK        1	/* for unblocking signals */
@@ -148,9 +132,5 @@ typedef struct sigaltstack {
 	size_t ss_size;
 } stack_t;
 
-#ifdef __KERNEL__
-#include <asm/sigcontext.h>
-#define ptrace_signal_deliver(regs, cookie) do { } while (0)
-#endif /* __KERNEL__ */
 
 #endif
