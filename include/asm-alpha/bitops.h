@@ -1,9 +1,9 @@
 #ifndef _ALPHA_BITOPS_H
 #define _ALPHA_BITOPS_H
 
-#include <linux/config.h>
-#include <linux/kernel.h>
 #include <asm/compiler.h>
+
+/* non-atomic version which could be used in userspace (but shouldn't anyway) */
 
 /*
  * Copyright 1994, Linus Torvalds.
@@ -49,9 +49,6 @@ __set_bit(unsigned long nr, volatile void * addr)
 
 	*m |= 1 << (nr & 31);
 }
-
-#define smp_mb__before_clear_bit()	smp_mb()
-#define smp_mb__after_clear_bit()	smp_mb()
 
 static inline void
 clear_bit(unsigned long nr, volatile void * addr)
@@ -126,7 +123,7 @@ test_and_set_bit(unsigned long nr, volatile void *addr)
 	"	stl_c %0,%1\n"
 	"	beq %0,3f\n"
 	"2:\n"
-#ifdef CONFIG_SMP
+#if 0 && defined(CONFIG_SMP)
 	"	mb\n"
 #endif
 	".subsection 2\n"
@@ -167,7 +164,7 @@ test_and_clear_bit(unsigned long nr, volatile void * addr)
 	"	stl_c %0,%1\n"
 	"	beq %0,3f\n"
 	"2:\n"
-#ifdef CONFIG_SMP
+#if 0 && defined(CONFIG_SMP)
 	"	mb\n"
 #endif
 	".subsection 2\n"
@@ -206,7 +203,7 @@ test_and_change_bit(unsigned long nr, volatile void * addr)
 	"	xor %0,%3,%0\n"
 	"	stl_c %0,%1\n"
 	"	beq %0,3f\n"
-#ifdef CONFIG_SMP
+#if 0 && defined(CONFIG_SMP)
 	"	mb\n"
 #endif
 	".subsection 2\n"
@@ -297,82 +294,6 @@ static inline unsigned long __ffs(unsigned long word)
 #endif
 }
 
-#ifdef __KERNEL__
-
-/*
- * ffs: find first bit set. This is defined the same way as
- * the libc and compiler builtin ffs routines, therefore
- * differs in spirit from the above __ffs.
- */
-
-static inline int ffs(int word)
-{
-	int result = __ffs(word) + 1;
-	return word ? result : 0;
-}
-
-/*
- * fls: find last bit set.
- */
-#if defined(__alpha_cix__) && defined(__alpha_fix__)
-static inline int fls(int word)
-{
-	return 64 - __kernel_ctlz(word & 0xffffffff);
-}
-#else
-#define fls	generic_fls
-#endif
-
-/* Compute powers of two for the given integer.  */
-static inline int floor_log2(unsigned long word)
-{
-#if defined(__alpha_cix__) && defined(__alpha_fix__)
-	return 63 - __kernel_ctlz(word);
-#else
-	long bit;
-	for (bit = -1; word ; bit++)
-		word >>= 1;
-	return bit;
-#endif
-}
-
-static inline int ceil_log2(unsigned int word)
-{
-	long bit = floor_log2(word);
-	return bit + (word > (1UL << bit));
-}
-
-/*
- * hweightN: returns the hamming weight (i.e. the number
- * of bits set) of a N-bit word
- */
-
-#if defined(__alpha_cix__) && defined(__alpha_fix__)
-/* Whee.  EV67 can calculate it directly.  */
-static inline unsigned long hweight64(unsigned long w)
-{
-	return __kernel_ctpop(w);
-}
-
-#define hweight32(x) hweight64((x) & 0xfffffffful)
-#define hweight16(x) hweight64((x) & 0xfffful)
-#define hweight8(x)  hweight64((x) & 0xfful)
-#else
-static inline unsigned long hweight64(unsigned long w)
-{
-	unsigned long result;
-	for (result = 0; w ; w >>= 1)
-		result += (w & 1);
-	return result;
-}
-
-#define hweight32(x) generic_hweight32(x)
-#define hweight16(x) generic_hweight16(x)
-#define hweight8(x)  generic_hweight8(x)
-#endif
-
-#endif /* __KERNEL__ */
-
 /*
  * Find next zero bit in a bitmap reasonably efficiently..
  */
@@ -462,45 +383,5 @@ find_next_bit(void * addr, unsigned long size, unsigned long offset)
 	find_next_zero_bit((addr), (size), 0)
 #define find_first_bit(addr, size) \
 	find_next_bit((addr), (size), 0)
-
-#ifdef __KERNEL__
-
-/*
- * Every architecture must define this function. It's the fastest
- * way of searching a 140-bit bitmap where the first 100 bits are
- * unlikely to be set. It's guaranteed that at least one of the 140
- * bits is set.
- */
-static inline unsigned long
-sched_find_first_bit(unsigned long b[3])
-{
-	unsigned long b0 = b[0], b1 = b[1], b2 = b[2];
-	unsigned long ofs;
-
-	ofs = (b1 ? 64 : 128);
-	b1 = (b1 ? b1 : b2);
-	ofs = (b0 ? 0 : ofs);
-	b0 = (b0 ? b0 : b1);
-
-	return __ffs(b0) + ofs;
-}
-
-
-#define ext2_set_bit                 __test_and_set_bit
-#define ext2_set_bit_atomic(l,n,a)   test_and_set_bit(n,a)
-#define ext2_clear_bit               __test_and_clear_bit
-#define ext2_clear_bit_atomic(l,n,a) test_and_clear_bit(n,a)
-#define ext2_test_bit                test_bit
-#define ext2_find_first_zero_bit     find_first_zero_bit
-#define ext2_find_next_zero_bit      find_next_zero_bit
-
-/* Bitmap functions for the minix filesystem.  */
-#define minix_test_and_set_bit(nr,addr) __test_and_set_bit(nr,addr)
-#define minix_set_bit(nr,addr) __set_bit(nr,addr)
-#define minix_test_and_clear_bit(nr,addr) __test_and_clear_bit(nr,addr)
-#define minix_test_bit(nr,addr) test_bit(nr,addr)
-#define minix_find_first_zero_bit(addr,size) find_first_zero_bit(addr,size)
-
-#endif /* __KERNEL__ */
 
 #endif /* _ALPHA_BITOPS_H */
