@@ -22,7 +22,8 @@
 #ifndef _LINUX_IF_HIPPI_H
 #define _LINUX_IF_HIPPI_H
 
-#include <asm/byteorder.h>
+#include <endian.h>
+#include <byteswap.h>
 
 /*
  *	HIPPI magic constants.
