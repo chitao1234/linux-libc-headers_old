@@ -20,11 +20,4 @@
 #define GET_JIFFIES_USEC() \
   ( (TIMER0_DIV - *R_TIMER0_DATA) * (1000000/HZ)/TIMER0_DIV )
 
-unsigned long get_ns_in_jiffie(void);
-
-extern inline unsigned long get_us_in_jiffie_highres(void)
-{
-	return get_ns_in_jiffie()/1000;
-}
-
 #endif

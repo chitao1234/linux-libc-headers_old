@@ -8,9 +8,6 @@
 #ifndef _ASM_TIMEX_H
 #define _ASM_TIMEX_H
 
-#include <linux/config.h>
-#include <asm/mipsregs.h>
-
 /*
  * This is the frequency of the timer used for Linux's timer interrupt.
  * The value should be defined as accurate as possible or under certain
@@ -24,7 +21,7 @@
  * time in legacy PC hardware; the chip unfortunately also found in a
  * bunch of MIPS systems.
  */
-#ifdef CONFIG_ACER_PICA_61
+#if 1 || defined(CONFIG_ACER_PICA_61)
 #define CLOCK_TICK_RATE		1193182
 #elif defined(CONFIG_MIPS_MAGNUM_4000)
 #define CLOCK_TICK_RATE		1193182
@@ -48,11 +45,5 @@
  */
 
 typedef unsigned int cycles_t;
-extern cycles_t cacheflush_time;
-
-static inline cycles_t get_cycles (void)
-{
-	return read_c0_count();
-}
 
 #endif /*  _ASM_TIMEX_H */
