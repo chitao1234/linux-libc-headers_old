@@ -14,7 +14,6 @@
 #define _ASM_MIPSREGS_H
 
 #include <linux/linkage.h>
-#include <asm/hazards.h>
 
 /*
  * The following macros are especially useful for __asm__

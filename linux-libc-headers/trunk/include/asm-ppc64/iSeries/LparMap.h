@@ -53,15 +53,15 @@
 
 struct LparMap
 {
-	u64	  xNumberEsids;		// Number of ESID/VSID pairs (1)
-	u64	  xNumberRanges;	// Number of VA ranges to map (1)
-	u64	  xSegmentTableOffs;	// Page number within load area of seg table (0)
-	u64	  xRsvd[5];		// Reserved (0)
-	u64	  xKernelEsid;  	// Esid used to map kernel load (0x0C00000000)	
-	u64	  xKernelVsid;		// Vsid used to map kernel load (0x0C00000000)
-	u64	  xPages;		// Number of pages to be mapped	(8192)
-	u64	  xOffset;		// Offset from start of load area (0)
-	u64	  xVPN;			// Virtual Page Number (0x000C000000000000)
+	__u64	  xNumberEsids;		// Number of ESID/VSID pairs (1)
+	__u64	  xNumberRanges;	// Number of VA ranges to map (1)
+	__u64	  xSegmentTableOffs;	// Page number within load area of seg table (0)
+	__u64	  xRsvd[5];		// Reserved (0)
+	__u64	  xKernelEsid;  	// Esid used to map kernel load (0x0C00000000)	
+	__u64	  xKernelVsid;		// Vsid used to map kernel load (0x0C00000000)
+	__u64	  xPages;		// Number of pages to be mapped	(8192)
+	__u64	  xOffset;		// Offset from start of load area (0)
+	__u64	  xVPN;			// Virtual Page Number (0x000C000000000000)
 };
 
 #endif /* _LPARMAP_H */

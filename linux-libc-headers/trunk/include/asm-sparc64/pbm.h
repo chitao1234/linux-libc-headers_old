@@ -49,7 +49,7 @@ struct pci_iommu {
 	/* Base PCI memory space address where IOMMU mappings
 	 * begin.
 	 */
-	u32		page_table_map_base;
+	__u32		page_table_map_base;
 
 	/* IOMMU Controller Registers */
 	unsigned long	iommu_control;		/* IOMMU control register */
@@ -67,7 +67,7 @@ struct pci_iommu {
 	 * we allocate consistent maps out of cluster 0 this
 	 * is relative to the beginning of closter 0.
 	 */
-	u32		lowest_consistent_map;
+	__u32		lowest_consistent_map;
 
 	/* In order to deal with some buggy third-party PCI bridges that
 	 * do wrong prefetching, we never mark valid mappings as invalid.
@@ -82,8 +82,8 @@ struct pci_iommu {
 	 * these counters.  You have been duly warned. -DaveM
 	 */
 	struct {
-		u16	next;
-		u16	flush;
+		__u16	next;
+		__u16	flush;
 	} alloc_info[PBM_NCLUSTERS];
 
 	/* Here a PCI controller driver describes the areas of
@@ -96,7 +96,7 @@ struct pci_iommu {
 	 * The test for being usable is:
 	 * 	(device_mask & dma_addr_mask) == dma_addr_mask
 	 */
-	u32 dma_addr_mask;
+	__u32 dma_addr_mask;
 };
 
 extern void pci_iommu_table_init(struct pci_iommu *, int);
@@ -143,7 +143,7 @@ struct pci_pbm_info {
 	unsigned long			pbm_regs;
 
 	/* Opaque 32-bit system bus Port ID. */
-	u32				portid;
+	__u32				portid;
 
 	/* Chipset version information. */
 	int				chip_type;
@@ -166,7 +166,7 @@ struct pci_pbm_info {
 	struct linux_prom_pci_intmap	pbm_intmap[PROM_PCIIMAP_MAX];
 	int				num_pbm_intmap;
 	struct linux_prom_pci_intmask	pbm_intmask;
-	u64				ino_bitmap;
+	__u64				ino_bitmap;
 
 	/* PBM I/O and Memory space resources. */
 	struct resource			io_space;

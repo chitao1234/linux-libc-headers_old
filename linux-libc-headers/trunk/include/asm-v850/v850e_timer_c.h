@@ -26,21 +26,21 @@
 
 /* Control register 0 for timer C.  */
 #define V850E_TIMER_C_TMCC0_ADDR(n) (V850E_TIMER_C_BASE_ADDR + 0x6 + 0x10 *(n))
-#define V850E_TIMER_C_TMCC0(n)	  (*(volatile u8 *)V850E_TIMER_C_TMCC0_ADDR(n))
+#define V850E_TIMER_C_TMCC0(n)	  (*(volatile __u8 *)V850E_TIMER_C_TMCC0_ADDR(n))
 #define V850E_TIMER_C_TMCC0_CAE	  0x01 /* clock action enable */
 #define V850E_TIMER_C_TMCC0_CE	  0x02 /* count enable */
 /* ... */
 
 /* Control register 1 for timer C.  */
 #define V850E_TIMER_C_TMCC1_ADDR(n) (V850E_TIMER_C_BASE_ADDR + 0x8 + 0x10 *(n))
-#define V850E_TIMER_C_TMCC1(n)	  (*(volatile u8 *)V850E_TIMER_C_TMCC1_ADDR(n))
+#define V850E_TIMER_C_TMCC1(n)	  (*(volatile __u8 *)V850E_TIMER_C_TMCC1_ADDR(n))
 #define V850E_TIMER_C_TMCC1_CMS0  0x01 /* capture/compare mode select (ccc0) */
 #define V850E_TIMER_C_TMCC1_CMS1  0x02 /* capture/compare mode select (ccc1) */
 /* ... */
 
 /* Interrupt edge-sensitivity control for timer C.  */
 #define V850E_TIMER_C_SESC_ADDR(n) (V850E_TIMER_C_BASE_ADDR + 0x9 + 0x10 *(n))
-#define V850E_TIMER_C_SESC(n)	  (*(volatile u8 *)V850E_TIMER_C_SESC_ADDR(n))
+#define V850E_TIMER_C_SESC(n)	  (*(volatile __u8 *)V850E_TIMER_C_SESC_ADDR(n))
 
 /* ...etc... */
 

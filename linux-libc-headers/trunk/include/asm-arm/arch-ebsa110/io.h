@@ -15,25 +15,25 @@
 
 #define IO_SPACE_LIMIT 0xffff
 
-u8 __inb8(unsigned int port);
-void __outb8(u8  val, unsigned int port);
+__u8 __inb8(unsigned int port);
+void __outb8(__u8  val, unsigned int port);
 
-u8 __inb16(unsigned int port);
-void __outb16(u8  val, unsigned int port);
+__u8 __inb16(unsigned int port);
+void __outb16(__u8  val, unsigned int port);
 
-u16 __inw(unsigned int port);
-void __outw(u16 val, unsigned int port);
+__u16 __inw(unsigned int port);
+void __outw(__u16 val, unsigned int port);
 
-u32 __inl(unsigned int port);
-void __outl(u32 val, unsigned int port);
+__u32 __inl(unsigned int port);
+void __outl(__u32 val, unsigned int port);
 
-u8  __readb(void *addr);
-u16 __readw(void *addr);
-u32 __readl(void *addr);
+__u8  __readb(void *addr);
+__u16 __readw(void *addr);
+__u32 __readl(void *addr);
 
-void __writeb(u8  val, void *addr);
-void __writew(u16 val, void *addr);
-void __writel(u32 val, void *addr);
+void __writeb(__u8  val, void *addr);
+void __writew(__u16 val, void *addr);
+void __writel(__u32 val, void *addr);
 
 /*
  * Argh, someone forgot the IOCS16 line.  We therefore have to handle

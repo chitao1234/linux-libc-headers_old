@@ -22,7 +22,7 @@ void xics_request_IPIs(void);
 void xics_migrate_irqs_away(void);
 
 /* first argument is ignored for now*/
-void pSeriesLP_cppr_info(int n_cpu, u8 value);
+void pSeriesLP_cppr_info(int n_cpu, __u8 value);
 
 struct xics_ipi_struct {
 	volatile unsigned long value;

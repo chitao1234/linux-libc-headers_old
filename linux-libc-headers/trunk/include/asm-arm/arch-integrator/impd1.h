@@ -14,5 +14,5 @@
 
 struct device;
 
-void impd1_tweak_control(struct device *dev, u32 mask, u32 val);
+void impd1_tweak_control(struct device *dev, __u32 mask, __u32 val);
 

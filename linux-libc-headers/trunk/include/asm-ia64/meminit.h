@@ -52,8 +52,8 @@ extern int filter_rsvd_memory (unsigned long start, unsigned long end, void *arg
 # define LARGE_GAP	0x40000000 /* Use virtual mem map if hole is > than this */
   extern unsigned long vmalloc_end;
   extern struct page *vmem_map;
-  extern int find_largest_hole (u64 start, u64 end, void *arg);
-  extern int create_mem_map_page_table (u64 start, u64 end, void *arg);
+  extern int find_largest_hole (__u64 start, __u64 end, void *arg);
+  extern int create_mem_map_page_table (__u64 start, __u64 end, void *arg);
 #endif
 
 #endif /* meminit_h */

@@ -21,7 +21,7 @@
 	unsigned long l__,h__; \
 	rdmsr (msr, l__, h__);  \
 	val = l__;  \
-	val |= ((u64)h__<<32);  \
+	val |= ((__u64)h__<<32);  \
 } while(0)
 
 static inline void wrmsrl (unsigned long msr, unsigned long long val)

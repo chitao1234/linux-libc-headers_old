@@ -177,46 +177,46 @@ static inline void ddb_sync(void)
  * interrupt load
  */
 #ifndef CONFIG_DDB5074
-    volatile u32 *p = (volatile u32 *)0xbfc00000;
+    volatile __u32 *p = (volatile __u32 *)0xbfc00000;
     (void)(*p);
 #endif
 }
 
-static inline void ddb_out32(u32 offset, u32 val)
+static inline void ddb_out32(__u32 offset, __u32 val)
 {
-    *(volatile u32 *)(DDB_BASE+offset) = val;
+    *(volatile __u32 *)(DDB_BASE+offset) = val;
     ddb_sync();
 }
 
-static inline u32 ddb_in32(u32 offset)
+static inline __u32 ddb_in32(__u32 offset)
 {
-    u32 val = *(volatile u32 *)(DDB_BASE+offset);
-    ddb_sync();
-    return val;
-}
-
-static inline void ddb_out16(u32 offset, u16 val)
-{
-    *(volatile u16 *)(DDB_BASE+offset) = val;
-    ddb_sync();
-}
-
-static inline u16 ddb_in16(u32 offset)
-{
-    u16 val = *(volatile u16 *)(DDB_BASE+offset);
+    __u32 val = *(volatile __u32 *)(DDB_BASE+offset);
     ddb_sync();
     return val;
 }
 
-static inline void ddb_out8(u32 offset, u8 val)
+static inline void ddb_out16(__u32 offset, __u16 val)
 {
-    *(volatile u8 *)(DDB_BASE+offset) = val;
+    *(volatile __u16 *)(DDB_BASE+offset) = val;
     ddb_sync();
 }
 
-static inline u8 ddb_in8(u32 offset)
+static inline __u16 ddb_in16(__u32 offset)
 {
-    u8 val = *(volatile u8 *)(DDB_BASE+offset);
+    __u16 val = *(volatile __u16 *)(DDB_BASE+offset);
+    ddb_sync();
+    return val;
+}
+
+static inline void ddb_out8(__u32 offset, __u8 val)
+{
+    *(volatile __u8 *)(DDB_BASE+offset) = val;
+    ddb_sync();
+}
+
+static inline __u8 ddb_in8(__u32 offset)
+{
+    __u8 val = *(volatile __u8 *)(DDB_BASE+offset);
     ddb_sync();
     return val;
 }
@@ -227,9 +227,9 @@ static inline u8 ddb_in8(u32 offset)
  */
 
 extern u32
-ddb_calc_pdar(u32 phys, u32 size, int width, int on_memory_bus, int pci_visible);
+ddb_calc_pdar(__u32 phys, __u32 size, int width, int on_memory_bus, int pci_visible);
 extern void
-ddb_set_pdar(u32 pdar, u32 phys, u32 size, int width,
+ddb_set_pdar(__u32 pdar, __u32 phys, __u32 size, int width,
 	     int on_memory_bus, int pci_visible);
 
 /*
@@ -248,7 +248,7 @@ ddb_set_pdar(u32 pdar, u32 phys, u32 size, int width,
 #define DDB_PCI_ACCESS_32    0x10    /* for pci init0/1 regs */
 
 
-extern void ddb_set_pmr(u32 pmr, u32 type, u32 addr, u32 options);
+extern void ddb_set_pmr(__u32 pmr, __u32 type, __u32 addr, __u32 options);
 
 /*
  * we need to reset pci bus when we start up and shutdown

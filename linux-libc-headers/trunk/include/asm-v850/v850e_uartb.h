@@ -38,7 +38,7 @@
 #define V850E_UARTB_FIS1_ADDR(n)	(V850E_UARTB_BASE_ADDR(n) + 0xF)
 
 /* UARTB control register 0 (general config).  */
-#define V850E_UARTB_CTL0(n)	(*(volatile u8 *)V850E_UARTB_CTL0_ADDR(n))
+#define V850E_UARTB_CTL0(n)	(*(volatile __u8 *)V850E_UARTB_CTL0_ADDR(n))
 /* Control bits for config registers.  */
 #define V850E_UARTB_CTL0_PWR		0x80	/* clock enable */
 #define V850E_UARTB_CTL0_TXE		0x40	/* transmit enable */
@@ -57,12 +57,12 @@
 #define V850E_UARTB_CTL0_SL_2		0x01	/* stop bit 1:2bit, 0:1bit */
 
 /* UARTB control register 2 (clock divider).  */
-#define V850E_UARTB_CTL2(n)	(*(volatile u16 *)V850E_UARTB_CTL2_ADDR(n))
+#define V850E_UARTB_CTL2(n)	(*(volatile __u16 *)V850E_UARTB_CTL2_ADDR(n))
 #define V850E_UARTB_CTL2_MIN	4
 #define V850E_UARTB_CTL2_MAX	0xFFFF
 
 /* UARTB serial interface status register.  */
-#define V850E_UARTB_STR(n)	(*(volatile u8 *)V850E_UARTB_STR_ADDR(n))
+#define V850E_UARTB_STR(n)	(*(volatile __u8 *)V850E_UARTB_STR_ADDR(n))
 /* Control bits for status registers.  */
 #define V850E_UARTB_STR_TSF	0x80	/* UBTX or FIFO exist data  */
 #define V850E_UARTB_STR_OVF	0x08	/* overflow error */
@@ -71,29 +71,29 @@
 #define V850E_UARTB_STR_OVE	0x01	/* overrun error */
 
 /* UARTB receive data register.  */
-#define V850E_UARTB_RX(n)	(*(volatile u8 *)V850E_UARTB_RX_ADDR(n))
-#define V850E_UARTB_RXAP(n)	(*(volatile u16 *)V850E_UARTB_RXAP_ADDR(n))
+#define V850E_UARTB_RX(n)	(*(volatile __u8 *)V850E_UARTB_RX_ADDR(n))
+#define V850E_UARTB_RXAP(n)	(*(volatile __u16 *)V850E_UARTB_RXAP_ADDR(n))
 /* Control bits for status registers.  */
 #define V850E_UARTB_RXAP_PEF	0x0200 /* parity error */
 #define V850E_UARTB_RXAP_FEF	0x0100 /* framing error */
 
 /* UARTB transmit data register.  */
-#define V850E_UARTB_TX(n)	(*(volatile u8 *)V850E_UARTB_TX_ADDR(n))
+#define V850E_UARTB_TX(n)	(*(volatile __u8 *)V850E_UARTB_TX_ADDR(n))
 
 /* UARTB FIFO control register 0.  */
-#define V850E_UARTB_FIC0(n)	(*(volatile u8 *)V850E_UARTB_FIC0_ADDR(n))
+#define V850E_UARTB_FIC0(n)	(*(volatile __u8 *)V850E_UARTB_FIC0_ADDR(n))
 
 /* UARTB FIFO control register 1.  */
-#define V850E_UARTB_FIC1(n)	(*(volatile u8 *)V850E_UARTB_FIC1_ADDR(n))
+#define V850E_UARTB_FIC1(n)	(*(volatile __u8 *)V850E_UARTB_FIC1_ADDR(n))
 
 /* UARTB FIFO control register 2.  */
-#define V850E_UARTB_FIC2(n)	(*(volatile u16 *)V850E_UARTB_FIC2_ADDR(n))
+#define V850E_UARTB_FIC2(n)	(*(volatile __u16 *)V850E_UARTB_FIC2_ADDR(n))
 
 /* UARTB FIFO status register 0.  */
-#define V850E_UARTB_FIS0(n)	(*(volatile u8 *)V850E_UARTB_FIS0_ADDR(n))
+#define V850E_UARTB_FIS0(n)	(*(volatile __u8 *)V850E_UARTB_FIS0_ADDR(n))
 
 /* UARTB FIFO status register 1.  */
-#define V850E_UARTB_FIS1(n)	(*(volatile u8 *)V850E_UARTB_FIS1_ADDR(n))
+#define V850E_UARTB_FIS1(n)	(*(volatile __u8 *)V850E_UARTB_FIS1_ADDR(n))
 
 
 /* Slightly abstract interface used by driver.  */
@@ -113,7 +113,7 @@
 /* UART clock generator interface.  */
 
 /* This type encapsulates a particular uart frequency.  */
-typedef u16 v850e_uart_speed_t;
+typedef __u16 v850e_uart_speed_t;
 
 /* Calculate a uart speed from BAUD for this uart.  */
 static inline v850e_uart_speed_t v850e_uart_calc_speed (unsigned baud)
@@ -158,7 +158,7 @@ static inline v850e_uart_speed_t v850e_uart_calc_speed (unsigned baud)
 /* UART configuration interface.  */
 
 /* Type of the uart config register; must be a scalar.  */
-typedef u16 v850e_uart_config_t;
+typedef __u16 v850e_uart_config_t;
 
 /* The uart hardware config register for channel CHAN.  */
 #define V850E_UART_CONFIG(chan)		V850E_UARTB_CTL0 (chan)

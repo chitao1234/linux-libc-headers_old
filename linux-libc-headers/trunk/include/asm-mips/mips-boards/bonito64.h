@@ -34,7 +34,7 @@
 extern unsigned long _pcictrl_bonito;
 extern unsigned long _pcictrl_bonito_pcicfg;
 
-#define BONITO(x)		*(volatile u32 *)(_pcictrl_bonito + (x))
+#define BONITO(x)		*(volatile __u32 *)(_pcictrl_bonito + (x))
 
 #endif /* __ASSEMBLY__ */
 

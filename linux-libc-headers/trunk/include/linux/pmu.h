@@ -122,7 +122,7 @@ enum {
 #define PMU_IOC_SLEEP		_IO('B', 0)
 /* out param: u32*	backlight value: 0 to 15 */
 #define PMU_IOC_GET_BACKLIGHT	_IOR('B', 1, size_t)
-/* in param: u32	backlight value: 0 to 15 */
+/* in param: __u32	backlight value: 0 to 15 */
 #define PMU_IOC_SET_BACKLIGHT	_IOW('B', 2, size_t)
 /* out param: u32*	PMU model */
 #define PMU_IOC_GET_MODEL	_IOR('B', 3, size_t)

@@ -8,8 +8,8 @@
 #endif
 
 
-typedef u16 __fs16;
-typedef u32 __fs16;
+typedef __u16 __fs16;
+typedef __u32 __fs16;
 
 /* inode numbers are 16 bit */
 typedef __fs16 sysv_ino_t;
@@ -49,7 +49,7 @@ struct xenix_super_block {
 	char		s_fpack[6];	/* file system pack name */
 	char		s_clean;	/* set to 0x46 when filesystem is properly unmounted */
 	char		s_fill[371];
-	s32		s_magic;	/* version of file system */
+	__s32		s_magic;	/* version of file system */
 	__fs32		s_type;		/* type of file system: 1 for 512 byte blocks
 								2 for 1024 byte blocks
 								3 for 2048 byte blocks */
@@ -67,15 +67,15 @@ struct xenix_super_block {
 /* SystemV4 super-block data on disk */
 struct sysv4_super_block {
 	__fs16	s_isize;	/* index of first data zone */
-	u16	s_pad0;
+	__u16	s_pad0;
 	__fs32	s_fsize;	/* total number of zones of this fs */
 	/* the start of the free block list: */
 	__fs16	s_nfree;	/* number of free blocks in s_free, <= SYSV_NICFREE */
-	u16	s_pad1;
+	__u16	s_pad1;
 	sysv_zone_t	s_free[SYSV_NICFREE]; /* first free block list chunk */
 	/* the cache of free inodes: */
 	__fs16	s_ninode;	/* number of free inodes in s_inode, <= SYSV_NICINOD */
-	u16	s_pad2;
+	__u16	s_pad2;
 	sysv_ino_t     s_inode[SYSV_NICINOD]; /* some free inodes */
 	/* locks, not used by Linux: */
 	char	s_flock;	/* lock during free block list manipulation */
@@ -86,12 +86,12 @@ struct sysv4_super_block {
 	__fs16	s_dinfo[4];	/* device information ?? */
 	__fs32	s_tfree;	/* total number of free zones */
 	__fs16	s_tinode;	/* total number of free inodes */
-	u16	s_pad3;
+	__u16	s_pad3;
 	char	s_fname[6];	/* file system volume name */
 	char	s_fpack[6];	/* file system pack name */
-	s32	s_fill[12];
+	__s32	s_fill[12];
 	__fs32	s_state;	/* file system state: 0x7c269d38-s_time means clean */
-	s32	s_magic;	/* version of file system */
+	__s32	s_magic;	/* version of file system */
 	__fs32	s_type;		/* type of file system: 1 for 512 byte blocks
 								2 for 1024 byte blocks */
 };
@@ -117,9 +117,9 @@ struct sysv2_super_block {
 	__fs16	s_tinode;		/* total number of free inodes */
 	char	s_fname[6];		/* file system volume name */
 	char	s_fpack[6];		/* file system pack name */
-	s32	s_fill[14];
+	__s32	s_fill[14];
 	__fs32	s_state;		/* file system state: 0xcb096f43 means clean */
-	s32	s_magic;		/* version of file system */
+	__s32	s_magic;		/* version of file system */
 	__fs32	s_type;			/* type of file system: 1 for 512 byte blocks
 								2 for 1024 byte blocks */
 };
@@ -185,8 +185,8 @@ struct sysv_inode {
 	__fs16 i_uid;
 	__fs16 i_gid;
 	__fs32 i_size;
-	u8  i_data[3*(10+1+1+1)];
-	u8  i_gen;
+	__u8  i_data[3*(10+1+1+1)];
+	__u8  i_gen;
 	__fs32 i_atime;	/* time of last access */
 	__fs32 i_mtime;	/* time of last modification */
 	__fs32 i_ctime;	/* time of creation */

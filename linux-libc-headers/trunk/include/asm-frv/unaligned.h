@@ -93,7 +93,7 @@ extern int handle_misalignment(unsigned long esr0, unsigned long ear0, unsigned 
 										\
 	case 8:									\
 	{									\
-		union { uint64_t x; u32 y[2]; } z;				\
+		union { uint64_t x; __u32 y[2]; } z;				\
 		uint8_t a;							\
 		asm("	ldub%I3		%M3,%0		\n"			\
 		    "	ldub%I4.p	%M4,%2		\n"			\

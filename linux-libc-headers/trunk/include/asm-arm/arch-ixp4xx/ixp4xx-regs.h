@@ -85,7 +85,7 @@
 /*
  * Expansion Bus Controller registers.
  */
-#define IXP4XX_EXP_REG(x) ((volatile u32 *)(IXP4XX_EXP_CFG_BASE_VIRT+(x)))
+#define IXP4XX_EXP_REG(x) ((volatile __u32 *)(IXP4XX_EXP_CFG_BASE_VIRT+(x)))
 
 #define IXP4XX_EXP_CS0      IXP4XX_EXP_REG(IXP4XX_EXP_CS0_OFFSET)
 #define IXP4XX_EXP_CS1      IXP4XX_EXP_REG(IXP4XX_EXP_CS1_OFFSET)
@@ -152,7 +152,7 @@
  * Interrupt Controller Register Definitions.
  */
 
-#define IXP4XX_INTC_REG(x) ((volatile u32 *)(IXP4XX_INTC_BASE_VIRT+(x)))
+#define IXP4XX_INTC_REG(x) ((volatile __u32 *)(IXP4XX_INTC_BASE_VIRT+(x)))
 
 #define IXP4XX_ICPR	IXP4XX_INTC_REG(IXP4XX_ICPR_OFFSET)
 #define IXP4XX_ICMR     IXP4XX_INTC_REG(IXP4XX_ICMR_OFFSET)
@@ -185,7 +185,7 @@
  * GPIO Register Definitions.
  * [Only perform 32bit reads/writes]
  */
-#define IXP4XX_GPIO_REG(x) ((volatile u32 *)(IXP4XX_GPIO_BASE_VIRT+(x)))
+#define IXP4XX_GPIO_REG(x) ((volatile __u32 *)(IXP4XX_GPIO_BASE_VIRT+(x)))
 
 #define IXP4XX_GPIO_GPOUTR	IXP4XX_GPIO_REG(IXP4XX_GPIO_GPOUTR_OFFSET)
 #define IXP4XX_GPIO_GPOER       IXP4XX_GPIO_REG(IXP4XX_GPIO_GPOER_OFFSET)
@@ -231,7 +231,7 @@
  * Operating System Timer Register Definitions.
  */
 
-#define IXP4XX_TIMER_REG(x) ((volatile u32 *)(IXP4XX_TIMER_BASE_VIRT+(x)))
+#define IXP4XX_TIMER_REG(x) ((volatile __u32 *)(IXP4XX_TIMER_BASE_VIRT+(x)))
 
 #define IXP4XX_OSTS	IXP4XX_TIMER_REG(IXP4XX_OSTS_OFFSET)
 #define IXP4XX_OST1	IXP4XX_TIMER_REG(IXP4XX_OST1_OFFSET)
@@ -293,7 +293,7 @@
 /*
  * PCI Control/Status Registers
  */
-#define IXP4XX_PCI_CSR(x) ((volatile u32 *)(IXP4XX_PCI_CFG_BASE_VIRT+(x)))
+#define IXP4XX_PCI_CSR(x) ((volatile __u32 *)(IXP4XX_PCI_CFG_BASE_VIRT+(x)))
 
 #define PCI_NP_AD               IXP4XX_PCI_CSR(PCI_NP_AD_OFFSET)
 #define PCI_NP_CBE              IXP4XX_PCI_CSR(PCI_NP_CBE_OFFSET)
@@ -381,7 +381,7 @@
  * IXP4XX_ naming convetions.
  *
  */
-# define IXP4XX_USB_REG(x)       (*((volatile u32 *)(x)))
+# define IXP4XX_USB_REG(x)       (*((volatile __u32 *)(x)))
 
 /* UDC Undocumented - Reserved1 */
 #define UDC_RES1	IXP4XX_USB_REG(IXP4XX_USB_BASE_VIRT+0x0004)  

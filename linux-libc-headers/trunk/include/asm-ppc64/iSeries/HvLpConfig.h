@@ -58,116 +58,116 @@ static inline HvLpIndexMap	HvLpConfig_getActiveLpMap(void)
 	return HvCallCfg_getActiveLpMap();
 }
 //=================================================================
-static inline u64		HvLpConfig_getSystemMsMegs(void)
+static inline __u64		HvLpConfig_getSystemMsMegs(void)
 {
 	return HvCallCfg_getSystemMsChunks() / HVCHUNKSPERMEG;
 }
 //=================================================================
-static inline u64		HvLpConfig_getSystemMsChunks(void)
+static inline __u64		HvLpConfig_getSystemMsChunks(void)
 {
 	return HvCallCfg_getSystemMsChunks();
 }
 //=================================================================
-static inline u64		HvLpConfig_getSystemMsPages(void)
+static inline __u64		HvLpConfig_getSystemMsPages(void)
 {
 	return HvCallCfg_getSystemMsChunks() * HVPAGESPERCHUNK;
 }
 //================================================================
-static inline u64		HvLpConfig_getMsMegs(void)
+static inline __u64		HvLpConfig_getMsMegs(void)
 {
 	return HvCallCfg_getMsChunks(HvLpConfig_getLpIndex(),HvCallCfg_Cur) / HVCHUNKSPERMEG;
 }
 //================================================================
-static inline u64		HvLpConfig_getMsChunks(void)
+static inline __u64		HvLpConfig_getMsChunks(void)
 {
 	return HvCallCfg_getMsChunks(HvLpConfig_getLpIndex(),HvCallCfg_Cur);
 }
 //================================================================
-static inline u64		HvLpConfig_getMsPages(void)
+static inline __u64		HvLpConfig_getMsPages(void)
 {
 	return HvCallCfg_getMsChunks(HvLpConfig_getLpIndex(),HvCallCfg_Cur) * HVPAGESPERCHUNK;
 }
 //================================================================
-static inline u64		HvLpConfig_getMinMsMegs(void)
+static inline __u64		HvLpConfig_getMinMsMegs(void)
 {
 	return HvCallCfg_getMsChunks(HvLpConfig_getLpIndex(),HvCallCfg_Min) / HVCHUNKSPERMEG;
 }
 //================================================================
-static inline u64		HvLpConfig_getMinMsChunks(void)
+static inline __u64		HvLpConfig_getMinMsChunks(void)
 {
 	return HvCallCfg_getMsChunks(HvLpConfig_getLpIndex(),HvCallCfg_Min);
 }
 //================================================================
-static inline u64		HvLpConfig_getMinMsPages(void)
+static inline __u64		HvLpConfig_getMinMsPages(void)
 {
 	return HvCallCfg_getMsChunks(HvLpConfig_getLpIndex(),HvCallCfg_Min) * HVPAGESPERCHUNK;
 }
 //================================================================
-static inline u64		HvLpConfig_getMinRuntimeMsMegs(void)
+static inline __u64		HvLpConfig_getMinRuntimeMsMegs(void)
 {
 	return HvCallCfg_getMinRuntimeMsChunks(HvLpConfig_getLpIndex()) / HVCHUNKSPERMEG;
 }
 //===============================================================
-static inline u64		HvLpConfig_getMinRuntimeMsChunks(void)
+static inline __u64		HvLpConfig_getMinRuntimeMsChunks(void)
 {
 	return HvCallCfg_getMinRuntimeMsChunks(HvLpConfig_getLpIndex());
 }
 //===============================================================
-static inline u64		HvLpConfig_getMinRuntimeMsPages(void)
+static inline __u64		HvLpConfig_getMinRuntimeMsPages(void)
 {
 	return HvCallCfg_getMinRuntimeMsChunks(HvLpConfig_getLpIndex()) * HVPAGESPERCHUNK;
 }
 //===============================================================
-static inline u64		HvLpConfig_getMaxMsMegs(void)
+static inline __u64		HvLpConfig_getMaxMsMegs(void)
 {
 	return HvCallCfg_getMsChunks(HvLpConfig_getLpIndex(),HvCallCfg_Max) / HVCHUNKSPERMEG;
 }
 //===============================================================
-static inline u64		HvLpConfig_getMaxMsChunks(void)
+static inline __u64		HvLpConfig_getMaxMsChunks(void)
 {
 	return HvCallCfg_getMsChunks(HvLpConfig_getLpIndex(),HvCallCfg_Max);
 }
 //===============================================================
-static inline u64		HvLpConfig_getMaxMsPages(void)
+static inline __u64		HvLpConfig_getMaxMsPages(void)
 {
 	return HvCallCfg_getMsChunks(HvLpConfig_getLpIndex(),HvCallCfg_Max) * HVPAGESPERCHUNK;
 }
 //===============================================================
-static inline u64		HvLpConfig_getInitMsMegs(void)
+static inline __u64		HvLpConfig_getInitMsMegs(void)
 {
 	return HvCallCfg_getMsChunks(HvLpConfig_getLpIndex(),HvCallCfg_Init) / HVCHUNKSPERMEG;
 }
 //===============================================================
-static inline u64		HvLpConfig_getInitMsChunks(void)
+static inline __u64		HvLpConfig_getInitMsChunks(void)
 {
 	return HvCallCfg_getMsChunks(HvLpConfig_getLpIndex(),HvCallCfg_Init);
 }
 //===============================================================
-static inline u64		HvLpConfig_getInitMsPages(void)
+static inline __u64		HvLpConfig_getInitMsPages(void)
 {    return HvCallCfg_getMsChunks(HvLpConfig_getLpIndex(),HvCallCfg_Init) * HVPAGESPERCHUNK;
 }
 //===============================================================
-static inline u64		HvLpConfig_getSystemPhysicalProcessors(void)
+static inline __u64		HvLpConfig_getSystemPhysicalProcessors(void)
 {
 	return HvCallCfg_getSystemPhysicalProcessors();
 }
 //===============================================================
-static inline u64		HvLpConfig_getSystemLogicalProcessors(void)
+static inline __u64		HvLpConfig_getSystemLogicalProcessors(void)
 {
 	return HvCallCfg_getSystemPhysicalProcessors() * (/*getPaca()->getSecondaryThreadCount() +*/ 1);
 }
 //===============================================================
-static inline u64		HvLpConfig_getNumProcsInSharedPool(HvLpSharedPoolIndex sPI)
+static inline __u64		HvLpConfig_getNumProcsInSharedPool(HvLpSharedPoolIndex sPI)
 {
 	return HvCallCfg_getNumProcsInSharedPool(sPI);
 }
 //===============================================================
-static inline u64		HvLpConfig_getPhysicalProcessors(void)
+static inline __u64		HvLpConfig_getPhysicalProcessors(void)
 {
 	return HvCallCfg_getPhysicalProcessors(HvLpConfig_getLpIndex(),HvCallCfg_Cur);
 }
 //===============================================================
-static inline u64		HvLpConfig_getLogicalProcessors(void)
+static inline __u64		HvLpConfig_getLogicalProcessors(void)
 {
 	return HvCallCfg_getPhysicalProcessors(HvLpConfig_getLpIndex(),HvCallCfg_Cur) * (/*getPaca()->getSecondaryThreadCount() +*/ 1);
 }
@@ -177,47 +177,47 @@ static inline HvLpSharedPoolIndex	HvLpConfig_getSharedPoolIndex(void)
 	return HvCallCfg_getSharedPoolIndex(HvLpConfig_getLpIndex());
 }
 //===============================================================
-static inline u64		HvLpConfig_getSharedProcUnits(void)
+static inline __u64		HvLpConfig_getSharedProcUnits(void)
 {
 	return HvCallCfg_getSharedProcUnits(HvLpConfig_getLpIndex(),HvCallCfg_Cur);
 }
 //===============================================================
-static inline u64		HvLpConfig_getMinSharedProcUnits(void)
+static inline __u64		HvLpConfig_getMinSharedProcUnits(void)
 {
 	return HvCallCfg_getSharedProcUnits(HvLpConfig_getLpIndex(),HvCallCfg_Min);
 }
 //===============================================================
-static inline u64		HvLpConfig_getMaxSharedProcUnits(void)
+static inline __u64		HvLpConfig_getMaxSharedProcUnits(void)
 {
 	return HvCallCfg_getSharedProcUnits(HvLpConfig_getLpIndex(),HvCallCfg_Max);
 }
 //===============================================================
-static inline u64		HvLpConfig_getMinPhysicalProcessors(void)
+static inline __u64		HvLpConfig_getMinPhysicalProcessors(void)
 {
 	return HvCallCfg_getPhysicalProcessors(HvLpConfig_getLpIndex(),HvCallCfg_Min);
 }
 //===============================================================
-static inline u64		HvLpConfig_getMinLogicalProcessors(void)
+static inline __u64		HvLpConfig_getMinLogicalProcessors(void)
 {
 	return HvCallCfg_getPhysicalProcessors(HvLpConfig_getLpIndex(),HvCallCfg_Min) * (/*getPaca()->getSecondaryThreadCount() +*/ 1);
 }
 //===============================================================
-static inline u64		HvLpConfig_getMaxPhysicalProcessors(void)
+static inline __u64		HvLpConfig_getMaxPhysicalProcessors(void)
 {
 	return HvCallCfg_getPhysicalProcessors(HvLpConfig_getLpIndex(),HvCallCfg_Max);
 }
 //===============================================================
-static inline u64		HvLpConfig_getMaxLogicalProcessors(void)
+static inline __u64		HvLpConfig_getMaxLogicalProcessors(void)
 {
 	return HvCallCfg_getPhysicalProcessors(HvLpConfig_getLpIndex(),HvCallCfg_Max) * (/*getPaca()->getSecondaryThreadCount() +*/ 1);
 }
 //===============================================================
-static inline u64		HvLpConfig_getInitPhysicalProcessors(void)
+static inline __u64		HvLpConfig_getInitPhysicalProcessors(void)
 {
 	return HvCallCfg_getPhysicalProcessors(HvLpConfig_getLpIndex(),HvCallCfg_Init);
 }
 //===============================================================
-static inline u64		HvLpConfig_getInitLogicalProcessors(void)
+static inline __u64		HvLpConfig_getInitLogicalProcessors(void)
 {
 	return HvCallCfg_getPhysicalProcessors(HvLpConfig_getLpIndex(),HvCallCfg_Init) * (/*getPaca()->getSecondaryThreadCount() +*/ 1);
 }
@@ -248,12 +248,12 @@ static inline HvLpIndexMap	HvLpConfig_getBusAllocation(HvBusNumber busNumber)
 }
 //================================================================
 // returns the absolute real address of the load area
-static inline u64		HvLpConfig_getLoadAddress(void)
+static inline __u64		HvLpConfig_getLoadAddress(void)
 {
 	return itLpNaca.xLoadAreaAddr & 0x7fffffffffffffff;
 }
 //================================================================
-static inline u64		HvLpConfig_getLoadPages(void)
+static inline __u64		HvLpConfig_getLoadPages(void)
 {
 	return itLpNaca.xLoadAreaChunks * HVPAGESPERCHUNK;
 }

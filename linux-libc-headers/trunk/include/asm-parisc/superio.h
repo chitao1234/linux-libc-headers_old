@@ -50,11 +50,11 @@
 #define SUPERIO_NIRQS   8
 
 struct superio_device {
-	u32 fdc_base;
-	u32 sp1_base;
-	u32 sp2_base;
-	u32 pp_base;
-	u32 acpi_base;
+	__u32 fdc_base;
+	__u32 sp1_base;
+	__u32 sp2_base;
+	__u32 pp_base;
+	__u32 acpi_base;
 	int suckyio_irq_enabled;
 	struct pci_dev *lio_pdev;       /* pci device for legacy IO (fn 1) */
 	struct pci_dev *usb_pdev;       /* pci device for USB (fn 2) */

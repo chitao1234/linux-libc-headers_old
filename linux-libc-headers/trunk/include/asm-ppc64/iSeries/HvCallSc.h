@@ -30,22 +30,22 @@
 #define HvCallSm		0x8007000000000000ul
 #define HvCallXm		0x8009000000000000ul
 
-u64 HvCall0( u64 );
-u64 HvCall1( u64, u64 );
-u64 HvCall2( u64, u64, u64 );
-u64 HvCall3( u64, u64, u64, u64 );
-u64 HvCall4( u64, u64, u64, u64, u64 );
-u64 HvCall5( u64, u64, u64, u64, u64, u64 );
-u64 HvCall6( u64, u64, u64, u64, u64, u64, u64 );
-u64 HvCall7( u64, u64, u64, u64, u64, u64, u64, u64 );
+__u64 HvCall0( __u64 );
+__u64 HvCall1( __u64, __u64 );
+__u64 HvCall2( __u64, __u64, __u64 );
+__u64 HvCall3( __u64, __u64, __u64, __u64 );
+__u64 HvCall4( __u64, __u64, __u64, __u64, __u64 );
+__u64 HvCall5( __u64, __u64, __u64, __u64, __u64, __u64 );
+__u64 HvCall6( __u64, __u64, __u64, __u64, __u64, __u64, __u64 );
+__u64 HvCall7( __u64, __u64, __u64, __u64, __u64, __u64, __u64, __u64 );
 
-u64 HvCall0Ret16( u64, void * );
-u64 HvCall1Ret16( u64, void *, u64 );
-u64 HvCall2Ret16( u64, void *, u64, u64 );
-u64 HvCall3Ret16( u64, void *, u64, u64, u64 );
-u64 HvCall4Ret16( u64, void *, u64, u64, u64, u64 );
-u64 HvCall5Ret16( u64, void *, u64, u64, u64, u64, u64 );
-u64 HvCall6Ret16( u64, void *, u64, u64, u64, u64, u64, u64 );
-u64 HvCall7Ret16( u64, void *, u64, u64 ,u64 ,u64 ,u64 ,u64 ,u64 );
+__u64 HvCall0Ret16( __u64, void * );
+__u64 HvCall1Ret16( __u64, void *, __u64 );
+__u64 HvCall2Ret16( __u64, void *, __u64, __u64 );
+__u64 HvCall3Ret16( __u64, void *, __u64, __u64, __u64 );
+__u64 HvCall4Ret16( __u64, void *, __u64, __u64, __u64, __u64 );
+__u64 HvCall5Ret16( __u64, void *, __u64, __u64, __u64, __u64, __u64 );
+__u64 HvCall6Ret16( __u64, void *, __u64, __u64, __u64, __u64, __u64, __u64 );
+__u64 HvCall7Ret16( __u64, void *, __u64, __u64 ,__u64 ,__u64 ,__u64 ,__u64 ,__u64 );
 
 #endif /* _HVCALLSC_H */

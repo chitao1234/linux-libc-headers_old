@@ -142,7 +142,7 @@ int dma_mapping_error(dma_addr_t dma_addr)
 }
 
 static inline
-int dma_supported(struct device *dev, u64 mask)
+int dma_supported(struct device *dev, __u64 mask)
 {
         /*
          * we fall back to GFP_DMA when the mask isn't all 1s,
@@ -156,7 +156,7 @@ int dma_supported(struct device *dev, u64 mask)
 }
 
 static inline
-int dma_set_mask(struct device *dev, u64 mask)
+int dma_set_mask(struct device *dev, __u64 mask)
 {
 	if (!dev->dma_mask || !dma_supported(dev, mask))
 		return -EIO;

@@ -208,10 +208,10 @@ enum omap_dma_color_mode {
 
 extern void omap_set_dma_priority(int dst_port, int priority);
 extern int omap_request_dma(int dev_id, const char *dev_name,
-			    void (* callback)(int lch, u16 ch_status, void *data),
+			    void (* callback)(int lch, __u16 ch_status, void *data),
 			    void *data, int *dma_ch);
-extern void omap_enable_dma_irq(int ch, u16 irq_bits);
-extern void omap_disable_dma_irq(int ch, u16 irq_bits);
+extern void omap_enable_dma_irq(int ch, __u16 irq_bits);
+extern void omap_disable_dma_irq(int ch, __u16 irq_bits);
 extern void omap_free_dma(int ch);
 extern void omap_start_dma(int lch);
 extern void omap_stop_dma(int lch);
@@ -219,7 +219,7 @@ extern void omap_set_dma_transfer_params(int lch, int data_type,
 					 int elem_count, int frame_count,
 					 int sync_mode);
 extern void omap_set_dma_color_mode(int lch, enum omap_dma_color_mode mode,
-				    u32 color);
+				    __u32 color);
 
 extern void omap_set_dma_src_params(int lch, int src_port, int src_amode,
 				    unsigned long src_start);
@@ -246,7 +246,7 @@ extern void omap_clear_dma(int lch);
 extern int omap_dma_in_1510_mode(void);
 
 /* LCD DMA functions */
-extern int omap_request_lcd_dma(void (* callback)(u16 status, void *data),
+extern int omap_request_lcd_dma(void (* callback)(__u16 status, void *data),
 				void *data);
 extern void omap_free_lcd_dma(void);
 extern void omap_setup_lcd_dma(void);
@@ -254,7 +254,7 @@ extern void omap_enable_lcd_dma(void);
 extern void omap_stop_lcd_dma(void);
 extern void omap_set_lcd_dma_ext_controller(int external);
 extern void omap_set_lcd_dma_single_transfer(int single);
-extern void omap_set_lcd_dma_b1(unsigned long addr, u16 fb_xres, u16 fb_yres,
+extern void omap_set_lcd_dma_b1(unsigned long addr, __u16 fb_xres, __u16 fb_yres,
 				int data_type);
 extern void omap_set_lcd_dma_b1_rotation(int rotate);
 extern void omap_set_lcd_dma_b1_vxres(unsigned long vxres);

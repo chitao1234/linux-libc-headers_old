@@ -104,16 +104,16 @@
 #define _H3800_ASIC2_GPIO_InterruptEnable      0x001c    /* R/W, 12 bits 1:enable interrupt */
 #define _H3800_ASIC2_GPIO_Alternate            0x003c    /* R/W, 12+1 bits - set alternate functions */
 
-#define H3800_ASIC2_GPIO_Direction          H3800_ASIC2_OFFSET( u16, GPIO, Direction )
-#define H3800_ASIC2_GPIO_InterruptType      H3800_ASIC2_OFFSET( u16, GPIO, InterruptType )
-#define H3800_ASIC2_GPIO_InterruptEdgeType  H3800_ASIC2_OFFSET( u16, GPIO, InterruptEdgeType )
-#define H3800_ASIC2_GPIO_InterruptLevelType H3800_ASIC2_OFFSET( u16, GPIO, InterruptLevelType )
-#define H3800_ASIC2_GPIO_InterruptClear     H3800_ASIC2_OFFSET( u16, GPIO, InterruptClear )
-#define H3800_ASIC2_GPIO_InterruptFlag      H3800_ASIC2_OFFSET( u16, GPIO, InterruptFlag )
-#define H3800_ASIC2_GPIO_Data               H3800_ASIC2_OFFSET( u16, GPIO, Data )
-#define H3800_ASIC2_GPIO_BattFaultOut       H3800_ASIC2_OFFSET( u16, GPIO, BattFaultOut )
-#define H3800_ASIC2_GPIO_InterruptEnable    H3800_ASIC2_OFFSET( u16, GPIO, InterruptEnable )
-#define H3800_ASIC2_GPIO_Alternate          H3800_ASIC2_OFFSET( u16, GPIO, Alternate )
+#define H3800_ASIC2_GPIO_Direction          H3800_ASIC2_OFFSET( __u16, GPIO, Direction )
+#define H3800_ASIC2_GPIO_InterruptType      H3800_ASIC2_OFFSET( __u16, GPIO, InterruptType )
+#define H3800_ASIC2_GPIO_InterruptEdgeType  H3800_ASIC2_OFFSET( __u16, GPIO, InterruptEdgeType )
+#define H3800_ASIC2_GPIO_InterruptLevelType H3800_ASIC2_OFFSET( __u16, GPIO, InterruptLevelType )
+#define H3800_ASIC2_GPIO_InterruptClear     H3800_ASIC2_OFFSET( __u16, GPIO, InterruptClear )
+#define H3800_ASIC2_GPIO_InterruptFlag      H3800_ASIC2_OFFSET( __u16, GPIO, InterruptFlag )
+#define H3800_ASIC2_GPIO_Data               H3800_ASIC2_OFFSET( __u16, GPIO, Data )
+#define H3800_ASIC2_GPIO_BattFaultOut       H3800_ASIC2_OFFSET( __u16, GPIO, BattFaultOut )
+#define H3800_ASIC2_GPIO_InterruptEnable    H3800_ASIC2_OFFSET( __u16, GPIO, InterruptEnable )
+#define H3800_ASIC2_GPIO_Alternate          H3800_ASIC2_OFFSET( __u16, GPIO, Alternate )
 
 #define GPIO_H3800_ASIC2_IN_Y1_N          (1 << 0)   /* Output: Touchscreen Y1 */
 #define GPIO_H3800_ASIC2_IN_X0            (1 << 1)   /* Output: Touchscreen X0 */
@@ -140,16 +140,16 @@
 #define _H3800_ASIC2_KPIO_InterruptEnable      0x001c    /* R/W, 20 bits - 8 special */
 #define _H3800_ASIC2_KPIO_Alternate            0x003c    /* R/W, 6 bits */
 
-#define H3800_ASIC2_KPIO_Direction          H3800_ASIC2_OFFSET( u16, KPIO, Direction )
-#define H3800_ASIC2_KPIO_InterruptType      H3800_ASIC2_OFFSET( u16, KPIO, InterruptType )
-#define H3800_ASIC2_KPIO_InterruptEdgeType  H3800_ASIC2_OFFSET( u16, KPIO, InterruptEdgeType )
-#define H3800_ASIC2_KPIO_InterruptLevelType H3800_ASIC2_OFFSET( u16, KPIO, InterruptLevelType )
-#define H3800_ASIC2_KPIO_InterruptClear     H3800_ASIC2_OFFSET( u32, KPIO, InterruptClear )
-#define H3800_ASIC2_KPIO_InterruptFlag      H3800_ASIC2_OFFSET( u32, KPIO, InterruptFlag )
-#define H3800_ASIC2_KPIO_Data               H3800_ASIC2_OFFSET( u16, KPIO, Data )
-#define H3800_ASIC2_KPIO_BattFaultOut       H3800_ASIC2_OFFSET( u16, KPIO, BattFaultOut )
-#define H3800_ASIC2_KPIO_InterruptEnable    H3800_ASIC2_OFFSET( u32, KPIO, InterruptEnable )
-#define H3800_ASIC2_KPIO_Alternate          H3800_ASIC2_OFFSET( u16, KPIO, Alternate )
+#define H3800_ASIC2_KPIO_Direction          H3800_ASIC2_OFFSET( __u16, KPIO, Direction )
+#define H3800_ASIC2_KPIO_InterruptType      H3800_ASIC2_OFFSET( __u16, KPIO, InterruptType )
+#define H3800_ASIC2_KPIO_InterruptEdgeType  H3800_ASIC2_OFFSET( __u16, KPIO, InterruptEdgeType )
+#define H3800_ASIC2_KPIO_InterruptLevelType H3800_ASIC2_OFFSET( __u16, KPIO, InterruptLevelType )
+#define H3800_ASIC2_KPIO_InterruptClear     H3800_ASIC2_OFFSET( __u32, KPIO, InterruptClear )
+#define H3800_ASIC2_KPIO_InterruptFlag      H3800_ASIC2_OFFSET( __u32, KPIO, InterruptFlag )
+#define H3800_ASIC2_KPIO_Data               H3800_ASIC2_OFFSET( __u16, KPIO, Data )
+#define H3800_ASIC2_KPIO_BattFaultOut       H3800_ASIC2_OFFSET( __u16, KPIO, BattFaultOut )
+#define H3800_ASIC2_KPIO_InterruptEnable    H3800_ASIC2_OFFSET( __u32, KPIO, InterruptEnable )
+#define H3800_ASIC2_KPIO_Alternate          H3800_ASIC2_OFFSET( __u16, KPIO, Alternate )
 
 #define H3800_ASIC2_KPIO_SPI_INT        ( 1 << 16 )
 #define H3800_ASIC2_KPIO_OWM_INT        ( 1 << 17 )
@@ -185,9 +185,9 @@
 #define _H3800_ASIC2_SPI_Data                  0x0004    /* R/W 8 bits */
 #define _H3800_ASIC2_SPI_ChipSelectDisabled    0x0008    /* W   8 bits */
 
-#define H3800_ASIC2_SPI_Control             H3800_ASIC2_OFFSET( u8, SPI, Control )
-#define H3800_ASIC2_SPI_Data                H3800_ASIC2_OFFSET( u8, SPI, Data )
-#define H3800_ASIC2_SPI_ChipSelectDisabled  H3800_ASIC2_OFFSET( u8, SPI, ChipSelectDisabled )
+#define H3800_ASIC2_SPI_Control             H3800_ASIC2_OFFSET( __u8, SPI, Control )
+#define H3800_ASIC2_SPI_Data                H3800_ASIC2_OFFSET( __u8, SPI, Data )
+#define H3800_ASIC2_SPI_ChipSelectDisabled  H3800_ASIC2_OFFSET( __u8, SPI, ChipSelectDisabled )
 
 #define _H3800_ASIC2_PWM_0_Base                0x0600
 #define _H3800_ASIC2_PWM_1_Base                0x0700
@@ -195,13 +195,13 @@
 #define _H3800_ASIC2_PWM_PeriodTime            0x0004    /* R/W 12 bits */
 #define _H3800_ASIC2_PWM_DutyTime              0x0008    /* R/W 12 bits */
 
-#define H3800_ASIC2_PWM_0_TimeBase          H3800_ASIC2_NOFFSET(  u8, PWM, 0, TimeBase )
-#define H3800_ASIC2_PWM_0_PeriodTime        H3800_ASIC2_NOFFSET( u16, PWM, 0, PeriodTime )
-#define H3800_ASIC2_PWM_0_DutyTime          H3800_ASIC2_NOFFSET( u16, PWM, 0, DutyTime )
+#define H3800_ASIC2_PWM_0_TimeBase          H3800_ASIC2_NOFFSET(  __u8, PWM, 0, TimeBase )
+#define H3800_ASIC2_PWM_0_PeriodTime        H3800_ASIC2_NOFFSET( __u16, PWM, 0, PeriodTime )
+#define H3800_ASIC2_PWM_0_DutyTime          H3800_ASIC2_NOFFSET( __u16, PWM, 0, DutyTime )
 
-#define H3800_ASIC2_PWM_1_TimeBase          H3800_ASIC2_NOFFSET(  u8, PWM, 1, TimeBase )
-#define H3800_ASIC2_PWM_1_PeriodTime        H3800_ASIC2_NOFFSET( u16, PWM, 1, PeriodTime )
-#define H3800_ASIC2_PWM_1_DutyTime          H3800_ASIC2_NOFFSET( u16, PWM, 1, DutyTime )
+#define H3800_ASIC2_PWM_1_TimeBase          H3800_ASIC2_NOFFSET(  __u8, PWM, 1, TimeBase )
+#define H3800_ASIC2_PWM_1_PeriodTime        H3800_ASIC2_NOFFSET( __u16, PWM, 1, PeriodTime )
+#define H3800_ASIC2_PWM_1_DutyTime          H3800_ASIC2_NOFFSET( __u16, PWM, 1, DutyTime )
 
 #define H3800_ASIC2_PWM_TIMEBASE_MASK             0xf    /* Low 4 bits sets time base, max = 8 */
 #define H3800_ASIC2_PWM_TIMEBASE_ENABLE    ( 1 << 4 )    /* Enable clock */
@@ -215,20 +215,20 @@
 #define _H3800_ASIC2_LED_DutyTime              0x0008    /* R/W 12 bits */
 #define _H3800_ASIC2_LED_AutoStopCount         0x000c    /* R/W 16 bits */
 
-#define H3800_ASIC2_LED_0_TimeBase          H3800_ASIC2_NOFFSET(  u8, LED, 0, TimeBase )
-#define H3800_ASIC2_LED_0_PeriodTime        H3800_ASIC2_NOFFSET( u16, LED, 0, PeriodTime )
-#define H3800_ASIC2_LED_0_DutyTime          H3800_ASIC2_NOFFSET( u16, LED, 0, DutyTime )
-#define H3800_ASIC2_LED_0_AutoStopClock     H3800_ASIC2_NOFFSET( u16, LED, 0, AutoStopClock )
+#define H3800_ASIC2_LED_0_TimeBase          H3800_ASIC2_NOFFSET(  __u8, LED, 0, TimeBase )
+#define H3800_ASIC2_LED_0_PeriodTime        H3800_ASIC2_NOFFSET( __u16, LED, 0, PeriodTime )
+#define H3800_ASIC2_LED_0_DutyTime          H3800_ASIC2_NOFFSET( __u16, LED, 0, DutyTime )
+#define H3800_ASIC2_LED_0_AutoStopClock     H3800_ASIC2_NOFFSET( __u16, LED, 0, AutoStopClock )
 
-#define H3800_ASIC2_LED_1_TimeBase          H3800_ASIC2_NOFFSET(  u8, LED, 1, TimeBase )
-#define H3800_ASIC2_LED_1_PeriodTime        H3800_ASIC2_NOFFSET( u16, LED, 1, PeriodTime )
-#define H3800_ASIC2_LED_1_DutyTime          H3800_ASIC2_NOFFSET( u16, LED, 1, DutyTime )
-#define H3800_ASIC2_LED_1_AutoStopClock     H3800_ASIC2_NOFFSET( u16, LED, 1, AutoStopClock )
+#define H3800_ASIC2_LED_1_TimeBase          H3800_ASIC2_NOFFSET(  __u8, LED, 1, TimeBase )
+#define H3800_ASIC2_LED_1_PeriodTime        H3800_ASIC2_NOFFSET( __u16, LED, 1, PeriodTime )
+#define H3800_ASIC2_LED_1_DutyTime          H3800_ASIC2_NOFFSET( __u16, LED, 1, DutyTime )
+#define H3800_ASIC2_LED_1_AutoStopClock     H3800_ASIC2_NOFFSET( __u16, LED, 1, AutoStopClock )
 
-#define H3800_ASIC2_LED_2_TimeBase          H3800_ASIC2_NOFFSET(  u8, LED, 2, TimeBase )
-#define H3800_ASIC2_LED_2_PeriodTime        H3800_ASIC2_NOFFSET( u16, LED, 2, PeriodTime )
-#define H3800_ASIC2_LED_2_DutyTime          H3800_ASIC2_NOFFSET( u16, LED, 2, DutyTime )
-#define H3800_ASIC2_LED_2_AutoStopClock     H3800_ASIC2_NOFFSET( u16, LED, 2, AutoStopClock )
+#define H3800_ASIC2_LED_2_TimeBase          H3800_ASIC2_NOFFSET(  __u8, LED, 2, TimeBase )
+#define H3800_ASIC2_LED_2_PeriodTime        H3800_ASIC2_NOFFSET( __u16, LED, 2, PeriodTime )
+#define H3800_ASIC2_LED_2_DutyTime          H3800_ASIC2_NOFFSET( __u16, LED, 2, DutyTime )
+#define H3800_ASIC2_LED_2_AutoStopClock     H3800_ASIC2_NOFFSET( __u16, LED, 2, AutoStopClock )
 
 #define H3800_ASIC2_LED_TIMEBASE_MASK            0x0f    /* Low 4 bits sets time base, max = 13 */
 #define H3800_ASIC2_LED_TIMEBASE_BLINK     ( 1 << 4 )    /* Enable blinking */
@@ -249,34 +249,34 @@
 #define _H3800_ASIC2_UART_DivisorLatchL        0x0020    /* R/W  8 bits */
 #define _H3800_ASIC2_UART_DivisorLatchH        0x0024    /* R/W  8 bits */
 
-#define H3800_ASIC2_UART_0_Receive          H3800_ASIC2_NOFFSET(  u8, UART, 0, Receive )
-#define H3800_ASIC2_UART_0_Transmit         H3800_ASIC2_NOFFSET(  u8, UART, 0, Transmit )
-#define H3800_ASIC2_UART_0_IntEnable        H3800_ASIC2_NOFFSET(  u8, UART, 0, IntEnable )
-#define H3800_ASIC2_UART_0_IntVerify        H3800_ASIC2_NOFFSET(  u8, UART, 0, IntVerify )
-#define H3800_ASIC2_UART_0_FIFOControl      H3800_ASIC2_NOFFSET(  u8, UART, 0, FIFOControl )
-#define H3800_ASIC2_UART_0_LineControl      H3800_ASIC2_NOFFSET(  u8, UART, 0, LineControl )
-#define H3800_ASIC2_UART_0_ModemStatus      H3800_ASIC2_NOFFSET(  u8, UART, 0, ModemStatus )
-#define H3800_ASIC2_UART_0_LineStatus       H3800_ASIC2_NOFFSET(  u8, UART, 0, LineStatus )
-#define H3800_ASIC2_UART_0_ScratchPad       H3800_ASIC2_NOFFSET(  u8, UART, 0, ScratchPad )
-#define H3800_ASIC2_UART_0_DivisorLatchL    H3800_ASIC2_NOFFSET(  u8, UART, 0, DivisorLatchL )
-#define H3800_ASIC2_UART_0_DivisorLatchH    H3800_ASIC2_NOFFSET(  u8, UART, 0, DivisorLatchH )
+#define H3800_ASIC2_UART_0_Receive          H3800_ASIC2_NOFFSET(  __u8, UART, 0, Receive )
+#define H3800_ASIC2_UART_0_Transmit         H3800_ASIC2_NOFFSET(  __u8, UART, 0, Transmit )
+#define H3800_ASIC2_UART_0_IntEnable        H3800_ASIC2_NOFFSET(  __u8, UART, 0, IntEnable )
+#define H3800_ASIC2_UART_0_IntVerify        H3800_ASIC2_NOFFSET(  __u8, UART, 0, IntVerify )
+#define H3800_ASIC2_UART_0_FIFOControl      H3800_ASIC2_NOFFSET(  __u8, UART, 0, FIFOControl )
+#define H3800_ASIC2_UART_0_LineControl      H3800_ASIC2_NOFFSET(  __u8, UART, 0, LineControl )
+#define H3800_ASIC2_UART_0_ModemStatus      H3800_ASIC2_NOFFSET(  __u8, UART, 0, ModemStatus )
+#define H3800_ASIC2_UART_0_LineStatus       H3800_ASIC2_NOFFSET(  __u8, UART, 0, LineStatus )
+#define H3800_ASIC2_UART_0_ScratchPad       H3800_ASIC2_NOFFSET(  __u8, UART, 0, ScratchPad )
+#define H3800_ASIC2_UART_0_DivisorLatchL    H3800_ASIC2_NOFFSET(  __u8, UART, 0, DivisorLatchL )
+#define H3800_ASIC2_UART_0_DivisorLatchH    H3800_ASIC2_NOFFSET(  __u8, UART, 0, DivisorLatchH )
 
-#define H3800_ASIC2_UART_1_Receive          H3800_ASIC2_NOFFSET(  u8, UART, 1, Receive )
-#define H3800_ASIC2_UART_1_Transmit         H3800_ASIC2_NOFFSET(  u8, UART, 1, Transmit )
-#define H3800_ASIC2_UART_1_IntEnable        H3800_ASIC2_NOFFSET(  u8, UART, 1, IntEnable )
-#define H3800_ASIC2_UART_1_IntVerify        H3800_ASIC2_NOFFSET(  u8, UART, 1, IntVerify )
-#define H3800_ASIC2_UART_1_FIFOControl      H3800_ASIC2_NOFFSET(  u8, UART, 1, FIFOControl )
-#define H3800_ASIC2_UART_1_LineControl      H3800_ASIC2_NOFFSET(  u8, UART, 1, LineControl )
-#define H3800_ASIC2_UART_1_ModemStatus      H3800_ASIC2_NOFFSET(  u8, UART, 1, ModemStatus )
-#define H3800_ASIC2_UART_1_LineStatus       H3800_ASIC2_NOFFSET(  u8, UART, 1, LineStatus )
-#define H3800_ASIC2_UART_1_ScratchPad       H3800_ASIC2_NOFFSET(  u8, UART, 1, ScratchPad )
-#define H3800_ASIC2_UART_1_DivisorLatchL    H3800_ASIC2_NOFFSET(  u8, UART, 1, DivisorLatchL )
-#define H3800_ASIC2_UART_1_DivisorLatchH    H3800_ASIC2_NOFFSET(  u8, UART, 1, DivisorLatchH )
+#define H3800_ASIC2_UART_1_Receive          H3800_ASIC2_NOFFSET(  __u8, UART, 1, Receive )
+#define H3800_ASIC2_UART_1_Transmit         H3800_ASIC2_NOFFSET(  __u8, UART, 1, Transmit )
+#define H3800_ASIC2_UART_1_IntEnable        H3800_ASIC2_NOFFSET(  __u8, UART, 1, IntEnable )
+#define H3800_ASIC2_UART_1_IntVerify        H3800_ASIC2_NOFFSET(  __u8, UART, 1, IntVerify )
+#define H3800_ASIC2_UART_1_FIFOControl      H3800_ASIC2_NOFFSET(  __u8, UART, 1, FIFOControl )
+#define H3800_ASIC2_UART_1_LineControl      H3800_ASIC2_NOFFSET(  __u8, UART, 1, LineControl )
+#define H3800_ASIC2_UART_1_ModemStatus      H3800_ASIC2_NOFFSET(  __u8, UART, 1, ModemStatus )
+#define H3800_ASIC2_UART_1_LineStatus       H3800_ASIC2_NOFFSET(  __u8, UART, 1, LineStatus )
+#define H3800_ASIC2_UART_1_ScratchPad       H3800_ASIC2_NOFFSET(  __u8, UART, 1, ScratchPad )
+#define H3800_ASIC2_UART_1_DivisorLatchL    H3800_ASIC2_NOFFSET(  __u8, UART, 1, DivisorLatchL )
+#define H3800_ASIC2_UART_1_DivisorLatchH    H3800_ASIC2_NOFFSET(  __u8, UART, 1, DivisorLatchH )
 
 #define _H3800_ASIC2_TIMER_Base                0x0E00
 #define _H3800_ASIC2_TIMER_Command             0x0000    /* R/W  8 bits */
 
-#define H3800_ASIC2_TIMER_Command           H3800_ASIC2_OFFSET( u8, Timer, Command )
+#define H3800_ASIC2_TIMER_Command           H3800_ASIC2_OFFSET( __u8, Timer, Command )
 
 #define H3800_ASIC2_TIMER_GAT_0            ( 1 << 0 )    /* Gate enable, counter 0 */
 #define H3800_ASIC2_TIMER_GAT_1            ( 1 << 1 )    /* Gate enable, counter 1 */
@@ -290,7 +290,7 @@
 #define _H3800_ASIC2_CLOCK_Base                0x1000
 #define _H3800_ASIC2_CLOCK_Enable              0x0000    /* R/W  18 bits */
 
-#define H3800_ASIC2_CLOCK_Enable            H3800_ASIC2_OFFSET( u32, CLOCK, Enable )
+#define H3800_ASIC2_CLOCK_Enable            H3800_ASIC2_OFFSET( __u32, CLOCK, Enable )
 
 #define H3800_ASIC2_CLOCK_AUDIO_1              0x0001    /* Enable 4.1 MHz clock for 8Khz and 4khz sample rate */
 #define H3800_ASIC2_CLOCK_AUDIO_2              0x0002    /* Enable 12.3 MHz clock for 48Khz and 32khz sample rate */
@@ -317,9 +317,9 @@
 #define _H3800_ASIC2_ADC_ControlStatus         0x0004    /* R/W 8 bits */
 #define _H3800_ASIC2_ADC_Data                  0x0008    /* R   10 bits */
 
-#define H3800_ASIC2_ADC_Multiplexer       H3800_ASIC2_OFFSET(  u8, ADC, Multiplexer )
-#define H3800_ASIC2_ADC_ControlStatus     H3800_ASIC2_OFFSET(  u8, ADC, ControlStatus )
-#define H3800_ASIC2_ADC_Data              H3800_ASIC2_OFFSET( u16, ADC, Data )
+#define H3800_ASIC2_ADC_Multiplexer       H3800_ASIC2_OFFSET(  __u8, ADC, Multiplexer )
+#define H3800_ASIC2_ADC_ControlStatus     H3800_ASIC2_OFFSET(  __u8, ADC, ControlStatus )
+#define H3800_ASIC2_ADC_Data              H3800_ASIC2_OFFSET( __u16, ADC, Data )
 
 #define H3600_ASIC2_ADC_MUX_CHANNEL_MASK         0x07    /* Low 3 bits sets channel.  max = 4 */
 #define H3600_ASIC2_ADC_MUX_CLKEN          ( 1 << 3 )    /* Enable clock */
@@ -336,9 +336,9 @@
 #define _H3800_ASIC2_INTR_ClockPrescale        0x0004    /* R/(W) 5bits */
 #define _H3800_ASIC2_INTR_TimerSet             0x0008    /* R/(W) 8bits */
 
-#define H3800_ASIC2_INTR_MaskAndFlag      H3800_ASIC2_OFFSET( u8, INTR, MaskAndFlag )
-#define H3800_ASIC2_INTR_ClockPrescale    H3800_ASIC2_OFFSET( u8, INTR, ClockPrescale )
-#define H3800_ASIC2_INTR_TimerSet         H3800_ASIC2_OFFSET( u8, INTR, TimerSet )
+#define H3800_ASIC2_INTR_MaskAndFlag      H3800_ASIC2_OFFSET( __u8, INTR, MaskAndFlag )
+#define H3800_ASIC2_INTR_ClockPrescale    H3800_ASIC2_OFFSET( __u8, INTR, ClockPrescale )
+#define H3800_ASIC2_INTR_TimerSet         H3800_ASIC2_OFFSET( __u8, INTR, TimerSet )
 
 #define H3800_ASIC2_INTR_GLOBAL_MASK       ( 1 << 0 )    /* Global interrupt mask */
 #define H3800_ASIC2_INTR_POWER_ON_RESET    ( 1 << 1 )    /* 01: Power on reset (bits 1 & 2 ) */
@@ -359,11 +359,11 @@
 #define _H3800_ASIC2_OWM_InterruptEnable       0x000c    /* R/W Command register */
 #define _H3800_ASIC2_OWM_ClockDivisor          0x0010    /* R/W 5 bits of divisor and pre-scale */
 
-#define H3800_ASIC2_OWM_Command            H3800_ASIC2_OFFSET( u8, OWM, Command )
-#define H3800_ASIC2_OWM_Data               H3800_ASIC2_OFFSET( u8, OWM, Data )
-#define H3800_ASIC2_OWM_Interrupt          H3800_ASIC2_OFFSET( u8, OWM, Interrupt )
-#define H3800_ASIC2_OWM_InterruptEnable    H3800_ASIC2_OFFSET( u8, OWM, InterruptEnable )
-#define H3800_ASIC2_OWM_ClockDivisor       H3800_ASIC2_OFFSET( u8, OWM, ClockDivisor )
+#define H3800_ASIC2_OWM_Command            H3800_ASIC2_OFFSET( __u8, OWM, Command )
+#define H3800_ASIC2_OWM_Data               H3800_ASIC2_OFFSET( __u8, OWM, Data )
+#define H3800_ASIC2_OWM_Interrupt          H3800_ASIC2_OFFSET( __u8, OWM, Interrupt )
+#define H3800_ASIC2_OWM_InterruptEnable    H3800_ASIC2_OFFSET( __u8, OWM, InterruptEnable )
+#define H3800_ASIC2_OWM_ClockDivisor       H3800_ASIC2_OFFSET( __u8, OWM, ClockDivisor )
 
 #define H3800_ASIC2_OWM_CMD_ONE_WIRE_RESET ( 1 << 0 )    /* Set to force reset on 1-wire bus */
 #define H3800_ASIC2_OWM_CMD_SRA            ( 1 << 1 )    /* Set to switch to Search ROM accelerator mode */
@@ -411,21 +411,21 @@
 #define _H3800_ASIC1_MMC_ResFifo            0x22    /* R   8 x 16 bits - contains response FIFO */
 #define _H3800_ASIC1_MMC_BufferPartFull     0x28    /* R/W 8 bits */
 
-#define H3800_ASIC1_MMC_StartStopClock    H3800_ASIC1_OFFSET(  u8, MMC, StartStopClock )
-#define H3800_ASIC1_MMC_Status            H3800_ASIC1_OFFSET( u16, MMC, Status )
-#define H3800_ASIC1_MMC_ClockRate         H3800_ASIC1_OFFSET(  u8, MMC, ClockRate )
-#define H3800_ASIC1_MMC_SPIRegister       H3800_ASIC1_OFFSET(  u8, MMC, SPIRegister )
-#define H3800_ASIC1_MMC_CmdDataCont       H3800_ASIC1_OFFSET(  u8, MMC, CmdDataCont )
-#define H3800_ASIC1_MMC_ResponseTimeout   H3800_ASIC1_OFFSET(  u8, MMC, ResponseTimeout )
-#define H3800_ASIC1_MMC_ReadTimeout       H3800_ASIC1_OFFSET( u16, MMC, ReadTimeout )
-#define H3800_ASIC1_MMC_BlockLength       H3800_ASIC1_OFFSET( u16, MMC, BlockLength )
-#define H3800_ASIC1_MMC_NumOfBlocks       H3800_ASIC1_OFFSET( u16, MMC, NumOfBlocks )
-#define H3800_ASIC1_MMC_InterruptMask     H3800_ASIC1_OFFSET(  u8, MMC, InterruptMask )
-#define H3800_ASIC1_MMC_CommandNumber     H3800_ASIC1_OFFSET(  u8, MMC, CommandNumber )
-#define H3800_ASIC1_MMC_ArgumentH         H3800_ASIC1_OFFSET( u16, MMC, ArgumentH )
-#define H3800_ASIC1_MMC_ArgumentL         H3800_ASIC1_OFFSET( u16, MMC, ArgumentL )
-#define H3800_ASIC1_MMC_ResFifo           H3800_ASIC1_OFFSET( u16, MMC, ResFifo )
-#define H3800_ASIC1_MMC_BufferPartFull    H3800_ASIC1_OFFSET(  u8, MMC, BufferPartFull )
+#define H3800_ASIC1_MMC_StartStopClock    H3800_ASIC1_OFFSET(  __u8, MMC, StartStopClock )
+#define H3800_ASIC1_MMC_Status            H3800_ASIC1_OFFSET( __u16, MMC, Status )
+#define H3800_ASIC1_MMC_ClockRate         H3800_ASIC1_OFFSET(  __u8, MMC, ClockRate )
+#define H3800_ASIC1_MMC_SPIRegister       H3800_ASIC1_OFFSET(  __u8, MMC, SPIRegister )
+#define H3800_ASIC1_MMC_CmdDataCont       H3800_ASIC1_OFFSET(  __u8, MMC, CmdDataCont )
+#define H3800_ASIC1_MMC_ResponseTimeout   H3800_ASIC1_OFFSET(  __u8, MMC, ResponseTimeout )
+#define H3800_ASIC1_MMC_ReadTimeout       H3800_ASIC1_OFFSET( __u16, MMC, ReadTimeout )
+#define H3800_ASIC1_MMC_BlockLength       H3800_ASIC1_OFFSET( __u16, MMC, BlockLength )
+#define H3800_ASIC1_MMC_NumOfBlocks       H3800_ASIC1_OFFSET( __u16, MMC, NumOfBlocks )
+#define H3800_ASIC1_MMC_InterruptMask     H3800_ASIC1_OFFSET(  __u8, MMC, InterruptMask )
+#define H3800_ASIC1_MMC_CommandNumber     H3800_ASIC1_OFFSET(  __u8, MMC, CommandNumber )
+#define H3800_ASIC1_MMC_ArgumentH         H3800_ASIC1_OFFSET( __u16, MMC, ArgumentH )
+#define H3800_ASIC1_MMC_ArgumentL         H3800_ASIC1_OFFSET( __u16, MMC, ArgumentL )
+#define H3800_ASIC1_MMC_ResFifo           H3800_ASIC1_OFFSET( __u16, MMC, ResFifo )
+#define H3800_ASIC1_MMC_BufferPartFull    H3800_ASIC1_OFFSET(  __u8, MMC, BufferPartFull )
 
 #define H3800_ASIC1_MMC_STOP_CLOCK                   (1 << 0)   /* Write to "StartStopClock" register */
 #define H3800_ASIC1_MMC_START_CLOCK                  (1 << 1)
@@ -486,22 +486,22 @@
 #define _H3800_ASIC1_GPIO_BattFaultDir  0x4C    /* R/W direction 0:input, 1:output in batt_fault   */
 #define _H3800_ASIC1_GPIO_BattFaultOut  0x4E    /* R/W level 0:low, 1:high in batt_fault           */
 
-#define H3800_ASIC1_GPIO_Mask         H3800_ASIC1_OFFSET( u16, GPIO, Mask )
-#define H3800_ASIC1_GPIO_Direction    H3800_ASIC1_OFFSET( u16, GPIO, Direction )
-#define H3800_ASIC1_GPIO_Out          H3800_ASIC1_OFFSET( u16, GPIO, Out )
-#define H3800_ASIC1_GPIO_TriggerType  H3800_ASIC1_OFFSET( u16, GPIO, TriggerType )
-#define H3800_ASIC1_GPIO_EdgeTrigger  H3800_ASIC1_OFFSET( u16, GPIO, EdgeTrigger )
-#define H3800_ASIC1_GPIO_LevelTrigger H3800_ASIC1_OFFSET( u16, GPIO, LevelTrigger )
-#define H3800_ASIC1_GPIO_LevelStatus  H3800_ASIC1_OFFSET( u16, GPIO, LevelStatus )
-#define H3800_ASIC1_GPIO_EdgeStatus   H3800_ASIC1_OFFSET( u16, GPIO, EdgeStatus )
-#define H3800_ASIC1_GPIO_State        H3800_ASIC1_OFFSET(  u8, GPIO, State )
-#define H3800_ASIC1_GPIO_Reset        H3800_ASIC1_OFFSET(  u8, GPIO, Reset )
-#define H3800_ASIC1_GPIO_SleepMask    H3800_ASIC1_OFFSET( u16, GPIO, SleepMask )
-#define H3800_ASIC1_GPIO_SleepDir     H3800_ASIC1_OFFSET( u16, GPIO, SleepDir )
-#define H3800_ASIC1_GPIO_SleepOut     H3800_ASIC1_OFFSET( u16, GPIO, SleepOut )
-#define H3800_ASIC1_GPIO_Status       H3800_ASIC1_OFFSET( u16, GPIO, Status )
-#define H3800_ASIC1_GPIO_BattFaultDir H3800_ASIC1_OFFSET( u16, GPIO, BattFaultDir )
-#define H3800_ASIC1_GPIO_BattFaultOut H3800_ASIC1_OFFSET( u16, GPIO, BattFaultOut )
+#define H3800_ASIC1_GPIO_Mask         H3800_ASIC1_OFFSET( __u16, GPIO, Mask )
+#define H3800_ASIC1_GPIO_Direction    H3800_ASIC1_OFFSET( __u16, GPIO, Direction )
+#define H3800_ASIC1_GPIO_Out          H3800_ASIC1_OFFSET( __u16, GPIO, Out )
+#define H3800_ASIC1_GPIO_TriggerType  H3800_ASIC1_OFFSET( __u16, GPIO, TriggerType )
+#define H3800_ASIC1_GPIO_EdgeTrigger  H3800_ASIC1_OFFSET( __u16, GPIO, EdgeTrigger )
+#define H3800_ASIC1_GPIO_LevelTrigger H3800_ASIC1_OFFSET( __u16, GPIO, LevelTrigger )
+#define H3800_ASIC1_GPIO_LevelStatus  H3800_ASIC1_OFFSET( __u16, GPIO, LevelStatus )
+#define H3800_ASIC1_GPIO_EdgeStatus   H3800_ASIC1_OFFSET( __u16, GPIO, EdgeStatus )
+#define H3800_ASIC1_GPIO_State        H3800_ASIC1_OFFSET(  __u8, GPIO, State )
+#define H3800_ASIC1_GPIO_Reset        H3800_ASIC1_OFFSET(  __u8, GPIO, Reset )
+#define H3800_ASIC1_GPIO_SleepMask    H3800_ASIC1_OFFSET( __u16, GPIO, SleepMask )
+#define H3800_ASIC1_GPIO_SleepDir     H3800_ASIC1_OFFSET( __u16, GPIO, SleepDir )
+#define H3800_ASIC1_GPIO_SleepOut     H3800_ASIC1_OFFSET( __u16, GPIO, SleepOut )
+#define H3800_ASIC1_GPIO_Status       H3800_ASIC1_OFFSET( __u16, GPIO, Status )
+#define H3800_ASIC1_GPIO_BattFaultDir H3800_ASIC1_OFFSET( __u16, GPIO, BattFaultDir )
+#define H3800_ASIC1_GPIO_BattFaultOut H3800_ASIC1_OFFSET( __u16, GPIO, BattFaultOut )
 
 #define H3800_ASIC1_GPIO_STATE_MASK            (1 << 0)
 #define H3800_ASIC1_GPIO_STATE_DIRECTION       (1 << 1)
@@ -535,6 +535,6 @@
 
 #define _H3800_ASIC1_FlashWP_Base         0x1F00
 #define _H3800_ASIC1_FlashWP_VPP_ON         0x00    /* R   1: write, 0: protect */
-#define H3800_ASIC1_FlashWP_VPP_ON       H3800_ASIC1_OFFSET( u8, FlashWP, VPP_ON )
+#define H3800_ASIC1_FlashWP_VPP_ON       H3800_ASIC1_OFFSET( __u8, FlashWP, VPP_ON )
 
 #endif /* _INCLUDE_H3600_GPIO_H_ */

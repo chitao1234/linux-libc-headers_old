@@ -104,8 +104,8 @@ sbus_is_slave(struct sbus_dev *dev)
 extern void sbus_set_sbus64(struct sbus_dev *, int);
 
 /* These yield IOMMU mappings in consistent mode. */
-extern void *sbus_alloc_consistent(struct sbus_dev *, long, u32 *dma_addrp);
-extern void sbus_free_consistent(struct sbus_dev *, long, void *, u32);
+extern void *sbus_alloc_consistent(struct sbus_dev *, long, __u32 *dma_addrp);
+extern void sbus_free_consistent(struct sbus_dev *, long, void *, __u32);
 void prom_adjust_ranges(struct linux_prom_ranges *, int,
 			struct linux_prom_ranges *, int);
 

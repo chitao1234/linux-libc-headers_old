@@ -26,7 +26,7 @@
    address.  */
 #define V850E_INTC_IC_BASE_ADDR	  0xFFFFF110
 #define V850E_INTC_IC_ADDR(irq)	  (V850E_INTC_IC_BASE_ADDR + ((irq) << 1))
-#define V850E_INTC_IC(irq)	  (*(volatile u8 *)V850E_INTC_IC_ADDR(irq))
+#define V850E_INTC_IC(irq)	  (*(volatile __u8 *)V850E_INTC_IC_ADDR(irq))
 /* Encode priority PR for storing in an interrupt control register.  */
 #define V850E_INTC_IC_PR(pr)	  (pr)
 /* Interrupt disable bit in an interrupt control register.  */
@@ -40,7 +40,7 @@
    priority level, which is set to one when that level is currently being
    serviced (and thus blocking any interrupts of equal or lesser level).  */
 #define V850E_INTC_ISPR_ADDR	  0xFFFFF1FA
-#define V850E_INTC_ISPR		  (*(volatile u8 *)V850E_INTC_ISPR_ADDR)
+#define V850E_INTC_ISPR		  (*(volatile __u8 *)V850E_INTC_ISPR_ADDR)
 
 
 #ifndef __ASSEMBLY__

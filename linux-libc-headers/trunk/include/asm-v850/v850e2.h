@@ -24,46 +24,46 @@
 
 /* Chip area select control */ 
 #define V850E2_CSC_ADDR(n)	(0xFFFFF060 + (n) * 2)
-#define V850E2_CSC(n)		(*(volatile u16 *)V850E2_CSC_ADDR(n))
+#define V850E2_CSC(n)		(*(volatile __u16 *)V850E2_CSC_ADDR(n))
 /* I/O area select control */
 #define V850E2_BPC_ADDR		0xFFFFF064
-#define V850E2_BPC		(*(volatile u16 *)V850E2_BPC_ADDR)
+#define V850E2_BPC		(*(volatile __u16 *)V850E2_BPC_ADDR)
 /* Bus size configuration */
 #define V850E2_BSC_ADDR		0xFFFFF066
-#define V850E2_BSC		(*(volatile u16 *)V850E2_BSC_ADDR)
+#define V850E2_BSC		(*(volatile __u16 *)V850E2_BSC_ADDR)
 /* Endian configuration */
 #define V850E2_BEC_ADDR		0xFFFFF068
-#define V850E2_BEC		(*(volatile u16 *)V850E2_BEC_ADDR)
+#define V850E2_BEC		(*(volatile __u16 *)V850E2_BEC_ADDR)
 /* Cache configuration */
 #define V850E2_BHC_ADDR		0xFFFFF06A
-#define V850E2_BHC		(*(volatile u16 *)V850E2_BHC_ADDR)
+#define V850E2_BHC		(*(volatile __u16 *)V850E2_BHC_ADDR)
 /* NPB strobe-wait configuration */
 #define V850E2_VSWC_ADDR	0xFFFFF06E
-#define V850E2_VSWC		(*(volatile u16 *)V850E2_VSWC_ADDR)
+#define V850E2_VSWC		(*(volatile __u16 *)V850E2_VSWC_ADDR)
 /* Bus cycle type */
 #define V850E2_BCT_ADDR(n)	(0xFFFFF480 + (n) * 2)
-#define V850E2_BCT(n)		(*(volatile u16 *)V850E2_BCT_ADDR(n))
+#define V850E2_BCT(n)		(*(volatile __u16 *)V850E2_BCT_ADDR(n))
 /* Data wait control */
 #define V850E2_DWC_ADDR(n)	(0xFFFFF484 + (n) * 2)
-#define V850E2_DWC(n)		(*(volatile u16 *)V850E2_DWC_ADDR(n))
+#define V850E2_DWC(n)		(*(volatile __u16 *)V850E2_DWC_ADDR(n))
 /* Bus cycle control */
 #define V850E2_BCC_ADDR		0xFFFFF488
-#define V850E2_BCC		(*(volatile u16 *)V850E2_BCC_ADDR)
+#define V850E2_BCC		(*(volatile __u16 *)V850E2_BCC_ADDR)
 /* Address wait control */
 #define V850E2_ASC_ADDR		0xFFFFF48A
-#define V850E2_ASC		(*(volatile u16 *)V850E2_ASC_ADDR)
+#define V850E2_ASC		(*(volatile __u16 *)V850E2_ASC_ADDR)
 /* Local bus sizing control */
 #define V850E2_LBS_ADDR		0xFFFFF48E
-#define V850E2_LBS		(*(volatile u16 *)V850E2_LBS_ADDR)
+#define V850E2_LBS		(*(volatile __u16 *)V850E2_LBS_ADDR)
 /* Line buffer control */
 #define V850E2_LBC_ADDR(n)	(0xFFFFF490 + (n) * 2)
-#define V850E2_LBC(n)		(*(volatile u16 *)V850E2_LBC_ADDR(n))
+#define V850E2_LBC(n)		(*(volatile __u16 *)V850E2_LBC_ADDR(n))
 /* SDRAM configuration */
 #define V850E2_SCR_ADDR(n)	(0xFFFFF4A0 + (n) * 4)
-#define V850E2_SCR(n)		(*(volatile u16 *)V850E2_SCR_ADDR(n))
+#define V850E2_SCR(n)		(*(volatile __u16 *)V850E2_SCR_ADDR(n))
 /* SDRAM refresh cycle control */
 #define V850E2_RFS_ADDR(n)	(0xFFFFF4A2 + (n) * 4)
-#define V850E2_RFS(n)		(*(volatile u16 *)V850E2_RFS_ADDR(n))
+#define V850E2_RFS(n)		(*(volatile __u16 *)V850E2_RFS_ADDR(n))
 
 
 #endif /* __V850_V850E2_H__ */

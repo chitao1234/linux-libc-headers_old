@@ -15,7 +15,7 @@
 #define __str2(x) #x
 #define __str(x) __str2(x)
 
-#ifdef CONFIG_MIPS32
+#ifndef __mips64
 
 #define save_static_function(symbol)					\
 __asm__ (								\
@@ -43,7 +43,7 @@ __asm__ (								\
 
 #endif /* CONFIG_MIPS32 */
 
-#ifdef CONFIG_MIPS64
+#ifdef __mips64
 
 #define save_static_function(symbol)					\
 __asm__ (								\

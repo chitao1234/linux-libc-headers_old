@@ -9,10 +9,10 @@
 #define _ASM_ASMMACRO_H
  
  
-#ifdef CONFIG_MIPS32
+#ifndef __mips64
 #include <asm/asmmacro-32.h>
 #endif
-#ifdef CONFIG_MIPS64
+#ifdef __mips64
 #include <asm/asmmacro-64.h>
 #endif
 

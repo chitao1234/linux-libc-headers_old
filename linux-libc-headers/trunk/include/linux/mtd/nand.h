@@ -288,8 +288,8 @@ struct nand_chip {
 	
 	u_char		(*read_byte)(struct mtd_info *mtd);
 	void		(*write_byte)(struct mtd_info *mtd, u_char byte);
-	u16		(*read_word)(struct mtd_info *mtd);
-	void		(*write_word)(struct mtd_info *mtd, u16 word);
+	__u16		(*read_word)(struct mtd_info *mtd);
+	void		(*write_word)(struct mtd_info *mtd, __u16 word);
 	
 	void		(*write_buf)(struct mtd_info *mtd, const u_char *buf, int len);
 	void		(*read_buf)(struct mtd_info *mtd, u_char *buf, int len);

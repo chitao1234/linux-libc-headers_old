@@ -40,10 +40,10 @@
 
 
 //============================================================================
-static inline u64		HvCallSm_get64BitsOfAccessMap(
-					HvLpIndex lpIndex, u64 indexIntoBitMap )
+static inline __u64		HvCallSm_get64BitsOfAccessMap(
+					HvLpIndex lpIndex, __u64 indexIntoBitMap )
 {
-	u64 retval = HvCall2(HvCallSmGet64BitsOfAccessMap, lpIndex,
+	__u64 retval = HvCall2(HvCallSmGet64BitsOfAccessMap, lpIndex,
 			     indexIntoBitMap );
 	// getPaca()->adjustHmtForNoOfSpinLocksHeld();
 	return retval;

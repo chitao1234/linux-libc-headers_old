@@ -164,29 +164,29 @@
 
 /* we don't do multichannel for now */
 struct omap_mcbsp_reg_cfg {
-	u16 spcr2;
-	u16 spcr1;
-	u16 rcr2;
-	u16 rcr1;
-	u16 xcr2;
-	u16 xcr1;
-	u16 srgr2;
-	u16 srgr1;
-	u16 mcr2;
-	u16 mcr1;
-	u16 pcr0;
-	u16 rcerc;
-	u16 rcerd;
-	u16 xcerc;
-	u16 xcerd;
-	u16 rcere;
-	u16 rcerf;
-	u16 xcere;
-	u16 xcerf;
-	u16 rcerg;
-	u16 rcerh;
-	u16 xcerg;
-	u16 xcerh;
+	__u16 spcr2;
+	__u16 spcr1;
+	__u16 rcr2;
+	__u16 rcr1;
+	__u16 xcr2;
+	__u16 xcr1;
+	__u16 srgr2;
+	__u16 srgr1;
+	__u16 mcr2;
+	__u16 mcr1;
+	__u16 pcr0;
+	__u16 rcerc;
+	__u16 rcerd;
+	__u16 xcerc;
+	__u16 xcerd;
+	__u16 rcere;
+	__u16 rcerf;
+	__u16 xcere;
+	__u16 xcerf;
+	__u16 rcerg;
+	__u16 rcerh;
+	__u16 xcerg;
+	__u16 xcerh;
 };
 
 typedef enum {
@@ -231,7 +231,7 @@ struct omap_mcbsp_spi_cfg {
 	omap_mcbsp_clk_polarity		rx_clock_polarity;
 	omap_mcbsp_clk_polarity		tx_clock_polarity;
 	omap_mcbsp_fs_polarity		fsx_polarity;
-	u8				clk_div;
+	__u8				clk_div;
 	omap_mcbsp_clk_stp_mode		clk_stp_mode;
 	omap_mcbsp_word_length		word_length;
 };
@@ -241,8 +241,8 @@ int omap_mcbsp_request(unsigned int id);
 void omap_mcbsp_free(unsigned int id);
 void omap_mcbsp_start(unsigned int id);
 void omap_mcbsp_stop(unsigned int id);
-void omap_mcbsp_xmit_word(unsigned int id, u32 word);
-u32 omap_mcbsp_recv_word(unsigned int id);
+void omap_mcbsp_xmit_word(unsigned int id, __u32 word);
+__u32 omap_mcbsp_recv_word(unsigned int id);
 
 int omap_mcbsp_xmit_buffer(unsigned int id, dma_addr_t buffer, unsigned int length);
 int omap_mcbsp_recv_buffer(unsigned int id, dma_addr_t buffer, unsigned int length);

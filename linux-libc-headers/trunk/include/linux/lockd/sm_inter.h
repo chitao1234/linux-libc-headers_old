@@ -24,23 +24,23 @@
  * Arguments for all calls to statd
  */
 struct nsm_args {
-	u32		addr;		/* remote address */
-	u32		prog;		/* RPC callback info */
-	u32		vers;
-	u32		proc;
-	u32		proto;		/* protocol (udp/tcp) plus server/client flag */
+	__u32		addr;		/* remote address */
+	__u32		prog;		/* RPC callback info */
+	__u32		vers;
+	__u32		proc;
+	__u32		proto;		/* protocol (udp/tcp) plus server/client flag */
 };
 
 /*
  * Result returned by statd
  */
 struct nsm_res {
-	u32		status;
-	u32		state;
+	__u32		status;
+	__u32		state;
 };
 
 int		nsm_monitor(struct nlm_host *);
 int		nsm_unmonitor(struct nlm_host *);
-extern u32	nsm_local_state;
+extern __u32	nsm_local_state;
 
 #endif /* LINUX_LOCKD_SM_INTER_H */

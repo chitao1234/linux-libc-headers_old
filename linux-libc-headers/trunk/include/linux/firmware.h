@@ -5,7 +5,7 @@
 #define FIRMWARE_NAME_MAX 30 
 struct firmware {
 	size_t size;
-	u8 *data;
+	__u8 *data;
 };
 struct device;
 int request_firmware(const struct firmware **fw, const char *name,
@@ -16,5 +16,5 @@ int request_firmware_nowait(
 	void (*cont)(const struct firmware *fw, void *context));
 
 void release_firmware(const struct firmware *fw);
-void register_firmware(const char *name, const u8 *data, size_t size);
+void register_firmware(const char *name, const __u8 *data, size_t size);
 #endif

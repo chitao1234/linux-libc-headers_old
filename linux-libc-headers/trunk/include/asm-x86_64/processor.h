@@ -181,17 +181,17 @@ static inline void clear_in_cr4 (unsigned long mask)
 #define INVALID_IO_BITMAP_OFFSET 0x8000
 
 struct i387_fxsave_struct {
-	u16	cwd;
-	u16	swd;
-	u16	twd;
-	u16	fop;
-	u64	rip;
-	u64	rdp; 
-	u32	mxcsr;
-	u32	mxcsr_mask;
-	u32	st_space[32];	/* 8*16 bytes for each FP-reg = 128 bytes */
-	u32	xmm_space[64];	/* 16*16 bytes for each XMM-reg = 128 bytes */
-	u32	padding[24];
+	__u16	cwd;
+	__u16	swd;
+	__u16	twd;
+	__u16	fop;
+	__u64	rip;
+	__u64	rdp; 
+	__u32	mxcsr;
+	__u32	mxcsr_mask;
+	__u32	st_space[32];	/* 8*16 bytes for each FP-reg = 128 bytes */
+	__u32	xmm_space[64];	/* 16*16 bytes for each XMM-reg = 128 bytes */
+	__u32	padding[24];
 } __attribute__ ((aligned (16)));
 
 union i387_union {
@@ -199,16 +199,16 @@ union i387_union {
 };
 
 struct tss_struct {
-	u32 reserved1;
-	u64 rsp0;	
-	u64 rsp1;
-	u64 rsp2;
-	u64 reserved2;
-	u64 ist[7];
-	u32 reserved3;
-	u32 reserved4;
-	u16 reserved5;
-	u16 io_bitmap_base;
+	__u32 reserved1;
+	__u64 rsp0;	
+	__u64 rsp1;
+	__u64 rsp2;
+	__u64 reserved2;
+	__u64 ist[7];
+	__u32 reserved3;
+	__u32 reserved4;
+	__u16 reserved5;
+	__u16 io_bitmap_base;
 	/*
 	 * The extra 1 is there because the CPU will access an
 	 * additional byte beyond the end of the IO permission
@@ -250,7 +250,7 @@ struct thread_struct {
 	unsigned long	*io_bitmap_ptr;
 	unsigned io_bitmap_max;
 /* cached TLS descriptors. */
-	u64 tls_array[GDT_ENTRY_TLS_ENTRIES];
+	__u64 tls_array[GDT_ENTRY_TLS_ENTRIES];
 } __attribute__((aligned(16)));
 
 #define INIT_THREAD  {}

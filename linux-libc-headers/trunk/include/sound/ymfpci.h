@@ -203,50 +203,50 @@
  */
 
 typedef struct _snd_ymfpci_playback_bank {
-	u32 format;
-	u32 loop_default;
-	u32 base;			/* 32-bit address */
-	u32 loop_start;			/* 32-bit offset */
-	u32 loop_end;			/* 32-bit offset */
-	u32 loop_frac;			/* 8-bit fraction - loop_start */
-	u32 delta_end;			/* pitch delta end */
-	u32 lpfK_end;
-	u32 eg_gain_end;
-	u32 left_gain_end;
-	u32 right_gain_end;
-	u32 eff1_gain_end;
-	u32 eff2_gain_end;
-	u32 eff3_gain_end;
-	u32 lpfQ;
-	u32 status;
-	u32 num_of_frames;
-	u32 loop_count;
-	u32 start;
-	u32 start_frac;
-	u32 delta;
-	u32 lpfK;
-	u32 eg_gain;
-	u32 left_gain;
-	u32 right_gain;
-	u32 eff1_gain;
-	u32 eff2_gain;
-	u32 eff3_gain;
-	u32 lpfD1;
-	u32 lpfD2;
+	__u32 format;
+	__u32 loop_default;
+	__u32 base;			/* 32-bit address */
+	__u32 loop_start;			/* 32-bit offset */
+	__u32 loop_end;			/* 32-bit offset */
+	__u32 loop_frac;			/* 8-bit fraction - loop_start */
+	__u32 delta_end;			/* pitch delta end */
+	__u32 lpfK_end;
+	__u32 eg_gain_end;
+	__u32 left_gain_end;
+	__u32 right_gain_end;
+	__u32 eff1_gain_end;
+	__u32 eff2_gain_end;
+	__u32 eff3_gain_end;
+	__u32 lpfQ;
+	__u32 status;
+	__u32 num_of_frames;
+	__u32 loop_count;
+	__u32 start;
+	__u32 start_frac;
+	__u32 delta;
+	__u32 lpfK;
+	__u32 eg_gain;
+	__u32 left_gain;
+	__u32 right_gain;
+	__u32 eff1_gain;
+	__u32 eff2_gain;
+	__u32 eff3_gain;
+	__u32 lpfD1;
+	__u32 lpfD2;
 } snd_ymfpci_playback_bank_t;
 
 typedef struct _snd_ymfpci_capture_bank {
-	u32 base;			/* 32-bit address */
-	u32 loop_end;			/* 32-bit offset */
-	u32 start;			/* 32-bit offset */
-	u32 num_of_loops;		/* counter */
+	__u32 base;			/* 32-bit address */
+	__u32 loop_end;			/* 32-bit offset */
+	__u32 start;			/* 32-bit offset */
+	__u32 num_of_loops;		/* counter */
 } snd_ymfpci_capture_bank_t;
 
 typedef struct _snd_ymfpci_effect_bank {
-	u32 base;			/* 32-bit address */
-	u32 loop_end;			/* 32-bit offset */
-	u32 start;			/* 32-bit offset */
-	u32 temp;
+	__u32 base;			/* 32-bit address */
+	__u32 loop_end;			/* 32-bit offset */
+	__u32 start;			/* 32-bit offset */
+	__u32 temp;
 } snd_ymfpci_effect_bank_t;
 
 typedef struct _snd_ymfpci_voice ymfpci_voice_t;
@@ -291,12 +291,12 @@ struct _snd_ymfpci_pcm {
 	int running: 1;
 	int output_front: 1;
 	int output_rear: 1;
-	u32 period_size;		/* cached from runtime->period_size */
-	u32 buffer_size;		/* cached from runtime->buffer_size */
-	u32 period_pos;
-	u32 last_pos;
-	u32 capture_bank_number;
-	u32 shift;
+	__u32 period_size;		/* cached from runtime->period_size */
+	__u32 buffer_size;		/* cached from runtime->buffer_size */
+	__u32 period_pos;
+	__u32 last_pos;
+	__u32 capture_bank_number;
+	__u32 shift;
 };
 
 struct _snd_ymfpci {
@@ -333,14 +333,14 @@ struct _snd_ymfpci {
 	dma_addr_t work_base_addr;
 	struct snd_dma_buffer ac3_tmp_base;
 
-	u32 *ctrl_playback;
+	__u32 *ctrl_playback;
 	snd_ymfpci_playback_bank_t *bank_playback[YDSXG_PLAYBACK_VOICES][2];
 	snd_ymfpci_capture_bank_t *bank_capture[YDSXG_CAPTURE_VOICES][2];
 	snd_ymfpci_effect_bank_t *bank_effect[YDSXG_EFFECT_VOICES][2];
 
 	int start_count;
 
-	u32 active_bank;
+	__u32 active_bank;
 	ymfpci_voice_t voices[64];
 
 	ac97_bus_t *ac97_bus;
@@ -372,8 +372,8 @@ struct _snd_ymfpci {
 	snd_info_entry_t *proc_entry;
 
 #ifdef CONFIG_PM
-	u32 *saved_regs;
-	u32 saved_ydsxgr_mode;
+	__u32 *saved_regs;
+	__u32 saved_ydsxgr_mode;
 #endif
 };
 

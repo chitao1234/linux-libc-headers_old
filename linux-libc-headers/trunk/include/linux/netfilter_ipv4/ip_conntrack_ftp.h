@@ -33,5 +33,5 @@ extern unsigned int (*ip_nat_ftp_hook)(struct sk_buff **pskb,
 				       unsigned int matchoff,
 				       unsigned int matchlen,
 				       struct ip_conntrack_expect *exp,
-				       u32 *seq);
+				       __u32 *seq);
 #endif /* _IP_CONNTRACK_FTP_H */

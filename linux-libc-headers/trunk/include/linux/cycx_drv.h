@@ -14,9 +14,9 @@
 * ============================================================================
 * 1999/10/23	acme		cycxhw_t cleanup
 * 1999/01/03	acme		more judicious use of data types...
-*				uclong, ucchar, etc deleted, the u8, u16, u32
+*				uclong, ucchar, etc deleted, the __u8, __u16, u32
 *				types are the portable way to go.
-* 1999/01/03	acme		judicious use of data types... u16, u32, etc
+* 1999/01/03	acme		judicious use of data types... __u16, __u32, etc
 * 1998/12/26	acme	 	FIXED_BUFFERS, CONF_OFFSET,
 *                               removal of cy_read{bwl}
 * 1998/08/08	acme	 	Initial version.
@@ -46,18 +46,18 @@
  *	@reserved - reserved for future use
  */
 struct cycx_hw {
-	u32 fwid;
+	__u32 fwid;
 	int irq;
 	void *dpmbase;
-	u32 dpmsize;
-	u32 reserved[5];
+	__u32 dpmsize;
+	__u32 reserved[5];
 };
 
 /* Function Prototypes */
-extern int cycx_setup(struct cycx_hw *hw, void *sfm, u32 len, unsigned long base);
+extern int cycx_setup(struct cycx_hw *hw, void *sfm, __u32 len, unsigned long base);
 extern int cycx_down(struct cycx_hw *hw);
-extern int cycx_peek(struct cycx_hw *hw, u32 addr, void *buf, u32 len);
-extern int cycx_poke(struct cycx_hw *hw, u32 addr, void *buf, u32 len);
+extern int cycx_peek(struct cycx_hw *hw, __u32 addr, void *buf, __u32 len);
+extern int cycx_poke(struct cycx_hw *hw, __u32 addr, void *buf, __u32 len);
 extern int cycx_exec(void *addr);
 
 extern void cycx_inten(struct cycx_hw *hw);

@@ -94,9 +94,9 @@ struct unw_frame_info {
  */
 
 struct unw_table_entry {
-	u64 start_offset;
-	u64 end_offset;
-	u64 info_offset;
+	__u64 start_offset;
+	__u64 end_offset;
+	__u64 info_offset;
 };
 
 /*

@@ -32,15 +32,15 @@ unsigned int system_rev;
 static void
 putstr(const char *s)
 {
-	volatile u8 * uart = 0;
+	volatile __u8 * uart = 0;
 	int shift;
 
 #ifdef	CONFIG_OMAP_LL_DEBUG_UART3
-	uart = (volatile u8 *)(OMAP_UART3_BASE);
+	uart = (volatile __u8 *)(OMAP_UART3_BASE);
 #elif	CONFIG_OMAP_LL_DEBUG_UART2
-	uart = (volatile u8 *)(OMAP_UART2_BASE);
+	uart = (volatile __u8 *)(OMAP_UART2_BASE);
 #else
-	uart = (volatile u8 *)(OMAP_UART1_BASE);
+	uart = (volatile __u8 *)(OMAP_UART1_BASE);
 #endif
 
 	/* Determine which serial port to use */

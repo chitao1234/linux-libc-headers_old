@@ -38,9 +38,9 @@
  *
  * We now deal with physical addresses for I/O to the chip. -DaveM
  */
-static __inline__ u8 mostek_read(unsigned long addr)
+static __inline__ __u8 mostek_read(unsigned long addr)
 {
-	u8 ret;
+	__u8 ret;
 
 	__asm__ __volatile__("lduba	[%1] %2, %0"
 			     : "=r" (ret)
@@ -48,7 +48,7 @@ static __inline__ u8 mostek_read(unsigned long addr)
 	return ret;
 }
 
-static __inline__ void mostek_write(unsigned long addr, u8 val)
+static __inline__ void mostek_write(unsigned long addr, __u8 val)
 {
 	__asm__ __volatile__("stba	%0, [%1] %2"
 			     : /* no outputs */
@@ -99,7 +99,7 @@ extern unsigned long mstk48t02_regs;
 #define MSTK_GET(regs,name)	\
 	(MSTK_REGVAL_TO_DECIMAL(mostek_read(regs + MOSTEK_ ## name) & MSTK_ ## name ## _MASK))
 #define MSTK_SET(regs,name,value) \
-do {	u8 __val = mostek_read(regs + MOSTEK_ ## name); \
+do {	__u8 __val = mostek_read(regs + MOSTEK_ ## name); \
 	__val &= ~(MSTK_ ## name ## _MASK); \
 	__val |= (MSTK_DECIMAL_TO_REGVAL(value) & \
 		  (MSTK_ ## name ## _MASK)); \

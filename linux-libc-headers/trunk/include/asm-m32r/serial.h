@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_SERIAL_H
 #define _ASM_M32R_SERIAL_H
 
-/* $Id: serial.h,v 1.2 2004/10/22 16:58:47 mmazur Exp $ */
+/* $Id$ */
 
 /* orig : i386 2.4.18 */
 

@@ -25,12 +25,12 @@
  *  <linux/vt_buffer.h> has already done the right job for us.
  */
 
-static inline void scr_writew(u16 val, volatile u16 *addr)
+static inline void scr_writew(__u16 val, volatile __u16 *addr)
 {
     st_le16(addr, val);
 }
 
-static inline u16 scr_readw(volatile const u16 *addr)
+static inline __u16 scr_readw(volatile const __u16 *addr)
 {
     return ld_le16(addr);
 }

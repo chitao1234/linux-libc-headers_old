@@ -3,17 +3,17 @@
 
 typedef	union _alpha_agp_mode {
 	struct {
-		u32 rate : 3;
-		u32 reserved0 : 1;
-		u32 fw : 1;
-		u32 fourgb : 1;
-		u32 reserved1 : 2;
-		u32 enable : 1;
-		u32 sba : 1;
-		u32 reserved2 : 14;
-		u32 rq : 8;
+		__u32 rate : 3;
+		__u32 reserved0 : 1;
+		__u32 fw : 1;
+		__u32 fourgb : 1;
+		__u32 reserved1 : 2;
+		__u32 enable : 1;
+		__u32 sba : 1;
+		__u32 reserved2 : 14;
+		__u32 rq : 8;
 	} bits;
-	u32 lw;
+	__u32 lw;
 } alpha_agp_mode;
 
 typedef struct _alpha_agp_info {

@@ -4,14 +4,14 @@
 /* IA32 compatible user structures for ptrace. These should be used for 32bit coredumps too. */
 
 struct user_i387_ia32_struct {
-	u32	cwd;
-	u32	swd;
-	u32	twd;
-	u32	fip;
-	u32	fcs;
-	u32	foo;
-	u32	fos;
-	u32	st_space[20];   /* 8*10 bytes for each FP-reg = 80 bytes */
+	__u32	cwd;
+	__u32	swd;
+	__u32	twd;
+	__u32	fip;
+	__u32	fcs;
+	__u32	foo;
+	__u32	fos;
+	__u32	st_space[20];   /* 8*10 bytes for each FP-reg = 80 bytes */
 };
 
 /* FSAVE frame with extensions */

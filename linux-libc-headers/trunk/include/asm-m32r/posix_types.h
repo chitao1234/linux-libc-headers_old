@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_POSIX_TYPES_H
 #define _ASM_M32R_POSIX_TYPES_H
 
-/* $Id: posix_types.h,v 1.2 2004/10/21 16:04:54 mmazur Exp $ */
+/* $Id$ */
 
 /* orig : i386, sh 2.4.18 */
 

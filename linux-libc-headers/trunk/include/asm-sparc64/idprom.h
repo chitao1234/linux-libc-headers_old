@@ -18,13 +18,13 @@
 
 struct idprom
 {
-	u8		id_format;	/* Format identifier (always 0x01) */
-	u8		id_machtype;	/* Machine type */
-	u8		id_ethaddr[6];	/* Hardware ethernet address */
-	s32		id_date;	/* Date of manufacture */
-	u32		id_sernum:24;	/* Unique serial number */
-	u8		id_cksum;	/* Checksum - xor of the data bytes */
-	u8		reserved[16];
+	__u8		id_format;	/* Format identifier (always 0x01) */
+	__u8		id_machtype;	/* Machine type */
+	__u8		id_ethaddr[6];	/* Hardware ethernet address */
+	__s32		id_date;	/* Date of manufacture */
+	__u32		id_sernum:24;	/* Unique serial number */
+	__u8		id_cksum;	/* Checksum - xor of the data bytes */
+	__u8		reserved[16];
 };
 
 extern struct idprom *idprom;

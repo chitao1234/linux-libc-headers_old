@@ -31,7 +31,7 @@ struct sysdev_class {
 
 	/* Default operations for these types of devices */
 	int	(*shutdown)(struct sys_device *);
-	int	(*suspend)(struct sys_device *, u32 state);
+	int	(*suspend)(struct sys_device *, __u32 state);
 	int	(*resume)(struct sys_device *);
 	struct kset		kset;
 };
@@ -50,7 +50,7 @@ struct sysdev_driver {
 	int	(*add)(struct sys_device *);
 	int	(*remove)(struct sys_device *);
 	int	(*shutdown)(struct sys_device *);
-	int	(*suspend)(struct sys_device *, u32 state);
+	int	(*suspend)(struct sys_device *, __u32 state);
 	int	(*resume)(struct sys_device *);
 };
 
@@ -65,7 +65,7 @@ extern void sysdev_driver_unregister(struct sysdev_class *, struct sysdev_driver
  */
 
 struct sys_device {
-	u32		id;
+	__u32		id;
 	struct sysdev_class	* cls;
 	struct kobject		kobj;
 };

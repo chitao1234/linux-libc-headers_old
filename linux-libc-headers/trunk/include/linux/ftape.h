@@ -22,7 +22,7 @@
  *
  * $Source: /cvsroot/linux-libc-headers/include/linux/ftape.h,v $
  * $Revision: 1.3 $
- * $Date: 2004/01/15 20:19:02 $
+ * $Date$
  *
  *      This file contains global definitions, typedefs and macro's
  *      for the QIC-40/80/3010/3020 floppy-tape driver for Linux.

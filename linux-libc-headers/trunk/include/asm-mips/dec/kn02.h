@@ -97,7 +97,7 @@
 
 
 #ifndef __ASSEMBLY__
-extern u32 cached_kn02_csr;
+extern __u32 cached_kn02_csr;
 extern spinlock_t kn02_lock;
 extern void init_kn02_irqs(int base);
 #endif

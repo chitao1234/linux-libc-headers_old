@@ -46,8 +46,8 @@ struct krb5_ctx {
 	int			sealalg;
 	struct crypto_tfm	*enc;
 	struct crypto_tfm	*seq;
-	s32			endtime;
-	u32			seq_send;
+	__s32			endtime;
+	__u32			seq_send;
 	struct xdr_netobj	mech_used;
 };
 
@@ -112,35 +112,35 @@ enum seal_alg {
 #define ENCTYPE_DES3_CBC_SHA1   0x0010
 #define ENCTYPE_UNKNOWN         0x01ff
 
-s32
-make_checksum(s32 cksumtype, char *header, int hdrlen, struct xdr_buf *body,
+__s32
+make_checksum(__s32 cksumtype, char *header, int hdrlen, struct xdr_buf *body,
 		   struct xdr_netobj *cksum);
 
-u32
+__u32
 krb5_make_token(struct krb5_ctx *context_handle, int qop_req,
 	struct xdr_buf *input_message_buffer,
 	struct xdr_netobj *output_message_buffer, int toktype);
 
-u32
+__u32
 krb5_read_token(struct krb5_ctx *context_handle,
 	  struct xdr_netobj *input_token_buffer,
 	  struct xdr_buf *message_buffer,
 	  int *qop_state, int toktype);
 
-u32
+__u32
 krb5_encrypt(struct crypto_tfm * key,
 	     void *iv, void *in, void *out, int length);
 
-u32
+__u32
 krb5_decrypt(struct crypto_tfm * key,
 	     void *iv, void *in, void *out, int length); 
 
-s32
+__s32
 krb5_make_seq_num(struct crypto_tfm * key,
 		int direction,
-		s32 seqnum, unsigned char *cksum, unsigned char *buf);
+		__s32 seqnum, unsigned char *cksum, unsigned char *buf);
 
-s32
+__s32
 krb5_get_seq_num(struct crypto_tfm * key,
 	       unsigned char *cksum,
-	       unsigned char *buf, int *direction, s32 * seqnum);
+	       unsigned char *buf, int *direction, __s32 * seqnum);

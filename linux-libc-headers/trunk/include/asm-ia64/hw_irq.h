@@ -15,7 +15,7 @@
 #include <asm/ptrace.h>
 #include <asm/smp.h>
 
-typedef u8 ia64_vector;
+typedef __u8 ia64_vector;
 
 /*
  * 0 special

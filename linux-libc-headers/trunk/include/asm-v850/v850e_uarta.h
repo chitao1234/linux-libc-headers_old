@@ -42,7 +42,7 @@
 #endif
 
 /* UART config registers.  */
-#define V850E_UART_ASIM(n)	(*(volatile u8 *)V850E_UART_ASIM_ADDR(n))
+#define V850E_UART_ASIM(n)	(*(volatile __u8 *)V850E_UART_ASIM_ADDR(n))
 /* Control bits for config registers.  */
 #define V850E_UART_ASIM_CAE	0x80 /* clock enable */
 #define V850E_UART_ASIM_TXE	0x40 /* transmit enable */
@@ -58,27 +58,27 @@
 					(otherwise, generate INTSER) */
 
 /* UART serial interface status registers.  */
-#define V850E_UART_ASIS(n)	(*(volatile u8 *)V850E_UART_ASIS_ADDR(n))
+#define V850E_UART_ASIS(n)	(*(volatile __u8 *)V850E_UART_ASIS_ADDR(n))
 /* Control bits for status registers.  */
 #define V850E_UART_ASIS_PE	0x04 /* parity error */
 #define V850E_UART_ASIS_FE	0x02 /* framing error */
 #define V850E_UART_ASIS_OVE	0x01 /* overrun error */
 
 /* UART serial interface transmission status registers.  */
-#define V850E_UART_ASIF(n)	(*(volatile u8 *)V850E_UART_ASIF_ADDR(n))
+#define V850E_UART_ASIF(n)	(*(volatile __u8 *)V850E_UART_ASIF_ADDR(n))
 #define V850E_UART_ASIF_TXBF	0x02 /* transmit buffer flag (data in TXB) */
 #define V850E_UART_ASIF_TXSF	0x01 /* transmit shift flag (sending data) */
 
 /* UART receive buffer register.  */
-#define V850E_UART_RXB(n)	(*(volatile u8 *)V850E_UART_RXB_ADDR(n))
+#define V850E_UART_RXB(n)	(*(volatile __u8 *)V850E_UART_RXB_ADDR(n))
 
 /* UART transmit buffer register.  */
-#define V850E_UART_TXB(n)	(*(volatile u8 *)V850E_UART_TXB_ADDR(n))
+#define V850E_UART_TXB(n)	(*(volatile __u8 *)V850E_UART_TXB_ADDR(n))
 
 /* UART baud-rate generator control registers.  */
-#define V850E_UART_CKSR(n)	(*(volatile u8 *)V850E_UART_CKSR_ADDR(n))
+#define V850E_UART_CKSR(n)	(*(volatile __u8 *)V850E_UART_CKSR_ADDR(n))
 #define V850E_UART_CKSR_MAX	11
-#define V850E_UART_BRGC(n)	(*(volatile u8 *)V850E_UART_BRGC_ADDR(n))
+#define V850E_UART_BRGC(n)	(*(volatile __u8 *)V850E_UART_BRGC_ADDR(n))
 #define V850E_UART_BRGC_MIN	8
 
 
@@ -174,7 +174,7 @@ v850e_uart_speed_eq (v850e_uart_speed_t speed1, v850e_uart_speed_t speed2)
 /* UART configuration interface.  */
 
 /* Type of the uart config register; must be a scalar.  */
-typedef u16 v850e_uart_config_t;
+typedef __u16 v850e_uart_config_t;
 
 /* The uart hardware config register for channel CHAN.  */
 #define V850E_UART_CONFIG(chan)		V850E_UART_ASIM (chan)

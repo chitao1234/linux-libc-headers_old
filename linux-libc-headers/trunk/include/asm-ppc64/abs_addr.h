@@ -16,7 +16,7 @@
 #include <asm/prom.h>
 #include <asm/lmb.h>
 
-typedef u32 msChunks_entry;
+typedef __u32 msChunks_entry;
 struct msChunks {
         unsigned long num_chunks;
         unsigned long chunk_size;

@@ -541,7 +541,7 @@
  */
 
 struct dir_error_reg {
-	u64	uce_vld:   1,	/*    63: valid directory uce 	*/
+	__u64	uce_vld:   1,	/*    63: valid directory uce 	*/
 		ae_vld:	   1,	/*    62: valid dir prot ecc error */
 		ce_vld:	   1,	/*    61: valid correctable ECC err*/
 		rsvd1:	  19,	/* 60-42: reserved		*/
@@ -555,13 +555,13 @@ struct dir_error_reg {
 };
 
 typedef union md_dir_error {
-	u64	derr_reg;	/* the entire register 		*/
+	__u64	derr_reg;	/* the entire register 		*/
 	struct dir_error_reg derr_fmt;	/* the register format		*/
 } md_dir_error_t;
 
 
 struct mem_error_reg {
-	u64	uce_vld:   1,	/*    63: valid memory uce 	*/
+	__u64	uce_vld:   1,	/*    63: valid memory uce 	*/
 		ce_vld:	   1,	/*    62: valid correctable ECC err*/
 		rsvd1:	  22,	/* 61-40: reserved		*/
 		bad_syn:   8,	/* 39-32: bad mem ecc syndrome	*/
@@ -573,13 +573,13 @@ struct mem_error_reg {
 
 
 typedef union md_mem_error {
-	u64	merr_reg;	/* the entire register 		*/
+	__u64	merr_reg;	/* the entire register 		*/
 	struct mem_error_reg  merr_fmt; /* format of the mem_error reg  */
 } md_mem_error_t;
 
 
 struct proto_error_reg {
-	u64	valid:	   1,	/*    63: valid protocol error	*/
+	__u64	valid:	   1,	/*    63: valid protocol error	*/
 		rsvd1:	   2,	/* 62-61: reserved		*/
 		initiator:11,	/* 60-50: id of request initiator*/
 		backoff:   2,	/* 49-48: backoff control	*/
@@ -594,7 +594,7 @@ struct proto_error_reg {
 };
 
 typedef union md_proto_error {
-	u64	perr_reg;	/* the entire register 		*/
+	__u64	perr_reg;	/* the entire register 		*/
 	struct proto_error_reg	perr_fmt; /* format of the register	*/
 } md_proto_error_t;
 
@@ -642,7 +642,7 @@ typedef union md_sdir_low {
 
 
 struct md_pdir_high_fmt {
-	u64	pd_hi_unused   : 16,
+	__u64	pd_hi_unused   : 16,
 		pd_hi_bvec     : 38,
 		pd_hi_unused1  : 3,
 		pd_hi_ecc      : 7;
@@ -651,14 +651,14 @@ struct md_pdir_high_fmt {
 
 typedef union md_pdir_high {
 	/* The 48 bits of standard directory, upper word */
-	u64	pd_hi_val;
+	__u64	pd_hi_val;
 	struct md_pdir_high_fmt pd_hi_fmt;
 }md_pdir_high_t;
 
 
 struct md_pdir_low_shared_fmt {
 	/* The meaning of lower directory, shared */
-	u64	pds_lo_unused	: 16,
+	__u64	pds_lo_unused	: 16,
 		pds_lo_bvec	: 26,
 		pds_lo_cnt	:  6,
 		pds_lo_state	:  3,
@@ -670,7 +670,7 @@ struct md_pdir_low_shared_fmt {
 
 struct md_pdir_low_exclusive_fmt {
 	/* The meaning of lower directory, exclusive */
-	u64	pde_lo_unused	: 31,
+	__u64	pde_lo_unused	: 31,
 		pde_lo_ptr	: 11,
 		pde_lo_unused1	:  6,
 		pde_lo_state	:  3,
@@ -683,7 +683,7 @@ struct md_pdir_low_exclusive_fmt {
 
 typedef union md_pdir_loent {
 	/* The 48 bits of premium directory, lower word */
-	u64	pd_lo_val;
+	__u64	pd_lo_val;
 	struct md_pdir_low_exclusive_fmt pde_lo_fmt;
 	struct md_pdir_low_shared_fmt	pds_lo_fmt;
 }md_pdir_low_t;
@@ -711,25 +711,25 @@ typedef	struct	bddir_entry	{
 } bddir_entry_t;
 
 typedef struct	dir_mem_entry	{
-        u64		prcpf[MAX_REGIONS];
+        __u64		prcpf[MAX_REGIONS];
         bddir_entry_t	directory_words[MD_PAGE_SIZE/CACHE_SLINE_SIZE];
 } dir_mem_entry_t;
 
 
 
 typedef union md_perf_sel {
-	u64 	perf_sel_reg;
+	__u64 	perf_sel_reg;
 	struct	{
-		u64	perf_rsvd : 60,
+		__u64	perf_rsvd : 60,
 		        perf_en   :  1,
 			perf_sel  :  3;
 	} perf_sel_bits;
 } md_perf_sel_t;
 
 typedef union md_perf_cnt {
-	u64	perf_cnt;
+	__u64	perf_cnt;
 	struct	{
-		u64	perf_rsvd : 44,
+		__u64	perf_rsvd : 44,
 	                perf_cnt  : 20;
 	} perf_cnt_bits;
 } md_perf_cnt_t;

@@ -124,8 +124,8 @@ struct pci_sys_data;
 void ixp2000_pci_preinit(void);
 int ixp2000_pci_setup(int, struct pci_sys_data*);
 struct pci_bus* ixp2000_pci_scan_bus(int, struct pci_sys_data*);
-int ixp2000_pci_read_config(struct pci_bus*, unsigned int, int, int, u32 *);
-int ixp2000_pci_write_config(struct pci_bus*, unsigned int, int, int, u32);
+int ixp2000_pci_read_config(struct pci_bus*, unsigned int, int, int, __u32 *);
+int ixp2000_pci_write_config(struct pci_bus*, unsigned int, int, int, __u32);
 
 /*
  * Several of the IXP2000 systems have banked flash so we need to extend the

@@ -25,18 +25,18 @@
 
 struct omap_clock_config {
 	/* 0 for 12 MHz, 1 for 13 MHz and 2 for 19.2 MHz */
-	u8 system_clock_type;
+	__u8 system_clock_type;
 };
 
 struct omap_mmc_config {
-	u8 mmc_blocks;
-	s16 mmc1_power_pin, mmc2_power_pin;
-	s16 mmc1_switch_pin, mmc2_switch_pin;
+	__u8 mmc_blocks;
+	__s16 mmc1_power_pin, mmc2_power_pin;
+	__s16 mmc1_switch_pin, mmc2_switch_pin;
 };
 
 struct omap_uart_config {
-	u8 console_uart;
-	u32 console_speed;
+	__u8 console_uart;
+	__u32 console_speed;
 };
 
 struct omap_usb_config {
@@ -50,12 +50,12 @@ struct omap_usb_config {
 	 */
 	unsigned	register_host:1;
 	unsigned	register_dev:1;
-	u8		otg;	/* port number, 1-based:  usb1 == 2 */
+	__u8		otg;	/* port number, 1-based:  usb1 == 2 */
 
-	u8		hmc_mode;
+	__u8		hmc_mode;
 
 	/* implicitly true if otg:  host supports remote wakeup? */
-	u8		rwc;
+	__u8		rwc;
 
 	/* signaling pins used to talk to transceiver on usbN:
 	 *  0 == usbN unused
@@ -64,7 +64,7 @@ struct omap_usb_config {
 	 *  4 == 4 wire bidirectional
 	 *  6 == 6 wire unidirectional (or TLL)
 	 */
-	u8		pins[3];
+	__u8		pins[3];
 };
 
 struct omap_lcd_config {
@@ -84,7 +84,7 @@ struct omap_lcd_config {
 #define OMAP_GPIO_SWITCH_FLAG_INVERTED          0x0001
 struct omap_gpio_switch_config {
 	char name[12];
-	u16 gpio;
+	__u16 gpio;
 	int flags:4;
 	int type:4;
 	int key_code:24; /* Linux key code */
@@ -100,24 +100,24 @@ struct omap_boot_reason_config {
 
 
 struct omap_board_config_entry {
-	u16 tag;
-	u16 len;
-	u8  data[0];
+	__u16 tag;
+	__u16 len;
+	__u8  data[0];
 };
 
 struct omap_board_config_kernel {
-	u16 tag;
+	__u16 tag;
 	const void *data;
 };
 
-extern const void *__omap_get_config(u16 tag, size_t len, int nr);
+extern const void *__omap_get_config(__u16 tag, size_t len, int nr);
 
 #define omap_get_config(tag, type) \
 	((const type *) __omap_get_config((tag), sizeof(type), 0))
 #define omap_get_nr_config(tag, type, nr) \
 	((const type *) __omap_get_config((tag), sizeof(type), (nr)))
 
-extern const void *omap_get_var_config(u16 tag, size_t *len);
+extern const void *omap_get_var_config(__u16 tag, size_t *len);
 
 extern struct omap_board_config_kernel *omap_board_config;
 extern int omap_board_config_size;

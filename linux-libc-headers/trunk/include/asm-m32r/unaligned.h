@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_UNALIGNED_H
 #define _ASM_M32R_UNALIGNED_H
 
-/* $Id: unaligned.h,v 1.1 2004/10/21 15:15:38 mmazur Exp $ */
+/* $Id$ */
 
 /* orig : generic 2.4.18 */
 

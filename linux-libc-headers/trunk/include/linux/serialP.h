@@ -39,8 +39,8 @@ struct serial_state {
 	int	xmit_fifo_size;
 	int	custom_divisor;
 	int	count;
-	u8	*iomem_base;
-	u16	iomem_reg_shift;
+	__u8	*iomem_base;
+	__u16	iomem_reg_shift;
 	unsigned short	close_delay;
 	unsigned short	closing_wait; /* time to wait before closing */
 	struct async_icount	icount;	
@@ -75,8 +75,8 @@ struct async_struct {
 	int			blocked_open; /* # of blocked opens */
  	struct circ_buf		xmit;
  	spinlock_t		xmit_lock;
-	u8			*iomem_base;
-	u16			iomem_reg_shift;
+	__u8			*iomem_base;
+	__u16			iomem_reg_shift;
 	int			io_type;
 	struct work_struct			work;
 	struct tasklet_struct	tlet;

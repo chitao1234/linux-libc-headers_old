@@ -1,7 +1,7 @@
 #ifndef __ASM_MACH_APIC_H
 #define __ASM_MACH_APIC_H
 
-extern u8 bios_cpu_apicid[];
+extern __u8 bios_cpu_apicid[];
 
 #define xapic_phys_to_log_apicid(cpu) (bios_cpu_apicid[cpu])
 #define esr_disable (1)
@@ -121,7 +121,7 @@ static inline physid_mask_t apicid_to_cpu_present(int phys_apicid)
 	return mask;
 }
 
-extern u8 cpu_2_logical_apicid[];
+extern __u8 cpu_2_logical_apicid[];
 /* Mapping from cpu number to logical apicid */
 static inline int cpu_to_logical_apicid(int cpu)
 {
@@ -199,7 +199,7 @@ static inline unsigned int cpu_mask_to_apicid(cpumask_t cpumask)
 	return apicid;
 }
 
-static inline u32 phys_pkg_id(u32 cpuid_apic, int index_msb)
+static inline __u32 phys_pkg_id(__u32 cpuid_apic, int index_msb)
 {
 	return cpuid_apic >> index_msb;
 }

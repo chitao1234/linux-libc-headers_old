@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_MODULE_H
 #define _ASM_M32R_MODULE_H
 
-/* $Id: module.h,v 1.1 2004/10/21 15:15:37 mmazur Exp $ */
+/* $Id$ */
 
 struct mod_arch_specific { };
 

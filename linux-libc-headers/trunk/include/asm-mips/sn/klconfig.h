@@ -64,9 +64,9 @@
 #define KLCFGINFO_MAGIC	0xbeedbabe
 
 #ifdef FRUTEST
-typedef u64 klconf_off_t;
+typedef __u64 klconf_off_t;
 #else
-typedef s32 klconf_off_t;
+typedef __s32 klconf_off_t;
 #endif
 
 /*
@@ -160,8 +160,8 @@ typedef struct klc_malloc_hdr {
 /* Functions/macros needed to use this structure */
 
 typedef struct kl_config_hdr {
-	u64		ch_magic;	/* set this to KLCFGINFO_MAGIC */
-	u32		ch_version;    /* structure version number */
+	__u64		ch_magic;	/* set this to KLCFGINFO_MAGIC */
+	__u32		ch_version;    /* structure version number */
 	klconf_off_t	ch_malloc_hdr_off; /* offset of ch_malloc_hdr */
 	klconf_off_t	ch_cons_off;       /* offset of ch_cons */
 	klconf_off_t	ch_board_info;	/* the link list of boards */
@@ -609,14 +609,14 @@ typedef struct klinfo_s {                  /* Generic info */
 
 /* Info holders for various hardware components */
 
-typedef u64 *pci_t;
-typedef u64 *vmeb_t;
-typedef u64 *vmed_t;
-typedef u64 *fddi_t;
-typedef u64 *scsi_t;
-typedef u64 *mio_t;
-typedef u64 *graphics_t;
-typedef u64 *router_t;
+typedef __u64 *pci_t;
+typedef __u64 *vmeb_t;
+typedef __u64 *vmed_t;
+typedef __u64 *fddi_t;
+typedef __u64 *scsi_t;
+typedef __u64 *mio_t;
+typedef __u64 *graphics_t;
+typedef __u64 *router_t;
 
 /*
  * The port info in ip27_cfg area translates to a lboart_t in the
@@ -659,7 +659,7 @@ typedef struct klhub_s {			/* HUB */
 	klport_t	hub_port;		/* hub is connected to this */
 	nic_t		hub_box_nic;		/* nic of containing box */
 	klconf_off_t	hub_mfg_nic;		/* MFG NIC string */
-	u64		hub_speed;		/* Speed of hub in HZ */
+	__u64		hub_speed;		/* Speed of hub in HZ */
 } klhub_t ;
 
 typedef struct klhub_uart_s {			/* HUB */
@@ -716,8 +716,8 @@ typedef struct klxbow_s {                          /* XBOW */
 #define MAX_PCI_SLOTS 8
 
 typedef struct klpci_device_s {
-	s32	pci_device_id;	/* 32 bits of vendor/device ID. */
-	s32	pci_device_pad;	/* 32 bits of padding. */
+	__s32	pci_device_id;	/* 32 bits of vendor/device ID. */
+	__s32	pci_device_pad;	/* 32 bits of padding. */
 } klpci_device_t;
 
 #define BRIDGE_STRUCT_VERSION	2
@@ -767,7 +767,7 @@ typedef struct klrou_s {                          /* ROUTER */
 	nic_t		rou_box_nic ;         /* nic of the containing module */
     	klport_t 	rou_port[MAX_ROUTER_PORTS + 1] ; /* array index 1 to 6 */
 	klconf_off_t	rou_mfg_nic ;     /* MFG NIC string */
-	u64	rou_vector;	  /* vector from master node */
+	__u64	rou_vector;	  /* vector from master node */
 } klrou_t ;
 
 /*

@@ -4,10 +4,10 @@
 
 struct undef_hook {
 	struct list_head node;
-	u32 instr_mask;
-	u32 instr_val;
-	u32 cpsr_mask;
-	u32 cpsr_val;
+	__u32 instr_mask;
+	__u32 instr_val;
+	__u32 cpsr_mask;
+	__u32 cpsr_val;
 	int (*fn)(struct pt_regs *regs, unsigned int instr);
 };
 

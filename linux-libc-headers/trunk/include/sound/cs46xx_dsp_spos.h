@@ -68,7 +68,7 @@
 struct _dsp_module_desc_t;
 
 typedef struct _symbol_entry_t {
-	u32 address;
+	__u32 address;
 	char symbol_name[DSP_MAX_SYMBOL_NAME];
 	int symbol_type;
 
@@ -89,9 +89,9 @@ typedef struct _symbol_desc_t {
 
 typedef struct _segment_desc_t {
 	int segment_type;
-	u32 offset;
-	u32 size;
-	u32 * data;
+	__u32 offset;
+	__u32 size;
+	__u32 * data;
 } segment_desc_t;
 
 typedef struct _dsp_module_desc_t {
@@ -101,14 +101,14 @@ typedef struct _dsp_module_desc_t {
 	segment_desc_t * segments;
 
 	/* initialized by driver */
-	u32 overlay_begin_address;
-	u32 load_address;
+	__u32 overlay_begin_address;
+	__u32 load_address;
 	int nfixups;
 } dsp_module_desc_t;
 
 typedef struct _dsp_scb_descriptor_t {
 	char scb_name[DSP_MAX_SCB_NAME];
-	u32 address;
+	__u32 address;
 	int index;
 
 	struct _dsp_scb_descriptor_t * sub_list_ptr;
@@ -128,7 +128,7 @@ typedef struct _dsp_scb_descriptor_t {
 typedef struct _dsp_task_descriptor_t {
 	char task_name[DSP_MAX_TASK_NAME];
 	int size;
-	u32 address;
+	__u32 address;
 	int index;
 } dsp_task_descriptor_t;
 
@@ -136,8 +136,8 @@ typedef struct _pcm_channel_descriptor_t {
 	int active;
 	int src_slot;
 	int pcm_slot;
-	u32 sample_rate;
-	u32 unlinked;
+	__u32 sample_rate;
+	__u32 unlinked;
 	dsp_scb_descriptor_t * pcm_reader_scb;
 	dsp_scb_descriptor_t * src_scb;
 	dsp_scb_descriptor_t * mixer_scb;
@@ -155,8 +155,8 @@ typedef struct _dsp_spos_instance_t {
 
 	/* Main PCM playback mixer */
 	dsp_scb_descriptor_t * master_mix_scb;
-	u16 dac_volume_right;
-	u16 dac_volume_left;
+	__u16 dac_volume_right;
+	__u16 dac_volume_left;
 
 	/* Rear/surround PCM playback mixer */
 	dsp_scb_descriptor_t * rear_mix_scb;
@@ -196,8 +196,8 @@ typedef struct _dsp_spos_instance_t {
 	/* SPDIF status */
 	int spdif_status_out;
 	int spdif_status_in;
-	u16 spdif_input_volume_right;
-	u16 spdif_input_volume_left;
+	__u16 spdif_input_volume_right;
+	__u16 spdif_input_volume_left;
 	/* spdif channel status,
 	   left right and user validity bits */
 	unsigned int spdif_csuv_default;

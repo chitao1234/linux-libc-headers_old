@@ -44,10 +44,10 @@
 /* Simulator specific control registers.  */
 /* NOTHAL controls whether the simulator will stop at a `halt' insn.  */
 #define SIM85E2_NOTHAL_ADDR	0xffffff22
-#define SIM85E2_NOTHAL		(*(volatile u8 *)SIM85E2_NOTHAL_ADDR)
+#define SIM85E2_NOTHAL		(*(volatile __u8 *)SIM85E2_NOTHAL_ADDR)
 /* The simulator will stop N cycles after N is written to SIMFIN.  */
 #define SIM85E2_SIMFIN_ADDR	0xffffff24
-#define SIM85E2_SIMFIN		(*(volatile u16 *)SIM85E2_SIMFIN_ADDR)
+#define SIM85E2_SIMFIN		(*(volatile __u16 *)SIM85E2_SIMFIN_ADDR)
 
 
 /* For <asm/irq.h> */

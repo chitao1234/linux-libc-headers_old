@@ -105,72 +105,72 @@ extern void me2_uart_pre_configure (unsigned chan,
 /* Port 1 */
 /* Direct I/O.  Bits 0-3 are pins P10-P13.  */
 #define ME2_PORT1_IO_ADDR		0xFFFFF402
-#define ME2_PORT1_IO			(*(volatile u8 *)ME2_PORT1_IO_ADDR)
+#define ME2_PORT1_IO			(*(volatile __u8 *)ME2_PORT1_IO_ADDR)
 /* Port mode (for direct I/O, 0 = output, 1 = input).  */
 #define ME2_PORT1_PM_ADDR		0xFFFFF422
-#define ME2_PORT1_PM			(*(volatile u8 *)ME2_PORT1_PM_ADDR)
+#define ME2_PORT1_PM			(*(volatile __u8 *)ME2_PORT1_PM_ADDR)
 /* Port mode control (0 = direct I/O mode, 1 = alternative I/O mode).  */
 #define ME2_PORT1_PMC_ADDR		0xFFFFF442
-#define ME2_PORT1_PMC			(*(volatile u8 *)ME2_PORT1_PMC_ADDR)
+#define ME2_PORT1_PMC			(*(volatile __u8 *)ME2_PORT1_PMC_ADDR)
 /* Port function control (for serial interfaces, 0 = CSI30, 1 = UARTB0 ).  */
 #define ME2_PORT1_PFC_ADDR		0xFFFFF462
-#define ME2_PORT1_PFC			(*(volatile u8 *)ME2_PORT1_PFC_ADDR)
+#define ME2_PORT1_PFC			(*(volatile __u8 *)ME2_PORT1_PFC_ADDR)
 
 /* Port 2 */
 /* Direct I/O.  Bits 0-3 are pins P20-P25.  */
 #define ME2_PORT2_IO_ADDR		0xFFFFF404
-#define ME2_PORT2_IO			(*(volatile u8 *)ME2_PORT2_IO_ADDR)
+#define ME2_PORT2_IO			(*(volatile __u8 *)ME2_PORT2_IO_ADDR)
 /* Port mode (for direct I/O, 0 = output, 1 = input).  */
 #define ME2_PORT2_PM_ADDR		0xFFFFF424
-#define ME2_PORT2_PM			(*(volatile u8 *)ME2_PORT2_PM_ADDR)
+#define ME2_PORT2_PM			(*(volatile __u8 *)ME2_PORT2_PM_ADDR)
 /* Port mode control (0 = direct I/O mode, 1 = alternative I/O mode).  */
 #define ME2_PORT2_PMC_ADDR		0xFFFFF444
-#define ME2_PORT2_PMC			(*(volatile u8 *)ME2_PORT2_PMC_ADDR)
+#define ME2_PORT2_PMC			(*(volatile __u8 *)ME2_PORT2_PMC_ADDR)
 /* Port function control (for serial interfaces, 0 = INTP2x, 1 = UARTB1 ).  */
 #define ME2_PORT2_PFC_ADDR		0xFFFFF464
-#define ME2_PORT2_PFC			(*(volatile u8 *)ME2_PORT2_PFC_ADDR)
+#define ME2_PORT2_PFC			(*(volatile __u8 *)ME2_PORT2_PFC_ADDR)
 
 /* Port 5 */
 /* Direct I/O.  Bits 0-5 are pins P50-P55.  */
 #define ME2_PORT5_IO_ADDR		0xFFFFF40A
-#define ME2_PORT5_IO			(*(volatile u8 *)ME2_PORT5_IO_ADDR)
+#define ME2_PORT5_IO			(*(volatile __u8 *)ME2_PORT5_IO_ADDR)
 /* Port mode (for direct I/O, 0 = output, 1 = input).  */
 #define ME2_PORT5_PM_ADDR		0xFFFFF42A
-#define ME2_PORT5_PM			(*(volatile u8 *)ME2_PORT5_PM_ADDR)
+#define ME2_PORT5_PM			(*(volatile __u8 *)ME2_PORT5_PM_ADDR)
 /* Port mode control (0 = direct I/O mode, 1 = alternative I/O mode).  */
 #define ME2_PORT5_PMC_ADDR		0xFFFFF44A
-#define ME2_PORT5_PMC			(*(volatile u8 *)ME2_PORT5_PMC_ADDR)
+#define ME2_PORT5_PMC			(*(volatile __u8 *)ME2_PORT5_PMC_ADDR)
 /* Port function control ().  */
 #define ME2_PORT5_PFC_ADDR		0xFFFFF46A
-#define ME2_PORT5_PFC			(*(volatile u8 *)ME2_PORT5_PFC_ADDR)
+#define ME2_PORT5_PFC			(*(volatile __u8 *)ME2_PORT5_PFC_ADDR)
 
 /* Port 6 */
 /* Direct I/O.  Bits 5-7 are pins P65-P67.  */
 #define ME2_PORT6_IO_ADDR		0xFFFFF40C
-#define ME2_PORT6_IO			(*(volatile u8 *)ME2_PORT6_IO_ADDR)
+#define ME2_PORT6_IO			(*(volatile __u8 *)ME2_PORT6_IO_ADDR)
 /* Port mode (for direct I/O, 0 = output, 1 = input).  */
 #define ME2_PORT6_PM_ADDR		0xFFFFF42C
-#define ME2_PORT6_PM			(*(volatile u8 *)ME2_PORT6_PM_ADDR)
+#define ME2_PORT6_PM			(*(volatile __u8 *)ME2_PORT6_PM_ADDR)
 /* Port mode control (0 = direct I/O mode, 1 = alternative I/O mode).  */
 #define ME2_PORT6_PMC_ADDR		0xFFFFF44C
-#define ME2_PORT6_PMC			(*(volatile u8 *)ME2_PORT6_PMC_ADDR)
+#define ME2_PORT6_PMC			(*(volatile __u8 *)ME2_PORT6_PMC_ADDR)
 /* Port function control ().  */
 #define ME2_PORT6_PFC_ADDR		0xFFFFF46C
-#define ME2_PORT6_PFC			(*(volatile u8 *)ME2_PORT6_PFC_ADDR)
+#define ME2_PORT6_PFC			(*(volatile __u8 *)ME2_PORT6_PFC_ADDR)
 
 /* Port 7 */
 /* Direct I/O.  Bits 2-7 are pins P72-P77.  */
 #define ME2_PORT7_IO_ADDR		0xFFFFF40E
-#define ME2_PORT7_IO			(*(volatile u8 *)ME2_PORT7_IO_ADDR)
+#define ME2_PORT7_IO			(*(volatile __u8 *)ME2_PORT7_IO_ADDR)
 /* Port mode (for direct I/O, 0 = output, 1 = input).  */
 #define ME2_PORT7_PM_ADDR		0xFFFFF42E
-#define ME2_PORT7_PM			(*(volatile u8 *)ME2_PORT7_PM_ADDR)
+#define ME2_PORT7_PM			(*(volatile __u8 *)ME2_PORT7_PM_ADDR)
 /* Port mode control (0 = direct I/O mode, 1 = alternative I/O mode).  */
 #define ME2_PORT7_PMC_ADDR		0xFFFFF44E
-#define ME2_PORT7_PMC			(*(volatile u8 *)ME2_PORT7_PMC_ADDR)
+#define ME2_PORT7_PMC			(*(volatile __u8 *)ME2_PORT7_PMC_ADDR)
 /* Port function control ().  */
 #define ME2_PORT7_PFC_ADDR		0xFFFFF46E
-#define ME2_PORT7_PFC			(*(volatile u8 *)ME2_PORT7_PFC_ADDR)
+#define ME2_PORT7_PFC			(*(volatile __u8 *)ME2_PORT7_PFC_ADDR)
 
 
 #ifndef __ASSEMBLY__

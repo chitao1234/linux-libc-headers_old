@@ -68,7 +68,7 @@ struct sbus_dma {
 	int allocated;           /* Are we "owned" by anyone yet? */
 
 	/* Transfer information. */
-	u32 addr;                /* Start address of current transfer */
+	__u32 addr;                /* Start address of current transfer */
 	int nbytes;              /* Size of current transfer */
 	int realbytes;           /* For splitting up large transfers, etc. */
 
@@ -155,34 +155,34 @@ extern void dvma_init(struct sbus_bus *);
 #define DMA_IRQ_P(regs)    (((sbus_readl((regs) + DMA_CSR)) & (DMA_HNDL_INTR | DMA_HNDL_ERROR)))
 #define DMA_WRITE_P(regs)  (((sbus_readl((regs) + DMA_CSR) & DMA_ST_WRITE))
 #define DMA_OFF(__regs)		\
-do {	u32 tmp = sbus_readl((__regs) + DMA_CSR); \
+do {	__u32 tmp = sbus_readl((__regs) + DMA_CSR); \
 	tmp &= ~DMA_ENABLE; \
 	sbus_writel(tmp, (__regs) + DMA_CSR); \
 } while(0)
 #define DMA_INTSOFF(__regs)	\
-do {	u32 tmp = sbus_readl((__regs) + DMA_CSR); \
+do {	__u32 tmp = sbus_readl((__regs) + DMA_CSR); \
 	tmp &= ~DMA_INT_ENAB; \
 	sbus_writel(tmp, (__regs) + DMA_CSR); \
 } while(0)
 #define DMA_INTSON(__regs)	\
-do {	u32 tmp = sbus_readl((__regs) + DMA_CSR); \
+do {	__u32 tmp = sbus_readl((__regs) + DMA_CSR); \
 	tmp |= DMA_INT_ENAB; \
 	sbus_writel(tmp, (__regs) + DMA_CSR); \
 } while(0)
 #define DMA_PUNTFIFO(__regs)	\
-do {	u32 tmp = sbus_readl((__regs) + DMA_CSR); \
+do {	__u32 tmp = sbus_readl((__regs) + DMA_CSR); \
 	tmp |= DMA_FIFO_INV; \
 	sbus_writel(tmp, (__regs) + DMA_CSR); \
 } while(0)
 #define DMA_SETSTART(__regs, __addr)	\
-	sbus_writel((u32)(__addr), (__regs) + DMA_ADDR);
+	sbus_writel((__u32)(__addr), (__regs) + DMA_ADDR);
 #define DMA_BEGINDMA_W(__regs)	\
-do {	u32 tmp = sbus_readl((__regs) + DMA_CSR); \
+do {	__u32 tmp = sbus_readl((__regs) + DMA_CSR); \
 	tmp |= (DMA_ST_WRITE|DMA_ENABLE|DMA_INT_ENAB); \
 	sbus_writel(tmp, (__regs) + DMA_CSR); \
 } while(0)
 #define DMA_BEGINDMA_R(__regs)	\
-do {	u32 tmp = sbus_readl((__regs) + DMA_CSR); \
+do {	__u32 tmp = sbus_readl((__regs) + DMA_CSR); \
 	tmp |= (DMA_ENABLE|DMA_INT_ENAB); \
 	tmp &= ~DMA_ST_WRITE; \
 	sbus_writel(tmp, (__regs) + DMA_CSR); \

@@ -196,31 +196,31 @@ enum ata_ioctls {
 /* core structures */
 
 struct ata_prd {
-	u32			addr;
-	u32			flags_len;
+	__u32			addr;
+	__u32			flags_len;
 };
 
 struct ata_taskfile {
 	unsigned long		flags;		/* ATA_TFLAG_xxx */
-	u8			protocol;	/* ATA_PROT_xxx */
+	__u8			protocol;	/* ATA_PROT_xxx */
 
-	u8			ctl;		/* control reg */
+	__u8			ctl;		/* control reg */
 
-	u8			hob_feature;	/* additional data */
-	u8			hob_nsect;	/* to support LBA48 */
-	u8			hob_lbal;
-	u8			hob_lbam;
-	u8			hob_lbah;
+	__u8			hob_feature;	/* additional data */
+	__u8			hob_nsect;	/* to support LBA48 */
+	__u8			hob_lbal;
+	__u8			hob_lbam;
+	__u8			hob_lbah;
 
-	u8			feature;
-	u8			nsect;
-	u8			lbal;
-	u8			lbam;
-	u8			lbah;
+	__u8			feature;
+	__u8			nsect;
+	__u8			lbal;
+	__u8			lbam;
+	__u8			lbah;
 
-	u8			device;
+	__u8			device;
 
-	u8			command;	/* IO operation */
+	__u8			command;	/* IO operation */
 };
 
 #define ata_id_is_ata(id)	(((id)[0] & (1 << 15)) == 0)
@@ -235,16 +235,16 @@ struct ata_taskfile {
 #define ata_id_has_dma(id)	((id)[49] & (1 << 8))
 #define ata_id_removeable(id)	((id)[0] & (1 << 7))
 #define ata_id_u32(id,n)	\
-	(((u32) (id)[(n) + 1] << 16) | ((u32) (id)[(n)]))
+	(((__u32) (id)[(n) + 1] << 16) | ((__u32) (id)[(n)]))
 #define ata_id_u64(id,n)	\
-	( ((u64) (id)[(n) + 3] << 48) |	\
-	  ((u64) (id)[(n) + 2] << 32) |	\
-	  ((u64) (id)[(n) + 1] << 16) |	\
-	  ((u64) (id)[(n) + 0]) )
+	( ((__u64) (id)[(n) + 3] << 48) |	\
+	  ((__u64) (id)[(n) + 2] << 32) |	\
+	  ((__u64) (id)[(n) + 1] << 16) |	\
+	  ((__u64) (id)[(n) + 0]) )
 
-static inline int atapi_cdb_len(u16 *dev_id)
+static inline int atapi_cdb_len(__u16 *dev_id)
 {
-	u16 tmp = dev_id[0] & 0x3;
+	__u16 tmp = dev_id[0] & 0x3;
 	switch (tmp) {
 	case 0:		return 12;
 	case 1:		return 16;
@@ -259,7 +259,7 @@ static inline int is_atapi_taskfile(struct ata_taskfile *tf)
 	       (tf->protocol == ATA_PROT_ATAPI_DMA);
 }
 
-static inline int ata_ok(u8 status)
+static inline int ata_ok(__u8 status)
 {
 	return ((status & (ATA_BUSY | ATA_DRDY | ATA_DF | ATA_DRQ | ATA_ERR))
 			== ATA_DRDY);

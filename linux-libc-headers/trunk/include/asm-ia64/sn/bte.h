@@ -107,23 +107,23 @@ typedef enum {
  * to work with a BTE.
  */
 struct bteinfo_s {
-	volatile u64 notify ____cacheline_aligned;
-	u64 *bte_base_addr ____cacheline_aligned;
+	volatile __u64 notify ____cacheline_aligned;
+	__u64 *bte_base_addr ____cacheline_aligned;
 	spinlock_t spinlock;
 	cnodeid_t bte_cnode;	/* cnode                            */
 	int bte_error_count;	/* Number of errors encountered     */
 	int bte_num;		/* 0 --> BTE0, 1 --> BTE1           */
 	int cleanup_active;	/* Interface is locked for cleanup  */
 	volatile bte_result_t bh_error;	/* error while processing   */
-	volatile u64 *most_rcnt_na;
+	volatile __u64 *most_rcnt_na;
 };
 
 
 /*
  * Function prototypes (functions defined in bte.c, used elsewhere)
  */
-extern bte_result_t bte_copy(u64, u64, u64, u64, void *);
-extern bte_result_t bte_unaligned_copy(u64, u64, u64, u64);
+extern bte_result_t bte_copy(__u64, __u64, __u64, __u64, void *);
+extern bte_result_t bte_unaligned_copy(__u64, __u64, __u64, __u64);
 extern void bte_error_handler(unsigned long);
 
 #define bte_zero(dest, len, mode, notification) \

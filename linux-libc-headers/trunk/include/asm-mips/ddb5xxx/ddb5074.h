@@ -34,5 +34,5 @@ extern void ddb5074_led_hex(int hex);
 extern void ddb5074_led_d2(int on);
 extern void ddb5074_led_d3(int on);
 
-extern void nile4_irq_setup(u32 base);
+extern void nile4_irq_setup(__u32 base);
 #endif

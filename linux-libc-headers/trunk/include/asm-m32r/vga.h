@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_VGA_H
 #define _ASM_M32R_VGA_H
 
-/* $Id: vga.h,v 1.1 2004/10/21 15:15:39 mmazur Exp $ */
+/* $Id$ */
 
 /*
  *	Access to VGA videoram

@@ -27,10 +27,10 @@
 #include <asm/gt64260_defs.h>
 
 
-extern u32     gt64260_base;
-extern u32     gt64260_irq_base;     /* We handle the next 96 IRQs from here */
-extern u32     gt64260_revision;
-extern u8      gt64260_pci_exclude_bridge;
+extern __u32     gt64260_base;
+extern __u32     gt64260_irq_base;     /* We handle the next 96 IRQs from here */
+extern __u32     gt64260_revision;
+extern __u8      gt64260_pci_exclude_bridge;
 
 #ifndef	TRUE
 #define	TRUE	1
@@ -121,29 +121,29 @@ typedef struct {
 	struct pci_controller	*hose_a;
 	struct pci_controller	*hose_b;
 
-	u32	mem_size;
+	__u32	mem_size;
 
-	u32	pci_0_io_start_proc;
-	u32	pci_0_io_start_pci;
-	u32	pci_0_io_size;
-	u32	pci_0_io_swap;
+	__u32	pci_0_io_start_proc;
+	__u32	pci_0_io_start_pci;
+	__u32	pci_0_io_size;
+	__u32	pci_0_io_swap;
 
-	u32	pci_0_mem_start_proc;
-	u32	pci_0_mem_start_pci_hi;
-	u32	pci_0_mem_start_pci_lo;
-	u32	pci_0_mem_size;
-	u32	pci_0_mem_swap;
+	__u32	pci_0_mem_start_proc;
+	__u32	pci_0_mem_start_pci_hi;
+	__u32	pci_0_mem_start_pci_lo;
+	__u32	pci_0_mem_size;
+	__u32	pci_0_mem_swap;
 
-	u32	pci_1_io_start_proc;
-	u32	pci_1_io_start_pci;
-	u32	pci_1_io_size;
-	u32	pci_1_io_swap;
+	__u32	pci_1_io_start_proc;
+	__u32	pci_1_io_start_pci;
+	__u32	pci_1_io_size;
+	__u32	pci_1_io_swap;
 
-	u32	pci_1_mem_start_proc;
-	u32	pci_1_mem_start_pci_hi;
-	u32	pci_1_mem_start_pci_lo;
-	u32	pci_1_mem_size;
-	u32	pci_1_mem_swap;
+	__u32	pci_1_mem_start_proc;
+	__u32	pci_1_mem_start_pci_hi;
+	__u32	pci_1_mem_start_pci_lo;
+	__u32	pci_1_mem_size;
+	__u32	pci_1_mem_swap;
 } gt64260_bridge_info_t;
 
 #define	GT64260_BRIDGE_INFO_DEFAULT(ip, ms) {				\
@@ -188,7 +188,7 @@ extern inline void gt_write(uint32_t offs, uint32_t d){
 }
 
 #if 0 /* paranoid SMP version */
-extern inline void gt_modify(u32 offs, u32 data, u32 mask) \
+extern inline void gt_modify(__u32 offs, __u32 data, __u32 mask) \
 {
 	uint32_t reg;
 	spin_lock(&gt64260_lock);
@@ -219,100 +219,100 @@ extern inline void gt_modify(uint32_t offs, uint32_t data, uint32_t mask)
  *****************************************************************************
  */
 
-int gt64260_find_bridges(u32 phys_base_addr, gt64260_bridge_info_t *info,
+int gt64260_find_bridges(__u32 phys_base_addr, gt64260_bridge_info_t *info,
 	int ((*map_irq)(struct pci_dev *, unsigned char, unsigned char)));
 int gt64260_bridge_init(gt64260_bridge_info_t *info);
-int gt64260_cpu_scs_set_window(u32 window,
-			       u32 base_addr,
-			       u32 size);
-int gt64260_cpu_cs_set_window(u32 window,
-			      u32 base_addr,
-			      u32 size);
-int gt64260_cpu_boot_set_window(u32 base_addr,
-			        u32 size);
-int gt64260_cpu_set_pci_io_window(u32 pci_bus,
-			          u32 cpu_base_addr,
-			          u32 pci_base_addr,
-			          u32 size,
-			          u32 swap);
-int gt64260_cpu_set_pci_mem_window(u32 pci_bus,
-			           u32 window,
-			           u32 cpu_base_addr,
-			           u32 pci_base_addr_hi,
-			           u32 pci_base_addr_lo,
-			           u32 size,
-			           u32 swap_64bit);
-int gt64260_cpu_prot_set_window(u32 window,
-			        u32 base_addr,
-			        u32 size,
-			        u32 access_bits);
-int gt64260_cpu_snoop_set_window(u32 window,
-			         u32 base_addr,
-			         u32 size,
-			         u32  snoop_type);
+int gt64260_cpu_scs_set_window(__u32 window,
+			       __u32 base_addr,
+			       __u32 size);
+int gt64260_cpu_cs_set_window(__u32 window,
+			      __u32 base_addr,
+			      __u32 size);
+int gt64260_cpu_boot_set_window(__u32 base_addr,
+			        __u32 size);
+int gt64260_cpu_set_pci_io_window(__u32 pci_bus,
+			          __u32 cpu_base_addr,
+			          __u32 pci_base_addr,
+			          __u32 size,
+			          __u32 swap);
+int gt64260_cpu_set_pci_mem_window(__u32 pci_bus,
+			           __u32 window,
+			           __u32 cpu_base_addr,
+			           __u32 pci_base_addr_hi,
+			           __u32 pci_base_addr_lo,
+			           __u32 size,
+			           __u32 swap_64bit);
+int gt64260_cpu_prot_set_window(__u32 window,
+			        __u32 base_addr,
+			        __u32 size,
+			        __u32 access_bits);
+int gt64260_cpu_snoop_set_window(__u32 window,
+			         __u32 base_addr,
+			         __u32 size,
+			         __u32  snoop_type);
 void gt64260_cpu_disable_all_windows(void);
-int gt64260_pci_bar_enable(u32 pci_bus, u32 enable_bits);
+int gt64260_pci_bar_enable(__u32 pci_bus, __u32 enable_bits);
 int gt64260_pci_slave_scs_set_window(struct pci_controller *hose,
-				     u32 window,
-				     u32 pci_base_addr,
-				     u32 cpu_base_addr,
-				     u32 size);
+				     __u32 window,
+				     __u32 pci_base_addr,
+				     __u32 cpu_base_addr,
+				     __u32 size);
 int gt64260_pci_slave_cs_set_window(struct pci_controller *hose,
-				    u32 window,
-				    u32 pci_base_addr,
-				    u32 cpu_base_addr,
-				    u32 size);
+				    __u32 window,
+				    __u32 pci_base_addr,
+				    __u32 cpu_base_addr,
+				    __u32 size);
 int gt64260_pci_slave_boot_set_window(struct pci_controller *hose,
-				      u32 pci_base_addr,
-				      u32 cpu_base_addr,
-				      u32 size);
+				      __u32 pci_base_addr,
+				      __u32 cpu_base_addr,
+				      __u32 size);
 int gt64260_pci_slave_p2p_mem_set_window(struct pci_controller *hose,
-				         u32 window,
-				         u32 pci_base_addr,
-				         u32 other_bus_base_addr,
-				         u32 size);
+				         __u32 window,
+				         __u32 pci_base_addr,
+				         __u32 other_bus_base_addr,
+				         __u32 size);
 int gt64260_pci_slave_p2p_io_set_window(struct pci_controller *hose,
-				        u32 pci_base_addr,
-				        u32 other_bus_base_addr,
-				        u32 size);
+				        __u32 pci_base_addr,
+				        __u32 other_bus_base_addr,
+				        __u32 size);
 int gt64260_pci_slave_dac_scs_set_window(struct pci_controller *hose,
-				         u32 window,
-				         u32 pci_base_addr_hi,
-				         u32 pci_base_addr_lo,
-				         u32 cpu_base_addr,
-				         u32 size);
+				         __u32 window,
+				         __u32 pci_base_addr_hi,
+				         __u32 pci_base_addr_lo,
+				         __u32 cpu_base_addr,
+				         __u32 size);
 int gt64260_pci_slave_dac_cs_set_window(struct pci_controller *hose,
-				        u32 window,
-				        u32 pci_base_addr_hi,
-				        u32 pci_base_addr_lo,
-				        u32 cpu_base_addr,
-				        u32 size);
+				        __u32 window,
+				        __u32 pci_base_addr_hi,
+				        __u32 pci_base_addr_lo,
+				        __u32 cpu_base_addr,
+				        __u32 size);
 int gt64260_pci_slave_dac_boot_set_window(struct pci_controller *hose,
-				          u32 pci_base_addr_hi,
-				          u32 pci_base_addr_lo,
-				          u32 cpu_base_addr,
-				          u32 size);
+				          __u32 pci_base_addr_hi,
+				          __u32 pci_base_addr_lo,
+				          __u32 cpu_base_addr,
+				          __u32 size);
 int gt64260_pci_slave_dac_p2p_mem_set_window(struct pci_controller *hose,
-				             u32 window,
-				             u32 pci_base_addr_hi,
-				             u32 pci_base_addr_lo,
-				             u32 other_bus_base_addr,
-				             u32 size);
-int gt64260_pci_acc_cntl_set_window(u32 pci_bus,
-			            u32 window,
-			            u32 base_addr_hi,
-			            u32 base_addr_lo,
-			            u32 size,
-			            u32 features);
-int gt64260_pci_snoop_set_window(u32 pci_bus,
-			         u32 window,
-			         u32 base_addr_hi,
-			         u32 base_addr_lo,
-			         u32 size,
-			         u32 snoop_type);
-int gt64260_set_base(u32 new_base);
-int gt64260_get_base(u32 *base);
-int gt64260_pci_exclude_device(u8 bus, u8 devfn);
+				             __u32 window,
+				             __u32 pci_base_addr_hi,
+				             __u32 pci_base_addr_lo,
+				             __u32 other_bus_base_addr,
+				             __u32 size);
+int gt64260_pci_acc_cntl_set_window(__u32 pci_bus,
+			            __u32 window,
+			            __u32 base_addr_hi,
+			            __u32 base_addr_lo,
+			            __u32 size,
+			            __u32 features);
+int gt64260_pci_snoop_set_window(__u32 pci_bus,
+			         __u32 window,
+			         __u32 base_addr_hi,
+			         __u32 base_addr_lo,
+			         __u32 size,
+			         __u32 snoop_type);
+int gt64260_set_base(__u32 new_base);
+int gt64260_get_base(__u32 *base);
+int gt64260_pci_exclude_device(__u8 bus, __u8 devfn);
 
 void gt64260_init_irq(void);
 int gt64260_get_irq(struct pt_regs *regs);

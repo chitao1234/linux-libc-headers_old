@@ -29,12 +29,12 @@
 /*   Created December 28, 2000                                          */
 /* End Change Activity                                                  */
 /************************************************************************/
-extern u8   iSeries_Read_Byte(const volatile void * IoAddress);
-extern u16  iSeries_Read_Word(const volatile void * IoAddress);
-extern u32  iSeries_Read_Long(const volatile void * IoAddress);
-extern void iSeries_Write_Byte(u8  IoData, volatile void * IoAddress);
-extern void iSeries_Write_Word(u16 IoData, volatile void * IoAddress);
-extern void iSeries_Write_Long(u32 IoData, volatile void * IoAddress);
+extern __u8   iSeries_Read_Byte(const volatile void * IoAddress);
+extern __u16  iSeries_Read_Word(const volatile void * IoAddress);
+extern __u32  iSeries_Read_Long(const volatile void * IoAddress);
+extern void iSeries_Write_Byte(__u8  IoData, volatile void * IoAddress);
+extern void iSeries_Write_Word(__u16 IoData, volatile void * IoAddress);
+extern void iSeries_Write_Long(__u32 IoData, volatile void * IoAddress);
 
 extern void iSeries_memset_io(volatile void *dest, char x, size_t n);
 extern void iSeries_memcpy_toio(volatile void *dest, void *source, size_t n);

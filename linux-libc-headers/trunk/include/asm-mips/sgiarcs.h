@@ -164,11 +164,11 @@ enum linux_mountops {
 /* This prom has a bolixed design. */
 struct linux_bigint {
 #ifdef __MIPSEL__
-	u32 lo;
-	s32 hi;
+	__u32 lo;
+	__s32 hi;
 #else /* !(__MIPSEL__) */
-	s32 hi;
-	u32 lo;
+	__s32 hi;
+	__u32 lo;
 #endif
 };
 
@@ -366,7 +366,7 @@ struct linux_smonblock {
  * Macros for calling a 32-bit ARC implementation from 64-bit code
  */
 
-#if defined(CONFIG_MIPS64) && defined(CONFIG_ARC32)
+#if defined(__mips64) && defined(CONFIG_ARC32)
 
 #define __arc_clobbers							\
 	"$2","$3" /* ... */, "$8","$9","$10","$11",			\
@@ -475,10 +475,10 @@ struct linux_smonblock {
 	__res;								\
 })
 
-#endif /* defined(CONFIG_MIPS64) && defined(CONFIG_ARC32) */
+#endif /* defined(__mips64) && defined(CONFIG_ARC32) */
 
-#if (defined(CONFIG_MIPS32) && defined(CONFIG_ARC32)) ||		\
-    (defined(CONFIG_MIPS64) && defined(CONFIG_ARC64))
+#if (!defined(__mips64) && defined(CONFIG_ARC32)) ||		\
+    (defined(__mips64) && defined(CONFIG_ARC64))
 
 #define ARC_CALL0(dest)							\
 ({	long __res;							\

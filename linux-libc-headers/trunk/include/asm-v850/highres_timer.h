@@ -33,8 +33,8 @@
 
 extern void highres_timer_start (void), highres_timer_stop (void);
 extern void highres_timer_reset (void);
-extern void highres_timer_read_ticks (u32 *slow_ticks, u32 *fast_ticks);
-extern void highres_timer_ticks_to_timeval (u32 slow_ticks, u32 fast_ticks,
+extern void highres_timer_read_ticks (__u32 *slow_ticks, __u32 *fast_ticks);
+extern void highres_timer_ticks_to_timeval (__u32 slow_ticks, __u32 fast_ticks,
 					    struct timeval *tv);
 extern void highres_timer_read (struct timeval *tv);
 

@@ -68,7 +68,7 @@
 
 #define _JAZZ_SERIAL_INIT(int, base)					\
 	{ .baud_base = JAZZ_BASE_BAUD, .irq = int, .flags = STD_COM_FLAGS,	\
-	  .iomem_base = (u8 *) base, .iomem_reg_shift = 0,			\
+	  .iomem_base = (__u8 *) base, .iomem_reg_shift = 0,			\
 	  .io_type = SERIAL_IO_MEM }
 #define JAZZ_SERIAL_PORT_DEFNS						\
 	_JAZZ_SERIAL_INIT(JAZZ_SERIAL1_IRQ, JAZZ_SERIAL1_BASE),		\
@@ -310,7 +310,7 @@
 #define _JAGUAR_ATX_SERIAL_INIT(int, base)				\
 	{ baud_base: JAGUAR_ATX_BASE_BAUD, irq: int,			\
 	  flags: (ASYNC_BOOT_AUTOCONF | ASYNC_SKIP_TEST),		\
-	  iomem_base: (u8 *) base, iomem_reg_shift: 2,			\
+	  iomem_base: (__u8 *) base, iomem_reg_shift: 2,			\
 	  io_type: SERIAL_IO_MEM }
 #define MOMENCO_JAGUAR_ATX_SERIAL_PORT_DEFNS				\
 	_JAGUAR_ATX_SERIAL_INIT(JAGUAR_ATX_SERIAL1_IRQ, JAGUAR_ATX_SERIAL1_BASE)
@@ -326,7 +326,7 @@
 #define _OCELOT_3_SERIAL_INIT(int, base)				\
 	{ baud_base: OCELOT_3_BASE_BAUD, irq: int, 			\
 	  flags: STD_COM_FLAGS,						\
-	  iomem_base: (u8 *) base, iomem_reg_shift: 2,			\
+	  iomem_base: (__u8 *) base, iomem_reg_shift: 2,			\
 	  io_type: SERIAL_IO_MEM }
 
 #define MOMENCO_OCELOT_3_SERIAL_PORT_DEFNS				\
@@ -344,7 +344,7 @@
 
 #define _OCELOT_SERIAL_INIT(int, base)					\
 	{ .baud_base = OCELOT_BASE_BAUD, .irq = int, .flags = STD_COM_FLAGS,	\
-	  .iomem_base = (u8 *) base, .iomem_reg_shift = 2,			\
+	  .iomem_base = (__u8 *) base, .iomem_reg_shift = 2,			\
 	  .io_type = SERIAL_IO_MEM }
 #define MOMENCO_OCELOT_SERIAL_PORT_DEFNS				\
 	_OCELOT_SERIAL_INIT(OCELOT_SERIAL1_IRQ, OCELOT_SERIAL1_BASE)
@@ -365,7 +365,7 @@
 
 #define _OCELOT_G_SERIAL_INIT(int, base)				\
 	{ .baud_base = OCELOT_G_BASE_BAUD, .irq = int, .flags = STD_COM_FLAGS,\
-	  .iomem_base = (u8 *) base, .iomem_reg_shift = 2,			\
+	  .iomem_base = (__u8 *) base, .iomem_reg_shift = 2,			\
 	  .io_type = SERIAL_IO_MEM }
 #define MOMENCO_OCELOT_G_SERIAL_PORT_DEFNS				\
 	_OCELOT_G_SERIAL_INIT(OCELOT_G_SERIAL1_IRQ, OCELOT_G_SERIAL1_BASE)
@@ -387,7 +387,7 @@
 	{ .baud_base		= OCELOT_C_BASE_BAUD,			\
 	  .irq			= (int),				\
 	  .flags		= STD_COM_FLAGS,			\
-	  .iomem_base		= (u8 *) base,				\
+	  .iomem_base		= (__u8 *) base,				\
 	  .iomem_reg_shift	= 2,					\
 	  .io_type		= SERIAL_IO_MEM				\
 	 }

@@ -64,7 +64,7 @@
    (((o1)->len == (o2)->len) && \
     (memcmp((o1)->data,(o2)->data,(int) (o1)->len) == 0))
 
-u32 g_verify_token_header(
+__u32 g_verify_token_header(
      struct xdr_netobj *mech,
      int *body_size,
      unsigned char **buf_in,

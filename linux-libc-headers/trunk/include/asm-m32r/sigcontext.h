@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_SIGCONTEXT_H
 #define _ASM_M32R_SIGCONTEXT_H
 
-/* $Id: sigcontext.h,v 1.2 2004/10/22 16:58:47 mmazur Exp $ */
+/* $Id$ */
 
 
 struct sigcontext {

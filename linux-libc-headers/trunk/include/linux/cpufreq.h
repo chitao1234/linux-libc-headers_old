@@ -105,7 +105,7 @@ struct cpufreq_freqs {
 	unsigned int cpu;	/* cpu nr */
 	unsigned int old;
 	unsigned int new;
-	u8 flags;		/* flags of cpufreq_driver, see below. */
+	__u8 flags;		/* flags of cpufreq_driver, see below. */
 };
 
 
@@ -122,13 +122,13 @@ static inline unsigned long cpufreq_scale(unsigned long old, u_int div, u_int mu
 {
 #if BITS_PER_LONG == 32
 
-	u64 result = ((u64) old) * ((u64) mult);
+	__u64 result = ((__u64) old) * ((__u64) mult);
 	do_div(result, div);
 	return (unsigned long) result;
 
 #elif BITS_PER_LONG == 64
 
-	unsigned long result = old * ((u64) mult);
+	unsigned long result = old * ((__u64) mult);
 	result /= div;
 	return result;
 
@@ -180,7 +180,7 @@ struct freq_attr;
 struct cpufreq_driver {
 	struct module           *owner;
 	char			name[CPUFREQ_NAME_LEN];
-	u8			flags;
+	__u8			flags;
 
 	/* needed by all drivers */
 	int	(*init)		(struct cpufreq_policy *policy);

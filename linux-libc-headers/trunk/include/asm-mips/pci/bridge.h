@@ -48,9 +48,9 @@
  * All accesses to bridge hardware registers must be done
  * using 32-bit loads and stores.
  */
-typedef u32	bridgereg_t;
+typedef __u32	bridgereg_t;
 
-typedef u64	bridge_ate_t;
+typedef __u64	bridge_ate_t;
 
 /* pointers to bridge ATEs
  * are always "pointer to volatile"
@@ -199,37 +199,37 @@ typedef volatile struct bridge_s {
 
 	/* PCI Device Configuration Spaces 0x020000-0x027FFF */
 	union {				/* make all access sizes available. */
-		u8	c[0x1000 / 1];
-		u16	s[0x1000 / 2];
-		u32	l[0x1000 / 4];
-		u64	d[0x1000 / 8];
+		__u8	c[0x1000 / 1];
+		__u16	s[0x1000 / 2];
+		__u32	l[0x1000 / 4];
+		__u64	d[0x1000 / 8];
 		union {
-			u8	c[0x100 / 1];
-			u16	s[0x100 / 2];
-			u32	l[0x100 / 4];
-			u64	d[0x100 / 8];
+			__u8	c[0x100 / 1];
+			__u16	s[0x100 / 2];
+			__u32	l[0x100 / 4];
+			__u64	d[0x100 / 8];
 		} f[8];
 	} b_type0_cfg_dev[8];					/* 0x020000 */
 
     /* PCI Type 1 Configuration Space 0x028000-0x028FFF */
 	union {				/* make all access sizes available. */
-		u8	c[0x1000 / 1];
-		u16	s[0x1000 / 2];
-		u32	l[0x1000 / 4];
-		u64	d[0x1000 / 8];
+		__u8	c[0x1000 / 1];
+		__u16	s[0x1000 / 2];
+		__u32	l[0x1000 / 4];
+		__u64	d[0x1000 / 8];
 	} b_type1_cfg;					/* 0x028000-0x029000 */
 
 	char	_pad_029000[0x007000];			/* 0x029000-0x030000 */
 
 	/* PCI Interrupt Acknowledge Cycle 0x030000 */
 	union {
-		u8	c[8 / 1];
-		u16	s[8 / 2];
-		u32	l[8 / 4];
-		u64	d[8 / 8];
+		__u8	c[8 / 1];
+		__u16	s[8 / 2];
+		__u32	l[8 / 4];
+		__u64	d[8 / 8];
 	} b_pci_iack;						/* 0x030000 */
 
-	u8	_pad_030007[0x04fff8];			/* 0x030008-0x07FFFF */
+	__u8	_pad_030007[0x04fff8];			/* 0x030008-0x07FFFF */
 
 	/* External Address Translation Entry RAM 0x080000-0x0FFFFF */
 	bridge_ate_t    b_ext_ate_ram[0x10000];
@@ -239,10 +239,10 @@ typedef volatile struct bridge_s {
 
 	/* PCI/GIO Device Spaces 0x200000-0xBFFFFF */
 	union {				/* make all access sizes available. */
-		u8	c[0x100000 / 1];
-		u16	s[0x100000 / 2];
-		u32	l[0x100000 / 4];
-		u64	d[0x100000 / 8];
+		__u8	c[0x100000 / 1];
+		__u16	s[0x100000 / 2];
+		__u32	l[0x100000 / 4];
+		__u64	d[0x100000 / 8];
 	} b_devio_raw[10];				/* 0x200000 */
 
 	/* b_devio macro is a bit strange; it reflects the
@@ -253,10 +253,10 @@ typedef volatile struct bridge_s {
 
 	/* External Flash Proms 1,0 0xC00000-0xFFFFFF */
 	union {		/* make all access sizes available. */
-		u8	c[0x400000 / 1];	/* read-only */
-		u16	s[0x400000 / 2];	/* read-write */
-		u32	l[0x400000 / 4];	/* read-only */
-		u64	d[0x400000 / 8];	/* read-only */
+		__u8	c[0x400000 / 1];	/* read-only */
+		__u16	s[0x400000 / 2];	/* read-write */
+		__u32	l[0x400000 / 4];	/* read-only */
+		__u64	d[0x400000 / 8];	/* read-only */
 	} b_external_flash;			/* 0xC00000 */
 } bridge_t;
 
@@ -266,9 +266,9 @@ typedef volatile struct bridge_s {
  */
 typedef struct bridge_err_cmdword_s {
 	union {
-		u32		cmd_word;
+		__u32		cmd_word;
 		struct {
-			u32	didn:4,		/* Destination ID */
+			__u32	didn:4,		/* Destination ID */
 				sidn:4,		/* Source ID	  */
 				pactyp:4,	/* Packet type	  */
 				tnum:5,		/* Trans Number	  */
@@ -799,17 +799,17 @@ typedef struct bridge_err_cmdword_s {
 #ifndef __ASSEMBLY__
 /* Address translation entry for mapped pci32 accesses */
 typedef union ate_u {
-	u64	ent;
+	__u64	ent;
 	struct ate_s {
-		u64	rmf:16;
-		u64	addr:36;
-		u64	targ:4;
-		u64	reserved:3;
-		u64	barrier:1;
-		u64	prefetch:1;
-		u64	precise:1;
-		u64	coherent:1;
-		u64	valid:1;
+		__u64	rmf:16;
+		__u64	addr:36;
+		__u64	targ:4;
+		__u64	reserved:3;
+		__u64	barrier:1;
+		__u64	prefetch:1;
+		__u64	precise:1;
+		__u64	coherent:1;
+		__u64	valid:1;
 	} field;
 } ate_t;
 #endif /* !__ASSEMBLY__ */

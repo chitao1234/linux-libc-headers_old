@@ -29,7 +29,7 @@
 
 struct pt_regs;
 
-typedef u8 kprobe_opcode_t;
+typedef __u8 kprobe_opcode_t;
 #define BREAKPOINT_INSTRUCTION	0xcc
 #define MAX_INSN_SIZE 16
 #define MAX_STACK_SIZE 64

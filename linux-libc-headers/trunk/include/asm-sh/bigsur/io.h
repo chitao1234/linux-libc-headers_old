@@ -28,8 +28,8 @@ extern void bigsur_unregister_irq_demux(int irq);
 /* Set this variable to 1 to see port traffic */
 extern int bigsur_io_debug;
 /* Map a range of ports to a range of kernel virtual memory. */
-extern void bigsur_port_map(u32 baseport, u32 nports, u32 addr, u8 shift);
-extern void bigsur_port_unmap(u32 baseport, u32 nports);
+extern void bigsur_port_map(__u32 baseport, __u32 nports, __u32 addr, __u8 shift);
+extern void bigsur_port_unmap(__u32 baseport, __u32 nports);
 
 #endif /* _ASM_SH_IO_BIGSUR_H */
 

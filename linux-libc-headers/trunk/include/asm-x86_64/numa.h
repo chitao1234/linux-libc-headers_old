@@ -5,7 +5,7 @@
 #include <asm/numnodes.h>
 
 struct node { 
-	u64 start,end; 
+	__u64 start,end; 
 };
 
 extern int compute_hash_shift(struct node *nodes, int numnodes);

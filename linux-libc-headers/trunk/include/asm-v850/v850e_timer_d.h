@@ -23,15 +23,15 @@
 
 /* Count registers for timer D.  */
 #define V850E_TIMER_D_TMD_ADDR(n) (V850E_TIMER_D_TMD_BASE_ADDR + 0x10 * (n))
-#define V850E_TIMER_D_TMD(n)	  (*(volatile u16 *)V850E_TIMER_D_TMD_ADDR(n))
+#define V850E_TIMER_D_TMD(n)	  (*(volatile __u16 *)V850E_TIMER_D_TMD_ADDR(n))
 
 /* Count compare registers for timer D.  */
 #define V850E_TIMER_D_CMD_ADDR(n) (V850E_TIMER_D_CMD_BASE_ADDR + 0x10 * (n))
-#define V850E_TIMER_D_CMD(n)	  (*(volatile u16 *)V850E_TIMER_D_CMD_ADDR(n))
+#define V850E_TIMER_D_CMD(n)	  (*(volatile __u16 *)V850E_TIMER_D_CMD_ADDR(n))
 
 /* Control registers for timer D.  */
 #define V850E_TIMER_D_TMCD_ADDR(n) (V850E_TIMER_D_TMCD_BASE_ADDR + 0x10 * (n))
-#define V850E_TIMER_D_TMCD(n)	   (*(volatile u8 *)V850E_TIMER_D_TMCD_ADDR(n))
+#define V850E_TIMER_D_TMCD(n)	   (*(volatile __u8 *)V850E_TIMER_D_TMCD_ADDR(n))
 /* Control bits for timer D.  */
 #define V850E_TIMER_D_TMCD_CE  	   0x2 /* count enable */
 #define V850E_TIMER_D_TMCD_CAE	   0x1 /* clock action enable */

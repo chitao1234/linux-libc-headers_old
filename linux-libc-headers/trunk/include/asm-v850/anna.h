@@ -50,16 +50,16 @@
 
 /* Anna specific control registers.  */
 #define ANNA_ILBEN_ADDR			0xFFFFF7F2
-#define ANNA_ILBEN			(*(volatile u16 *)ANNA_ILBEN_ADDR)
+#define ANNA_ILBEN			(*(volatile __u16 *)ANNA_ILBEN_ADDR)
 
 
 /* I/O port P0-P3. */
 /* Direct I/O.  Bits 0-7 are pins Pn0-Pn7.  */
 #define ANNA_PORT_IO_ADDR(n)		(0xFFFFF400 + (n) * 2)
-#define ANNA_PORT_IO(n)			(*(volatile u8 *)ANNA_PORT_IO_ADDR(n))
+#define ANNA_PORT_IO(n)			(*(volatile __u8 *)ANNA_PORT_IO_ADDR(n))
 /* Port mode (for direct I/O, 0 = output, 1 = input).  */
 #define ANNA_PORT_PM_ADDR(n)		(0xFFFFF410 + (n) * 2)
-#define ANNA_PORT_PM(n)			(*(volatile u8 *)ANNA_PORT_PM_ADDR(n))
+#define ANNA_PORT_PM(n)			(*(volatile __u8 *)ANNA_PORT_PM_ADDR(n))
 
 
 /* Hardware-specific interrupt numbers (in the kernel IRQ namespace).  */

@@ -10,7 +10,7 @@ struct lm_driver {
 	struct device_driver	drv;
 	int			(*probe)(struct lm_device *);
 	void			(*remove)(struct lm_device *);
-	int			(*suspend)(struct lm_device *, u32);
+	int			(*suspend)(struct lm_device *, __u32);
 	int			(*resume)(struct lm_device *);
 };
 

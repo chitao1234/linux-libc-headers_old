@@ -46,13 +46,13 @@ struct ItExtVpdPanel
   char                      somUniqueCnt[4];
   char                      serialNumberCount;
   char                      reserved2[7];
-  u16                       bbu3;
-  u16                       bbu2;
-  u16                       bbu1;
+  __u16                       bbu3;
+  __u16                       bbu2;
+  __u16                       bbu1;
   char                      xLocationLabel[8];
-  u8                        xRsvd1[6];
-  u16                       xFrameId;
-  u8                        xRsvd2[48];
+  __u8                        xRsvd1[6];
+  __u16                       xFrameId;
+  __u8                        xRsvd2[48];
 };
 
 #endif /* _ITEXTVPDPANEL_H  */

@@ -47,44 +47,44 @@
 
 /* AS85EP1 specific control registers.  */
 #define AS85EP1_CSC_ADDR(n)	(0xFFFFF060 + (n) * 2)
-#define AS85EP1_CSC(n)		(*(volatile u16 *)AS85EP1_CSC_ADDR(n))
+#define AS85EP1_CSC(n)		(*(volatile __u16 *)AS85EP1_CSC_ADDR(n))
 #define AS85EP1_BSC_ADDR	0xFFFFF066
-#define AS85EP1_BSC		(*(volatile u16 *)AS85EP1_BSC_ADDR)
+#define AS85EP1_BSC		(*(volatile __u16 *)AS85EP1_BSC_ADDR)
 #define AS85EP1_BCT_ADDR(n)	(0xFFFFF480 + (n) * 2)
-#define AS85EP1_BCT(n)		(*(volatile u16 *)AS85EP1_BCT_ADDR(n))
+#define AS85EP1_BCT(n)		(*(volatile __u16 *)AS85EP1_BCT_ADDR(n))
 #define AS85EP1_DWC_ADDR(n)	(0xFFFFF484 + (n) * 2)
-#define AS85EP1_DWC(n)		(*(volatile u16 *)AS85EP1_DWC_ADDR(n))
+#define AS85EP1_DWC(n)		(*(volatile __u16 *)AS85EP1_DWC_ADDR(n))
 #define AS85EP1_BCC_ADDR	0xFFFFF488
-#define AS85EP1_BCC		(*(volatile u16 *)AS85EP1_BCC_ADDR)
+#define AS85EP1_BCC		(*(volatile __u16 *)AS85EP1_BCC_ADDR)
 #define AS85EP1_ASC_ADDR	0xFFFFF48A
-#define AS85EP1_ASC		(*(volatile u16 *)AS85EP1_ASC_ADDR)
+#define AS85EP1_ASC		(*(volatile __u16 *)AS85EP1_ASC_ADDR)
 #define AS85EP1_BCP_ADDR	0xFFFFF48C
-#define AS85EP1_BCP		(*(volatile u16 *)AS85EP1_BCP_ADDR)
+#define AS85EP1_BCP		(*(volatile __u16 *)AS85EP1_BCP_ADDR)
 #define AS85EP1_LBS_ADDR	0xFFFFF48E
-#define AS85EP1_LBS		(*(volatile u16 *)AS85EP1_LBS_ADDR)
+#define AS85EP1_LBS		(*(volatile __u16 *)AS85EP1_LBS_ADDR)
 #define AS85EP1_BMC_ADDR	0xFFFFF498
-#define AS85EP1_BMC		(*(volatile u16 *)AS85EP1_BMC_ADDR)
+#define AS85EP1_BMC		(*(volatile __u16 *)AS85EP1_BMC_ADDR)
 #define AS85EP1_PRC_ADDR	0xFFFFF49A
-#define AS85EP1_PRC		(*(volatile u16 *)AS85EP1_PRC_ADDR)
+#define AS85EP1_PRC		(*(volatile __u16 *)AS85EP1_PRC_ADDR)
 #define AS85EP1_SCR_ADDR(n)	(0xFFFFF4A0 + (n) * 4)
-#define AS85EP1_SCR(n)		(*(volatile u16 *)AS85EP1_SCR_ADDR(n))
+#define AS85EP1_SCR(n)		(*(volatile __u16 *)AS85EP1_SCR_ADDR(n))
 #define AS85EP1_RFS_ADDR(n)	(0xFFFFF4A2 + (n) * 4)
-#define AS85EP1_RFS(n)		(*(volatile u16 *)AS85EP1_RFS_ADDR(n))
+#define AS85EP1_RFS(n)		(*(volatile __u16 *)AS85EP1_RFS_ADDR(n))
 #define AS85EP1_IRAMM_ADDR	0xFFFFF80A
-#define AS85EP1_IRAMM		(*(volatile u8 *)AS85EP1_IRAMM_ADDR)
+#define AS85EP1_IRAMM		(*(volatile __u8 *)AS85EP1_IRAMM_ADDR)
 
 
 
 /* I/O port P0-P13. */
 /* Direct I/O.  Bits 0-7 are pins Pn0-Pn7.  */
 #define AS85EP1_PORT_IO_ADDR(n)	(0xFFFFF400 + (n) * 2)
-#define AS85EP1_PORT_IO(n)	(*(volatile u8 *)AS85EP1_PORT_IO_ADDR(n))
+#define AS85EP1_PORT_IO(n)	(*(volatile __u8 *)AS85EP1_PORT_IO_ADDR(n))
 /* Port mode (for direct I/O, 0 = output, 1 = input).  */
 #define AS85EP1_PORT_PM_ADDR(n)	(0xFFFFF420 + (n) * 2)
-#define AS85EP1_PORT_PM(n)	(*(volatile u8 *)AS85EP1_PORT_PM_ADDR(n))
+#define AS85EP1_PORT_PM(n)	(*(volatile __u8 *)AS85EP1_PORT_PM_ADDR(n))
 /* Port mode control (0 = direct I/O mode, 1 = alternative I/O mode).  */
 #define AS85EP1_PORT_PMC_ADDR(n) (0xFFFFF440 + (n) * 2)
-#define AS85EP1_PORT_PMC(n)	(*(volatile u8 *)AS85EP1_PORT_PMC_ADDR(n))
+#define AS85EP1_PORT_PMC(n)	(*(volatile __u8 *)AS85EP1_PORT_PMC_ADDR(n))
 
 
 /* Hardware-specific interrupt numbers (in the kernel IRQ namespace).  */

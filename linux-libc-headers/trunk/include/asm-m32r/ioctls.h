@@ -1,7 +1,7 @@
 #ifndef __ARCH_M32R_IOCTLS_H__
 #define __ARCH_M32R_IOCTLS_H__
 
-/* $Id: ioctls.h,v 1.1 2004/10/21 15:15:37 mmazur Exp $ */
+/* $Id$ */
 
 /* orig : i386 2.5.67 */
 

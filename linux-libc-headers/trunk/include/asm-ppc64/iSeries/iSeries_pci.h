@@ -91,12 +91,12 @@ struct iSeries_Device_Node {
 	int             ReturnCode;	/* Return Code Holder          */
 	int             IoRetry;        /* Current Retry Count         */
 	int             Flags;          /* Possible flags(disable/bist)*/
-	u16             Vendor;         /* Vendor ID                   */
-	u8              LogicalSlot;    /* Hv Slot Index for Tces      */
+	__u16             Vendor;         /* Vendor ID                   */
+	__u8              LogicalSlot;    /* Hv Slot Index for Tces      */
 	struct iommu_table* iommu_table;/* Device TCE Table            */ 
-	u8              PhbId;          /* Phb Card is on.             */
-	u16             Board;          /* Board Number                */
-	u8              FrameId;	/* iSeries spcn Frame Id       */
+	__u8              PhbId;          /* Phb Card is on.             */
+	__u16             Board;          /* Board Number                */
+	__u8              FrameId;	/* iSeries spcn Frame Id       */
 	char            CardLocation[4];/* Char format of planar vpd   */
 	char            Location[20];   /* Frame  1, Card C10          */
 };

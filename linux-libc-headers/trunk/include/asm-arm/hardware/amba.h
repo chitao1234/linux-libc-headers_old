@@ -15,7 +15,7 @@
 struct amba_device {
 	struct device		dev;
 	struct resource		res;
-	u64			dma_mask;
+	__u64			dma_mask;
 	unsigned int		periphid;
 	unsigned int		irq[AMBA_NR_IRQS];
 };
@@ -31,7 +31,7 @@ struct amba_driver {
 	int			(*probe)(struct amba_device *, void *);
 	int			(*remove)(struct amba_device *);
 	void			(*shutdown)(struct amba_device *);
-	int			(*suspend)(struct amba_device *, u32);
+	int			(*suspend)(struct amba_device *, __u32);
 	int			(*resume)(struct amba_device *);
 	struct amba_id		*id_table;
 };

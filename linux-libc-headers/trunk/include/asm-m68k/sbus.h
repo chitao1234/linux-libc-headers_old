@@ -12,7 +12,7 @@ struct sbus_dev {
 	} reg_addrs[1];
 };
 
-extern void *sparc_alloc_io (u32, void *, int, char *, u32, int);
+extern void *sparc_alloc_io (__u32, void *, int, char *, __u32, int);
 #define sparc_alloc_io(a,b,c,d,e,f)	(a)
 
 #define ARCH_SUN4  0

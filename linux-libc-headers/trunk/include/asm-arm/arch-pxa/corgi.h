@@ -142,7 +142,7 @@ extern unsigned long corgi_ssp_ads7846_get(void);
 extern void corgi_ssp_ads7846_put(ulong data);
 extern void corgi_ssp_ads7846_lock(void);
 extern void corgi_ssp_ads7846_unlock(void);
-extern void corgi_ssp_lcdtg_send (u8 adrs, u8 data);
+extern void corgi_ssp_lcdtg_send (__u8 adrs, __u8 data);
 extern void corgi_ssp_blduty_set(int duty);
 extern int corgi_ssp_max1111_get(ulong data);
 

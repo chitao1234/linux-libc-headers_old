@@ -3,7 +3,7 @@
 
 #ifndef __ASSEMBLY__
 
-/* $Id: types.h,v 1.2 2004/10/21 16:04:54 mmazur Exp $ */
+/* $Id$ */
 
 /* orig : i386 2.4.18 */
 

@@ -62,8 +62,8 @@
 #define AS_SHIFT		(pda->as_shift)
 #define AS_BITMASK		0x3UL
 
-#define NASID_MASK              ((u64)NASID_BITMASK << NASID_SHIFT)
-#define AS_MASK			((u64)AS_BITMASK << AS_SHIFT)
+#define NASID_MASK              ((__u64)NASID_BITMASK << NASID_SHIFT)
+#define AS_MASK			((__u64)AS_BITMASK << AS_SHIFT)
 #define REGION_BITS		0xe000000000000000UL
 
 
@@ -115,16 +115,16 @@
 /*
  * Misc NASID manipulation.
  */
-#define NASID_SPACE(n)		((u64)(n) << NASID_SHIFT)
+#define NASID_SPACE(n)		((__u64)(n) << NASID_SHIFT)
 #define REMOTE_ADDR(n,a)	(NASID_SPACE(n) | (a))
 #define NODE_OFFSET(x)		((x) & (NODE_ADDRSPACE_SIZE - 1))
 #define NODE_ADDRSPACE_SIZE     (1UL << AS_SHIFT)
-#define NASID_GET(x)		(int) (((u64) (x) >> NASID_SHIFT) & NASID_BITMASK)
+#define NASID_GET(x)		(int) (((__u64) (x) >> NASID_SHIFT) & NASID_BITMASK)
 #define LOCAL_MMR_ADDR(a)	(LOCAL_MMR_SPACE | (a))
 #define GLOBAL_MMR_ADDR(n,a)	(GLOBAL_MMR_SPACE | REMOTE_ADDR(n,a))
 #define GLOBAL_MMR_PHYS_ADDR(n,a) (GLOBAL_PHYS_MMR_SPACE | REMOTE_ADDR(n,a))
 #define GLOBAL_CAC_ADDR(n,a)	(CAC_BASE | REMOTE_ADDR(n,a))
-#define CHANGE_NASID(n,x)	((void *)(((u64)(x) & ~NASID_MASK) | NASID_SPACE(n)))
+#define CHANGE_NASID(n,x)	((void *)(((__u64)(x) & ~NASID_MASK) | NASID_SPACE(n)))
 
 
 /* non-II mmr's start at top of big window space (4G) */
@@ -154,8 +154,8 @@
  *           to insert a chiplet id into this macro.  However, it is our belief
  *           right now that this chiplet id will be ICE, which is also zero.
  */
-#define PHYS_TO_TIODMA(x)	( (((u64)(x) & NASID_MASK) << 2) | NODE_OFFSET(x))
-#define PHYS_TO_DMA(x)          ( (((u64)(x) & NASID_MASK) >> 2) | NODE_OFFSET(x))
+#define PHYS_TO_TIODMA(x)	( (((__u64)(x) & NASID_MASK) << 2) | NODE_OFFSET(x))
+#define PHYS_TO_DMA(x)          ( (((__u64)(x) & NASID_MASK) >> 2) | NODE_OFFSET(x))
 
 
 /*
@@ -170,8 +170,8 @@
 #define NODE_IO_BASE(n)			(GLOBAL_MMR_SPACE | NASID_SPACE(n))
 #define BWIN_SIZE			(1UL << BWIN_SIZE_BITS)
 #define NODE_BWIN_BASE0(n)		(NODE_IO_BASE(n) + BWIN_SIZE)
-#define NODE_BWIN_BASE(n, w)		(NODE_BWIN_BASE0(n) + ((u64) (w) << BWIN_SIZE_BITS))
-#define RAW_NODE_SWIN_BASE(n, w)	(NODE_IO_BASE(n) + ((u64) (w) << SWIN_SIZE_BITS))
+#define NODE_BWIN_BASE(n, w)		(NODE_BWIN_BASE0(n) + ((__u64) (w) << BWIN_SIZE_BITS))
+#define RAW_NODE_SWIN_BASE(n, w)	(NODE_IO_BASE(n) + ((__u64) (w) << SWIN_SIZE_BITS))
 #define BWIN_WIDGET_MASK		0x7
 #define BWIN_WINDOWNUM(x)		(((x) >> BWIN_SIZE_BITS) & BWIN_WIDGET_MASK)
 
@@ -220,10 +220,10 @@
 #define REMOTE_HUB_ADDR(n,x)						\
 	((n & 1) ?							\
 	/* TIO: */							\
-	((volatile u64 *)(GLOBAL_MMR_ADDR(n,x)))			\
+	((volatile __u64 *)(GLOBAL_MMR_ADDR(n,x)))			\
 	: /* SHUB: */							\
-	(((x) & BWIN_TOP) ? ((volatile u64 *)(GLOBAL_MMR_ADDR(n,x)))\
-	: ((volatile u64 *)(NODE_SWIN_BASE(n,1) + 0x800000 + (x)))))
+	(((x) & BWIN_TOP) ? ((volatile __u64 *)(GLOBAL_MMR_ADDR(n,x)))\
+	: ((volatile __u64 *)(NODE_SWIN_BASE(n,1) + 0x800000 + (x)))))
 
 
 

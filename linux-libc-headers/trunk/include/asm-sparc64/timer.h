@@ -35,10 +35,10 @@
  * the sun5_timer registers are.  The other two I have no idea. (XXX)
  */
 struct sun5_timer {
-	u64	count0;
-	u64	limit0;
-	u64	count1;
-	u64	limit1;
+	__u64	count0;
+	__u64	limit0;
+	__u64	count1;
+	__u64	limit1;
 };
 
 #define SUN5_LIMIT_ENABLE	0x80000000

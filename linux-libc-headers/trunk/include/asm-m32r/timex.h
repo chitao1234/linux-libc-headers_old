@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_TIMEX_H
 #define _ASM_M32R_TIMEX_H
 
-/* $Id: timex.h,v 1.3 2004/10/22 16:58:47 mmazur Exp $ */
+/* $Id$ */
 
 /*
  * linux/include/asm-m32r/timex.h

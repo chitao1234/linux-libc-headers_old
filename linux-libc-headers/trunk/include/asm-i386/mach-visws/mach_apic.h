@@ -92,7 +92,7 @@ static inline unsigned int cpu_mask_to_apicid(cpumask_t cpumask)
 	return cpus_addr(cpumask)[0];
 }
 
-static inline u32 phys_pkg_id(u32 cpuid_apic, int index_msb)
+static inline __u32 phys_pkg_id(__u32 cpuid_apic, int index_msb)
 {
 	return cpuid_apic >> index_msb;
 }

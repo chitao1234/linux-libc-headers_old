@@ -5,135 +5,135 @@
  * Data for el packet class PAL (14), type LOGOUT_FRAME (1)
  */
 struct ev7_pal_logout_subpacket {
-	u32 mchk_code;
-	u32 subpacket_count;
-	u64 whami;
-	u64 rbox_whami;
-	u64 rbox_int;
-	u64 exc_addr;
+	__u32 mchk_code;
+	__u32 subpacket_count;
+	__u64 whami;
+	__u64 rbox_whami;
+	__u64 rbox_int;
+	__u64 exc_addr;
 	union el_timestamp timestamp;
-	u64 halt_code;
-	u64 reserved;
+	__u64 halt_code;
+	__u64 reserved;
 };
 
 /*
  * Data for el packet class PAL (14), type EV7_PROCESSOR (4)
  */
 struct ev7_pal_processor_subpacket {
-	u64 i_stat;
-	u64 dc_stat;
-	u64 c_addr;
-	u64 c_syndrome_1;
-	u64 c_syndrome_0;
-	u64 c_stat;
-	u64 c_sts;
-	u64 mm_stat;
-	u64 exc_addr;
-	u64 ier_cm;
-	u64 isum;
-	u64 pal_base;
-	u64 i_ctl;
-	u64 process_context;
-	u64 cbox_ctl;
-	u64 cbox_stp_ctl;
-	u64 cbox_acc_ctl;
-	u64 cbox_lcl_set;
-	u64 cbox_gbl_set;
-	u64 bbox_ctl;
-	u64 bbox_err_sts;
-	u64 bbox_err_idx;
-	u64 cbox_ddp_err_sts;
-	u64 bbox_dat_rmp;
-	u64 reserved[2];
+	__u64 i_stat;
+	__u64 dc_stat;
+	__u64 c_addr;
+	__u64 c_syndrome_1;
+	__u64 c_syndrome_0;
+	__u64 c_stat;
+	__u64 c_sts;
+	__u64 mm_stat;
+	__u64 exc_addr;
+	__u64 ier_cm;
+	__u64 isum;
+	__u64 pal_base;
+	__u64 i_ctl;
+	__u64 process_context;
+	__u64 cbox_ctl;
+	__u64 cbox_stp_ctl;
+	__u64 cbox_acc_ctl;
+	__u64 cbox_lcl_set;
+	__u64 cbox_gbl_set;
+	__u64 bbox_ctl;
+	__u64 bbox_err_sts;
+	__u64 bbox_err_idx;
+	__u64 cbox_ddp_err_sts;
+	__u64 bbox_dat_rmp;
+	__u64 reserved[2];
 };
 
 /*
  * Data for el packet class PAL (14), type EV7_ZBOX (5)
  */
 struct ev7_pal_zbox_subpacket {
-	u32 zbox0_dram_err_status_1;
-	u32 zbox0_dram_err_status_2;
-	u32 zbox0_dram_err_status_3;
-	u32 zbox0_dram_err_ctl;
-	u32 zbox0_dram_err_adr;
-	u32 zbox0_dift_timeout;
-	u32 zbox0_dram_mapper_ctl;
-	u32 zbox0_frc_err_adr;
-	u32 zbox0_dift_err_status;
-	u32 reserved1;
-	u32 zbox1_dram_err_status_1;
-	u32 zbox1_dram_err_status_2;
-	u32 zbox1_dram_err_status_3;
-	u32 zbox1_dram_err_ctl;
-	u32 zbox1_dram_err_adr;
-	u32 zbox1_dift_timeout;
-	u32 zbox1_dram_mapper_ctl;
-	u32 zbox1_frc_err_adr;
-	u32 zbox1_dift_err_status;
-	u32 reserved2;
-	u64 cbox_ctl;
-	u64 cbox_stp_ctl;
-	u64 zbox0_error_pa;
-	u64 zbox1_error_pa;
-	u64 zbox0_ored_syndrome;
-	u64 zbox1_ored_syndrome;
-	u64 reserved3[2];
+	__u32 zbox0_dram_err_status_1;
+	__u32 zbox0_dram_err_status_2;
+	__u32 zbox0_dram_err_status_3;
+	__u32 zbox0_dram_err_ctl;
+	__u32 zbox0_dram_err_adr;
+	__u32 zbox0_dift_timeout;
+	__u32 zbox0_dram_mapper_ctl;
+	__u32 zbox0_frc_err_adr;
+	__u32 zbox0_dift_err_status;
+	__u32 reserved1;
+	__u32 zbox1_dram_err_status_1;
+	__u32 zbox1_dram_err_status_2;
+	__u32 zbox1_dram_err_status_3;
+	__u32 zbox1_dram_err_ctl;
+	__u32 zbox1_dram_err_adr;
+	__u32 zbox1_dift_timeout;
+	__u32 zbox1_dram_mapper_ctl;
+	__u32 zbox1_frc_err_adr;
+	__u32 zbox1_dift_err_status;
+	__u32 reserved2;
+	__u64 cbox_ctl;
+	__u64 cbox_stp_ctl;
+	__u64 zbox0_error_pa;
+	__u64 zbox1_error_pa;
+	__u64 zbox0_ored_syndrome;
+	__u64 zbox1_ored_syndrome;
+	__u64 reserved3[2];
 };
 
 /*
  * Data for el packet class PAL (14), type EV7_RBOX (6)
  */
 struct ev7_pal_rbox_subpacket {
-	u64 rbox_cfg;
-	u64 rbox_n_cfg;
-	u64 rbox_s_cfg;
-	u64 rbox_e_cfg;
-	u64 rbox_w_cfg;
-	u64 rbox_n_err;
-	u64 rbox_s_err;
-	u64 rbox_e_err;
-	u64 rbox_w_err;
-	u64 rbox_io_cfg;
-	u64 rbox_io_err;
-	u64 rbox_l_err;
-	u64 rbox_whoami;
-	u64 rbox_imask;
-	u64 rbox_intq;
-	u64 rbox_int;
-	u64 reserved[2];
+	__u64 rbox_cfg;
+	__u64 rbox_n_cfg;
+	__u64 rbox_s_cfg;
+	__u64 rbox_e_cfg;
+	__u64 rbox_w_cfg;
+	__u64 rbox_n_err;
+	__u64 rbox_s_err;
+	__u64 rbox_e_err;
+	__u64 rbox_w_err;
+	__u64 rbox_io_cfg;
+	__u64 rbox_io_err;
+	__u64 rbox_l_err;
+	__u64 rbox_whoami;
+	__u64 rbox_imask;
+	__u64 rbox_intq;
+	__u64 rbox_int;
+	__u64 reserved[2];
 };
 
 /*
  * Data for el packet class PAL (14), type EV7_IO (7)
  */
 struct ev7_pal_io_one_port {
-	u64 pox_err_sum;
-	u64 pox_tlb_err;
-	u64 pox_spl_cmplt;
-	u64 pox_trans_sum;
-	u64 pox_first_err;
-	u64 pox_mult_err;
-	u64 pox_dm_source;
-	u64 pox_dm_dest;
-	u64 pox_dm_size;
-	u64 pox_dm_ctrl;
-	u64 reserved;
+	__u64 pox_err_sum;
+	__u64 pox_tlb_err;
+	__u64 pox_spl_cmplt;
+	__u64 pox_trans_sum;
+	__u64 pox_first_err;
+	__u64 pox_mult_err;
+	__u64 pox_dm_source;
+	__u64 pox_dm_dest;
+	__u64 pox_dm_size;
+	__u64 pox_dm_ctrl;
+	__u64 reserved;
 };
 
 struct ev7_pal_io_subpacket {
-	u64 io_asic_rev;
-	u64 io_sys_rev;
-	u64 io7_uph;
-	u64 hpi_ctl;
-	u64 crd_ctl;
-	u64 hei_ctl;
-	u64 po7_error_sum;
-	u64 po7_uncrr_sym;
-	u64 po7_crrct_sym;
-	u64 po7_ugbge_sym;
-	u64 po7_err_pkt0;
-	u64 po7_err_pkt1;
-	u64 reserved[2];
+	__u64 io_asic_rev;
+	__u64 io_sys_rev;
+	__u64 io7_uph;
+	__u64 hpi_ctl;
+	__u64 crd_ctl;
+	__u64 hei_ctl;
+	__u64 po7_error_sum;
+	__u64 po7_uncrr_sym;
+	__u64 po7_crrct_sym;
+	__u64 po7_ugbge_sym;
+	__u64 po7_err_pkt0;
+	__u64 po7_err_pkt1;
+	__u64 reserved[2];
 	struct ev7_pal_io_one_port ports[4];
 };
 
@@ -148,13 +148,13 @@ struct ev7_pal_io_subpacket {
  *	   class PAL (14), type HOT_PLUG (16)
  */
 struct ev7_pal_environmental_subpacket {
-	u16 cabinet;
-	u16 drawer;
-	u16 reserved1[2];
-	u8 module_type;
-	u8 unit_id;		/* unit reporting condition */
-	u8 reserved2;
-	u8 condition;		/* condition reported       */
+	__u16 cabinet;
+	__u16 drawer;
+	__u16 reserved1[2];
+	__u8 module_type;
+	__u8 unit_id;		/* unit reporting condition */
+	__u8 reserved2;
+	__u8 condition;		/* condition reported       */
 };
 
 /*
@@ -179,7 +179,7 @@ struct ev7_pal_subpacket {
 		struct ev7_pal_rbox_subpacket rbox;	     /* Type     6 */
 		struct ev7_pal_io_subpacket io;		     /* Type     7 */
 		struct ev7_pal_environmental_subpacket env;  /* Type 10-16 */
-		u64 as_quad[1];				     /* Raw u64    */
+		__u64 as_quad[1];				     /* Raw __u64    */
 	} by_type;
 };
 

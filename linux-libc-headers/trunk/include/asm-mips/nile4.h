@@ -202,45 +202,45 @@
 
 static inline void nile4_sync(void)
 {
-    volatile u32 *p = (volatile u32 *)0xbfc00000;
+    volatile __u32 *p = (volatile __u32 *)0xbfc00000;
     (void)(*p);
 }
 
-static inline void nile4_out32(u32 offset, u32 val)
+static inline void nile4_out32(__u32 offset, __u32 val)
 {
-    *(volatile u32 *)(NILE4_BASE+offset) = val;
+    *(volatile __u32 *)(NILE4_BASE+offset) = val;
     nile4_sync();
 }
 
-static inline u32 nile4_in32(u32 offset)
+static inline __u32 nile4_in32(__u32 offset)
 {
-    u32 val = *(volatile u32 *)(NILE4_BASE+offset);
-    nile4_sync();
-    return val;
-}
-
-static inline void nile4_out16(u32 offset, u16 val)
-{
-    *(volatile u16 *)(NILE4_BASE+offset) = val;
-    nile4_sync();
-}
-
-static inline u16 nile4_in16(u32 offset)
-{
-    u16 val = *(volatile u16 *)(NILE4_BASE+offset);
+    __u32 val = *(volatile __u32 *)(NILE4_BASE+offset);
     nile4_sync();
     return val;
 }
 
-static inline void nile4_out8(u32 offset, u8 val)
+static inline void nile4_out16(__u32 offset, __u16 val)
 {
-    *(volatile u8 *)(NILE4_BASE+offset) = val;
+    *(volatile __u16 *)(NILE4_BASE+offset) = val;
     nile4_sync();
 }
 
-static inline u8 nile4_in8(u32 offset)
+static inline __u16 nile4_in16(__u32 offset)
 {
-    u8 val = *(volatile u8 *)(NILE4_BASE+offset);
+    __u16 val = *(volatile __u16 *)(NILE4_BASE+offset);
+    nile4_sync();
+    return val;
+}
+
+static inline void nile4_out8(__u32 offset, __u8 val)
+{
+    *(volatile __u8 *)(NILE4_BASE+offset) = val;
+    nile4_sync();
+}
+
+static inline __u8 nile4_in8(__u32 offset)
+{
+    __u8 val = *(volatile __u8 *)(NILE4_BASE+offset);
     nile4_sync();
     return val;
 }
@@ -250,7 +250,7 @@ static inline u8 nile4_in8(u32 offset)
      *  Physical Device Address Registers
      */
 
-extern void nile4_set_pdar(u32 pdar, u32 phys, u32 size, int width,
+extern void nile4_set_pdar(__u32 pdar, __u32 phys, __u32 size, int width,
 			   int on_memory_bus, int visible);
 
 
@@ -276,7 +276,7 @@ extern void nile4_set_pdar(u32 pdar, u32 phys, u32 size, int width,
 #define NILE4_PCI_IACK_BASE	NILE4_PCI_IO_BASE
 
 
-extern void nile4_set_pmr(u32 pmr, u32 type, u32 addr);
+extern void nile4_set_pmr(__u32 pmr, __u32 type, __u32 addr);
 
 
     /*
@@ -296,14 +296,14 @@ extern void nile4_map_irq_all(int cpu_irq);
 extern void nile4_enable_irq(unsigned int nile4_irq);
 extern void nile4_disable_irq(unsigned int nile4_irq);
 extern void nile4_disable_irq_all(void);
-extern u16 nile4_get_irq_stat(int cpu_irq);
+extern __u16 nile4_get_irq_stat(int cpu_irq);
 extern void nile4_enable_irq_output(int cpu_irq);
 extern void nile4_disable_irq_output(int cpu_irq);
 extern void nile4_set_pci_irq_polarity(int pci_irq, int high);
 extern void nile4_set_pci_irq_level_or_edge(int pci_irq, int level);
 extern void nile4_clear_irq(int nile4_irq);
-extern void nile4_clear_irq_mask(u32 mask);
-extern u8 nile4_i8259_iack(void);
+extern void nile4_clear_irq_mask(__u32 mask);
+extern __u8 nile4_i8259_iack(void);
 extern void nile4_dump_irq_status(void);	/* Debug */
 
 #endif

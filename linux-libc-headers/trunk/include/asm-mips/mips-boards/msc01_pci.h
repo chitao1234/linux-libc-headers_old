@@ -212,8 +212,8 @@ extern unsigned long _pcictrl_msc;
 
 #define MSC01_PCI_REG_BASE	_pcictrl_msc
 
-#define MSC_WRITE(reg, data)	do { *(volatile u32 *)(reg) = data; } while (0)
-#define MSC_READ(reg, data)	do { data = *(volatile u32 *)(reg); } while (0)
+#define MSC_WRITE(reg, data)	do { *(volatile __u32 *)(reg) = data; } while (0)
+#define MSC_READ(reg, data)	do { data = *(volatile __u32 *)(reg); } while (0)
 
 /*
  * Registers absolute addresses

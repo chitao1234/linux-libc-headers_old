@@ -27,17 +27,17 @@
 
 /* Control registers.  */
 #define GBUS_INT_STATUS_ADDR(w)	(GBUS_INT_BASE_ADDR + (w)*0x40)
-#define GBUS_INT_STATUS(w)	(*(volatile u16 *)GBUS_INT_STATUS_ADDR(w))
+#define GBUS_INT_STATUS(w)	(*(volatile __u16 *)GBUS_INT_STATUS_ADDR(w))
 #define GBUS_INT_CLEAR_ADDR(w)	(GBUS_INT_BASE_ADDR + 0x10 + (w)*0x40)
-#define GBUS_INT_CLEAR(w)	(*(volatile u16 *)GBUS_INT_CLEAR_ADDR(w))
+#define GBUS_INT_CLEAR(w)	(*(volatile __u16 *)GBUS_INT_CLEAR_ADDR(w))
 #define GBUS_INT_EDGE_ADDR(w)	(GBUS_INT_BASE_ADDR + 0x20 + (w)*0x40)
-#define GBUS_INT_EDGE(w)	(*(volatile u16 *)GBUS_INT_EDGE_ADDR(w))
+#define GBUS_INT_EDGE(w)	(*(volatile __u16 *)GBUS_INT_EDGE_ADDR(w))
 #define GBUS_INT_POLARITY_ADDR(w)	(GBUS_INT_BASE_ADDR + 0x30 + (w)*0x40)
-#define GBUS_INT_POLARITY(w)	(*(volatile u16 *)GBUS_INT_POLARITY_ADDR(w))
+#define GBUS_INT_POLARITY(w)	(*(volatile __u16 *)GBUS_INT_POLARITY_ADDR(w))
 /* This allows enabling interrupt bits in word W for interrupt GINTn.  */
 #define GBUS_INT_ENABLE_ADDR(w, n) \
    (GBUS_INT_BASE_ADDR + 0x100 + (w)*0x10 + (n)*0x20)
-#define GBUS_INT_ENABLE(w, n)	(*(volatile u16 *)GBUS_INT_ENABLE_ADDR(w, n))
+#define GBUS_INT_ENABLE(w, n)	(*(volatile __u16 *)GBUS_INT_ENABLE_ADDR(w, n))
 
 /* Mapping between kernel interrupt numbers and hardware control regs/bits.  */
 #define GBUS_INT_BITS_PER_WORD	16

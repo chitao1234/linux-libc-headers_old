@@ -36,7 +36,7 @@ struct rpc_clnt {
 	atomic_t		cl_users;	/* number of references */
 	struct rpc_xprt *	cl_xprt;	/* transport */
 	struct rpc_procinfo *	cl_procinfo;	/* procedure info */
-	u32			cl_maxproc;	/* max procedure number */
+	__u32			cl_maxproc;	/* max procedure number */
 
 	char *			cl_server;	/* server machine name */
 	char *			cl_protname;	/* protocol name */
@@ -75,7 +75,7 @@ struct rpc_clnt {
 #define RPC_MAXVERSION		4
 struct rpc_program {
 	char *			name;		/* protocol name */
-	u32			number;		/* program number */
+	__u32			number;		/* program number */
 	unsigned int		nrvers;		/* number of versions */
 	struct rpc_version **	version;	/* version array */
 	struct rpc_stat *	stats;		/* statistics */
@@ -83,7 +83,7 @@ struct rpc_program {
 };
 
 struct rpc_version {
-	u32			number;		/* version number */
+	__u32			number;		/* version number */
 	unsigned int		nrprocs;	/* number of procs */
 	struct rpc_procinfo *	procs;		/* procedure array */
 };
@@ -92,7 +92,7 @@ struct rpc_version {
  * Procedure information
  */
 struct rpc_procinfo {
-	u32			p_proc;		/* RPC procedure number */
+	__u32			p_proc;		/* RPC procedure number */
 	kxdrproc_t		p_encode;	/* XDR encode function */
 	kxdrproc_t		p_decode;	/* XDR decode function */
 	unsigned int		p_bufsiz;	/* req. buffer size */

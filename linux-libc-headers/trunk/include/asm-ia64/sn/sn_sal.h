@@ -214,7 +214,7 @@ ia64_sn_get_klconfig_addr(nasid_t nasid)
 	ret_stuff.v0 = 0;
 	ret_stuff.v1 = 0;
 	ret_stuff.v2 = 0;
-	SAL_CALL(ret_stuff, SN_SAL_GET_KLCONFIG_ADDR, (u64)nasid, 0, 0, 0, 0, 0, 0);
+	SAL_CALL(ret_stuff, SN_SAL_GET_KLCONFIG_ADDR, (__u64)nasid, 0, 0, 0, 0, 0, 0);
 
 	/*
 	 * We should panic if a valid cnode nasid does not produce
@@ -300,7 +300,7 @@ ia64_sn_console_putb(const char *buf, int len)
 	if ( ret_stuff.status == 0 ) {
 		return ret_stuff.v0;
 	}
-	return (u64)0;
+	return (__u64)0;
 }
 
 /*
@@ -502,16 +502,16 @@ ia64_sn_probe_mem(long addr, long size, void *data_ptr)
 	if (data_ptr) {
 		switch (size) {
 		case 1:
-			*((u8*)data_ptr) = (u8)isrv.v0;
+			*((u8*)data_ptr) = (__u8)isrv.v0;
 			break;
 		case 2:
-			*((u16*)data_ptr) = (u16)isrv.v0;
+			*((u16*)data_ptr) = (__u16)isrv.v0;
 			break;
 		case 4:
-			*((u32*)data_ptr) = (u32)isrv.v0;
+			*((u32*)data_ptr) = (__u32)isrv.v0;
 			break;
 		case 8:
-			*((u64*)data_ptr) = (u64)isrv.v0;
+			*((u64*)data_ptr) = (__u64)isrv.v0;
 			break;
 		default:
 			isrv.status = 2;
@@ -532,7 +532,7 @@ ia64_sn_sys_serial_get(char *buf)
 }
 
 extern char sn_system_serial_number_string[];
-extern u64 sn_partition_serial_number;
+extern __u64 sn_partition_serial_number;
 
 static inline char *
 sn_system_serial_number(void) {
@@ -614,10 +614,10 @@ sn_local_partid(void) {
  * negative value if an error occurred.
  */
 static inline int
-sn_register_xp_addr_region(u64 paddr, u64 len, int operation)
+sn_register_xp_addr_region(__u64 paddr, __u64 len, int operation)
 {
 	struct ia64_sal_retval ret_stuff;
-	SAL_CALL(ret_stuff, SN_SAL_XP_ADDR_REGION, paddr, len, (u64)operation,
+	SAL_CALL(ret_stuff, SN_SAL_XP_ADDR_REGION, paddr, len, (__u64)operation,
 		 0, 0, 0, 0);
 	return ret_stuff.status;
 }
@@ -632,17 +632,17 @@ sn_register_xp_addr_region(u64 paddr, u64 len, int operation)
  * Returns 0 on success, or a negative value if an error occurred.
  */
 static inline int
-sn_register_nofault_code(u64 start_addr, u64 end_addr, u64 return_addr,
+sn_register_nofault_code(__u64 start_addr, __u64 end_addr, __u64 return_addr,
 			 int virtual, int operation)
 {
 	struct ia64_sal_retval ret_stuff;
-	u64 call;
+	__u64 call;
 	if (virtual) {
 		call = SN_SAL_NO_FAULT_ZONE_VIRTUAL;
 	} else {
 		call = SN_SAL_NO_FAULT_ZONE_PHYSICAL;
 	}
-	SAL_CALL(ret_stuff, call, start_addr, end_addr, return_addr, (u64)1,
+	SAL_CALL(ret_stuff, call, start_addr, end_addr, return_addr, (__u64)1,
 		 0, 0, 0);
 	return ret_stuff.status;
 }
@@ -661,7 +661,7 @@ sn_register_nofault_code(u64 start_addr, u64 end_addr, u64 return_addr,
  * Returns 0 on success, or a negative value if an error occurred.
  */
 static inline int
-sn_change_coherence(u64 *new_domain, u64 *old_domain)
+sn_change_coherence(__u64 *new_domain, __u64 *old_domain)
 {
 	struct ia64_sal_retval ret_stuff;
 	SAL_CALL(ret_stuff, SN_SAL_COHERENCE, new_domain, old_domain, 0, 0,
@@ -675,7 +675,7 @@ sn_change_coherence(u64 *new_domain, u64 *old_domain)
  * Available memory protection access classes are defined after the function.
  */
 static inline int
-sn_change_memprotect(u64 paddr, u64 len, u64 perms, u64 *nasid_array)
+sn_change_memprotect(__u64 paddr, __u64 len, __u64 perms, __u64 *nasid_array)
 {
 	struct ia64_sal_retval ret_stuff;
 	int cnodeid;
@@ -730,14 +730,14 @@ ia64_sn_fru_capture(void)
  * or reset.
  */
 static inline u64
-ia64_sn_sysctl_iobrick_pci_op(nasid_t n, u64 connection_type, 
-			      u64 bus, char slot, 
-			      u64 action)
+ia64_sn_sysctl_iobrick_pci_op(nasid_t n, __u64 connection_type, 
+			      __u64 bus, char slot, 
+			      __u64 action)
 {
 	struct ia64_sal_retval rv = {0, 0, 0, 0};
 
 	SAL_CALL_NOLOCK(rv, SN_SAL_SYSCTL_IOBRICK_PCI_OP, connection_type, n, action,
-		 bus, (u64) slot, 0, 0);
+		 bus, (__u64) slot, 0, 0);
 	if (rv.status)
 	    	return rv.v0;
 	return 0;
@@ -766,7 +766,7 @@ ia64_sn_irtr_close(nasid_t nasid, int subch)
 {
 	struct ia64_sal_retval rv;
 	SAL_CALL_REENTRANT(rv, SN_SAL_IROUTER_OP, SAL_IROUTER_CLOSE,
-			   (u64) nasid, (u64) subch, 0, 0, 0, 0);
+			   (__u64) nasid, (__u64) subch, 0, 0, 0, 0);
 	return (int) rv.status;
 }
 
@@ -783,7 +783,7 @@ ia64_sn_irtr_recv(nasid_t nasid, int subch, char *buf, int *len)
 {
 	struct ia64_sal_retval rv;
 	SAL_CALL_REENTRANT(rv, SN_SAL_IROUTER_OP, SAL_IROUTER_RECV,
-			   (u64) nasid, (u64) subch, (u64) buf, (u64) len,
+			   (__u64) nasid, (__u64) subch, (__u64) buf, (__u64) len,
 			   0, 0);
 	return (int) rv.status;
 }
@@ -801,7 +801,7 @@ ia64_sn_irtr_send(nasid_t nasid, int subch, char *buf, int len)
 {
 	struct ia64_sal_retval rv;
 	SAL_CALL_REENTRANT(rv, SN_SAL_IROUTER_OP, SAL_IROUTER_SEND,
-			   (u64) nasid, (u64) subch, (u64) buf, (u64) len,
+			   (__u64) nasid, (__u64) subch, (__u64) buf, (__u64) len,
 			   0, 0);
 	return (int) rv.v0;
 }
@@ -817,7 +817,7 @@ ia64_sn_irtr_intr(nasid_t nasid, int subch)
 {
 	struct ia64_sal_retval rv;
 	SAL_CALL_REENTRANT(rv, SN_SAL_IROUTER_OP, SAL_IROUTER_INTR_STATUS,
-			   (u64) nasid, (u64) subch, 0, 0, 0, 0);
+			   (__u64) nasid, (__u64) subch, 0, 0, 0, 0);
 	return (int) rv.v0;
 }
 
@@ -826,11 +826,11 @@ ia64_sn_irtr_intr(nasid_t nasid, int subch)
  * SAL_IROUTER_INTR_XMIT or SAL_IROUTER_INTR_RECV).
  */
 static inline int
-ia64_sn_irtr_intr_enable(nasid_t nasid, int subch, u64 intr)
+ia64_sn_irtr_intr_enable(nasid_t nasid, int subch, __u64 intr)
 {
 	struct ia64_sal_retval rv;
 	SAL_CALL_REENTRANT(rv, SN_SAL_IROUTER_OP, SAL_IROUTER_INTR_ON,
-			   (u64) nasid, (u64) subch, intr, 0, 0, 0);
+			   (__u64) nasid, (__u64) subch, intr, 0, 0, 0);
 	return (int) rv.v0;
 }
 
@@ -839,11 +839,11 @@ ia64_sn_irtr_intr_enable(nasid_t nasid, int subch, u64 intr)
  * SAL_IROUTER_INTR_XMIT or SAL_IROUTER_INTR_RECV).
  */
 static inline int
-ia64_sn_irtr_intr_disable(nasid_t nasid, int subch, u64 intr)
+ia64_sn_irtr_intr_disable(nasid_t nasid, int subch, __u64 intr)
 {
 	struct ia64_sal_retval rv;
 	SAL_CALL_REENTRANT(rv, SN_SAL_IROUTER_OP, SAL_IROUTER_INTR_OFF,
-			   (u64) nasid, (u64) subch, intr, 0, 0, 0);
+			   (__u64) nasid, (__u64) subch, intr, 0, 0, 0);
 	return (int) rv.v0;
 }
 
@@ -866,8 +866,8 @@ ia64_sn_irtr_intr_disable(nasid_t nasid, int subch, u64 intr)
  *	??? if nasid invalid OR banner buffer not large enough
  */
 static inline int
-ia64_sn_get_fit_compt(u64 nasid, u64 index, void *fitentry, void *banbuf,
-		      u64 banlen)
+ia64_sn_get_fit_compt(__u64 nasid, __u64 index, void *fitentry, void *banbuf,
+		      __u64 banlen)
 {
 	struct ia64_sal_retval rv;
 	SAL_CALL_NOLOCK(rv, SN_SAL_GET_FIT_COMPT, nasid, index, fitentry,
@@ -887,7 +887,7 @@ ia64_sn_irtr_init(nasid_t nasid, void *buf, int len)
 {
 	struct ia64_sal_retval rv;
 	SAL_CALL_REENTRANT(rv, SN_SAL_IROUTER_OP, SAL_IROUTER_INIT,
-			   (u64) nasid, (u64) buf, (u64) len, 0, 0, 0);
+			   (__u64) nasid, (__u64) buf, (__u64) len, 0, 0, 0);
 	return (int) rv.status;
 }
 
@@ -942,7 +942,7 @@ ia64_sn_get_sapic_info(int sapicid, int *nasid, int *subnode, int *slice)
  *	v2 - bit position of low nasid bit
  */
 static inline u64
-ia64_sn_get_hub_info(int fc, u64 *arg1, u64 *arg2, u64 *arg3)
+ia64_sn_get_hub_info(int fc, __u64 *arg1, __u64 *arg2, __u64 *arg3)
 {
 	struct ia64_sal_retval ret_stuff;
 
@@ -976,11 +976,11 @@ ia64_sn_get_hub_info(int fc, u64 *arg1, u64 *arg2, u64 *arg3)
  * include/asm-ia64/sn/sn2/sn_hwperf.h
  */
 static inline int
-ia64_sn_hwperf_op(nasid_t nasid, u64 opcode, u64 a0, u64 a1, u64 a2,
-                  u64 a3, u64 a4, int *v0)
+ia64_sn_hwperf_op(nasid_t nasid, __u64 opcode, __u64 a0, __u64 a1, __u64 a2,
+                  __u64 a3, __u64 a4, int *v0)
 {
 	struct ia64_sal_retval rv;
-	SAL_CALL_NOLOCK(rv, SN_SAL_HWPERF_OP, (u64)nasid,
+	SAL_CALL_NOLOCK(rv, SN_SAL_HWPERF_OP, (__u64)nasid,
 		opcode, a0, a1, a2, a3, a4);
 	if (v0)
 		*v0 = (int) rv.v0;

@@ -43,13 +43,13 @@ enum {
 #define SVR4_MAXWIN 31
 
 typedef struct {
-	u32 rwin_lo[8];
-	u32 rwin_in[8];
+	__u32 rwin_lo[8];
+	__u32 rwin_in[8];
 } svr4_rwindow_t;
 
 typedef struct {
 	int            count;
-	u32            winptr [SVR4_MAXWIN]; /* pointer to the windows */
+	__u32            winptr [SVR4_MAXWIN]; /* pointer to the windows */
 
 	svr4_rwindow_t win[SVR4_MAXWIN];      /* the windows */
 } svr4_gwindows_t;
@@ -57,23 +57,23 @@ typedef struct {
 typedef int svr4_gregset_t[SVR4_NREGS];
 
 typedef struct {
-	u64   	 fpu_regs[32];
-	u32	 fp_q;
-	u32      fp_fsr;
+	__u64   	 fpu_regs[32];
+	__u32	 fp_q;
+	__u32      fp_fsr;
 	u_char   fp_nqel;
 	u_char   fp_nqsize;
 	u_char   inuse;		/* if fpu is in use */
 } svr4_fregset_t;
 
 typedef struct {
-	u32    id;		/* if this holds "xrs" string => ptr is valid */
-	u32    ptr;
+	__u32    id;		/* if this holds "xrs" string => ptr is valid */
+	__u32    ptr;
 } svr4_xrs_t;
 
 /* Machine dependent context */
 typedef struct {
 	svr4_gregset_t   greg;	/* registers 0..19 (see top) */
-	u32		 gwin;	/* may point to register windows */
+	__u32		 gwin;	/* may point to register windows */
 	svr4_fregset_t   freg;	/* floating point registers */
 	svr4_xrs_t       xrs;	/* mhm? */
 	int              pad[19];
@@ -87,15 +87,15 @@ enum svr4_stack_flags {
 
 /* signal stack execution place, unsupported */
 typedef struct svr4_stack_t {
-        u32  sp;
+        __u32  sp;
         int  size;
         int  flags;
 } svr4_stack_t;
 
 /* Context used by getcontext and setcontext */
 typedef struct svr4_ucontext_t {
-	u32		flags; /* context flags, indicate what is loaded */
-	u32		link;
+	__u32		flags; /* context flags, indicate what is loaded */
+	__u32		link;
 	svr4_sigset_t	sigmask;
 	svr4_stack_t	stack;
 	svr4_mcontext_t	mcontext;

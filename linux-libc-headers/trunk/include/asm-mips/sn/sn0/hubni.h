@@ -229,9 +229,9 @@
 #ifndef __ASSEMBLY__
 
 typedef union	hubni_port_error_u {
-	u64	nipe_reg_value;
+	__u64	nipe_reg_value;
 	struct {
-	    u64	nipe_rsvd:	26,	/* unused */
+	    __u64	nipe_rsvd:	26,	/* unused */
 		nipe_lnk_reset:	 1,	/* link reset */
 		nipe_intl_err:	 1,	/* internal error */
 		nipe_bad_msg:	 1,	/* bad message */

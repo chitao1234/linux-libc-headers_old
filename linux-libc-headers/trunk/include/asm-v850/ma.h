@@ -53,41 +53,41 @@ extern void ma_uart_pre_configure (unsigned chan,
 /* Port 0 */
 /* Direct I/O.  Bits 0-7 are pins P00-P07.  */
 #define MA_PORT0_IO_ADDR		0xFFFFF400
-#define MA_PORT0_IO			(*(volatile u8 *)MA_PORT0_IO_ADDR)
+#define MA_PORT0_IO			(*(volatile __u8 *)MA_PORT0_IO_ADDR)
 /* Port mode (for direct I/O, 0 = output, 1 = input).  */
 #define MA_PORT0_PM_ADDR		0xFFFFF420
-#define MA_PORT0_PM			(*(volatile u8 *)MA_PORT0_PM_ADDR)
+#define MA_PORT0_PM			(*(volatile __u8 *)MA_PORT0_PM_ADDR)
 /* Port mode control (0 = direct I/O mode, 1 = alternative I/O mode).  */
 #define MA_PORT0_PMC_ADDR		0xFFFFF440
-#define MA_PORT0_PMC			(*(volatile u8 *)MA_PORT0_PMC_ADDR)
+#define MA_PORT0_PMC			(*(volatile __u8 *)MA_PORT0_PMC_ADDR)
 /* Port function control (for P04-P07, 0 = IRQ, 1 = DMARQ).  */
 #define MA_PORT0_PFC_ADDR		0xFFFFF460
-#define MA_PORT0_PFC			(*(volatile u8 *)MA_PORT0_PFC_ADDR)
+#define MA_PORT0_PFC			(*(volatile __u8 *)MA_PORT0_PFC_ADDR)
 
 /* Port 1 */
 /* Direct I/O.  Bits 0-3 are pins P10-P13.  */
 #define MA_PORT1_IO_ADDR		0xFFFFF402
-#define MA_PORT1_IO			(*(volatile u8 *)MA_PORT1_IO_ADDR)
+#define MA_PORT1_IO			(*(volatile __u8 *)MA_PORT1_IO_ADDR)
 /* Port mode (for direct I/O, 0 = output, 1 = input).  */
 #define MA_PORT1_PM_ADDR		0xFFFFF420
-#define MA_PORT1_PM			(*(volatile u8 *)MA_PORT1_PM_ADDR)
+#define MA_PORT1_PM			(*(volatile __u8 *)MA_PORT1_PM_ADDR)
 /* Port mode control (0 = direct I/O mode, 1 = alternative I/O mode).  */
 #define MA_PORT1_PMC_ADDR		0xFFFFF442
-#define MA_PORT1_PMC			(*(volatile u8 *)MA_PORT1_PMC_ADDR)
+#define MA_PORT1_PMC			(*(volatile __u8 *)MA_PORT1_PMC_ADDR)
 
 /* Port 4 */
 /* Direct I/O.  Bits 0-5 are pins P40-P45.  */
 #define MA_PORT4_IO_ADDR		0xFFFFF408
-#define MA_PORT4_IO			(*(volatile u8 *)MA_PORT4_IO_ADDR)
+#define MA_PORT4_IO			(*(volatile __u8 *)MA_PORT4_IO_ADDR)
 /* Port mode (for direct I/O, 0 = output, 1 = input).  */
 #define MA_PORT4_PM_ADDR		0xFFFFF428
-#define MA_PORT4_PM			(*(volatile u8 *)MA_PORT4_PM_ADDR)
+#define MA_PORT4_PM			(*(volatile __u8 *)MA_PORT4_PM_ADDR)
 /* Port mode control (0 = direct I/O mode, 1 = alternative I/O mode).  */
 #define MA_PORT4_PMC_ADDR		0xFFFFF448
-#define MA_PORT4_PMC			(*(volatile u8 *)MA_PORT4_PMC_ADDR)
+#define MA_PORT4_PMC			(*(volatile __u8 *)MA_PORT4_PMC_ADDR)
 /* Port function control (for serial interfaces, 0 = CSI, 1 = UART).  */
 #define MA_PORT4_PFC_ADDR		0xFFFFF468
-#define MA_PORT4_PFC			(*(volatile u8 *)MA_PORT4_PFC_ADDR)
+#define MA_PORT4_PFC			(*(volatile __u8 *)MA_PORT4_PFC_ADDR)
 
 
 #ifndef __ASSEMBLY__

@@ -96,14 +96,14 @@ extern struct pci_bus *ixp4xx_scan_bus(int nr, struct pci_sys_data *sys);
 #define IXP4XX_GPIO_CLK_0		14
 #define IXP4XX_GPIO_CLK_1		15
 
-extern void gpio_line_config(u8 line, u32 style);
+extern void gpio_line_config(__u8 line, __u32 style);
 
-static inline void gpio_line_get(u8 line, int *value)
+static inline void gpio_line_get(__u8 line, int *value)
 {
 	*value = (*IXP4XX_GPIO_GPINR >> line) & 0x1;
 }
 
-static inline void gpio_line_set(u8 line, int value)
+static inline void gpio_line_set(__u8 line, int value)
 {
 	if (value == IXP4XX_GPIO_HIGH)
 	    *IXP4XX_GPIO_GPOUTR |= (1 << line);
@@ -111,7 +111,7 @@ static inline void gpio_line_set(u8 line, int value)
 	    *IXP4XX_GPIO_GPOUTR &= ~(1 << line);
 }
 
-static inline void gpio_line_isr_clear(u8 line)
+static inline void gpio_line_isr_clear(__u8 line)
 {
 	*IXP4XX_GPIO_GPISR = (1 << line);
 }

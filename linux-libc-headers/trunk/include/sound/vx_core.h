@@ -47,14 +47,14 @@ typedef struct vx_pipe vx_pipe_t;
 #define SIZE_MAX_STATUS 0x10
 
 struct vx_rmh {
-	u16	LgCmd;		/* length of the command to send (WORDs) */
-	u16	LgStat;		/* length of the status received (WORDs) */
-	u32	Cmd[SIZE_MAX_CMD];
-	u32	Stat[SIZE_MAX_STATUS];
-	u16	DspStat;	/* status type, RMP_SSIZE_XXX */
+	__u16	LgCmd;		/* length of the command to send (WORDs) */
+	__u16	LgStat;		/* length of the status received (WORDs) */
+	__u32	Cmd[SIZE_MAX_CMD];
+	__u32	Stat[SIZE_MAX_STATUS];
+	__u16	DspStat;	/* status type, RMP_SSIZE_XXX */
 };
 	
-typedef u64 pcx_time_t;
+typedef __u64 pcx_time_t;
 
 #define VX_MAX_PIPES	16
 #define VX_MAX_PERIODS	32
@@ -85,7 +85,7 @@ struct vx_pipe {
 	int position;		/* the current position in frames (playback only) */
 	int transferred;	/* the transferred size (per period) in frames */
 	int align;		/* size of alignment */
-	u64 cur_count;		/* current sample position (for playback) */
+	__u64 cur_count;		/* current sample position (for playback) */
 
 	unsigned int references;     /* an output pipe may be used for monitoring and/or playback */
 	vx_pipe_t *monitoring_pipe;  /* pointer to the monitoring pipe (capture pipe only)*/

@@ -67,9 +67,9 @@
 
 #include <asm/mach-types.h>
 
-static inline void insw(u32 ptr, void *buf, int length)
+static inline void insw(__u32 ptr, void *buf, int length)
 {
-	register volatile u32 *port = (volatile u32 *)ptr;
+	register volatile __u32 *port = (volatile __u32 *)ptr;
 
 	/*
 	 * Is this cycle meant for the CS8900?
@@ -77,13 +77,13 @@ static inline void insw(u32 ptr, void *buf, int length)
 	if ((machine_is_ixdp2401() || machine_is_ixdp2801()) && 
 		((port >= IXDP2X01_CS8900_VIRT_BASE) && 
 		 (port <= IXDP2X01_CS8900_VIRT_END))) {
-		u8 *buf8 = (u8*)buf;
-		register u32 tmp32;
+		__u8 *buf8 = (u8*)buf;
+		register __u32 tmp32;
 
 		do {
 			tmp32 = *port;
-			*buf8++ = (u8)tmp32;
-			*buf8++ = (u8)(tmp32 >> 8);
+			*buf8++ = (__u8)tmp32;
+			*buf8++ = (__u8)(tmp32 >> 8);
 		} while(--length);
 
 		return;
@@ -92,9 +92,9 @@ static inline void insw(u32 ptr, void *buf, int length)
 	__raw_readsw(alignw(___io(ptr)),buf,length);
 }
 
-static inline void outsw(u32 ptr, void *buf, int length)
+static inline void outsw(__u32 ptr, void *buf, int length)
 {
-	register volatile u32 *port = (volatile u32 *)ptr;
+	register volatile __u32 *port = (volatile __u32 *)ptr;
 
 	/*
 	 * Is this cycle meant for the CS8900?
@@ -102,8 +102,8 @@ static inline void outsw(u32 ptr, void *buf, int length)
 	if ((machine_is_ixdp2401() || machine_is_ixdp2801()) && 
 		((port >= IXDP2X01_CS8900_VIRT_BASE) && 
 		 (port <= IXDP2X01_CS8900_VIRT_END))) {
-		register u32 tmp32;
-		u8 *buf8 = (u8*)buf;
+		register __u32 tmp32;
+		__u8 *buf8 = (u8*)buf;
 		do {
 			tmp32 = *buf8++;
 			tmp32 |= (*buf8++) << 8;
@@ -116,9 +116,9 @@ static inline void outsw(u32 ptr, void *buf, int length)
 }
 
 
-static inline u16 inw(u32 ptr)
+static inline __u16 inw(__u32 ptr)
 {
-	register volatile u32 *port = (volatile u32 *)ptr;
+	register volatile __u32 *port = (volatile __u32 *)ptr;
 
 	/*
 	 * Is this cycle meant for the CS8900?
@@ -126,15 +126,15 @@ static inline u16 inw(u32 ptr)
 	if ((machine_is_ixdp2401() || machine_is_ixdp2801()) && 
 		((port >= IXDP2X01_CS8900_VIRT_BASE) && 
 		 (port <= IXDP2X01_CS8900_VIRT_END))) {
-		return (u16)(*port);  
+		return (__u16)(*port);  
 	}
 
 	return __raw_readw(alignw(___io(ptr)));
 }
 
-static inline void outw(u16 value, u32 ptr)
+static inline void outw(__u16 value, __u32 ptr)
 {
-	register volatile u32 *port = (volatile u32 *)ptr;
+	register volatile __u32 *port = (volatile __u32 *)ptr;
 
 	if ((machine_is_ixdp2401() || machine_is_ixdp2801()) && 
 		((port >= IXDP2X01_CS8900_VIRT_BASE) && 

@@ -9,12 +9,12 @@ extern "C" {
 
 void iSeries_fixup (void);
 void iSeries_fixup_bus (struct pci_bus*);
-unsigned int iSeries_scan_slot (struct pci_dev*, u16, u8, u8);
+unsigned int iSeries_scan_slot (struct pci_dev*, __u16, __u8, __u8);
 
 
 /* Need to store information related to the PHB bucc and make it accessible to the hose */
 struct iSeries_hose_arch_data {
-	u32 hvBusNumber;
+	__u32 hvBusNumber;
 };
 
 

@@ -14,14 +14,14 @@
 #undef scr_writew
 #undef scr_readw
 
-static inline void scr_writew(u16 val, u16 *addr)
+static inline void scr_writew(__u16 val, __u16 *addr)
 {
 	BUG_ON((long) addr >= 0);
 
 	*addr = val;
 }
 
-static inline u16 scr_readw(const u16 *addr)
+static inline __u16 scr_readw(const __u16 *addr)
 {
 	BUG_ON((long) addr >= 0);
 

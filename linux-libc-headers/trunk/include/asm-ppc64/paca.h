@@ -58,44 +58,44 @@ struct paca_struct {
 	 * instruction.  They must travel together and be properly
 	 * aligned.
 	 */
-	u16 lock_token;			/* Constant 0x8000, used in locks */
-	u16 paca_index;			/* Logical processor number */
+	__u16 lock_token;			/* Constant 0x8000, used in locks */
+	__u16 paca_index;			/* Logical processor number */
 
-	u32 default_decr;		/* Default decrementer value */
+	__u32 default_decr;		/* Default decrementer value */
 	struct ItLpQueue *lpqueue_ptr;	/* LpQueue handled by this CPU */
-	u64 kernel_toc;			/* Kernel TOC address */
-	u64 stab_real;			/* Absolute address of segment table */
-	u64 stab_addr;			/* Virtual address of segment table */
+	__u64 kernel_toc;			/* Kernel TOC address */
+	__u64 stab_real;			/* Absolute address of segment table */
+	__u64 stab_addr;			/* Virtual address of segment table */
 	void *emergency_sp;		/* pointer to emergency stack */
-	s16 hw_cpu_id;			/* Physical processor number */
-	u8 cpu_start;			/* At startup, processor spins until */
+	__s16 hw_cpu_id;			/* Physical processor number */
+	__u8 cpu_start;			/* At startup, processor spins until */
 					/* this becomes non-zero. */
 
 	/*
 	 * Now, starting in cacheline 2, the exception save areas
 	 */
-	u64 exgen[8] __attribute__((aligned(0x80))); /* used for most interrupts/exceptions */
-	u64 exmc[8];		/* used for machine checks */
-	u64 exslb[8];		/* used for SLB/segment table misses
+	__u64 exgen[8] __attribute__((aligned(0x80))); /* used for most interrupts/exceptions */
+	__u64 exmc[8];		/* used for machine checks */
+	__u64 exslb[8];		/* used for SLB/segment table misses
 				 * on the linear mapping */
 	mm_context_t context;
-	u16 slb_cache[SLB_CACHE_ENTRIES];
-	u16 slb_cache_ptr;
+	__u16 slb_cache[SLB_CACHE_ENTRIES];
+	__u16 slb_cache_ptr;
 
 	/*
 	 * then miscellaneous read-write fields
 	 */
 	struct task_struct *__current;	/* Pointer to current */
-	u64 kstack;			/* Saved Kernel stack addr */
-	u64 stab_rr;			/* stab/slb round-robin counter */
-	u64 next_jiffy_update_tb;	/* TB value for next jiffy update */
-	u64 saved_r1;			/* r1 save for RTAS calls */
-	u64 saved_msr;			/* MSR saved here by enter_rtas */
-	u32 lpevent_count;		/* lpevents processed  */
-	u8 proc_enabled;		/* irq soft-enable flag */
+	__u64 kstack;			/* Saved Kernel stack addr */
+	__u64 stab_rr;			/* stab/slb round-robin counter */
+	__u64 next_jiffy_update_tb;	/* TB value for next jiffy update */
+	__u64 saved_r1;			/* r1 save for RTAS calls */
+	__u64 saved_msr;			/* MSR saved here by enter_rtas */
+	__u32 lpevent_count;		/* lpevents processed  */
+	__u8 proc_enabled;		/* irq soft-enable flag */
 
 	/* not yet used */
-	u64 exdsi[8];		/* used for linear mapping hash table misses */
+	__u64 exdsi[8];		/* used for linear mapping hash table misses */
 
 	/*
 	 * iSeries structure which the hypervisor knows about -

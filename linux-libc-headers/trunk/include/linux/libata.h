@@ -170,7 +170,7 @@ struct ata_port;
 struct ata_queued_cmd;
 
 /* typedefs */
-typedef int (*ata_qc_cb_t) (struct ata_queued_cmd *qc, u8 drv_stat);
+typedef int (*ata_qc_cb_t) (struct ata_queued_cmd *qc, __u8 drv_stat);
 
 struct ata_ioports {
 	unsigned long		cmd_addr;
@@ -228,7 +228,7 @@ struct ata_queued_cmd {
 	void			(*scsidone)(struct scsi_cmnd *);
 
 	struct ata_taskfile	tf;
-	u8			cdb[ATAPI_CDB_LEN];
+	__u8			cdb[ATAPI_CDB_LEN];
 
 	unsigned long		flags;		/* ATA_QCFLAG_xxx */
 	unsigned int		tag;
@@ -264,20 +264,20 @@ struct ata_host_stats {
 };
 
 struct ata_device {
-	u64			n_sectors;	/* size of device, if ATA */
+	__u64			n_sectors;	/* size of device, if ATA */
 	unsigned long		flags;		/* ATA_DFLAG_xxx */
 	unsigned int		class;		/* ATA_DEV_xxx */
 	unsigned int		devno;		/* 0 or 1 */
-	u16			id[ATA_ID_WORDS]; /* IDENTIFY xxx DEVICE data */
-	u8			pio_mode;
-	u8			dma_mode;
-	u8			xfer_mode;
+	__u16			id[ATA_ID_WORDS]; /* IDENTIFY xxx DEVICE data */
+	__u8			pio_mode;
+	__u8			dma_mode;
+	__u8			xfer_mode;
 	unsigned int		xfer_shift;	/* ATA_SHIFT_xxx */
 
 	/* cache info about current transfer mode */
-	u8			xfer_protocol;	/* taskfile xfer protocol */
-	u8			read_cmd;	/* opcode to use on read */
-	u8			write_cmd;	/* opcode to use on write */
+	__u8			xfer_protocol;	/* taskfile xfer protocol */
+	__u8			read_cmd;	/* opcode to use on read */
+	__u8			write_cmd;	/* opcode to use on write */
 };
 
 struct ata_port {
@@ -293,8 +293,8 @@ struct ata_port {
 
 	struct ata_ioports	ioaddr;	/* ATA cmd/ctl/dma register blocks */
 
-	u8			ctl;	/* cache of ATA control register */
-	u8			last_ctl;	/* Cache last written value */
+	__u8			ctl;	/* cache of ATA control register */
+	__u8			last_ctl;	/* Cache last written value */
 	unsigned int		bus_state;
 	unsigned int		port_state;
 	unsigned int		pio_mask;
@@ -333,9 +333,9 @@ struct ata_port_operations {
 	void (*tf_read) (struct ata_port *ap, struct ata_taskfile *tf);
 
 	void (*exec_command)(struct ata_port *ap, struct ata_taskfile *tf);
-	u8   (*check_status)(struct ata_port *ap);
-	u8   (*check_altstatus)(struct ata_port *ap);
-	u8   (*check_err)(struct ata_port *ap);
+	__u8   (*check_status)(struct ata_port *ap);
+	__u8   (*check_altstatus)(struct ata_port *ap);
+	__u8   (*check_err)(struct ata_port *ap);
 	void (*dev_select)(struct ata_port *ap, unsigned int device);
 
 	void (*phy_reset) (struct ata_port *ap);
@@ -354,9 +354,9 @@ struct ata_port_operations {
 	irqreturn_t (*irq_handler)(int, void *, struct pt_regs *);
 	void (*irq_clear) (struct ata_port *);
 
-	u32 (*scr_read) (struct ata_port *ap, unsigned int sc_reg);
+	__u32 (*scr_read) (struct ata_port *ap, unsigned int sc_reg);
 	void (*scr_write) (struct ata_port *ap, unsigned int sc_reg,
-			   u32 val);
+			   __u32 val);
 
 	int (*port_start) (struct ata_port *ap);
 	void (*port_stop) (struct ata_port *ap);
@@ -364,7 +364,7 @@ struct ata_port_operations {
 	void (*host_stop) (struct ata_host_set *host_set);
 
 	void (*bmdma_stop) (struct ata_port *ap);
-	u8   (*bmdma_status) (struct ata_port *ap);
+	__u8   (*bmdma_status) (struct ata_port *ap);
 };
 
 struct ata_port_info {
@@ -399,13 +399,13 @@ extern unsigned int ata_host_intr(struct ata_port *ap, struct ata_queued_cmd *qc
  */
 extern void ata_tf_load(struct ata_port *ap, struct ata_taskfile *tf);
 extern void ata_tf_read(struct ata_port *ap, struct ata_taskfile *tf);
-extern void ata_tf_to_fis(struct ata_taskfile *tf, u8 *fis, u8 pmp);
-extern void ata_tf_from_fis(u8 *fis, struct ata_taskfile *tf);
+extern void ata_tf_to_fis(struct ata_taskfile *tf, __u8 *fis, __u8 pmp);
+extern void ata_tf_from_fis(__u8 *fis, struct ata_taskfile *tf);
 extern void ata_noop_dev_select (struct ata_port *ap, unsigned int device);
 extern void ata_std_dev_select (struct ata_port *ap, unsigned int device);
-extern u8 ata_check_status(struct ata_port *ap);
-extern u8 ata_altstatus(struct ata_port *ap);
-extern u8 ata_chk_err(struct ata_port *ap);
+extern __u8 ata_check_status(struct ata_port *ap);
+extern __u8 ata_altstatus(struct ata_port *ap);
+extern __u8 ata_chk_err(struct ata_port *ap);
 extern void ata_exec_command(struct ata_port *ap, struct ata_taskfile *tf);
 extern int ata_port_start (struct ata_port *ap);
 extern void ata_port_stop (struct ata_port *ap);
@@ -417,16 +417,16 @@ extern void ata_sg_init_one(struct ata_queued_cmd *qc, void *buf,
 extern void ata_sg_init(struct ata_queued_cmd *qc, struct scatterlist *sg,
 		 unsigned int n_elem);
 extern unsigned int ata_dev_classify(struct ata_taskfile *tf);
-extern void ata_dev_id_string(u16 *id, unsigned char *s,
+extern void ata_dev_id_string(__u16 *id, unsigned char *s,
 			      unsigned int ofs, unsigned int len);
 extern void ata_bmdma_setup (struct ata_queued_cmd *qc);
 extern void ata_bmdma_start (struct ata_queued_cmd *qc);
 extern void ata_bmdma_stop(struct ata_port *ap);
-extern u8   ata_bmdma_status(struct ata_port *ap);
+extern __u8   ata_bmdma_status(struct ata_port *ap);
 extern void ata_bmdma_irq_clear(struct ata_port *ap);
-extern void ata_qc_complete(struct ata_queued_cmd *qc, u8 drv_stat);
+extern void ata_qc_complete(struct ata_queued_cmd *qc, __u8 drv_stat);
 extern void ata_eng_timeout(struct ata_port *ap);
-extern void ata_scsi_simulate(u16 *id, struct scsi_cmnd *cmd,
+extern void ata_scsi_simulate(__u16 *id, struct scsi_cmnd *cmd,
 			      void (*done)(struct scsi_cmnd *));
 extern int ata_std_bios_param(struct scsi_device *sdev,
 			      struct block_device *bdev,
@@ -460,7 +460,7 @@ static inline unsigned int ata_dev_present(struct ata_device *dev)
 		(dev->class == ATA_DEV_ATAPI));
 }
 
-static inline u8 ata_chk_status(struct ata_port *ap)
+static inline __u8 ata_chk_status(struct ata_port *ap)
 {
 	return ap->ops->check_status(ap);
 }
@@ -471,10 +471,10 @@ static inline void ata_pause(struct ata_port *ap)
 	ndelay(400);
 }
 
-static inline u8 ata_busy_wait(struct ata_port *ap, unsigned int bits,
+static inline __u8 ata_busy_wait(struct ata_port *ap, unsigned int bits,
 			       unsigned int max)
 {
-	u8 status;
+	__u8 status;
 
 	do {
 		udelay(10);
@@ -485,9 +485,9 @@ static inline u8 ata_busy_wait(struct ata_port *ap, unsigned int bits,
 	return status;
 }
 
-static inline u8 ata_wait_idle(struct ata_port *ap)
+static inline __u8 ata_wait_idle(struct ata_port *ap)
 {
-	u8 status = ata_busy_wait(ap, ATA_BUSY | ATA_DRQ, 1000);
+	__u8 status = ata_busy_wait(ap, ATA_BUSY | ATA_DRQ, 1000);
 
 	if (status & (ATA_BUSY | ATA_DRQ)) {
 		unsigned long l = ap->ioaddr.status_addr;
@@ -523,10 +523,10 @@ static inline void ata_tf_init(struct ata_port *ap, struct ata_taskfile *tf, uns
 		tf->device = ATA_DEVICE_OBS | ATA_DEV1;
 }
 
-static inline u8 ata_irq_on(struct ata_port *ap)
+static inline __u8 ata_irq_on(struct ata_port *ap)
 {
 	struct ata_ioports *ioaddr = &ap->ioaddr;
-	u8 tmp;
+	__u8 tmp;
 
 	ap->ctl &= ~ATA_NIEN;
 	ap->last_ctl = ap->ctl;
@@ -542,10 +542,10 @@ static inline u8 ata_irq_on(struct ata_port *ap)
 	return tmp;
 }
 
-static inline u8 ata_irq_ack(struct ata_port *ap, unsigned int chk_drq)
+static inline __u8 ata_irq_ack(struct ata_port *ap, unsigned int chk_drq)
 {
 	unsigned int bits = chk_drq ? ATA_BUSY | ATA_DRQ : ATA_BUSY;
-	u8 host_stat, post_stat, status;
+	__u8 host_stat, post_stat, status;
 
 	status = ata_busy_wait(ap, bits, 1000);
 	if (status & bits)
@@ -573,12 +573,12 @@ static inline u8 ata_irq_ack(struct ata_port *ap, unsigned int chk_drq)
 	return status;
 }
 
-static inline u32 scr_read(struct ata_port *ap, unsigned int reg)
+static inline __u32 scr_read(struct ata_port *ap, unsigned int reg)
 {
 	return ap->ops->scr_read(ap, reg);
 }
 
-static inline void scr_write(struct ata_port *ap, unsigned int reg, u32 val)
+static inline void scr_write(struct ata_port *ap, unsigned int reg, __u32 val)
 {
 	ap->ops->scr_write(ap, reg, val);
 }

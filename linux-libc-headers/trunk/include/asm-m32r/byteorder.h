@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_BYTEORDER_H
 #define _ASM_M32R_BYTEORDER_H
 
-/* $Id: byteorder.h,v 1.2 2004/10/21 16:04:54 mmazur Exp $ */
+/* $Id$ */
 
 #include <asm/types.h>
 

@@ -83,8 +83,8 @@ enum {
 extern int	pmac_get_partition(int partition);
 
 /* Direct access to XPRAM on PowerMacs */
-extern u8	pmac_xpram_read(int xpaddr);
-extern void	pmac_xpram_write(int xpaddr, u8 data);
+extern __u8	pmac_xpram_read(int xpaddr);
+extern void	pmac_xpram_write(int xpaddr, __u8 data);
 
 /* Synchronize NVRAM */
 extern int	nvram_sync(void);

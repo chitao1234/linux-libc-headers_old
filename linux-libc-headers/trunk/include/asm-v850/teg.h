@@ -83,14 +83,14 @@ extern void teg_uart_pre_configure (unsigned chan,
 
 /* `Interrupt Source Select' control register.  */
 #define TEG_ISS_ADDR			0xFFFFF7FA
-#define TEG_ISS				(*(volatile u8 *)TEG_ISS_ADDR)
+#define TEG_ISS				(*(volatile __u8 *)TEG_ISS_ADDR)
 
 /* Port 0 I/O register (bits 0-3 used).  */
 #define TEG_PORT0_IO_ADDR		0xFFFFF7F2
-#define TEG_PORT0_IO			(*(volatile u8 *)TEG_PORT0_IO_ADDR)
+#define TEG_PORT0_IO			(*(volatile __u8 *)TEG_PORT0_IO_ADDR)
 /* Port 0 control register (bits 0-3 control mode, 0 = output, 1 = input).  */
 #define TEG_PORT0_PM_ADDR		0xFFFFF7F4
-#define TEG_PORT0_PM			(*(volatile u8 *)TEG_PORT0_PM_ADDR)
+#define TEG_PORT0_PM			(*(volatile __u8 *)TEG_PORT0_PM_ADDR)
 
 
 #ifndef __ASSEMBLY__

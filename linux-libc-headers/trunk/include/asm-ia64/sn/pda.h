@@ -37,13 +37,13 @@ typedef struct pda_s {
 	 * Support for SN LEDs
 	 */
 	volatile short	*led_address;
-	u16		nasid_bitmask;
-	u8		shub2;
-	u8		nasid_shift;
-	u8		as_shift;
-	u8		shub_1_1_found;
-	u8		led_state;
-	u8		hb_state;	/* supports blinking heartbeat leds */
+	__u16		nasid_bitmask;
+	__u8		shub2;
+	__u8		nasid_shift;
+	__u8		as_shift;
+	__u8		shub_1_1_found;
+	__u8		led_state;
+	__u8		hb_state;	/* supports blinking heartbeat leds */
 	unsigned int	hb_count;
 
 	unsigned int	idle_flag;

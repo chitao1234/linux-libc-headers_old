@@ -98,11 +98,11 @@ extern asmlinkage void gdbstub_intercept(void);
 extern uint32_t __entry_usertrap_table[];
 extern uint32_t __entry_kerneltrap_table[];
 
-extern volatile u8	gdbstub_rx_buffer[PAGE_SIZE];
-extern volatile u32	gdbstub_rx_inp;
-extern volatile u32	gdbstub_rx_outp;
-extern volatile u8	gdbstub_rx_overflow;
-extern u8		gdbstub_rx_unget;
+extern volatile __u8	gdbstub_rx_buffer[PAGE_SIZE];
+extern volatile __u32	gdbstub_rx_inp;
+extern volatile __u32	gdbstub_rx_outp;
+extern volatile __u8	gdbstub_rx_overflow;
+extern __u8		gdbstub_rx_unget;
 
 extern void gdbstub_printk(const char *fmt, ...);
 extern void debug_to_serial(const char *p, int n);

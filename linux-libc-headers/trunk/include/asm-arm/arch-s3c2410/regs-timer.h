@@ -17,7 +17,7 @@
 
 
 #ifndef __ASM_ARCH_REGS_TIMER_H
-#define __ASM_ARCH_REGS_TIMER_H "$Id: regs-timer.h,v 1.2 2004/10/22 15:55:58 mmazur Exp $"
+#define __ASM_ARCH_REGS_TIMER_H "$Id$"
 
 #define S3C2410_TIMERREG(x) (S3C2410_VA_TIMER + (x))
 #define S3C2410_TIMERREG2(tmr,reg) S3C2410_TIMERREG((reg)+0x0c+((tmr)*0x0c))

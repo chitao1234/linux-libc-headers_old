@@ -1823,7 +1823,7 @@ void reiserfs_init_alloc_options (struct super_block *s);
  * to use for a new object underneat it.  The locality is returned
  * in disk byte order (le).
  */
-u32 reiserfs_choose_packing(struct inode *dir);
+__u32 reiserfs_choose_packing(struct inode *dir);
 
 int is_reusable (struct super_block * s, b_blocknr_t block, int bit_value);
 void reiserfs_free_block (struct reiserfs_transaction_handle *th, struct inode *, b_blocknr_t, int for_unformatted);

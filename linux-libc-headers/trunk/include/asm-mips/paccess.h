@@ -15,10 +15,10 @@
 
 #include <linux/errno.h>
 
-#ifdef CONFIG_MIPS32
+#ifndef __mips64
 #define __PA_ADDR	".word"
 #endif
-#ifdef CONFIG_MIPS64
+#ifdef __mips64
 #define __PA_ADDR	".dword"
 #endif
 

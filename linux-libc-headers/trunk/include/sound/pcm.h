@@ -68,7 +68,7 @@ typedef struct _snd_pcm_runtime snd_pcm_runtime_t;
 
 typedef struct _snd_pcm_hardware {
 	unsigned int info;		/* SNDRV_PCM_INFO_* */
-	u64 formats;			/* SNDRV_PCM_FMTBIT_* */
+	__u64 formats;			/* SNDRV_PCM_FMTBIT_* */
 	unsigned int rates;		/* SNDRV_PCM_RATE_* */
 	unsigned int rate_min;		/* min rate */
 	unsigned int rate_max;		/* max rate */

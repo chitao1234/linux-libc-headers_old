@@ -17,7 +17,7 @@ typedef signed char	partid_t;	/* partition ID type */
 typedef unsigned int    moduleid_t;     /* user-visible module number type */
 typedef unsigned int    cmoduleid_t;    /* kernel compact module id type */
 typedef signed char		slabid_t;
-typedef u64 nic_t;
+typedef __u64 nic_t;
 typedef unsigned long iopaddr_t;
 typedef unsigned long paddr_t;
 typedef short cnodeid_t;
