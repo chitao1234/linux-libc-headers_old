@@ -225,7 +225,7 @@
 
 #define	UFS_MAXNAMLEN 255
 #define UFS_MAXMNTLEN 512
-/* #define UFS_MAXCSBUFS 31 */
+#define UFS_MAXCSBUFS 31
 #define UFS_LINK_MAX 32000
 
 /*
