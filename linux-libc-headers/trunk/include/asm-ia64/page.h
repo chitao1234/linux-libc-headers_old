@@ -23,7 +23,9 @@
 #elif defined(CONFIG_IA64_PAGE_SIZE_64KB)
 # define PAGE_SHIFT	16
 #else
-# error Unsupported page size!
+/* take 16kB as default for llh */
+# define PAGE_SHIFT	14
+/* # error Unsupported page size! */
 #endif
 
 #define PAGE_SIZE		(__IA64_UL_CONST(1) << PAGE_SHIFT)
