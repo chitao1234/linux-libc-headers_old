@@ -148,11 +148,14 @@ typedef unsigned long sector_t;
  * any application/library that wants linux/types.h.
  */
 
+#if 0
+/* Debian: This is available from <sys/ustat.h>.  */
 struct ustat {
 	__kernel_daddr_t	f_tfree;
 	__kernel_ino_t		f_tinode;
 	char			f_fname[6];
 	char			f_fpack[6];
 };
+#endif
 
 #endif /* _LINUX_TYPES_H */
