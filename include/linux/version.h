@@ -1,3 +1,3 @@
-#define UTS_RELEASE "2.6.0-test7"
-#define LINUX_VERSION_CODE 132608
+#define UTS_RELEASE "2.4.23"
+#define LINUX_VERSION_CODE 132119
 #define KERNEL_VERSION(a,b,c) (((a) << 16) + ((b) << 8) + (c))
