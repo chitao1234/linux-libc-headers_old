@@ -17,30 +17,10 @@
  *
  */
 
-#include <linux/config.h>
+#include <unistd.h>
 
-/* PAGE_SHIFT determines the page size */
-#define PAGE_SHIFT	12
-#ifdef __ASSEMBLY__
-#define PAGE_SIZE	4096
-#else
-#define PAGE_SIZE	(1UL << PAGE_SHIFT)
-#endif
-#define PAGE_MASK	(~(PAGE_SIZE-1))
-#define PTE_MASK	PAGE_MASK
-
-#if defined(CONFIG_HUGETLB_PAGE_SIZE_64K)
-#define HPAGE_SHIFT	16
-#elif defined(CONFIG_HUGETLB_PAGE_SIZE_1MB)
-#define HPAGE_SHIFT	20
-#elif defined(CONFIG_HUGETLB_PAGE_SIZE_512MB)
-#define HPAGE_SHIFT	29
-#endif
-
-#ifdef CONFIG_HUGETLB_PAGE
-#define HPAGE_SIZE		(1UL << HPAGE_SHIFT)
-#define HPAGE_MASK		(~(HPAGE_SIZE-1))
-#define HUGETLB_PAGE_ORDER	(HPAGE_SHIFT-PAGE_SHIFT)
-#endif
+#define PAGE_SIZE ((unsigned long)getpagesize())
+#define PAGE_SHIFT ((PAGE_SIZE > 65536) ? -1 : ((unsigned long[]){12,13,14,-1,15,-1,-1,-1,16}[PAGE_SIZE>>13]))
+#define PAGE_MASK    (~(PAGE_SIZE-1))
 
 #endif /* __ASM_SH64_PAGE_H */

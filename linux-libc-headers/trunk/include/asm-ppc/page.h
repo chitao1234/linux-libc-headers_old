@@ -1,14 +1,10 @@
 #ifndef _PPC_PAGE_H
 #define _PPC_PAGE_H
 
-/* PAGE_SHIFT determines the page size */
-#define PAGE_SHIFT	12
-#define PAGE_SIZE	(1UL << PAGE_SHIFT)
+#include <unistd.h>
 
-/*
- * Subtle: this is an int (not an unsigned long) and so it
- * gets extended to 64 bits the way want (i.e. with 1s).  -- paulus
- */
-#define PAGE_MASK	(~((1 << PAGE_SHIFT) - 1))
+#define PAGE_SIZE ((unsigned long)getpagesize())
+#define PAGE_SHIFT ((PAGE_SIZE > 65536) ? -1 : ((unsigned long[]){12,13,14,-1,15,-1,-1,-1,16}[PAGE_SIZE>>13]))
+#define PAGE_MASK    (~(PAGE_SIZE-1))
 
 #endif /* _PPC_PAGE_H */
