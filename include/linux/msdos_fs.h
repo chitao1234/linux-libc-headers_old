@@ -111,6 +111,8 @@
  * BE = big-endian, c: W = word (16 bits), L = longword (32 bits)
  */
 
+#include <asm/byteorder.h>
+
 #define CF_LE_W(v) le16_to_cpu(v)
 #define CF_LE_L(v) le32_to_cpu(v)
 #define CT_LE_W(v) cpu_to_le16(v)
