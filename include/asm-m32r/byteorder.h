@@ -1,11 +1,11 @@
 #ifndef _ASM_M32R_BYTEORDER_H
 #define _ASM_M32R_BYTEORDER_H
 
-/* $Id: byteorder.h,v 1.1 2004/10/21 15:15:37 mmazur Exp $ */
+/* $Id: byteorder.h,v 1.2 2004/10/21 16:04:54 mmazur Exp $ */
 
 #include <asm/types.h>
 
-#if !defined(__STRICT_ANSI__) || defined(__KERNEL__)
+#if !defined(__STRICT_ANSI__) 
 #  define __BYTEORDER_HAS_U64__
 #  define __SWAB_64_THRU_32__
 #endif

@@ -144,22 +144,4 @@ struct pt_regs {
 /* options set using PTRACE_SETOPTIONS */
 #define PTRACE_O_TRACESYSGOOD	0x00000001
 
-#ifdef __KERNEL__
-#if defined(CONFIG_ISA_M32R2) || defined(CONFIG_CHIP_VDEC2)
-#define user_mode(regs) ((M32R_PSW_BPM & (regs)->psw) != 0)
-#elif defined(CONFIG_ISA_M32R)
-#define user_mode(regs) ((M32R_PSW_BSM & (regs)->psw) != 0)
-#else
-#error unknown isa configuration
-#endif
-
-#define instruction_pointer(regs) ((regs)->bpc)
-#define profile_pc(regs) instruction_pointer(regs)
-
-extern void show_regs(struct pt_regs *);
-
-extern void withdraw_debug_trap(struct pt_regs *regs);
-
-#endif /* __KERNEL */
-
 #endif /* _ASM_M32R_PTRACE_H */

@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_TIMEX_H
 #define _ASM_M32R_TIMEX_H
 
-/* $Id: timex.h,v 1.1 2004/10/21 15:15:38 mmazur Exp $ */
+/* $Id: timex.h,v 1.2 2004/10/21 16:04:54 mmazur Exp $ */
 
 /*
  * linux/include/asm-m32r/timex.h
@@ -16,21 +16,5 @@
 #define FINETUNE ((((((long)LATCH * HZ - CLOCK_TICK_RATE) << SHIFT_HZ) * \
 	(1000000/CLOCK_TICK_FACTOR) / (CLOCK_TICK_RATE/CLOCK_TICK_FACTOR)) \
 		<< (SHIFT_SCALE-SHIFT_HZ)) / HZ)
-
-#ifdef __KERNEL__
-/*
- * Standard way to access the cycle counter.
- * Currently only used on SMP.
- */
-
-typedef unsigned long long cycles_t;
-
-extern cycles_t cacheflush_time;
-
-static __inline__ cycles_t get_cycles (void)
-{
-	return 0;
-}
-#endif  /* __KERNEL__ */
 
 #endif  /* _ASM_M32R_TIMEX_H */

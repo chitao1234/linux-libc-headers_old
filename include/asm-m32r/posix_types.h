@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_POSIX_TYPES_H
 #define _ASM_M32R_POSIX_TYPES_H
 
-/* $Id: posix_types.h,v 1.1 2004/10/21 15:15:38 mmazur Exp $ */
+/* $Id: posix_types.h,v 1.2 2004/10/21 16:04:54 mmazur Exp $ */
 
 /* orig : i386, sh 2.4.18 */
 
@@ -43,14 +43,14 @@ typedef long long	__kernel_loff_t;
 #endif
 
 typedef struct {
-#if defined(__KERNEL__) || defined(__USE_ALL)
+#if defined(__USE_ALL)
 	int	val[2];
-#else /* !defined(__KERNEL__) && !defined(__USE_ALL) */
+#else /* !defined(__USE_ALL) */
 	int	__val[2];
-#endif /* !defined(__KERNEL__) && !defined(__USE_ALL) */
+#endif /* !defined(__USE_ALL) */
 } __kernel_fsid_t;
 
-#if defined(__KERNEL__) || !defined(__GLIBC__) || (__GLIBC__ < 2)
+#if !defined(__GLIBC__) || (__GLIBC__ < 2)
 
 #undef	__FD_SET
 static __inline__ void __FD_SET(unsigned long __fd, __kernel_fd_set *__fdsetp)
@@ -121,6 +121,6 @@ static __inline__ void __FD_ZERO(__kernel_fd_set *__p)
 	}
 }
 
-#endif /* defined(__KERNEL__) || !defined(__GLIBC__) || (__GLIBC__ < 2) */
+#endif /* !defined(__GLIBC__) || (__GLIBC__ < 2) */
 
 #endif  /* _ASM_M32R_POSIX_TYPES_H */
