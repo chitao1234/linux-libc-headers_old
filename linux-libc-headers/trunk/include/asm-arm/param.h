@@ -10,12 +10,6 @@
 #ifndef __ASM_PARAM_H
 #define __ASM_PARAM_H
 
-#include <asm/arch/param.h>	/* for HZ */
-
-#ifndef __KERNEL_HZ
-#define __KERNEL_HZ	100
-#endif
-
 # define HZ		100
 
 #define EXEC_PAGESIZE	4096
