@@ -10,7 +10,7 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
- * $Id: jffs.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
+ * $Id: jffs.h,v 1.2 2003/12/19 16:22:57 mmazur Exp $
  *
  * Ported to Linux 2.3.x and MTD:
  * Copyright (C) 2000  Alexander Larsson (alex@cendio.se), Cendio Systems AB
@@ -207,9 +207,9 @@ struct jffs_flash_status
 /* This stuff could be used for finding memory leaks.  */
 #define JFFS_MEMORY_DEBUG 0
 
+#if defined(JFFS_MEMORY_DEBUG) && JFFS_MEMORY_DEBUG
 extern long no_jffs_node;
 extern long no_jffs_file;
-#if defined(JFFS_MEMORY_DEBUG) && JFFS_MEMORY_DEBUG
 extern long no_jffs_control;
 extern long no_jffs_raw_inode;
 extern long no_jffs_node_ref;
