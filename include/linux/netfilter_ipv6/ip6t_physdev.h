@@ -1,10 +1,6 @@
 #ifndef _IP6T_PHYSDEV_H
 #define _IP6T_PHYSDEV_H
 
-#ifdef __KERNEL__
-#include <linux/if.h>
-#endif
-
 #define IP6T_PHYSDEV_OP_IN		0x01
 #define IP6T_PHYSDEV_OP_OUT		0x02
 #define IP6T_PHYSDEV_OP_BRIDGED		0x04

@@ -319,42 +319,4 @@ static inline void out_be64(volatile unsigned long *addr, unsigned long val)
 #include <asm/eeh.h>
 #endif
 
-#ifdef __KERNEL__
-
-/**
- *	check_signature		-	find BIOS signatures
- *	@io_addr: mmio address to check
- *	@signature:  signature block
- *	@length: length of signature
- *
- *	Perform a signature comparison with the mmio address io_addr. This
- *	address should have been obtained by ioremap.
- *	Returns 1 on a match.
- */
-static inline int check_signature(const volatile void __iomem * io_addr,
-	const unsigned char *signature, int length)
-{
-	int retval = 0;
-#ifndef CONFIG_PPC_ISERIES 
-	do {
-		if (readb(io_addr) != *signature)
-			goto out;
-		io_addr++;
-		signature++;
-		length--;
-	} while (length);
-	retval = 1;
-out:
-#endif
-	return retval;
-}
-
-/* Nothing to do */
-
-#define dma_cache_inv(_start,_size)		do { } while (0)
-#define dma_cache_wback(_start,_size)		do { } while (0)
-#define dma_cache_wback_inv(_start,_size)	do { } while (0)
-
-#endif /* __KERNEL__ */
-
 #endif /* _PPC64_IO_H */
