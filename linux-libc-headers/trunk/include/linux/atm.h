@@ -20,7 +20,7 @@
 #include <linux/atmapi.h>
 #include <linux/atmsap.h>
 #include <linux/atmioc.h>
-
+#include <stdint.h>
 
 /* general ATM constants */
 #define ATM_CELL_SIZE		    53	/* ATM cell size incl. header */
