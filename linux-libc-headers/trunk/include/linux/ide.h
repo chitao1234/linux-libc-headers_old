@@ -10,11 +10,9 @@
 #include <linux/ioport.h>
 #include <linux/hdreg.h>
 #include <linux/hdsmart.h>
-#include <linux/blkdev.h>
 #include <linux/proc_fs.h>
 #include <linux/interrupt.h>
 #include <linux/bitops.h>
-#include <linux/bio.h>
 #include <linux/device.h>
 #include <linux/pci.h>
 #include <endian.h>

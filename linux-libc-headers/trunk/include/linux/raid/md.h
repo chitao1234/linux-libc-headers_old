@@ -18,7 +18,6 @@
 #ifndef _MD_H
 #define _MD_H
 
-#include <linux/blkdev.h>
 #include <asm/semaphore.h>
 #include <linux/major.h>
 #include <linux/ioctl.h>
@@ -38,7 +37,6 @@
 #include <linux/mempool.h>
 #include <linux/reboot.h>
 #include <linux/blkpg.h>
-#include <linux/bio.h>
 
 /*
  * 'md_p.h' holds the 'physical' layout of RAID devices
@@ -49,7 +47,6 @@
 
 #include <linux/raid/md_p.h>
 #include <linux/raid/md_u.h>
-#include <linux/raid/md_k.h>
 
 /*
  * Different major versions are not compatible.

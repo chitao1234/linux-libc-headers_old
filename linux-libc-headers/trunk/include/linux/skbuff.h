@@ -19,7 +19,6 @@
 #include <linux/cache.h>
 
 #include <asm/types.h>
-#include <linux/highmem.h>
 #include <linux/poll.h>
 #include <linux/net.h>
 

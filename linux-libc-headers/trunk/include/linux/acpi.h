@@ -33,7 +33,6 @@
 #include <acpi/acpi.h>
 #include <acpi/acpi_bus.h>
 #include <acpi/acpi_drivers.h>
-#include <asm/acpi.h>
 
 
 #ifdef CONFIG_ACPI_BOOT
