@@ -26,7 +26,6 @@
 
 #ifndef __KERNEL__
 #include <asm/types.h>
-#include <asm/byteorder.h>
 #endif
 
 /*
