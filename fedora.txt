@@ -1,24 +1,51 @@
+
+all-asms:
+- fcntl.h: switch back for O_DIRECT from 02000000 to 040000 ignored;
+  see http://lwn.net/2001/0621/a/api-changes.php3
+- fcntl.h: consider addition of O_ATOMICLOOKUP to rest of the archs
+  (it's already in i386, alpha, sparc*, ppc)
+- processor.h: ignored changes (eg. INIT_MMAP definiton). Dunno what they are
+  supposed to do. Consider removal.
+- unistd.h: all changes ignored. Either dunno what they're for or look obsolete
+  (definitions of things that shouldn't really be defined etc.)
+
 alpha:
 - ignored switch from apecs_iounmap(unsigned long addr) to 
   apecs_iounmap(unsigned addr) in core_apecs.h
 - current.h is different now: struct task_struct wasn't added
 - elf.h: modifications ignored since they were inside #ifdef __KERNEL__
-- fcntl.h: switch back for O_DIRECT from 02000000 to 040000 ignored;
-  see http://lwn.net/2001/0621/a/api-changes.php3
 - hardirq.h: ignored addition of release_irqlock macro. This file looks like
   __KERNEL__ only
 - keyboard.h doesn't exist
 - mc146818rtc.h: ignored definition of RTC_IRQ. This file seems __KERNEL__ only
 - param.h: ignored ifdef __KERNEL__
-- processor.h: ignored changes (eg. INIT_MMAP definiton). Dunno what they are
-  supposed to do
 - rwsem.h, semaphore.h: ignored changing includes from linux/compiler.h to
   asm/compiler.h. Seems wierd.
 - smp.h: ignored. Looks like kernel only header.
 - smplock.h doesn't exist
 - ignored addition of syscall.h... it's empty
-- unistd.h: all changes ignored. Either dunno what they're for or look obsolete
-  (definitions of things that shouldn't really be defined etc.)
 - vga.h: ignored addition of some things - if it's not defined here, it's
   not handled by the kernel (I think). On top of it looks like kernel header :)
+
+i386:
+- consider removal: apic.h, apicdef.h, bugs.h, cobalt.h, current.h, delay.h,
+  desc.h, div64.h, fixmap.h, floppy.h, hardirq.h, io_apic.h, kmap_types.h,
+  linux_logo.h, lithium.h, mca_dma.h, mmu_context.h, mmx.h, parport.h, 
+  pgtable-level2.h, pgtable-level3.h, pgtable.h, smp.h, smpboot.h, smplock.h,
+  softirq.h, uaccess.h, xor.h
+- Userspace warnings (or above): atomic.h, bitops.h, byteorder.h, checksum.h,
+  dma.h, ide.h, io.h, kernel.h, module.h, mpspec.h, msr.h, pci.h, rwlock.h,
+- Removal of __KERNEL__: bitops.h, highmem.h, page.h, ptrace.h, resource.h,
+  rwsem.h, semaphore.h, siginfo.h, signal.h, spinlock.h, string.h, system.h,
+  termios.h, vm86.h, 
+- elf.h: changes ignored: inside __KERNEL__ (file considered for removal)
+- elf.h, elfmark.h: consider addition of elfmark.h
+- hw_irq: file changed, so couldn't apply modifications. Consider removal
+- ioctls.h: already applied
+- ldt.h: file changed
+- namei.h: check it
+- pgalloc.h: file changed. Modifications not applied. Consider removal.
+- scatterlist.h: changes ignored. Looks like kernel file.
+- string-486.h: added warning
+- syscall.h: dunno if this file is used. Needs checking.
 
