@@ -1,6 +1,8 @@
 #ifndef __ASM_SH_ELF_H
 #define __ASM_SH_ELF_H
 
+#include <asm/ptrace.h>
+
 /* SH relocation types  */
 #define	R_SH_NONE		0
 #define	R_SH_DIR32		1

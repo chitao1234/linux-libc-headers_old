@@ -1,6 +1,8 @@
 #ifndef __ASMARM_ELF_H
 #define __ASMARM_ELF_H
 
+#include <asm/ptrace.h>
+
 /*
  * ELF register definitions..
  */

@@ -1,6 +1,8 @@
 #ifndef __ASMPARISC_ELF_H
 #define __ASMPARISC_ELF_H
 
+#include <asm/types.h>
+
 /*
  * ELF register definitions..
  */

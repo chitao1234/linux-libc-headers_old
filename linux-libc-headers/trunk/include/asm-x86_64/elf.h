@@ -1,6 +1,8 @@
 #ifndef __ASM_X86_64_ELF_H
 #define __ASM_X86_64_ELF_H
 
+#include <asm/user.h>
+
 /*
  * ELF register definitions..
  */

@@ -1,6 +1,8 @@
 #ifndef __PPC_ELF_H
 #define __PPC_ELF_H
 
+#include <asm/types.h>
+
 /*
  * ELF register definitions..
  */

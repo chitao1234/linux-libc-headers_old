@@ -9,6 +9,8 @@
 #ifndef __ASMS390_ELF_H
 #define __ASMS390_ELF_H
 
+#include <asm/ptrace.h>
+
 /* s390 relocations defined by the ABIs */
 #define R_390_NONE		0	/* No reloc.  */
 #define R_390_8			1	/* Direct 8 bit.  */
@@ -90,7 +92,9 @@
 #define R_390_TLS_GOTIE20	60	/* 20 bit GOT offset for static TLS
 					   block offset.  */
 /* Keep this the last entry.  */
+#ifndef R_390_NUM
 #define R_390_NUM	61
+#endif
 
 /*
  * ELF register definitions..
