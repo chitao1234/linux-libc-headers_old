@@ -13,9 +13,11 @@ A: The llh package is distribution and kernel configuration agnostic therefore
    would have runtime detection of what kernel does and doesn't support.
    Unfortunately applications don't always do that and in some specific
    situations it's advisable to link your current kernel's config file to
-   replace linux/config.h. That error message is there to force users to be
-   aware of this situation. Distribution vendors (and most users) will most
-   likely want to remove it by emptying the config.h file.
+   replace linux/config.h (do note, that one has to have really good reasons
+   to do that, since it will probably generate more problems, than it fixes).
+   That error message is there to force users to be aware of this situation.
+   Distribution vendors (and most users) will most likely want to get rid of it
+   by emptying the config.h file.
 
 Q: When compiling $INSERTYOURAPP I got an error message saying I shouldn't
    be including kernel only files.
