@@ -8,6 +8,7 @@
 #endif
 
 #ifndef HZ
+#include <unistd.h>
 #define HZ sysconf(_SC_CLK_TCK)
 #endif
 
