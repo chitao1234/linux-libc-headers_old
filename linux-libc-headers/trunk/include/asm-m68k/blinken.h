@@ -12,7 +12,6 @@
 #ifndef _M68K_BLINKEN_H
 #define _M68K_BLINKEN_H
 
-#include <asm/setup.h>
 
 #define HP300_LEDS		0xf001ffff
 

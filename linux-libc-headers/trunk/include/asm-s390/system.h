@@ -14,7 +14,6 @@
 #include <linux/kernel.h>
 #include <asm/types.h>
 #include <asm/ptrace.h>
-#include <asm/setup.h>
 
 
 #endif

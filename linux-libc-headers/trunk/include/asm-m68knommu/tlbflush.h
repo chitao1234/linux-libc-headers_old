@@ -6,7 +6,6 @@
  * Copyright (C) 2000-2002, Greg Ungerer <gerg@snapgear.com>
  */
 
-#include <asm/setup.h>
 
 /*
  * flush all user-space atc entries.

@@ -1,7 +1,6 @@
 #ifndef _ASM_M68K_SETUP_H
 #define _ASM_M68K_SETUP_H
 
-#include <asm/setup.h>
 #include <linux/linkage.h>
 
 /* Status Register bits */

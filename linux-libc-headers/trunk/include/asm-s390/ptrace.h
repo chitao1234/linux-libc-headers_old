@@ -183,7 +183,6 @@
 #ifndef __ASSEMBLY__
 #include <linux/stddef.h>
 #include <linux/types.h>
-#include <asm/setup.h>
 
 typedef union
 {

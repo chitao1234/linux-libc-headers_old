@@ -1,7 +1,6 @@
 #ifndef __M68K_ENTRY_H
 #define __M68K_ENTRY_H
 
-#include <asm/setup.h>
 #include <asm/page.h>
 
 /*
