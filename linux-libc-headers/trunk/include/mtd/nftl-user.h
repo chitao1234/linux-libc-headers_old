@@ -8,6 +8,8 @@
 #ifndef __MTD_NFTL_USER_H__
 #define __MTD_NFTL_USER_H__
 
+#include <stdint.h>
+
 /* Block Control Information */
 
 struct nftl_bci {

@@ -8,6 +8,7 @@
 #define __JFFS2_USER_H__
 
 /* This file is blessed for inclusion by userspace */
+#include <stdint.h>
 #include <linux/jffs2.h>
 #include <endian.h>
 #include <byteswap.h>
