@@ -108,25 +108,6 @@
 #endif
 #define SIGSTKSZ	262144	/* default stack size for sigaltstack() */
 
-#ifdef __KERNEL__
-
-#define _NSIG		64
-#define _NSIG_BPW	64
-#define _NSIG_WORDS	(_NSIG / _NSIG_BPW)
-
-/*
- * These values of sa_flags are used only by the kernel as part of the
- * irq handling routines.
- *
- * SA_INTERRUPT is also used by the irq handling routines.
- * SA_SHIRQ is for shared interrupt support on PCI and EISA.
- */
-#define SA_PROBE		SA_ONESHOT
-#define SA_SAMPLE_RANDOM	SA_RESTART
-#define SA_SHIRQ		0x04000000
-#define SA_PERCPU_IRQ		0x02000000
-
-#endif /* __KERNEL__ */
 
 #define SIG_BLOCK          0	/* for blocking signals */
 #define SIG_UNBLOCK        1	/* for unblocking signals */
@@ -152,33 +133,6 @@ typedef struct sigaltstack {
 	size_t ss_size;
 } stack_t;
 
-#ifdef __KERNEL__
-
-/* Most things should be clean enough to redefine this at will, if care
-   is taken to make libc match.  */
-
-typedef unsigned long old_sigset_t;
-
-typedef struct {
-	unsigned long sig[_NSIG_WORDS];
-} sigset_t;
-
-struct sigaction {
-	__sighandler_t sa_handler;
-	unsigned long sa_flags;
-	sigset_t sa_mask;		/* mask last for extensibility */
-};
-
-struct k_sigaction {
-	struct sigaction sa;
-};
-
-#  include <asm/sigcontext.h>
-
-#define ptrace_signal_deliver(regs, cookie) do { } while (0)
-#define HAVE_ARCH_SYS_PAUSE
-
-#endif /* __KERNEL__ */
 
 # endif /* !__ASSEMBLY__ */
 #endif /* _ASM_IA64_SIGNAL_H */

@@ -15,7 +15,6 @@
 #include <linux/sched.h>
 #include <linux/mmzone.h>
 #include <asm/sn/types.h>
-#include <asm/current.h>
 #include <asm/nodedata.h>
 #include <asm/sn/pda.h>
 
