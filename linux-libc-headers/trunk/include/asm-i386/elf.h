@@ -5,6 +5,7 @@
  * ELF register definitions..
  */
 
+#include <asm/user.h>
 
 #define R_386_NONE	0
 #define R_386_32	1
