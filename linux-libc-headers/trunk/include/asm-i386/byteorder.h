@@ -34,6 +34,10 @@ static __inline__ __const__ __u16 ___arch__swab16(__u16 x)
 		return x;
 }
 
+#define __arch__swab32(x) ___arch__swab32(x)
+#define __arch__swab16(x) ___arch__swab16(x)
+
+#if !defined (__STRICT_ANSI__)
 
 static inline __u64 ___arch__swab64(__u64 val) 
 { 
@@ -55,10 +59,9 @@ static inline __u64 ___arch__swab64(__u64 val)
 } 
 
 #define __arch__swab64(x) ___arch__swab64(x)
-#define __arch__swab32(x) ___arch__swab32(x)
-#define __arch__swab16(x) ___arch__swab16(x)
 
 #define __BYTEORDER_HAS_U64__
+#endif
 
 #endif /* __GNUC__ */
 
