@@ -13,6 +13,9 @@ typedef struct {
 	volatile unsigned long owner_pc;
 	volatile unsigned long owner_cpu;
 #endif
+#ifdef CONFIG_PREEMPT
+	unsigned int break_lock;
+#endif
 } spinlock_t;
 
 

@@ -1,7 +1,7 @@
 #ifndef _ASM_M32R_SMP_H
 #define _ASM_M32R_SMP_H
 
-/* $Id: smp.h,v 1.2 2004/10/22 16:58:47 mmazur Exp $ */
+/* $Id$ */
 
 
 #ifdef CONFIG_SMP
@@ -91,7 +91,6 @@ static __inline__ unsigned int num_booting_cpus(void)
 }
 
 extern void smp_send_timer(void);
-extern void calibrate_delay(void);
 extern unsigned long send_IPI_mask_phys(cpumask_t, int, int);
 
 #endif	/* not __ASSEMBLY__ */

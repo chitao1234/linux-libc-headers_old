@@ -230,10 +230,6 @@ struct reiserfs_super_block
 #define REISER2FS_SUPER_MAGIC_STRING "ReIsEr2Fs"
 #define REISER2FS_JR_SUPER_MAGIC_STRING "ReIsEr3Fs"
 
-extern const char reiserfs_3_5_magic_string[];
-extern const char reiserfs_3_6_magic_string[];
-extern const char reiserfs_jr_magic_string[];
-
 int is_reiserfs_3_5 (struct reiserfs_super_block * rs);
 int is_reiserfs_3_6 (struct reiserfs_super_block * rs);
 int is_reiserfs_jr (struct reiserfs_super_block * rs);
@@ -1419,8 +1415,6 @@ struct item_operations {
 };
 
 
-extern struct item_operations stat_data_ops, indirect_ops, direct_ops, 
-  direntry_ops;
 extern struct item_operations * item_ops [TYPE_ANY + 1];
 
 #define op_bytes_number(ih,bsize)                    item_ops[le_ih_k_type (ih)]->bytes_number (ih, bsize)
@@ -1436,11 +1430,7 @@ extern struct item_operations * item_ops [TYPE_ANY + 1];
 
 
 
-
-
-#define COMP_KEYS comp_keys
 #define COMP_SHORT_KEYS comp_short_keys
-/*#define keys_of_same_object comp_short_keys*/
 
 /* number of blocks pointed to by the indirect item */
 #define I_UNFM_NUM(p_s_ih)	( ih_item_len(p_s_ih) / UNFM_P_SIZE )
@@ -1548,6 +1538,13 @@ struct reiserfs_journal_header {
 #define JOURNAL_MAX_COMMIT_AGE 30 
 #define JOURNAL_MAX_TRANS_AGE 30
 #define JOURNAL_PER_BALANCE_CNT (3 * (MAX_HEIGHT-2) + 9)
+#ifdef CONFIG_QUOTA
+#define REISERFS_QUOTA_TRANS_BLOCKS 2	/* We need to update data and inode (atime) */
+#define REISERFS_QUOTA_INIT_BLOCKS (DQUOT_MAX_WRITES*(JOURNAL_PER_BALANCE_CNT+2)+1)	/* 1 balancing, 1 bitmap, 1 data per write + stat data update */
+#else
+#define REISERFS_QUOTA_TRANS_BLOCKS 0
+#define REISERFS_QUOTA_INIT_BLOCKS 0
+#endif
 
 /* both of these can be as low as 1, or as high as you want.  The min is the
 ** number of 4k bitmap nodes preallocated on mount. New nodes are allocated
@@ -1694,12 +1691,21 @@ int reiserfs_do_truncate (struct reiserfs_transaction_handle *th,
 void padd_item (char * item, int total_length, int length);
 
 /* inode.c */
+/* args for the create parameter of reiserfs_get_block */
+#define GET_BLOCK_NO_CREATE 0 /* don't create new blocks or convert tails */
+#define GET_BLOCK_CREATE 1    /* add anything you need to find block */
+#define GET_BLOCK_NO_HOLE 2   /* return -ENOENT for file holes */
+#define GET_BLOCK_READ_DIRECT 4  /* read the tail if indirect item not found */
+#define GET_BLOCK_NO_ISEM     8 /* i_sem is not held, don't preallocate */
+#define GET_BLOCK_NO_DANGLE   16 /* don't leave any transactions running */
+
 int restart_transaction(struct reiserfs_transaction_handle *th, struct inode *inode, struct path *path);
 void reiserfs_read_locked_inode(struct inode * inode, struct reiserfs_iget_args *args) ;
 int reiserfs_find_actor(struct inode * inode, void *p) ;
 int reiserfs_init_locked_inode(struct inode * inode, void *p) ;
 void reiserfs_delete_inode (struct inode * inode);
 int reiserfs_write_inode (struct inode * inode, int) ;
+int reiserfs_get_block (struct inode * inode, sector_t block, struct buffer_head * bh_result, int create);
 struct dentry *reiserfs_get_dentry(struct super_block *, void *) ;
 struct dentry *reiserfs_decode_fh(struct super_block *sb, __u32 *data,
                                      int len, int fhtype,
@@ -1708,7 +1714,6 @@ struct dentry *reiserfs_decode_fh(struct super_block *sb, __u32 *data,
 int reiserfs_encode_fh( struct dentry *dentry, __u32 *data, int *lenp, 
 						int connectable );
 
-int reiserfs_prepare_write(struct file *, struct page *, unsigned, unsigned) ;
 int reiserfs_truncate_file(struct inode *, int update_timestamps) ;
 void make_cpu_key (struct cpu_key * cpu_key, struct inode * inode, loff_t offset,
 		   int type, int key_length);
@@ -1723,9 +1728,6 @@ int reiserfs_new_inode (struct reiserfs_transaction_handle *th,
 				   struct inode * dir, int mode, 
 				   const char * symname, loff_t i_size,
 				   struct dentry *dentry, struct inode *inode);
-
-int reiserfs_sync_inode (struct reiserfs_transaction_handle *th,
-                         struct inode * inode);
 
 void reiserfs_update_sd_size (struct reiserfs_transaction_handle *th,
                               struct inode * inode, loff_t size);
@@ -1896,7 +1898,6 @@ __u32 r5_hash (const signed char *msg, int len);
 /* prototypes from ioctl.c */
 int reiserfs_ioctl (struct inode * inode, struct file * filp, 
  		    unsigned int cmd, unsigned long arg);
-int reiserfs_unpack (struct inode * inode, struct file * filp);
  
 /* ioctl's command */
 #define REISERFS_IOC_UNPACK		_IOW(0xCD,1,long)

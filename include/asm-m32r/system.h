@@ -7,6 +7,7 @@
  * for more details.
  *
  * Copyright (C) 2001  by Hiroyuki Kondo, Hirokazu Takata, and Hitoshi Yamamoto
+ * Copyright (C) 2004  Hirokazu Takata <takata at linux-m32r.org>
  */
 
 #define nop()	__asm__ __volatile__ ("nop" : : )
@@ -95,11 +96,7 @@ static __inline__ unsigned long __xchg(unsigned long x, volatile void * ptr,
  * rmb() prevents loads being reordered across this point.
  * wmb() prevents stores being reordered across this point.
  */
-#if 0
-#define mb()   __asm__ __volatile__ ("push r0; \n\t pop r0;" : : : "memory")
-#else
-#define mb()   __asm__ __volatile__ ("" : : : "memory")
-#endif
+#define mb()   barrier()
 #define rmb()  mb()
 #define wmb()  mb()
 
@@ -174,4 +171,3 @@ static __inline__ unsigned long __xchg(unsigned long x, volatile void * ptr,
 #define set_wmb(var, value) do { var = value; wmb(); } while (0)
 
 #endif  /* _ASM_M32R_SYSTEM_H */
-

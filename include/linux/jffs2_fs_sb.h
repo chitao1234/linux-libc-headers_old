@@ -30,9 +30,7 @@ struct jffs2_sb_info {
 
 	struct semaphore alloc_sem;	/* Used to protect all the following 
 					   fields, and also to protect against
-					   out-of-order writing of nodes.
-					   And GC.
-					*/
+					   out-of-order writing of nodes. And GC. */
 	uint32_t cleanmarker_size;	/* Size of an _inline_ CLEANMARKER
 					 (i.e. zero for OOB CLEANMARKER */
 
@@ -90,13 +88,15 @@ struct jffs2_sb_info {
 	   to an obsoleted node. I don't like this. Alternatives welcomed. */
 	struct semaphore erase_free_sem;
 
-#ifdef CONFIG_JFFS2_FS_NAND
+#if defined CONFIG_JFFS2_FS_NAND || defined CONFIG_JFFS2_FS_NOR_ECC
 	/* Write-behind buffer for NAND flash */
 	unsigned char *wbuf;
 	uint32_t wbuf_ofs;
 	uint32_t wbuf_len;
 	uint32_t wbuf_pagesize;
 	struct jffs2_inodirty *wbuf_inodes;
+
+	struct rw_semaphore wbuf_sem;	/* Protects the write buffer */
 
 	/* Information about out-of-band area usage... */
 	struct nand_oobinfo *oobinfo;

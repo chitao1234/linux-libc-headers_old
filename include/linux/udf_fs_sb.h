@@ -18,6 +18,8 @@
 #ifndef _UDF_FS_SB_H
 #define _UDF_FS_SB_H 1
 
+#include <asm/semaphore.h>
+
 #pragma pack(1)
 
 #define UDF_MAX_BLOCK_LOADED	8

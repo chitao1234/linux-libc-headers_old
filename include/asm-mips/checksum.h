@@ -59,8 +59,8 @@ static inline unsigned int csum_and_copy_to_user (const char *src, char *dst,
  * the same as csum_partial, but copies from user space (but on MIPS
  * we have just one address space, so this is identical to the above)
  */
-unsigned int csum_partial_copy_nocheck(const char *src, char *dst, int len,
-				       unsigned int sum);
+unsigned int csum_partial_copy_nocheck(const unsigned char *src, unsigned char *dst,
+				       int len, unsigned int sum);
 
 /*
  *	Fold a partial checksum without adding pseudo headers

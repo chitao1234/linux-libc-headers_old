@@ -3,11 +3,6 @@
 /* Connection state tracking for netfilter.  This is separated from,
    but required by, the NAT layer; it can also be used by an iptables
    extension. */
-
-#include <linux/netfilter_ipv4/ip_conntrack_tuple.h>
-#include <linux/bitops.h>
-#include <asm/atomic.h>
-
 enum ip_conntrack_info
 {
 	/* Part of an established connection (either direction). */
@@ -45,61 +40,31 @@ enum ip_conntrack_status {
 	/* Connection is confirmed: originating packet has left box */
 	IPS_CONFIRMED_BIT = 3,
 	IPS_CONFIRMED = (1 << IPS_CONFIRMED_BIT),
+
+	/* Connection needs src nat in orig dir.  This bit never changed. */
+	IPS_SRC_NAT_BIT = 4,
+	IPS_SRC_NAT = (1 << IPS_SRC_NAT_BIT),
+
+	/* Connection needs dst nat in orig dir.  This bit never changed. */
+	IPS_DST_NAT_BIT = 5,
+	IPS_DST_NAT = (1 << IPS_DST_NAT_BIT),
+
+	/* Both together. */
+	IPS_NAT_MASK = (IPS_DST_NAT | IPS_SRC_NAT),
+
+	/* Connection needs TCP sequence adjusted. */
+	IPS_SEQ_ADJUST_BIT = 6,
+	IPS_SEQ_ADJUST = (1 << IPS_SEQ_ADJUST_BIT),
+
+	/* NAT initialization bits. */
+	IPS_SRC_NAT_DONE_BIT = 7,
+	IPS_SRC_NAT_DONE = (1 << IPS_SRC_NAT_DONE_BIT),
+
+	IPS_DST_NAT_DONE_BIT = 8,
+	IPS_DST_NAT_DONE = (1 << IPS_DST_NAT_DONE_BIT),
+
+	/* Both together */
+	IPS_NAT_DONE_MASK = (IPS_DST_NAT_DONE | IPS_SRC_NAT_DONE),
 };
-
-#include <linux/netfilter_ipv4/ip_conntrack_tcp.h>
-#include <linux/netfilter_ipv4/ip_conntrack_icmp.h>
-#include <linux/netfilter_ipv4/ip_conntrack_sctp.h>
-
-/* per conntrack: protocol private data */
-union ip_conntrack_proto {
-	/* insert conntrack proto private data here */
-	struct ip_ct_sctp sctp;
-	struct ip_ct_tcp tcp;
-	struct ip_ct_icmp icmp;
-};
-
-union ip_conntrack_expect_proto {
-	/* insert expect proto private data here */
-};
-
-/* Add protocol helper include file here */
-#include <linux/netfilter_ipv4/ip_conntrack_amanda.h>
-#include <linux/netfilter_ipv4/ip_conntrack_ftp.h>
-#include <linux/netfilter_ipv4/ip_conntrack_irc.h>
-
-/* per expectation: application helper private data */
-union ip_conntrack_expect_help {
-	/* insert conntrack helper private data (expect) here */
-	struct ip_ct_amanda_expect exp_amanda_info;
-	struct ip_ct_ftp_expect exp_ftp_info;
-	struct ip_ct_irc_expect exp_irc_info;
-
-#ifdef CONFIG_IP_NF_NAT_NEEDED
-	union {
-		/* insert nat helper private data (expect) here */
-	} nat;
-#endif /* CONFIG_IP_NF_NAT_NEEDED */
-};
-
-#if defined(CONFIG_IP_NF_CONNTRACK_MARK)
-	unsigned long mark;
-#endif
-
-/* per conntrack: application helper private data */
-union ip_conntrack_help {
-	/* insert conntrack helper private data (master) here */
-	struct ip_ct_ftp_master ct_ftp_info;
-	struct ip_ct_irc_master ct_irc_info;
-};
-
-#ifdef CONFIG_IP_NF_NAT_NEEDED
-#include <linux/netfilter_ipv4/ip_nat.h>
-
-/* per conntrack: nat application helper private data */
-union ip_conntrack_nat_help {
-	/* insert nat helper private data here */
-};
-#endif
 
 #endif /* _IP_CONNTRACK_H */

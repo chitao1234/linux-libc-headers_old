@@ -101,4 +101,10 @@
 /* Motorola i.MX SoC */
 #define PORT_IMX	62
 
+/* Marvell MPSC */
+#define PORT_MPSC	63
+
+/* TXX9 type number */
+#define PORT_TXX9	64
+
 #endif /* LINUX_SERIAL_CORE_H */

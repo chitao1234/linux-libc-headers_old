@@ -243,8 +243,8 @@ extern int prom_getproplen(int thisnode, char *property);
 /* Fetch the requested property using the given buffer.  Returns
  * the number of bytes the prom put into your buffer or -1 on error.
  */
-extern int prom_getproperty(int thisnode, char *property,
-			    char *prop_buffer, int propbuf_size);
+extern int __must_check prom_getproperty(int thisnode, char *property,
+					 char *prop_buffer, int propbuf_size);
 
 /* Acquire an integer property. */
 extern int prom_getint(int node, char *property);

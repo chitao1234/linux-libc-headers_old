@@ -2,12 +2,14 @@
  *  linux/include/asm-arm26/atomic.h
  *
  *  Copyright (c) 1996 Russell King.
+ *  Modified for arm26 by Ian Molton
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  *
  *  Changelog:
+ *   25-11-2004 IM	Updated for 2.6.9
  *   27-06-1996	RMK	Created
  *   13-04-1997	RMK	Made functions atomic!
  *   07-12-1997	RMK	Upgraded for v2.1.
