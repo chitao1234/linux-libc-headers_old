@@ -1,4 +1,4 @@
-/* $Id: fcntl.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $ */
+/* $Id: fcntl.h,v 1.2 2003/12/16 17:59:55 mmazur Exp $ */
 #ifndef _SPARC_FCNTL_H
 #define _SPARC_FCNTL_H
 
@@ -21,6 +21,7 @@
 #define O_NOFOLLOW	0x20000	/* don't follow links */
 #define O_LARGEFILE	0x40000
 #define O_DIRECT        0x100000 /* direct disk access hint */
+#define O_ATOMICLOOKUP	01000000 /* do atomic file lookup */
 
 #define F_DUPFD		0	/* dup */
 #define F_GETFD		1	/* get close_on_exec */
