@@ -1,7 +1,7 @@
 #ifndef __LINUX_KEYBOARD_H
 #define __LINUX_KEYBOARD_H
 
-#include <linux/wait.h>
+#include <sys/wait.h>
 
 #define KG_SHIFT	0
 #define KG_CTRL		2
