@@ -14,11 +14,7 @@
 #define HZ 100
 #endif
 
-#define EXEC_PAGESIZE	4096
-
-#ifndef NGROUPS
-#define NGROUPS		32
-#endif
+#define EXEC_PAGESIZE	65536
 
 #ifndef NOGROUP
 #define NOGROUP		(-1)

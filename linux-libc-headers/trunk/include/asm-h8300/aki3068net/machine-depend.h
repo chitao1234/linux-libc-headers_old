@@ -11,12 +11,7 @@
 
 #define NE2000_ADDR		0x200000
 #define NE2000_IRQ              5
-#define NE2000_IRQ_VECTOR	(12 + NE2000_IRQ)
 #define	NE2000_BYTE		volatile unsigned short
-
-#define IER                     0xfee015
-#define ISR			0xfee016
-#define IRQ_MASK		(1 << NE2000_IRQ)
 
 #define WCRL                    0xfee023
 #define MAR0A                   0xffff20

@@ -84,7 +84,6 @@ static inline void pte_free(struct page *pte)
 }
 
 #define __pte_free_tlb(tlb,pte)		tlb_remove_page((tlb),(pte))
-#define __pmd_free_tlb(tlb,x)		do { } while (0)
 
 #ifdef CONFIG_MIPS32
 #define pgd_populate(mm, pmd, pte)	BUG()
@@ -95,6 +94,7 @@ static inline void pte_free(struct page *pte)
  */
 #define pmd_alloc_one(mm, addr)		({ BUG(); ((pmd_t *)2); })
 #define pmd_free(x)			do { } while (0)
+#define __pmd_free_tlb(tlb,x)		do { } while (0)
 #endif
 
 #ifdef CONFIG_MIPS64
@@ -115,6 +115,8 @@ static inline void pmd_free(pmd_t *pmd)
 {
 	free_pages((unsigned long)pmd, PMD_ORDER);
 }
+
+#define __pmd_free_tlb(tlb,x)	pmd_free(x)
 
 #endif
 

@@ -65,25 +65,6 @@ struct sigcontext {
 	unsigned int	sc_cause;
 };
 
-struct sigcontext32 {
-	__u32	sc_regmask;		/* Unused */
-	__u32	sc_status;
-	__u64	sc_pc;
-	__u64	sc_regs[32];
-	__u64	sc_fpregs[32];
-	__u32	sc_ownedfp;		/* Unused */
-	__u32	sc_fpc_csr;
-	__u32	sc_fpc_eir;		/* Unused */
-	__u32	sc_used_math;
-	__u32	sc_ssflags;		/* Unused */
-	__u64	sc_mdhi;
-	__u64	sc_mdlo;
-
-	__u32	sc_cause;		/* Unused */
-	__u32	sc_badvaddr;		/* Unused */
-
-	__u32	sc_sigset[4];		/* kernel's sigset_t */
-};
 
 #endif /* _MIPS_SIM == _MIPS_SIM_ABI64 || _MIPS_SIM == _MIPS_SIM_NABI32 */
 

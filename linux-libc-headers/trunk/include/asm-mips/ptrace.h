@@ -22,8 +22,6 @@
 #define FPC_CSR		69
 #define FPC_EIR		70
 
-#ifndef __ASSEMBLY__
-
 /*
  * This struct defines the way the registers are stored on the stack during a
  * system call/exception. As usual the registers k0/k1 aren't being saved.
@@ -37,20 +35,14 @@ struct pt_regs {
 	/* Saved main processor registers. */
 	unsigned long regs[32];
 
-	/* Other saved registers. */
+	/* Saved special registers. */
+	unsigned long cp0_status;
 	unsigned long lo;
 	unsigned long hi;
-
-	/*
-	 * saved cp0 registers
-	 */
-	unsigned long cp0_epc;
 	unsigned long cp0_badvaddr;
-	unsigned long cp0_status;
 	unsigned long cp0_cause;
+	unsigned long cp0_epc;
 };
-
-#endif /* !__ASSEMBLY__ */
 
 /* Arbitrarily choose the same ptrace numbers as used by the Sparc code. */
 /* #define PTRACE_GETREGS		12 */
@@ -65,8 +57,5 @@ struct pt_regs {
 #define PTRACE_GET_THREAD_AREA	25
 #define PTRACE_SET_THREAD_AREA	26
 
-#ifdef __ASSEMBLY__
-#include <asm/offset.h>
-#endif
 
 #endif /* _ASM_PTRACE_H */

@@ -75,8 +75,8 @@ extern void (*disable_irq)(unsigned int);
 
 struct pt_regs;
 
-extern int sys_request_irq(unsigned int, 
-	irqreturn_t (*)(int, void *, struct pt_regs *), 
+extern int sys_request_irq(unsigned int,
+	irqreturn_t (*)(int, void *, struct pt_regs *),
 	unsigned long, const char *, void *);
 extern void sys_free_irq(unsigned int, void *);
 

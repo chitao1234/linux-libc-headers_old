@@ -6,7 +6,7 @@
 #ifndef _ASMi386_TIMEX_H
 #define _ASMi386_TIMEX_H
 
-#if 0 && defined(CONFIG_MELAN)
+#ifdef CONFIG_X86_ELAN
 #  define CLOCK_TICK_RATE 1189200 /* AMD Elan has different frequency! */
 #else
 #  define CLOCK_TICK_RATE 1193182 /* Underlying HZ */

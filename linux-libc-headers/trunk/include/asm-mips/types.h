@@ -12,12 +12,7 @@
 
 #ifndef __ASSEMBLY__
 
-#ifdef CONFIG_MIPS32
 typedef unsigned short umode_t;
-#endif
-#ifdef CONFIG_MIPS64
-typedef unsigned int umode_t;
-#endif
 
 /*
  * __xx is ok: it doesn't pollute the POSIX namespace. Use these in the

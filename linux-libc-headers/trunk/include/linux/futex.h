@@ -10,10 +10,6 @@
 #define FUTEX_REQUEUE (3)
 
 
-asmlinkage long sys_futex(u32 *uaddr, int op, int val,
-			  struct timespec *utime, u32 *uaddr2);
-
-
 long do_futex(unsigned long uaddr, int op, int val,
 		unsigned long timeout, unsigned long uaddr2, int val2);
 

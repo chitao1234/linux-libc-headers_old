@@ -1,4 +1,4 @@
-/* $Revision: 1.2 $$Date: 2004/01/01 18:23:40 $
+/* $Revision: 1.3 $$Date: 2004/03/27 16:03:40 $
  * linux/include/linux/cyclades.h
  *
  * This file was initially written by
@@ -7,6 +7,9 @@
  *
  * This file contains the general definitions for the cyclades.c driver
  *$Log: cyclades.h,v $
+ *Revision 1.3  2004/03/27 16:03:40  mmazur
+ *- up to 2.6.4
+ *
  *Revision 1.2  2004/01/01 18:23:40  mmazur
  *- Total Infor^H^H^H^H^HKernel Block Removal part 1
  *- after finishing this I will make a script to test each and every header
@@ -149,7 +152,7 @@ struct CYZ_BOOT_CTRL {
 /****************** ****************** *******************/
 /*
  *	The data types defined below are used in all ZFIRM interface
- *	data structures. They accommodate differences between HW
+ *	data structures. They accomodate differences between HW
  *	architectures and compilers.
  */
 

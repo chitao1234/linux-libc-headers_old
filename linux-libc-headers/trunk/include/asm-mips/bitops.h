@@ -20,11 +20,13 @@
 #define SZLONG_MASK 31UL
 #define __LL	"ll"
 #define __SC	"sc"
+#define cpu_to_lelongp(x) cpu_to_le32p((__u32 *) (x)) 
 #elif (_MIPS_SZLONG == 64)
 #define SZLONG_LOG 6
 #define SZLONG_MASK 63UL
 #define __LL	"lld"
 #define __SC	"scd"
+#define cpu_to_lelongp(x) cpu_to_le64p((__u64 *) (x)) 
 #endif
 
 /*
@@ -278,7 +280,7 @@ static inline int __test_and_change_bit(unsigned long nr,
  */
 static inline int test_bit(unsigned long nr, const volatile unsigned long *addr)
 {
-	return 1UL & (((const volatile unsigned long *) addr)[nr >> SZLONG_LOG] >> (nr & SZLONG_MASK));
+	return 1UL & (addr[nr >> SZLONG_LOG] >> (nr & SZLONG_MASK));
 }
 
 /*
@@ -334,10 +336,10 @@ static inline unsigned long __ffs(unsigned long word)
  * @offset: The bitnumber to start searching at
  * @size: The maximum size to search
  */
-static inline unsigned long find_next_zero_bit(unsigned long *addr,
+static inline unsigned long find_next_zero_bit(const unsigned long *addr,
 	unsigned long size, unsigned long offset)
 {
-	unsigned long *p = ((unsigned long *) addr) + (offset >> SZLONG_LOG);
+	const unsigned long *p = addr + (offset >> SZLONG_LOG);
 	unsigned long result = offset & ~SZLONG_MASK;
 	unsigned long tmp;
 
@@ -382,10 +384,10 @@ found_middle:
  * @offset: The bitnumber to start searching at
  * @size: The maximum size to search
  */
-static inline unsigned long find_next_bit(unsigned long *addr,
+static inline unsigned long find_next_bit(const unsigned long *addr,
 	unsigned long size, unsigned long offset)
 {
-	unsigned long *p = addr + (offset >> SZLONG_LOG);
+	const unsigned long *p = addr + (offset >> SZLONG_LOG);
 	unsigned long result = offset & ~SZLONG_MASK;
 	unsigned long tmp;
 
