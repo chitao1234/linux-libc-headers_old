@@ -6,10 +6,6 @@
 #ifndef _ASMx8664_TIMEX_H
 #define _ASMx8664_TIMEX_H
 
-#include <linux/config.h>
-#include <asm/msr.h>
-#include <asm/vsyscall.h>
-
 #define CLOCK_TICK_RATE	1193182 /* Underlying HZ */
 #define CLOCK_TICK_FACTOR	20	/* Factor of both 1000000 and CLOCK_TICK_RATE */
 #define FINETUNE ((((((int)LATCH * HZ - CLOCK_TICK_RATE) << SHIFT_HZ) * \
@@ -17,18 +13,6 @@
 		<< (SHIFT_SCALE-SHIFT_HZ)) / HZ)
 
 typedef unsigned long long cycles_t;
-
-extern cycles_t cacheflush_time;
-
-static inline cycles_t get_cycles (void)
-{
-	unsigned long long ret;
-
-	rdtscll(ret);
-	return ret;
-}
-
-extern unsigned int cpu_khz;
 
 /*
  * Documentation on HPET can be found at:
@@ -57,7 +41,5 @@ extern unsigned int cpu_khz;
 #define HPET_T0_PERIODIC	0x008
 #define HPET_T0_SETVAL		0x040
 #define HPET_T0_32BIT		0x100
-
-extern struct vxtime_data vxtime;
 
 #endif
