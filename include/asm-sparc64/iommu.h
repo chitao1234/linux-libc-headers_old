@@ -1,4 +1,4 @@
-/* $Id: iommu.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $
+/*
  * iommu.h: Definitions for the sun5 IOMMU.
  *
  * Copyright (C) 1996, 1999 David S. Miller (davem@caip.rutgers.edu)

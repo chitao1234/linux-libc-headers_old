@@ -1,4 +1,4 @@
-/* $Id: kdebug.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/*
  * kdebug.h:  Defines and definitions for debugging the Linux kernel
  *            under various kernel debuggers.
  *

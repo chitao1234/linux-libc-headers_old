@@ -1,4 +1,4 @@
-/* $Id: pbm.h,v 1.2 2004/01/15 20:18:59 mmazur Exp $
+/*
  * pbm.h: UltraSparc PCI controller software state.
  *
  * Copyright (C) 1997, 1998, 1999 David S. Miller (davem@redhat.com)

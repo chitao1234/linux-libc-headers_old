@@ -1,4 +1,4 @@
-/* $Id: sbus.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $
+/*
  * sbus.h: Defines for the Sun SBus.
  *
  * Copyright (C) 1996, 1999 David S. Miller (davem@redhat.com)

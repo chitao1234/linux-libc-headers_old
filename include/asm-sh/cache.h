@@ -1,4 +1,4 @@
-/* $Id: cache.h,v 1.2 2004/02/10 20:08:14 mmazur Exp $
+/*
  *
  * include/asm-sh/cache.h
  *

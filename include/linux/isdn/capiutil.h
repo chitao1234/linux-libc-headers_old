@@ -1,4 +1,4 @@
-/* $Id: capiutil.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
+/*
  *
  * CAPI 2.0 defines & types
  *

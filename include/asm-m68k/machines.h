@@ -1,4 +1,4 @@
-/* $Id: machines.h,v 1.1 2003/12/15 18:47:02 mmazur Exp $
+/*
  * machines.h:  Defines for taking apart the machine type value in the
  *              idprom and determining the kind of machine we are on.
  *

@@ -1,4 +1,4 @@
-/* $Id: pbm.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/*
  *
  * pbm.h: PCI bus module pseudo driver software state
  *        Adopted from sparc64 by V. Roganov and G. Raiko

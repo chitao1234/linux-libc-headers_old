@@ -1,4 +1,4 @@
-/* $Id: irq.h,v 1.3 2004/01/15 20:18:58 mmazur Exp $
+/*
  * irq.h: IRQ registers on the Sparc.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)

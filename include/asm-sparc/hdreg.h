@@ -1,4 +1,4 @@
-/* $Id: hdreg.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/*
  * hdreg.h: SPARC PCI specific IDE glue.
  *
  * Copyright (C) 1997  David S. Miller (davem@caip.rutgers.edu)

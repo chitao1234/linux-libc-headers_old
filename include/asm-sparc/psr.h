@@ -1,4 +1,4 @@
-/* $Id: psr.h,v 1.2 2004/01/21 19:54:45 mmazur Exp $
+/*
  * psr.h: This file holds the macros for masking off various parts of
  *        the processor status register on the Sparc. This is valid
  *        for Version 8. On the V9 this is renamed to the PSTATE

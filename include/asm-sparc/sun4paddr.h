@@ -1,4 +1,4 @@
-/* $Id: sun4paddr.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/*
  * sun4paddr.h:  Various physical addresses on sun4 machines
  *
  * Copyright (C) 1997 Anton Blanchard (anton@progsoc.uts.edu.au)

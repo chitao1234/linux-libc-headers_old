@@ -1,4 +1,4 @@
-/* $Id: parport.h,v 1.1 2003/12/15 18:47:05 mmazur Exp $
+/*
  * parport.h: sparc64 specific parport initialization and dma.
  *
  * Copyright (C) 1999  Eddie C. Dost  (ecd@skynet.be)
