@@ -57,19 +57,6 @@ struct nlmsghdr
 #define NLM_F_CREATE	0x400	/* Create, if it does not exist	*/
 #define NLM_F_APPEND	0x800	/* Add to end of list		*/
 
-/* finegrained unicast helpers: */
-struct sock *netlink_getsockbypid(struct sock *ssk, u32 pid);
-struct sock *netlink_getsockbyfilp(struct file *filp);
-int netlink_attachskb(struct sock *sk, struct sk_buff *skb, int nonblock, long timeo);
-void netlink_detachskb(struct sock *sk, struct sk_buff *skb);
-int netlink_sendskb(struct sock *sk, struct sk_buff *skb, int protocol);
-
-/* finegrained unicast helpers: */
-struct sock *netlink_getsockbypid(struct sock *ssk, u32 pid);
-struct sock *netlink_getsockbyfilp(struct file *filp);
-int netlink_attachskb(struct sock *sk, struct sk_buff *skb, int nonblock, long timeo);
-void netlink_detachskb(struct sock *sk, struct sk_buff *skb);
-int netlink_sendskb(struct sock *sk, struct sk_buff *skb, int protocol);
 
 /*
    4.4BSD ADD		NLM_F_CREATE|NLM_F_EXCL

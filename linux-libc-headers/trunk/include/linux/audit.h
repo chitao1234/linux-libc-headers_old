@@ -24,6 +24,9 @@
 #ifndef _LINUX_AUDIT_H_
 #define _LINUX_AUDIT_H_
 
+#include <asm/types.h>
+#include <linux/netlink.h>
+
 /* Request and reply types */
 #define AUDIT_GET      1000	/* Get status */
 #define AUDIT_SET      1001	/* Set status (enable/disable/auditd) */
