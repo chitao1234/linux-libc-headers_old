@@ -51,9 +51,6 @@
 #ifndef SUPPORT_VLB_SYNC		/* 1 to support weird 32-bit chips */
 #define SUPPORT_VLB_SYNC	1	/* 0 to reduce kernel size */
 #endif
-#ifndef DISK_RECOVERY_TIME		/* off=0; on=access_delay_time */
-#define DISK_RECOVERY_TIME	0	/*  for hardware that needs it */
-#endif
 #ifndef OK_TO_RESET_CONTROLLER		/* 1 needed for good error recovery */
 #define OK_TO_RESET_CONTROLLER	1	/* 0 for use with AH2372A/B interface */
 #endif
@@ -246,11 +243,11 @@ typedef unsigned char	byte;	/* used everywhere */
 /*
  * Timeouts for various operations:
  */
-#define WAIT_DRQ	(5*HZ/100)	/* 50msec - spec allows up to 20ms */
+#define WAIT_DRQ	(HZ/10)		/* 100msec - spec allows up to 20ms */
 #if defined(CONFIG_APM) || defined(CONFIG_APM_MODULE)
 #define WAIT_READY	(5*HZ)		/* 5sec - some laptops are very slow */
 #else
-#define WAIT_READY	(3*HZ/100)	/* 30msec - should be instantaneous */
+#define WAIT_READY	(HZ/10)		/* 100msec - should be instantaneous */
 #endif /* CONFIG_APM || CONFIG_APM_MODULE */
 #define WAIT_PIDENTIFY	(10*HZ)	/* 10sec  - should be less than 3ms (?), if all ATAPI CD is closed at boot */
 #define WAIT_WORSTCASE	(30*HZ)	/* 30sec  - worst case when spinning up */

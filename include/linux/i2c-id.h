@@ -20,7 +20,7 @@
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.		     */
 /* ------------------------------------------------------------------------- */
 
-/* $Id: i2c-id.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $ */
+/* $Id: i2c-id.h,v 1.2 2004/01/17 22:43:07 mmazur Exp $ */
 
 #ifndef LINUX_I2C_ID_H
 #define LINUX_I2C_ID_H
@@ -153,6 +153,7 @@
 #define I2C_DRIVERID_FS451 1037
 #define I2C_DRIVERID_W83627HF 1038
 #define I2C_DRIVERID_LM85 1039
+#define I2C_DRIVERID_LM83 1040
 
 /*
  * ---- Adapter types ----------------------------------------------------
@@ -258,6 +259,7 @@
 #define I2C_HW_SMBUS_AMD8111	0x0a
 #define I2C_HW_SMBUS_SCX200	0x0b
 #define I2C_HW_SMBUS_NFORCE2	0x0c
+#define I2C_HW_SMBUS_W9968CF	0x0d
 
 /* --- ISA pseudo-adapter						*/
 #define I2C_HW_ISA 0x00

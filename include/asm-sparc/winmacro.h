@@ -1,4 +1,4 @@
-/* $Id: winmacro.h,v 1.2 2004/01/15 20:18:58 mmazur Exp $
+/* $Id: winmacro.h,v 1.3 2004/01/17 22:43:05 mmazur Exp $
  * winmacro.h: Window loading-unloading macros.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)
@@ -8,7 +8,6 @@
 #define _SPARC_WINMACRO_H
 
 #include <asm/ptrace.h>
-#include <asm/psr.h>
 
 /* Store the register window onto the 8-byte aligned area starting
  * at %reg.  It might be %sp, it might not, we don't care.
@@ -90,18 +89,18 @@
         STORE_PT_INS(base_reg)
 
 #define SAVE_BOLIXED_USER_STACK(cur_reg, scratch) \
-        ld       [%cur_reg + AOFF_task_thread + AOFF_thread_w_saved], %scratch; \
+        ld       [%cur_reg + TI_W_SAVED], %scratch; \
         sll      %scratch, 2, %scratch; \
         add      %scratch, %cur_reg, %scratch; \
-        st       %sp, [%scratch + AOFF_task_thread + AOFF_thread_rwbuf_stkptrs]; \
+        st       %sp, [%scratch + TI_RWIN_SPTRS]; \
         sub      %scratch, %cur_reg, %scratch; \
         sll      %scratch, 4, %scratch; \
         add      %scratch, %cur_reg, %scratch; \
-        STORE_WINDOW(scratch + AOFF_task_thread + AOFF_thread_reg_window); \
+        STORE_WINDOW(scratch + TI_REG_WINDOW); \
         sub      %scratch, %cur_reg, %scratch; \
         srl      %scratch, 6, %scratch; \
         add      %scratch, 1, %scratch; \
-        st       %scratch, [%cur_reg + AOFF_task_thread + AOFF_thread_w_saved];
+        st       %scratch, [%cur_reg + TI_W_SAVED];
 
 #ifdef CONFIG_SMP
 #define LOAD_CURRENT4M(dest_reg, idreg) \

@@ -5,7 +5,7 @@
  *            (C) 2002 - 2003 Dominik Brodowski <linux@brodo.de>
  *            
  *
- * $Id: cpufreq.h,v 1.2 2004/01/15 20:19:02 mmazur Exp $
+ * $Id: cpufreq.h,v 1.3 2004/01/17 22:43:07 mmazur Exp $
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -56,7 +56,7 @@ struct cpufreq_governor;
 struct cpufreq_cpuinfo {
 	unsigned int		max_freq;
 	unsigned int		min_freq;
-	unsigned int		transition_latency; /* in 10^(-9) s */
+	unsigned int		transition_latency; /* in 10^(-9) s = nanoseconds */
 };
 
 struct cpufreq_real_policy {
@@ -230,17 +230,18 @@ int cpufreq_update_policy(unsigned int cpu);
 /* the proc_intf.c needs this */
 int cpufreq_parse_governor (char *str_governor, unsigned int *policy, struct cpufreq_governor **governor);
 
-#if defined(CONFIG_CPU_FREQ_GOV_USERSPACE) || defined(CONFIG_CPU_FREQ_GOV_USERSPACE_MODULE)
+
 /*********************************************************************
  *                      CPUFREQ USERSPACE GOVERNOR                   *
  *********************************************************************/
 int cpufreq_gov_userspace_init(void);
 
+#ifdef CONFIG_CPU_FREQ_24_API
+
 int cpufreq_setmax(unsigned int cpu);
 int cpufreq_set(unsigned int kHz, unsigned int cpu);
 unsigned int cpufreq_get(unsigned int cpu);
 
-#ifdef CONFIG_CPU_FREQ_24_API
 
 /* /proc/sys/cpu */
 enum {
@@ -288,8 +289,6 @@ enum {
 
 #endif /* CONFIG_CPU_FREQ_24_API */
 
-#endif /* CONFIG_CPU_FREQ_GOV_USERSPACE */
-
 
 /*********************************************************************
  *                       CPUFREQ DEFAULT GOVERNOR                    *
@@ -304,6 +303,7 @@ extern struct cpufreq_governor cpufreq_gov_userspace;
 #define CPUFREQ_DEFAULT_GOVERNOR	&cpufreq_gov_userspace
 #endif
 
+
 /*********************************************************************
  *                     FREQUENCY TABLE HELPERS                       *
  *********************************************************************/
@@ -317,7 +317,6 @@ struct cpufreq_frequency_table {
 				    * order */
 };
 
-#if defined(CONFIG_CPU_FREQ_TABLE) || defined(CONFIG_CPU_FREQ_TABLE_MODULE)
 int cpufreq_frequency_table_cpuinfo(struct cpufreq_policy *policy,
 				    struct cpufreq_frequency_table *table);
 
@@ -339,5 +338,4 @@ void cpufreq_frequency_table_get_attr(struct cpufreq_frequency_table *table,
 void cpufreq_frequency_table_put_attr(unsigned int cpu);
 
 
-#endif /* CONFIG_CPU_FREQ_TABLE */
 #endif /* _LINUX_CPUFREQ_H */

@@ -1,4 +1,4 @@
-/* $Id: pgtsrmmu.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/* $Id: pgtsrmmu.h,v 1.2 2004/01/17 22:43:05 mmazur Exp $
  * pgtsrmmu.h:  SRMMU page table defines and code.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)
@@ -108,6 +108,13 @@
 	 restore %g0, %g0, %g0;
 
 #ifndef __ASSEMBLY__
+
+/* This makes sense. Honest it does - Anton */
+/* XXX Yes but it's ugly as sin.  FIXME. -KMW */
+extern void *srmmu_nocache_pool;
+#define __nocache_pa(VADDR) (((unsigned long)VADDR) - SRMMU_NOCACHE_VADDR + __pa((unsigned long)srmmu_nocache_pool))
+#define __nocache_va(PADDR) (__va((unsigned long)PADDR) - (unsigned long)srmmu_nocache_pool + SRMMU_NOCACHE_VADDR)
+#define __nocache_fix(VADDR) __va(__nocache_pa(VADDR))
 
 /* Accessing the MMU control register. */
 extern __inline__ unsigned int srmmu_get_mmureg(void)
