@@ -1,7 +1,6 @@
 #ifndef _ASM_MAX_NUMNODES_H
 #define _ASM_MAX_NUMNODES_H
 
-#include <linux/config.h>
 
 #ifdef CONFIG_X86_NUMAQ
 

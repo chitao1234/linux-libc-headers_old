@@ -1,7 +1,6 @@
 #ifndef _ASMARM_BUG_H
 #define _ASMARM_BUG_H
 
-#include <linux/config.h>
 
 #ifdef CONFIG_DEBUG_BUGVERBOSE
 extern volatile void __bug(const char *file, int line, void *data);

@@ -1,4 +1,4 @@
-/* $Id: oplib.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $
+/* $Id: oplib.h,v 1.2 2004/01/15 20:18:59 mmazur Exp $
  * oplib.h:  Describes the interface and available routines in the
  *           Linux Prom library.
  *
@@ -9,7 +9,6 @@
 #ifndef __SPARC64_OPLIB_H
 #define __SPARC64_OPLIB_H
 
-#include <linux/config.h>
 #include <asm/openprom.h>
 
 /* Enumeration to describe the prom major version we have detected. */

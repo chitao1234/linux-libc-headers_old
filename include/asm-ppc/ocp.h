@@ -33,8 +33,6 @@
 #ifndef __OCP_H__
 #define __OCP_H__
 
-#include <linux/list.h>
-#include <linux/config.h>
 #include <linux/device.h>
 #include <linux/errno.h>
 

@@ -1,11 +1,10 @@
 #ifndef __ASM_SH_HD64461
 #define __ASM_SH_HD64461
 /*
- *	$Id: hd64461.h,v 1.1 2003/12/15 18:46:59 mmazur Exp $
+ *	$Id: hd64461.h,v 1.2 2004/01/15 20:18:55 mmazur Exp $
  *	Copyright (C) 2000 YAEGASHI Takeshi
  *	Hitachi HD64461 companion chip support
  */
-#include <linux/config.h>
 
 #define HD64461_STBCR	0x10000
 #define HD64461_SYSCR	0x10002

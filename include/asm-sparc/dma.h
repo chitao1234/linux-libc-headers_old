@@ -1,4 +1,4 @@
-/* $Id: dma.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/* $Id: dma.h,v 1.2 2004/01/15 20:18:57 mmazur Exp $
  * include/asm-sparc/dma.h
  *
  * Copyright 1995 (C) David S. Miller (davem@caip.rutgers.edu)
@@ -7,7 +7,6 @@
 #ifndef _ASM_SPARC_DMA_H
 #define _ASM_SPARC_DMA_H
 
-#include <linux/config.h>
 #include <linux/kernel.h>
 #include <linux/types.h>
 
@@ -17,7 +16,6 @@
 #include <asm/oplib.h>
 #include <asm/system.h>
 #include <asm/io.h>
-#include <linux/spinlock.h>
 
 extern spinlock_t  dma_spin_lock;
 

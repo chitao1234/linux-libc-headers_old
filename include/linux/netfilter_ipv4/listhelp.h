@@ -1,7 +1,5 @@
 #ifndef _LISTHELP_H
 #define _LISTHELP_H
-#include <linux/config.h>
-#include <linux/list.h>
 #include <linux/netfilter_ipv4/lockhelp.h>
 
 /* Header to do more comprehensive job than linux/list.h; assume list

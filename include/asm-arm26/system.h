@@ -3,7 +3,6 @@
 
 #ifdef __KERNEL__
 
-#include <linux/config.h>
 #include <linux/kernel.h>
 #include <asm/proc-fns.h>
 

@@ -1,4 +1,4 @@
-/* $Id: semaphore.h,v 1.1 2003/12/15 18:47:01 mmazur Exp $ */
+/* $Id: semaphore.h,v 1.2 2004/01/15 20:18:35 mmazur Exp $ */
 
 /* On the i386 these are coded in asm, perhaps we should as well. Later.. */
 
@@ -8,7 +8,6 @@
 #define RW_LOCK_BIAS             0x01000000
 
 #include <linux/wait.h>
-#include <linux/spinlock.h>
 #include <linux/rwsem.h>
 
 #include <asm/system.h>

@@ -4,7 +4,6 @@
 /*
  * (C) Copyright 2000-2002, Greg Ungerer <gerg@snapgear.com>
  */
-#include <linux/mm.h>
 
 #define flush_cache_all()			__flush_cache_all()
 #define flush_cache_mm(mm)			do { } while (0)

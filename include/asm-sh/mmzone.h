@@ -8,7 +8,6 @@
 #ifndef __ASM_SH_MMZONE_H
 #define __ASM_SH_MMZONE_H
 
-#include <linux/config.h>
 
 #ifdef CONFIG_DISCONTIGMEM
 

@@ -1,4 +1,4 @@
-/* $Id: arch.h,v 1.1 2003/12/15 18:47:01 mmazur Exp $
+/* $Id: arch.h,v 1.2 2004/01/15 20:18:39 mmazur Exp $
  *
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive
@@ -12,7 +12,6 @@
 #ifndef _ASM_IA64_SN_ARCH_H
 #define _ASM_IA64_SN_ARCH_H
 
-#include <linux/config.h>
 #include <linux/threads.h>
 #include <linux/mmzone.h>
 #include <asm/sn/types.h>

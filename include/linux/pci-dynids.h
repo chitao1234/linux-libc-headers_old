@@ -7,7 +7,6 @@
 #ifndef LINUX_PCI_DYNIDS_H
 #define LINUX_PCI_DYNIDS_H
 
-#include <linux/list.h>
 #include <linux/mod_devicetable.h>
 
 struct dynid {

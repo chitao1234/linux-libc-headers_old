@@ -37,7 +37,6 @@
 #define _ASM_IA64_SN_BTE_H
 
 #include <linux/timer.h>
-#include <linux/spinlock.h>
 #include <linux/cache.h>
 #include <asm/sn/io.h>
 #include <asm/delay.h>

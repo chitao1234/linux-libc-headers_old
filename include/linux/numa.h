@@ -1,7 +1,6 @@
 #ifndef _LINUX_NUMA_H
 #define _LINUX_NUMA_H
 
-#include <linux/config.h>
 
 #ifdef CONFIG_DISCONTIGMEM
 #include <asm/numnodes.h>

@@ -27,7 +27,6 @@
 
 #include <asm/cache.h>
 #include <asm/system.h>
-#include <linux/config.h>
 
 /*
  * Depending on which platform we are running on, we need different

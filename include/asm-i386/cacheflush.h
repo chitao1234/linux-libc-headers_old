@@ -2,7 +2,6 @@
 #define _I386_CACHEFLUSH_H
 
 /* Keep includes the same across arches.  */
-#include <linux/mm.h>
 
 /* Caches aren't brain-dead on the intel. */
 #define flush_cache_all()			do { } while (0)

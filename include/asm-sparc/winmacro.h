@@ -1,4 +1,4 @@
-/* $Id: winmacro.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/* $Id: winmacro.h,v 1.2 2004/01/15 20:18:58 mmazur Exp $
  * winmacro.h: Window loading-unloading macros.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)
@@ -7,7 +7,6 @@
 #ifndef _SPARC_WINMACRO_H
 #define _SPARC_WINMACRO_H
 
-#include <linux/config.h>
 #include <asm/ptrace.h>
 #include <asm/psr.h>
 

@@ -11,7 +11,6 @@
 #define	mcfpit_h
 /****************************************************************************/
 
-#include <linux/config.h>
 
 /*
  *	Get address specific defines for the 5282.

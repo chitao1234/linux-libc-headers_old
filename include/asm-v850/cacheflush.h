@@ -15,7 +15,6 @@
 #define __V850_CACHEFLUSH_H__
 
 /* Somebody depends on this; sigh...  */
-#include <linux/mm.h>
 
 #include <asm/machdep.h>
 

@@ -1,4 +1,4 @@
-/* $Id: vac-ops.h,v 1.2 2003/12/22 12:02:10 mmazur Exp $ */
+/* $Id: vac-ops.h,v 1.3 2004/01/15 20:18:58 mmazur Exp $ */
 #ifndef _SPARC_VAC_OPS_H
 #define _SPARC_VAC_OPS_H
 
@@ -8,7 +8,6 @@
  * Copyright (C) 1994, David S. Miller (davem@caip.rutgers.edu)
  */
 
-#include <linux/config.h>
 #include <asm/sysen.h>
 #include <asm/contregs.h>
 #include <asm/asi.h>

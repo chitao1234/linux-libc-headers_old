@@ -1,6 +1,6 @@
 /* -*- linux-c -*-
  *
- *	$Id: sysrq.h,v 1.2 2003/12/19 18:13:57 mmazur Exp $
+ *	$Id: sysrq.h,v 1.3 2004/01/15 20:19:03 mmazur Exp $
  *
  *	Linux Magic System Request Key Hacks
  *
@@ -11,7 +11,6 @@
  *	based upon discusions in irc://irc.openprojects.net/#kernelnewbies
  */
 
-#include <linux/config.h>
 
 struct pt_regs;
 struct tty_struct;

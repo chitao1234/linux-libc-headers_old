@@ -14,7 +14,6 @@
 #ifndef __V850_PGALLOC_H__
 #define __V850_PGALLOC_H__
 
-#include <linux/mm.h>  /* some crap code expects this */
 
 /* ... and then, there was one.  */
 #define check_pgt_cache()	((void)0)

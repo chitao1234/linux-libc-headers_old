@@ -26,8 +26,6 @@
  * by Keith Owens and Andrea Arcangeli
  */
 
-#include <linux/config.h>
-#include <linux/spinlock.h>
 #include <linux/preempt.h>
 
 typedef struct {

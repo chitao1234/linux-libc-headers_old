@@ -1,7 +1,6 @@
 #ifndef _M68KNOMMU_PARAM_H
 #define _M68KNOMMU_PARAM_H
 
-#include <linux/config.h>
 
 #ifndef HZ
 #ifdef CONFIG_COLDFIRE

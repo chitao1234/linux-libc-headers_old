@@ -8,7 +8,6 @@
 
 #ifndef __ASSEMBLY__
 
-#include "linux/config.h"
 
 #include "asm/current.h"
 

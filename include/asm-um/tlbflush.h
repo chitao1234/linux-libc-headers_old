@@ -6,7 +6,6 @@
 #ifndef __UM_TLBFLUSH_H
 #define __UM_TLBFLUSH_H
 
-#include <linux/mm.h>
 
 /*
  * TLB flushing:

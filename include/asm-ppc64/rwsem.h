@@ -13,8 +13,6 @@
 #define _PPC64_RWSEM_H
 
 #ifdef __KERNEL__
-#include <linux/list.h>
-#include <linux/spinlock.h>
 #include <asm/atomic.h>
 #include <asm/system.h>
 

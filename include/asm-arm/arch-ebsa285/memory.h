@@ -19,7 +19,6 @@
 #ifndef __ASM_ARCH_MMU_H
 #define __ASM_ARCH_MMU_H
 
-#include <linux/config.h>
 
 #if defined(CONFIG_FOOTBRIDGE_ADDIN)
 /*

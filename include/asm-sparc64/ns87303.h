@@ -1,4 +1,4 @@
-/* $Id: ns87303.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $
+/* $Id: ns87303.h,v 1.2 2004/01/15 20:18:59 mmazur Exp $
  * ns87303.h: Configuration Register Description for the
  *            National Semiconductor PC87303 (SuperIO).
  *
@@ -78,7 +78,6 @@
 
 #ifdef __KERNEL__
 
-#include <linux/spinlock.h>
 
 #include <asm/system.h>
 #include <asm/io.h>

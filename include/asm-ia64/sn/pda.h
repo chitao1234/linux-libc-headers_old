@@ -8,7 +8,6 @@
 #ifndef _ASM_IA64_SN_PDA_H
 #define _ASM_IA64_SN_PDA_H
 
-#include <linux/config.h>
 #include <linux/cache.h>
 #include <linux/numa.h>
 #include <asm/percpu.h>

@@ -7,7 +7,6 @@
 #ifndef _LINUX_DM_IOCTL_H
 #define _LINUX_DM_IOCTL_H
 
-#include <linux/config.h>
 
 #ifdef CONFIG_DM_IOCTL_V4
 #include "dm-ioctl-v4.h"

@@ -16,7 +16,6 @@
 #ifndef __ASM_ARCH_HARDWARE_H
 #define __ASM_ARCH_HARDWARE_H
 
-#include <linux/config.h>
 
 #define PCIO_BASE	0
 

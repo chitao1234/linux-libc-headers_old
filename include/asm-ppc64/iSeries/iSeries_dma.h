@@ -22,7 +22,6 @@
 
 #include <asm/types.h>
 #ifndef __LINUX_SPINLOCK_H
-#include <linux/spinlock.h>
 #endif
 
 // NUM_TCE_LEVELS defines the largest contiguous block

@@ -10,7 +10,6 @@
 #ifndef _ASM_IA64_SN_FETCHOP_H
 #define _ASM_IA64_SN_FETCHOP_H
 
-#include <linux/config.h>
 
 #define FETCHOP_BASENAME	"sgi_fetchop"
 #define FETCHOP_FULLNAME	"/dev/sgi_fetchop"

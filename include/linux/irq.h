@@ -9,12 +9,10 @@
  * Thanks. --rmk
  */
 
-#include <linux/config.h>
 
 #if !defined(CONFIG_ARCH_S390)
 
 #include <linux/cache.h>
-#include <linux/spinlock.h>
 #include <linux/cpumask.h>
 
 #include <asm/irq.h>

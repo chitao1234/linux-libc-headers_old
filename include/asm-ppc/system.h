@@ -4,7 +4,6 @@
 #ifndef __PPC_SYSTEM_H
 #define __PPC_SYSTEM_H
 
-#include <linux/config.h>
 #include <linux/kernel.h>
 
 #include <asm/atomic.h>

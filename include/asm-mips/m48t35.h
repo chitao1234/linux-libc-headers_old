@@ -4,7 +4,6 @@
 #ifndef _ASM_M48T35_H
 #define _ASM_M48T35_H
 
-#include <linux/spinlock.h>
 
 extern spinlock_t rtc_lock;
 

@@ -1,4 +1,4 @@
-/* $Id: timer.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $
+/* $Id: timer.h,v 1.2 2004/01/15 20:18:59 mmazur Exp $
  * timer.h: System timer definitions for sun5.
  *
  * Copyright (C) 1997 David S. Miller (davem@caip.rutgers.edu)
@@ -25,7 +25,6 @@
  * and also profiling if enabled.
  */
 
-#include <linux/config.h>
 
 /* Two timers, traditionally steered to PIL's 10 and 14 respectively.
  * But since INO packets are used on sun5, we could use any PIL level

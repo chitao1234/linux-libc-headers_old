@@ -3,7 +3,6 @@
 
 #include <asm/page.h>
 #include <linux/threads.h>
-#include <linux/mm.h>
 
 #define pmd_populate_kernel(mm, pmd, pte) pmd_set(pmd, pte)
 #define pmd_populate(mm, pmd, pte) pmd_set(pmd, page_address(pte))

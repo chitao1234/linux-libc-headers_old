@@ -1,9 +1,7 @@
 #ifndef __ALPHA_T2__H__
 #define __ALPHA_T2__H__
 
-#include <linux/config.h>
 #include <linux/types.h>
-#include <linux/spinlock.h>
 #include <asm/compiler.h>
 #include <asm/system.h>
 

@@ -1,4 +1,4 @@
-/* $Id: processor.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $
+/* $Id: processor.h,v 1.2 2004/01/15 20:18:59 mmazur Exp $
  * include/asm-sparc64/processor.h
  *
  * Copyright (C) 1996 David S. Miller (davem@caip.rutgers.edu)
@@ -13,7 +13,6 @@
  */
 #define current_text_addr() ({ void *pc; __asm__("rd %%pc, %0" : "=r" (pc)); pc; })
 
-#include <linux/config.h>
 #include <asm/asi.h>
 #include <asm/a.out.h>
 #include <asm/pstate.h>

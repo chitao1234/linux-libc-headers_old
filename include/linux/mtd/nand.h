@@ -5,7 +5,7 @@
  *                     Steven J. Hill <sjhill@realitydiluted.com>
  *		       Thomas Gleixner <tglx@linutronix.de>
  *
- * $Id: nand.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
+ * $Id: nand.h,v 1.2 2004/01/15 20:19:05 mmazur Exp $
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -48,9 +48,7 @@
 #ifndef __LINUX_MTD_NAND_H
 #define __LINUX_MTD_NAND_H
 
-#include <linux/config.h>
 #include <linux/wait.h>
-#include <linux/spinlock.h>
 
 struct mtd_info;
 /*

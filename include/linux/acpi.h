@@ -29,7 +29,6 @@
 #define _LINUX
 #endif
 
-#include <linux/list.h>
 
 #include <acpi/acpi.h>
 #include <acpi/acpi_bus.h>

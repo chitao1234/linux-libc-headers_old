@@ -20,8 +20,6 @@
 #ifndef _ASM_IA64_RWSEM_H
 #define _ASM_IA64_RWSEM_H
 
-#include <linux/list.h>
-#include <linux/spinlock.h>
 
 #include <asm/intrinsics.h>
 

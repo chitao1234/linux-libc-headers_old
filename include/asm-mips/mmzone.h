@@ -4,7 +4,6 @@
 #ifndef _ASM_MMZONE_H_
 #define _ASM_MMZONE_H_
 
-#include <linux/config.h>
 #include <asm/sn/types.h>
 #include <asm/sn/addrs.h>
 #include <asm/sn/arch.h>

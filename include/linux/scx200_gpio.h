@@ -1,4 +1,3 @@
-#include <linux/spinlock.h>
 
 u32 scx200_gpio_configure(int index, u32 set, u32 clear);
 void scx200_gpio_dump(unsigned index);

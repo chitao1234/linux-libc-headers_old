@@ -8,7 +8,7 @@
  * as this will also enable DMA across 64 KB boundaries.
  */
 
-/* $Id: dma.h,v 1.1 2003/12/15 18:46:59 mmazur Exp $
+/* $Id: dma.h,v 1.2 2004/01/15 20:18:24 mmazur Exp $
  * linux/include/asm/dma.h: Defines for using and allocating dma channels.
  * Written by Hennus Bergman, 1992.
  * High DMA channel support & info by Hannu Savolainen
@@ -18,8 +18,6 @@
 #ifndef _ASM_DMA_H
 #define _ASM_DMA_H
 
-#include <linux/config.h>
-#include <linux/spinlock.h>
 #include <asm/io.h>
 
 #define dma_outb	outb

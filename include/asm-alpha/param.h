@@ -8,7 +8,6 @@
 #ifdef __KERNEL__
 /* Debian doesn't define CONFIG_ALPHA_RAWHIDE, and including
    <linux/config.h> pollutes the namespace.  */
-#include <linux/config.h>
 #endif
 
 #ifndef HZ

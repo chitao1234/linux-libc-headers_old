@@ -9,7 +9,6 @@
 #ifndef _ASM_IA64_SN_TYPES_H
 #define _ASM_IA64_SN_TYPES_H
 
-#include <linux/config.h>
 #include <linux/types.h>
 
 typedef unsigned long 	cpuid_t;

@@ -8,7 +8,6 @@
  * Copyright (C) 2000-2003 Silicon Graphics, Inc. All rights reserved.
  */
 
-#include <linux/config.h>
 #include <asm/smp.h>
 #include <asm/sn/addrs.h>
 #include <asm/sn/sn_cpuid.h>

@@ -1,4 +1,4 @@
-/* $Id: apollodma.h,v 1.1 2003/12/15 18:47:02 mmazur Exp $
+/* $Id: apollodma.h,v 1.2 2004/01/15 20:18:41 mmazur Exp $
  * linux/include/asm/dma.h: Defines for using and allocating dma channels.
  * Written by Hennus Bergman, 1992.
  * High DMA channel support & info by Hannu Savolainen
@@ -9,7 +9,6 @@
 #define _ASM_APOLLO_DMA_H
 
 #include <asm/apollohw.h>		/* need byte IO */
-#include <linux/spinlock.h>		/* And spinlocks */
 #include <linux/delay.h>
 
 

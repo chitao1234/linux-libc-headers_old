@@ -2,7 +2,6 @@
 #define _PPC64_TLBFLUSH_H
 
 #include <linux/threads.h>
-#include <linux/mm.h>
 #include <asm/page.h>
 
 /*

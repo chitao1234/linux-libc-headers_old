@@ -21,7 +21,6 @@
 #define _PCI_DMA_H
 
 #include <asm/types.h>
-#include <linux/spinlock.h>
 
 /*
  * NUM_TCE_LEVELS defines the largest contiguous block

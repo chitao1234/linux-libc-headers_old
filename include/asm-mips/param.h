@@ -11,7 +11,6 @@
 
 #ifdef __KERNEL__
 
-#include <linux/config.h>
 
 #ifdef CONFIG_DECSTATION
    /*

@@ -5,7 +5,6 @@
 #define __ASM_ARM_SEMAPHORE_H
 
 #include <linux/linkage.h>
-#include <linux/spinlock.h>
 #include <linux/wait.h>
 #include <linux/rwsem.h>
 

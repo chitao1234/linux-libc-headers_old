@@ -1,8 +1,7 @@
-/* $Id: ttable.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $ */
+/* $Id: ttable.h,v 1.2 2004/01/15 20:18:59 mmazur Exp $ */
 #ifndef _SPARC64_TTABLE_H
 #define _SPARC64_TTABLE_H
 
-#include <linux/config.h>
 #include <asm/utrap.h>
 
 #ifdef __ASSEMBLY__

@@ -1,4 +1,4 @@
-/* $Id: irq.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $
+/* $Id: irq.h,v 1.2 2004/01/15 20:18:59 mmazur Exp $
  * irq.h: IRQ registers on the 64-bit Sparc.
  *
  * Copyright (C) 1996 David S. Miller (davem@caip.rutgers.edu)
@@ -8,7 +8,6 @@
 #ifndef _SPARC64_IRQ_H
 #define _SPARC64_IRQ_H
 
-#include <linux/config.h>
 #include <linux/linkage.h>
 #include <linux/kernel.h>
 #include <linux/errno.h>

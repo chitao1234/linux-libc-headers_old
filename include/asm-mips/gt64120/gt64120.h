@@ -414,7 +414,6 @@
  * include asm/gt64120/<board>/gt64120_dep.h file
  */
 
-#include <linux/config.h>
 #include <linux/init.h>
 #include <linux/pci.h>
 

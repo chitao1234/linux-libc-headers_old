@@ -12,7 +12,6 @@
 #define _ASM_SN_ARCH_H
 
 #include <linux/types.h>
-#include <linux/config.h>
 
 #if !defined(CONFIG_SGI_IO)
 #include <asm/sn/types.h>

@@ -20,7 +20,6 @@
 #include <linux/fs_struct.h>
 #include <linux/completion.h>
 #include <linux/pid.h>
-#include <linux/percpu.h>
 
 struct exec_domain;
 

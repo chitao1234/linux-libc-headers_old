@@ -1,4 +1,4 @@
-/* $Id: mostek.h,v 1.1 2003/12/15 18:47:00 mmazur Exp $
+/* $Id: mostek.h,v 1.2 2004/01/15 20:18:58 mmazur Exp $
  * mostek.h:  Describes the various Mostek time of day clock registers.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)
@@ -9,7 +9,6 @@
 #ifndef _SPARC_MOSTEK_H
 #define _SPARC_MOSTEK_H
 
-#include <linux/config.h>
 #include <asm/idprom.h>
 
 /*       M48T02 Register Map (adapted from Sun NVRAM/Hostid FAQ)

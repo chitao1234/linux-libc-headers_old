@@ -1,9 +1,7 @@
 #ifndef __PPC64_MMU_CONTEXT_H
 #define __PPC64_MMU_CONTEXT_H
 
-#include <linux/spinlock.h>	
 #include <linux/kernel.h>	
-#include <linux/mm.h>	
 #include <asm/mmu.h>	
 #include <asm/ppcdebug.h>	
 

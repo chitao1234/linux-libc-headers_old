@@ -13,11 +13,10 @@
  *
  *	hacked by Andi Kleen for x86-64.
  * 
- *  $Id: hw_irq.h,v 1.2 2003/12/22 12:02:13 mmazur Exp $
+ *  $Id: hw_irq.h,v 1.3 2004/01/15 20:19:01 mmazur Exp $
  */
 
 #ifndef __ASSEMBLY__
-#include <linux/config.h>
 #include <asm/atomic.h>
 #include <asm/irq.h>
 #include <linux/profile.h>

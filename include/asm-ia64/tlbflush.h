@@ -6,9 +6,7 @@
  *	David Mosberger-Tang <davidm@hpl.hp.com>
  */
 
-#include <linux/config.h>
 
-#include <linux/mm.h>
 
 #include <asm/intrinsics.h>
 #include <asm/mmu_context.h>

@@ -10,7 +10,6 @@
 #ifndef _ASMARM_TLBFLUSH_H
 #define _ASMARM_TLBFLUSH_H
 
-#include <linux/config.h>
 #include <asm/glue.h>
 
 #define TLB_V3_PAGE	(1 << 0)

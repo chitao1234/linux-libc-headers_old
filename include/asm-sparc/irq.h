@@ -1,4 +1,4 @@
-/* $Id: irq.h,v 1.2 2003/12/22 12:02:10 mmazur Exp $
+/* $Id: irq.h,v 1.3 2004/01/15 20:18:58 mmazur Exp $
  * irq.h: IRQ registers on the Sparc.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)
@@ -7,7 +7,6 @@
 #ifndef _SPARC_IRQ_H
 #define _SPARC_IRQ_H
 
-#include <linux/config.h>
 #include <linux/linkage.h>
 #include <linux/threads.h>     /* For NR_CPUS */
 #include <linux/interrupt.h>

@@ -11,7 +11,6 @@
 #ifndef _ASM_IA64_MMZONE_H
 #define _ASM_IA64_MMZONE_H
 
-#include <linux/config.h>
 #include <asm/page.h>
 #include <asm/meminit.h>
 

@@ -5,7 +5,6 @@
 #ifndef __ASM_ARCH_MEMORY_H
 #define __ASM_ARCH_MEMORY_H
 
-#include <linux/config.h>
 #include <asm/arch/iop310.h>
 #include <asm/arch/iop321.h>
 

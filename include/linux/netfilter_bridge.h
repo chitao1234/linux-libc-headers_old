@@ -4,7 +4,6 @@
 /* bridge-specific defines for netfilter. 
  */
 
-#include <linux/config.h>
 #include <linux/netfilter.h>
 
 /* Bridge Hooks */

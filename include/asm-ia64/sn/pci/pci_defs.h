@@ -1,4 +1,4 @@
-/* $Id: pci_defs.h,v 1.1 2003/12/15 18:47:01 mmazur Exp $
+/* $Id: pci_defs.h,v 1.2 2004/01/15 20:18:40 mmazur Exp $
  *
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive
@@ -9,7 +9,6 @@
 #ifndef _ASM_SN_PCI_PCI_DEFS_H
 #define _ASM_SN_PCI_PCI_DEFS_H
 
-#include <linux/config.h>
 
 /* defines for the PCI bus architecture */
 

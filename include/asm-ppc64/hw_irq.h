@@ -12,7 +12,6 @@
 #ifndef _PPC64_HW_IRQ_H
 #define _PPC64_HW_IRQ_H
 
-#include <linux/config.h>
 #include <linux/errno.h>
 #include <asm/irq.h>
 

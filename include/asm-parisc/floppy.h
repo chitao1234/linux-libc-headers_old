@@ -10,7 +10,6 @@
 #ifndef __ASM_PARISC_FLOPPY_H
 #define __ASM_PARISC_FLOPPY_H
 
-#include <linux/vmalloc.h>
 
 
 /*

@@ -9,7 +9,6 @@
 #ifndef _ASM_IA64_SN_ADDRS_H
 #define _ASM_IA64_SN_ADDRS_H
 
-#include <linux/config.h>
 
 #include <asm/sn/sn2/addrs.h>
 

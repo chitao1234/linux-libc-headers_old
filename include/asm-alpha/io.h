@@ -15,7 +15,6 @@
 #endif
 
 #ifdef __KERNEL__
-#include <linux/config.h>
 #include <linux/kernel.h>
 #include <asm/system.h>
 #include <asm/pgtable.h>

@@ -3,7 +3,6 @@
  *                                 to be displayed on boot.
  */
  
-#include <linux/config.h>
 #include <linux/init.h>
 #include <linux/version.h>
 

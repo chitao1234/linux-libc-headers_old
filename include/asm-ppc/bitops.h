@@ -6,7 +6,6 @@
 #ifndef _PPC_BITOPS_H
 #define _PPC_BITOPS_H
 
-#include <linux/config.h>
 #include <asm/byteorder.h>
 #include <asm/atomic.h>
 

@@ -8,7 +8,6 @@
 #ifndef _ASM_WAR_H
 #define _ASM_WAR_H
 
-#include <linux/config.h>
 
 /*
  * Pleassures of the R4600 V1.x.  Cite from the IDT R4600 V1.7 errata:

@@ -13,7 +13,6 @@
 #ifndef _ASM_FIXMAP_H
 #define _ASM_FIXMAP_H
 
-#include <linux/config.h>
 #include <linux/kernel.h>
 #include <asm/acpi.h>
 #include <asm/apicdef.h>

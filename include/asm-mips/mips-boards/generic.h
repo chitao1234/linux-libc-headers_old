@@ -25,7 +25,6 @@
 #ifndef _MIPS_GENERIC_H
 #define _MIPS_GENERIC_H
 
-#include <linux/config.h>
 #include <asm/addrspace.h>
 #include <asm/byteorder.h>
 #include <asm/mips-boards/bonito64.h>

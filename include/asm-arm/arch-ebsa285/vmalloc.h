@@ -6,7 +6,6 @@
  * published by the Free Software Foundation.
  */
 
-#include <linux/config.h>
 
 /*
  * Just any arbitrary offset to the start of the vmalloc VM area: the

@@ -10,7 +10,6 @@
 #ifndef _ASM_SEMAPHORE_HELPER_H
 #define _ASM_SEMAPHORE_HELPER_H
 
-#include <linux/config.h>
 #include <linux/errno.h>
 
 #define sem_read(a) ((a)->counter)

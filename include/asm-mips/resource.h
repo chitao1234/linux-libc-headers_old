@@ -28,7 +28,6 @@
 
 #ifdef __KERNEL__
 
-#include <linux/config.h>
 
 /*
  * SuS says limits have to be unsigned.

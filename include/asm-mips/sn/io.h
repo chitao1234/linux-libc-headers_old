@@ -9,7 +9,6 @@
 #ifndef _ASM_SN_IO_H
 #define _ASM_SN_IO_H
 
-#include <linux/config.h>
 
 #ifdef CONFIG_SGI_IO
 

@@ -1,4 +1,4 @@
-/* $Id: tpqic02.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
+/* $Id: tpqic02.h,v 1.2 2004/01/15 20:19:03 mmazur Exp $
  *
  * Include file for QIC-02 driver for Linux.
  *
@@ -10,7 +10,6 @@
 #ifndef _LINUX_TPQIC02_H
 #define _LINUX_TPQIC02_H
 
-#include <linux/config.h>
 
 #if defined(CONFIG_QIC02_TAPE) || defined(CONFIG_QIC02_TAPE_MODULE)
 

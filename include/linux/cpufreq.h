@@ -5,7 +5,7 @@
  *            (C) 2002 - 2003 Dominik Brodowski <linux@brodo.de>
  *            
  *
- * $Id: cpufreq.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $
+ * $Id: cpufreq.h,v 1.2 2004/01/15 20:19:02 mmazur Exp $
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -14,7 +14,6 @@
 #ifndef _LINUX_CPUFREQ_H
 #define _LINUX_CPUFREQ_H
 
-#include <linux/config.h>
 #include <linux/notifier.h>
 #include <linux/threads.h>
 #include <linux/device.h>

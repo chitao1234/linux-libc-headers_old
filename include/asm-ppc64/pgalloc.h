@@ -1,7 +1,6 @@
 #ifndef _PPC64_PGALLOC_H
 #define _PPC64_PGALLOC_H
 
-#include <linux/mm.h>
 #include <linux/slab.h>
 #include <asm/processor.h>
 

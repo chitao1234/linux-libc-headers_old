@@ -5,7 +5,6 @@
 #ifndef _LINUX_KALLSYMS_H
 #define _LINUX_KALLSYMS_H
 
-#include <linux/config.h>
 
 #ifdef CONFIG_KALLSYMS
 /* Lookup an address.  modname is set to NULL if it's in the kernel. */

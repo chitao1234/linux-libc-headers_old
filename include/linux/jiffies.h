@@ -3,7 +3,6 @@
 
 #include <linux/kernel.h>
 #include <linux/types.h>
-#include <linux/spinlock.h>
 #include <linux/seqlock.h>
 #include <asm/system.h>
 #include <asm/param.h>			/* for HZ */

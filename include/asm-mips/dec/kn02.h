@@ -14,7 +14,6 @@
 #define __ASM_MIPS_DEC_KN02_H
 
 #ifndef __ASSEMBLY__
-#include <linux/spinlock.h>
 #include <linux/types.h>
 #endif
 

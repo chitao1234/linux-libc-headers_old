@@ -11,7 +11,6 @@
 
 #include <asm/io.h>
 #include <linux/input.h>
-#include <linux/list.h>
 
 struct gameport;
 

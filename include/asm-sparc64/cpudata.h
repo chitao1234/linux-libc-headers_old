@@ -6,7 +6,6 @@
 #ifndef _SPARC64_CPUDATA_H
 #define _SPARC64_CPUDATA_H
 
-#include <linux/percpu.h>
 
 typedef struct {
 	/* Dcache line 1 */

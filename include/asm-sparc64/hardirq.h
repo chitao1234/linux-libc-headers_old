@@ -6,9 +6,7 @@
 #ifndef __SPARC64_HARDIRQ_H
 #define __SPARC64_HARDIRQ_H
 
-#include <linux/config.h>
 #include <linux/threads.h>
-#include <linux/spinlock.h>
 #include <linux/cache.h>
 
 /* rtrap.S is sensitive to the offsets of these fields */

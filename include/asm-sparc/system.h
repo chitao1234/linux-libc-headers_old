@@ -1,10 +1,8 @@
-/* $Id: system.h,v 1.2 2003/12/22 12:02:10 mmazur Exp $ */
-#include <linux/config.h>
+/* $Id: system.h,v 1.3 2004/01/15 20:18:58 mmazur Exp $ */
 
 #ifndef __SPARC_SYSTEM_H
 #define __SPARC_SYSTEM_H
 
-#include <linux/config.h>
 #include <linux/kernel.h>
 #include <linux/threads.h>	/* NR_CPUS */
 #include <linux/thread_info.h>

@@ -1,4 +1,4 @@
-/* $Id: floppy.h,v 1.2 2003/12/22 12:02:12 mmazur Exp $
+/* $Id: floppy.h,v 1.3 2004/01/15 20:18:58 mmazur Exp $
  * asm-sparc64/floppy.h: Sparc specific parts of the Floppy driver.
  *
  * Copyright (C) 1996 David S. Miller (davem@caip.rutgers.edu)
@@ -10,7 +10,6 @@
 #ifndef __ASM_SPARC64_FLOPPY_H
 #define __ASM_SPARC64_FLOPPY_H
 
-#include <linux/config.h>
 #include <linux/init.h>
 
 #include <asm/page.h>

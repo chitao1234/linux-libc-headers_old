@@ -1,4 +1,4 @@
-/* $Id: mmu_context.h,v 1.1 2003/12/15 18:47:06 mmazur Exp $ */
+/* $Id: mmu_context.h,v 1.2 2004/01/15 20:18:59 mmazur Exp $ */
 #ifndef __SPARC64_MMU_CONTEXT_H
 #define __SPARC64_MMU_CONTEXT_H
 
@@ -23,7 +23,6 @@
 
 #ifndef __ASSEMBLY__
 
-#include <linux/spinlock.h>
 #include <asm/system.h>
 #include <asm/spitfire.h>
 

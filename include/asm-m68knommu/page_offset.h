@@ -1,5 +1,4 @@
 
-#include <linux/config.h>
 #include <asm/shglcore.h>
 
 /* This handles the memory map.. */

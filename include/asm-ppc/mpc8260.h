@@ -8,7 +8,6 @@
 #ifndef __CONFIG_8260_DEFS
 #define __CONFIG_8260_DEFS
 
-#include <linux/config.h>
 #include <platforms/mpc82xx.h>
 
 /* Make sure the memory translation stuff is there if PCI not used.

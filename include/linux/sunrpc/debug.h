@@ -9,7 +9,6 @@
 #ifndef _LINUX_SUNRPC_DEBUG_H_
 #define _LINUX_SUNRPC_DEBUG_H_
 
-#include <linux/config.h>
 
 #include <linux/timer.h>
 #include <linux/workqueue.h>

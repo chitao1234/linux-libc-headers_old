@@ -1,7 +1,6 @@
 #ifndef _PPC64_RTAS_H
 #define _PPC64_RTAS_H
 
-#include <linux/spinlock.h>
 #include <asm/page.h>
 
 /*

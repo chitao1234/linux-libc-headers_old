@@ -1,8 +1,6 @@
 #ifndef _ALPHA_CACHEFLUSH_H
 #define _ALPHA_CACHEFLUSH_H
 
-#include <linux/config.h>
-#include <linux/mm.h>
 
 /* Caches aren't brain-dead on the Alpha. */
 #define flush_cache_all()			do { } while (0)

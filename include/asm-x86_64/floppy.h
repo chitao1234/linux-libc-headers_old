@@ -10,7 +10,6 @@
 #ifndef __ASM_X86_64_FLOPPY_H
 #define __ASM_X86_64_FLOPPY_H
 
-#include <linux/vmalloc.h>
 
 
 /*

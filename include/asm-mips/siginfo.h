@@ -9,7 +9,6 @@
 #ifndef _ASM_SIGINFO_H
 #define _ASM_SIGINFO_H
 
-#include <linux/config.h>
 
 #define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int)) - 4)
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int)) - 4)

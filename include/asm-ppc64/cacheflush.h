@@ -2,7 +2,6 @@
 #define _PPC64_CACHEFLUSH_H
 
 /* Keep includes the same across arches.  */
-#include <linux/mm.h>
 
 /*
  * No cache flushing is required when address mappings are

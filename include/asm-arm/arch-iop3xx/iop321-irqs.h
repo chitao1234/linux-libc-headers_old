@@ -10,7 +10,6 @@
  *
  */
 
-#include <linux/config.h>
 
 /*
  * IOP80321 chipset interrupts

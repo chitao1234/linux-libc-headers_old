@@ -1,6 +1,5 @@
 #ifndef _IP_NAT_CORE_H
 #define _IP_NAT_CORE_H
-#include <linux/list.h>
 #include <linux/netfilter_ipv4/ip_conntrack.h>
 
 /* This header used to share core functionality between the standalone

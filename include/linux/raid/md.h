@@ -36,9 +36,7 @@
 #include <asm/io.h>
 #include <linux/completion.h>
 #include <linux/mempool.h>
-#include <linux/list.h>
 #include <linux/reboot.h>
-#include <linux/vmalloc.h>
 #include <linux/blkpg.h>
 #include <linux/bio.h>
 

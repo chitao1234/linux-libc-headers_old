@@ -9,7 +9,6 @@
 #define USE_HPPA_IOREMAP 0
 
 
-#include <linux/config.h>
 #include <linux/types.h>
 #include <asm/pgtable.h>
 

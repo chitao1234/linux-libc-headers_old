@@ -9,7 +9,6 @@
 #ifndef _ASM_SERIAL_H
 #define _ASM_SERIAL_H
 
-#include <linux/config.h>
 #include <asm/jazz.h>
 
 /*

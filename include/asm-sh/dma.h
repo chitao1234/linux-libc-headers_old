@@ -5,7 +5,6 @@
 #include <asm/mpc1211/dma.h>
 #else
 
-#include <linux/config.h>
 #include <asm/cpu/dma.h>
 #include <asm/io.h>		/* need byte IO */
 

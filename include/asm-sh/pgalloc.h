@@ -4,7 +4,6 @@
 #include <asm/processor.h>
 #include <linux/threads.h>
 #include <linux/slab.h>
-#include <linux/mm.h>
 
 #define pgd_quicklist ((unsigned long *)0)
 #define pmd_quicklist ((unsigned long *)0)

@@ -6,7 +6,6 @@
  * preempt_count (used for kernel preemption, interrupt count, etc.)
  */
 
-#include <linux/config.h>
 
 #define preempt_count()	(current_thread_info()->preempt_count)
 

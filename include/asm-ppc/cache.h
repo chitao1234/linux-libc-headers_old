@@ -5,7 +5,6 @@
 #ifndef __ARCH_PPC_CACHE_H
 #define __ARCH_PPC_CACHE_H
 
-#include <linux/config.h>
 
 /* bytes per L1 cache line */
 #if defined(CONFIG_8xx) || defined(CONFIG_403GCX)

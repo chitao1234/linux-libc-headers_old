@@ -9,10 +9,8 @@
 #ifndef _ASM_CACHEFLUSH_H
 #define _ASM_CACHEFLUSH_H
 
-#include <linux/config.h>
 
 /* Keep includes the same across arches.  */
-#include <linux/mm.h>
 
 /* Cache flushing:
  *

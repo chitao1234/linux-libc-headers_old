@@ -1,7 +1,7 @@
 #ifndef _ASM_SH_HD64465_
 #define _ASM_SH_HD64465_ 1
 /*
- * $Id: hd64465.h,v 1.1 2003/12/15 18:46:59 mmazur Exp $
+ * $Id: hd64465.h,v 1.2 2004/01/15 20:18:56 mmazur Exp $
  *
  * Hitachi HD64465 companion chip support
  *
@@ -11,7 +11,6 @@
  * Derived from <asm/hd64461.h> which bore the message:
  * Copyright (C) 2000 YAEGASHI Takeshi
  */
-#include <linux/config.h>
 #include <asm/io.h>
 #include <asm/irq.h>
 

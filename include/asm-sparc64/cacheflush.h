@@ -1,8 +1,6 @@
 #ifndef _SPARC64_CACHEFLUSH_H
 #define _SPARC64_CACHEFLUSH_H
 
-#include <linux/config.h>
-#include <linux/mm.h>
 
 /* Cache flush operations. */
 

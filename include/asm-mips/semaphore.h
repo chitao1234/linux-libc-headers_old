@@ -11,10 +11,8 @@
 #ifndef _ASM_SEMAPHORE_H
 #define _ASM_SEMAPHORE_H
 
-#include <linux/config.h>
 #include <asm/system.h>
 #include <asm/atomic.h>
-#include <linux/spinlock.h>
 #include <linux/wait.h>
 #include <linux/rwsem.h>
 

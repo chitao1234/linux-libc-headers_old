@@ -1,7 +1,6 @@
 #ifndef _ASM_PPC64_MODULE_H
 #define _ASM_PPC64_MODULE_H
 
-#include <linux/list.h>
 #include <asm/bug.h>
 
 struct mod_arch_specific

@@ -10,7 +10,6 @@
  *
  */
 
-#include <linux/spinlock.h>
 #include <linux/wait.h>
 #include <linux/rwsem.h>
 

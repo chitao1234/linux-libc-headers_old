@@ -1,13 +1,11 @@
 
 /* Overhauled routines for dealing with different mmap regions of flash */
-/* $Id: map.h,v 1.1 2003/12/15 18:46:58 mmazur Exp $ */
+/* $Id: map.h,v 1.2 2004/01/15 20:19:05 mmazur Exp $ */
 
 #ifndef __LINUX_MTD_MAP_H__
 #define __LINUX_MTD_MAP_H__
 
-#include <linux/config.h>
 #include <linux/types.h>
-#include <linux/list.h>
 #include <asm/system.h>
 #include <asm/io.h>
 

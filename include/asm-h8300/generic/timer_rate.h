@@ -1,4 +1,3 @@
-#include <linux/config.h>
 
 #if defined(CONFIG_H83007) || defined(CONFIG_H83068) || defined(CONFIG_H8S2678)
 #define H8300_TIMER_COUNT_DATA CONFIG_CPU_CLOCK*10/8192

@@ -2,7 +2,6 @@
 #define _S390_CACHEFLUSH_H
 
 /* Keep includes the same across arches.  */
-#include <linux/mm.h>
 
 /* Caches aren't brain-dead on the s390. */
 #define flush_cache_all()			do { } while (0)
