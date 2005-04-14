@@ -16,7 +16,6 @@
 #ifndef LINUX_PCI_H
 #define LINUX_PCI_H
 
-#include <linux/mod_devicetable.h>
 #include <linux/types.h>
 
 /*

@@ -3,13 +3,13 @@
 
 #include <sys/types.h>
 #include <linux/posix_types.h>
-#include <asm/types.h>
+#include <linux/types.h>
 
 #ifndef __KERNEL_STRICT_NAMES
 
 typedef __u32 __kernel_dev_t;
 
-#ifdef WANT_KERNEL_TYPES || !defined(__GLIBC__)
+#if defined(WANT_KERNEL_TYPES) || !defined(__GLIBC__)
 typedef __kernel_fd_set		fd_set;		/* <sys/select.h> */
 typedef __kernel_dev_t		dev_t;		/* <sys/stat.h>, <sys/types.h> */
 typedef __kernel_ino_t		ino_t;		/* <dirent.h>, <sys/stat.h>, <sys/types.h> */
