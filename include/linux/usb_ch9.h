@@ -268,8 +268,8 @@ struct usb_endpoint_descriptor {
 	__le16 wMaxPacketSize;
 	__u8  bInterval;
 
-	// NOTE:  these two are _only_ in audio endpoints.
-	// use USB_DT_ENDPOINT*_SIZE in bLength, not sizeof.
+	/* NOTE:  these two are _only_ in audio endpoints.
+	 * use USB_DT_ENDPOINT*_SIZE in bLength, not sizeof. */
 	__u8  bRefresh;
 	__u8  bSynchAddress;
 } __attribute__ ((packed));
