@@ -3,7 +3,7 @@
 
 #include <sys/types.h>
 #include <linux/posix_types.h>
-#include <linux/types.h>
+#include <asm/types.h>
 
 #ifndef __KERNEL_STRICT_NAMES
 
