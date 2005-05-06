@@ -1480,7 +1480,6 @@ struct reiserfs_iget_args {
 /*                    FUNCTION DECLARATIONS                                */
 /***************************************************************************/
 
-/*#ifdef __KERNEL__*/
 #define get_journal_desc_magic(bh) (bh->b_data + bh->b_size - 12)
 
 #define journal_trans_half(blocksize) \
