@@ -10,7 +10,6 @@
  */
 
 #include <linux/ioctl.h>
-#include <linux/interrupt.h>
 
 #define SPIOCSTYPE	_IOW('q', 0x01, unsigned long)
 
