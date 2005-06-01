@@ -34,7 +34,7 @@ typedef unsigned int	__kernel_old_uid_t;
 typedef unsigned int	__kernel_old_gid_t;
 typedef unsigned int	__kernel_old_dev_t;
 
-#if defined(__GNUC__) && !defined(__STRICT_ANSI__)
+#if (defined(__GNUC__) && !defined(__STRICT_ANSI__)) || (__STDC_VERSION__ >= 199901L)
 typedef long long	__kernel_loff_t;
 #endif
 

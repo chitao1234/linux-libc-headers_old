@@ -16,7 +16,7 @@ typedef unsigned long	__kernel_ino_t;
 typedef unsigned int	__kernel_mode_t;
 typedef unsigned int	__kernel_nlink_t;
 typedef long		__kernel_off_t;
-#if defined (__GNUC__) && !defined(__STRICT_ANSI__)
+#if (defined(__GNUC__) && !defined(__STRICT_ANSI__)) || (__STDC_VERSION__ >= 199901L)
 typedef long long	__kernel_loff_t;
 #endif
 typedef int		__kernel_pid_t;

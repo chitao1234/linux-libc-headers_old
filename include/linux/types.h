@@ -27,7 +27,7 @@ typedef	__kernel_mqd_t		mqd_t;
 typedef __kernel_uid_t		uid_t;		/* <pwd.h>, <signal.h>, <strops.h>... (lots) */
 typedef __kernel_gid_t		gid_t;		/* <grp.h>, <pwd.h>, <strops.h>... (lots) */
 
-#if defined(__GNUC__) && !defined(__STRICT_ANSI__)
+#if (defined(__GNUC__) && !defined(__STRICT_ANSI__)) || (__STDC_VERSION__ >= 199901L)
 typedef __kernel_loff_t		loff_t;		/* <sys/types.h> */
 #endif
 
@@ -93,7 +93,7 @@ typedef		__u8		uint8_t;	/* <stdint.h> */
 typedef		__u16		uint16_t;	/* <stdint.h> */
 typedef		__u32		uint32_t;	/* <stdint.h> */
 
-#if defined(__GNUC__) && !defined(__STRICT_ANSI__)
+#if (defined(__GNUC__) && !defined(__STRICT_ANSI__)) || (__STDC_VERSION__ >= 199901L)
 typedef		__u64		uint64_t;	/* <stdint.h> */
 typedef		__u64		u_int64_t;	/* <sys/types.h> */
 typedef		__s64		int64_t;	/* <stdint.h>, <sys/types.h> */
@@ -142,7 +142,7 @@ typedef __u32 __bitwise __le32;
 typedef __u32 __bitwise __be32;
 
 #if defined(__GNUC__)
-#if !defined(__STRICT_ANSI__) || defined(__LLH_TYPE_LONG_IS_64BIT__)
+#if !defined(__STRICT_ANSI__) || (__STDC_VERSION__ >= 199901L) || defined(__LLH_TYPE_LONG_IS_64BIT__)
 typedef __u64 __bitwise __le64;
 typedef __u64 __bitwise __be64;
 #endif
