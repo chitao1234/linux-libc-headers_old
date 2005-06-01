@@ -28,7 +28,7 @@ typedef char *		__kernel_caddr_t;
 typedef unsigned short	__kernel_uid16_t;
 typedef unsigned short	__kernel_gid16_t;
 
-#if defined(__GNUC__) && !defined(__STRICT_ANSI__)
+#if (defined(__GNUC__) && !defined(__STRICT_ANSI__)) || (__STDC_VERSION__ >= 199901L)
 typedef long long	__kernel_loff_t;
 #endif
 
