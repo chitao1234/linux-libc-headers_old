@@ -24,6 +24,10 @@ typedef __signed__ long long __s64;
 typedef unsigned long long  __u64;
 #endif
 
+#if (defined(__STRICT_ANSI__) && !defined(inline))
+#define inline __inline__
+#endif
+
 #endif /* __ASSEMBLY__ */
 
 #endif

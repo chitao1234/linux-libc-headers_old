@@ -33,6 +33,10 @@ typedef unsigned int __u32;
 typedef __signed__ long __s64;
 typedef unsigned long __u64;
 
+#if (defined(__STRICT_ANSI__) && !defined(inline))
+#define inline __inline__
+#endif
+
 #endif /* __ASSEMBLY__ */
 
 #endif /* defined(_SPARC64_TYPES_H) */

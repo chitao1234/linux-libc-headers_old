@@ -46,6 +46,10 @@ typedef unsigned long __u64;
 typedef unsigned long addr_t; 
 typedef __signed__ long saddr_t;
 
+#if (defined(__STRICT_ANSI__) && !defined(inline))
+#define inline __inline__
+#endif
+
 #endif /* __ASSEMBLY__ */
 
 #endif /* _S390_TYPES_H */

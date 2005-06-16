@@ -42,6 +42,10 @@ typedef struct {
 	__u32 u[4];
 } __attribute((aligned(16))) __vector128;
 
+#if (defined(__STRICT_ANSI__) && !defined(inline))
+#define inline __inline__
+#endif
+
 #endif /* __ASSEMBLY__ */
 
 #endif /* _PPC64_TYPES_H */
