@@ -26,9 +26,6 @@
 #include <linux/types.h>
 #include <sys/ioctl.h>
 
-#if (defined(__GNUC__) && !defined(__STRICT_ANSI__)) || (__STDC_VERSION__ >= 199901L)
-#define inline
-#endif
 
 /* -- i2c.h -- */
 
