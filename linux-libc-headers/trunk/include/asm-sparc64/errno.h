@@ -100,6 +100,8 @@
 #undef	EKEYEXPIRED
 #undef	EKEYREVOKED
 #undef	EKEYREJECTED
+#undef	EOWNERDEAD
+#undef	ENOTRECOVERABLE
 
 /* These match the SunOS error numbering scheme. */
 
@@ -203,5 +205,10 @@
 #define	EKEYEXPIRED	129	/* Key has expired */
 #define	EKEYREVOKED	130	/* Key has been revoked */
 #define	EKEYREJECTED	131	/* Key was rejected by service */
+
+/* for robust mutexes */
+#define    EOWNERDEAD  132 /* Owner died */
+#define    ENOTRECOVERABLE 133 /* State not recoverable */
+
 
 #endif /* !(_SPARC64_ERRNO_H) */

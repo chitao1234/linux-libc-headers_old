@@ -20,7 +20,7 @@
 #define	BIT(x)	((1)<<(x))
 
 
-extern int (*ixp4xx_pci_read)(__u32 addr, __u32 cmd, u32* data);
+extern int (*ixp4xx_pci_read)(__u32 addr, __u32 cmd, __u32* data);
 extern int ixp4xx_pci_write(__u32 addr, __u32 cmd, __u32 data);
 
 

@@ -39,45 +39,45 @@
  * with an implicit size. The traditional read{b,w,l}/write{b,w,l}
  * mess is wrapped to this, as are the SH-specific ctrl_in/out routines.
  */
-static inline unsigned char sh64_in8(unsigned long addr)
+static inline unsigned char sh64_in8(const volatile void *addr)
 {
 	return *(volatile unsigned char *)addr;
 }
 
-static inline unsigned short sh64_in16(unsigned long addr)
+static inline unsigned short sh64_in16(const volatile void *addr)
 {
 	return *(volatile unsigned short *)addr;
 }
 
-static inline unsigned long sh64_in32(unsigned long addr)
+static inline unsigned int sh64_in32(const volatile void *addr)
 {
-	return *(volatile unsigned long *)addr;
+	return *(volatile unsigned int *)addr;
 }
 
-static inline unsigned long long sh64_in64(unsigned long addr)
+static inline unsigned long long sh64_in64(const volatile void *addr)
 {
 	return *(volatile unsigned long long *)addr;
 }
 
-static inline void sh64_out8(unsigned char b, unsigned long addr)
+static inline void sh64_out8(unsigned char b, volatile void *addr)
 {
 	*(volatile unsigned char *)addr = b;
 	wmb();
 }
 
-static inline void sh64_out16(unsigned short b, unsigned long addr)
+static inline void sh64_out16(unsigned short b, volatile void *addr)
 {
 	*(volatile unsigned short *)addr = b;
 	wmb();
 }
 
-static inline void sh64_out32(unsigned long b, unsigned long addr)
+static inline void sh64_out32(unsigned int b, volatile void *addr)
 {
-	*(volatile unsigned long *)addr = b;
+	*(volatile unsigned int *)addr = b;
 	wmb();
 }
 
-static inline void sh64_out64(unsigned long long b, unsigned long addr)
+static inline void sh64_out64(unsigned long long b, volatile void *addr)
 {
 	*(volatile unsigned long long *)addr = b;
 	wmb();
@@ -86,28 +86,43 @@ static inline void sh64_out64(unsigned long long b, unsigned long addr)
 #define readb(addr)		sh64_in8(addr)
 #define readw(addr)		sh64_in16(addr)
 #define readl(addr)		sh64_in32(addr)
-#define readb_relaxed(addr)		sh64_in8(addr)
-#define readw_relaxed(addr)		sh64_in16(addr)
-#define readl_relaxed(addr)		sh64_in32(addr)
+#define readb_relaxed(addr)	sh64_in8(addr)
+#define readw_relaxed(addr)	sh64_in16(addr)
+#define readl_relaxed(addr)	sh64_in32(addr)
 
 #define writeb(b, addr)		sh64_out8(b, addr)
 #define writew(b, addr)		sh64_out16(b, addr)
 #define writel(b, addr)		sh64_out32(b, addr)
 
-#define ctrl_inb(addr)		sh64_in8(addr)
-#define ctrl_inw(addr)		sh64_in16(addr)
-#define ctrl_inl(addr)		sh64_in32(addr)
+#define ctrl_inb(addr)		sh64_in8(ioport_map(addr, 1))
+#define ctrl_inw(addr)		sh64_in16(ioport_map(addr, 2))
+#define ctrl_inl(addr)		sh64_in32(ioport_map(addr, 4))
 
-#define ctrl_outb(b, addr)	sh64_out8(b, addr)
-#define ctrl_outw(b, addr)	sh64_out16(b, addr)
-#define ctrl_outl(b, addr)	sh64_out32(b, addr)
+#define ctrl_outb(b, addr)	sh64_out8(b, ioport_map(addr, 1))
+#define ctrl_outw(b, addr)	sh64_out16(b, ioport_map(addr, 2))
+#define ctrl_outl(b, addr)	sh64_out32(b, ioport_map(addr, 4))
 
-unsigned long inb(unsigned long port);
-unsigned long inw(unsigned long port);
-unsigned long inl(unsigned long port);
-void outb(unsigned long value, unsigned long port);
-void outw(unsigned long value, unsigned long port);
-void outl(unsigned long value, unsigned long port);
+#define ioread8(addr)		sh64_in8(addr)
+#define ioread16(addr)		sh64_in16(addr)
+#define ioread32(addr)		sh64_in32(addr)
+#define iowrite8(b, addr)	sh64_out8(b, addr)
+#define iowrite16(b, addr)	sh64_out16(b, addr)
+#define iowrite32(b, addr)	sh64_out32(b, addr)
+
+#define inb(addr)		ctrl_inb(addr)
+#define inw(addr)		ctrl_inw(addr)
+#define inl(addr)		ctrl_inl(addr)
+#define outb(b, addr)		ctrl_outb(b, addr)
+#define outw(b, addr)		ctrl_outw(b, addr)
+#define outl(b, addr)		ctrl_outl(b, addr)
+
+void outsw(unsigned long port, const void *addr, unsigned long count);
+void insw(unsigned long port, void *addr, unsigned long count);
+void outsl(unsigned long port, const void *addr, unsigned long count);
+void insl(unsigned long port, void *addr, unsigned long count);
+
+void memcpy_toio(void *to, const void *from, long count);
+void memcpy_fromio(void *to, void *from, long count);
 
 #define mmiowb()
 

@@ -29,4 +29,6 @@ enum sparc_cpu {
 
 #endif /* __ASSEMBLY__ */
 
+#define arch_align_stack(x) (x)
+
 #endif /* !(__SPARC_SYSTEM_H) */

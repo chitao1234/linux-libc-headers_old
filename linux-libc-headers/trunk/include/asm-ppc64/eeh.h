@@ -101,17 +101,30 @@ int eeh_unregister_notifier(struct notifier_block *nb);
  */
 #define EEH_IO_ERROR_VALUE(size)	(~0U >> ((4 - (size)) * 8))
 
-#else
-#define eeh_init()
-#define eeh_check_failure(token, val) (val)
-#define eeh_dn_check_failure(dn, dev) (0)
-#define pci_addr_cache_build()
-#define eeh_add_device_early(dn)
-#define eeh_add_device_late(dev)
-#define eeh_remove_device(dev)
+#else /* !CONFIG_EEH */
+static inline void eeh_init(void) { }
+
+static inline unsigned long eeh_check_failure(const volatile void *token, unsigned long val)
+{
+	return val;
+}
+
+static inline int eeh_dn_check_failure(struct device_node *dn, struct pci_dev *dev)
+{
+	return 0;
+}
+
+static inline void pci_addr_cache_build(void) { }
+
+static inline void eeh_add_device_early(struct device_node *dn) { }
+
+static inline void eeh_add_device_late(struct pci_dev *dev) { }
+
+static inline void eeh_remove_device(struct pci_dev *dev) { }
+
 #define EEH_POSSIBLE_ERROR(val, type) (0)
 #define EEH_IO_ERROR_VALUE(size) (-1UL)
-#endif
+#endif /* CONFIG_EEH */
 
 /* 
  * MMIO read/write operations with EEH support.
@@ -342,22 +355,22 @@ static inline void eeh_outl(__u32 val, unsigned long port)
 static inline void eeh_insb(unsigned long port, void * buf, int ns)
 {
 	_insb((__u8 *)(port+pci_io_base), buf, ns);
-	if (EEH_POSSIBLE_ERROR((*(((u8*)buf)+ns-1)), __u8))
-		eeh_check_failure((void *)(port), *(u8*)buf);
+	if (EEH_POSSIBLE_ERROR((*(((__u8*)buf)+ns-1)), __u8))
+		eeh_check_failure((void *)(port), *(__u8*)buf);
 }
 
 static inline void eeh_insw_ns(unsigned long port, void * buf, int ns)
 {
 	_insw_ns((__u16 *)(port+pci_io_base), buf, ns);
-	if (EEH_POSSIBLE_ERROR((*(((u16*)buf)+ns-1)), __u16))
-		eeh_check_failure((void *)(port), *(u16*)buf);
+	if (EEH_POSSIBLE_ERROR((*(((__u16*)buf)+ns-1)), __u16))
+		eeh_check_failure((void *)(port), *(__u16*)buf);
 }
 
 static inline void eeh_insl_ns(unsigned long port, void * buf, int nl)
 {
 	_insl_ns((__u32 *)(port+pci_io_base), buf, nl);
-	if (EEH_POSSIBLE_ERROR((*(((u32*)buf)+nl-1)), __u32))
-		eeh_check_failure((void *)(port), *(u32*)buf);
+	if (EEH_POSSIBLE_ERROR((*(((__u32*)buf)+nl-1)), __u32))
+		eeh_check_failure((void *)(port), *(__u32*)buf);
 }
 
 #endif /* _PPC64_EEH_H */

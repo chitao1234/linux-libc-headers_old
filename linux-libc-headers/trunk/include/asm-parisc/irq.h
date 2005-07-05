@@ -86,10 +86,12 @@ extern void do_irq_mask(unsigned long mask, struct irq_region *region,
 extern struct irq_region *alloc_irq_region(int count, struct irq_region_ops *ops,
 	const char *name, void *dev);
 
-extern int txn_alloc_irq(void);
+extern int txn_alloc_irq(unsigned int nbits);
 extern int txn_claim_irq(int);
-extern unsigned int txn_alloc_data(int, unsigned int);
-extern unsigned long txn_alloc_addr(int);
+extern unsigned int txn_alloc_data(unsigned int);
+extern unsigned long txn_alloc_addr(unsigned int);
+
+extern int cpu_claim_irq(unsigned int irq, struct hw_interrupt_type *, void *);
 
 /* soft power switch support (power.c) */
 extern struct tasklet_struct power_tasklet;

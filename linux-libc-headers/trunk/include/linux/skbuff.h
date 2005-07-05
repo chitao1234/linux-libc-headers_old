@@ -77,12 +77,6 @@
  *	Any questions? No questions, good. 		--ANK
  */
 
-#ifdef __i386__
-#define NET_CALLER(arg) (*(((void **)&arg) - 1))
-#else
-#define NET_CALLER(arg) __builtin_return_address(0)
-#endif
-
 struct net_device;
 
 #ifdef CONFIG_NETFILTER
@@ -140,6 +134,20 @@ struct skb_shared_info {
 	skb_frag_t	frags[MAX_SKB_FRAGS];
 };
 
+/* We divide dataref into two halves.  The higher 16 bits hold references
+ * to the payload part of skb->data.  The lower 16 bits hold references to
+ * the entire skb->data.  It is up to the users of the skb to agree on
+ * where the payload starts.
+ *
+ * All users must obey the rule that the skb->data reference count must be
+ * greater than or equal to the payload reference count.
+ *
+ * Holding a reference to the payload part means that the user does not
+ * care about modifications to the header part of skb->data.
+ */
+#define SKB_DATAREF_SHIFT 16
+#define SKB_DATAREF_MASK ((1 << SKB_DATAREF_SHIFT) - 1)
+
 /** 
  *	struct sk_buff - socket buffer
  *	@next: Next buffer in list
@@ -153,14 +161,16 @@ struct skb_shared_info {
  *	@h: Transport layer header
  *	@nh: Network layer header
  *	@mac: Link layer header
- *	@dst: FIXME: Describe this field
+ *	@dst: destination entry
+ *	@sp: the security path, used for xfrm
  *	@cb: Control buffer. Free for use by every layer. Put private vars here
  *	@len: Length of actual data
  *	@data_len: Data length
  *	@mac_len: Length of link layer header
  *	@csum: Checksum
- *	@__unused: Dead field, may be reused
+ *	@local_df: allow local fragmentation
  *	@cloned: Head may be cloned (check refcnt to be sure)
+ *	@nohdr: Payload reference only, must not modify header
  *	@pkt_type: Packet class
  *	@ip_summed: Driver fed us an IP checksum
  *	@priority: Packet queueing priority
@@ -181,6 +191,8 @@ struct skb_shared_info {
  *	@nf_bridge: Saved data about a bridged frame - see br_netfilter.c
  *      @private: Data which is private to the HIPPI implementation
  *	@tc_index: Traffic control index
+ *	@tc_verd: traffic control verdict
+ *	@tc_classid: traffic control classid
  */
 
 struct sk_buff {
@@ -232,7 +244,8 @@ struct sk_buff {
 				mac_len,
 				csum;
 	unsigned char		local_df,
-				cloned,
+				cloned:1,
+				nohdr:1,
 				pkt_type,
 				ip_summed;
 	__u32			priority;

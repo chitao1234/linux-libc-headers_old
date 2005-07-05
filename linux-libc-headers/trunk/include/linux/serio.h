@@ -20,15 +20,20 @@
 #define SERIO_PARITY	2
 #define SERIO_FRAME	4
 
-#define SERIO_TYPE	0xff000000UL
-#define SERIO_XT	0x00000000UL
-#define SERIO_8042	0x01000000UL
-#define SERIO_RS232	0x02000000UL
-#define SERIO_HIL_MLC	0x03000000UL
-#define SERIO_PS_PSTHRU	0x05000000UL
-#define SERIO_8042_XL	0x06000000UL
+/*
+ * Serio types
+ */
+#define SERIO_XT	0x00
+#define SERIO_8042	0x01
+#define SERIO_RS232	0x02
+#define SERIO_HIL_MLC	0x03
+#define SERIO_PS_PSTHRU	0x05
+#define SERIO_8042_XL	0x06
 
-#define SERIO_PROTO	0xFFUL
+/*
+ * Serio types
+ */
+#define SERIO_UNKNOWN	0x00
 #define SERIO_MSC	0x01
 #define SERIO_SUN	0x02
 #define SERIO_MS	0x03
@@ -55,8 +60,7 @@
 #define SERIO_SNES232	0x26
 #define SERIO_SEMTECH	0x27
 #define SERIO_LKKBD	0x28
-
-#define SERIO_ID	0xff00UL
-#define SERIO_EXTRA	0xff0000UL
+#define SERIO_ELO	0x29
+#define SERIO_MICROTOUCH	0x30
 
 #endif

@@ -14,7 +14,7 @@
 * ============================================================================
 * 1999/10/23	acme		cycxhw_t cleanup
 * 1999/01/03	acme		more judicious use of data types...
-*				uclong, ucchar, etc deleted, the __u8, __u16, u32
+*				uclong, ucchar, etc deleted, the __u8, __u16, __u32
 *				types are the portable way to go.
 * 1999/01/03	acme		judicious use of data types... __u16, __u32, etc
 * 1998/12/26	acme	 	FIXED_BUFFERS, CONF_OFFSET,

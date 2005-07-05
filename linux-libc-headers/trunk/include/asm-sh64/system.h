@@ -14,7 +14,6 @@
  *
  */
 
-#include <linux/kernel.h>
 #include <asm/registers.h>
 #include <asm/processor.h>
 
@@ -189,5 +188,7 @@ extern void print_seg(char *file,int line);
 #endif	/* CONFIG_SH_ALPHANUMERIC */
 
 #define PL() printk("@ <%s,%s:%d>\n",__FILE__,__FUNCTION__,__LINE__)
+
+#define arch_align_stack(x) (x)
 
 #endif /* __ASM_SH64_SYSTEM_H */

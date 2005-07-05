@@ -565,6 +565,7 @@ struct nfs4_readdir_arg {
 	__u32				count;
 	struct page **			pages;	/* zero-copy data */
 	unsigned int			pgbase;	/* zero-copy data */
+	const __u32 *			bitmask;
 };
 
 struct nfs4_readdir_res {
@@ -642,7 +643,5 @@ extern struct nfs_rpc_ops	nfs_v4_clientops;
 extern struct rpc_version	nfs_version2;
 extern struct rpc_version	nfs_version3;
 extern struct rpc_version	nfs_version4;
-extern struct rpc_program	nfs_program;
-extern struct rpc_stat		nfs_rpcstat;
 
 #endif

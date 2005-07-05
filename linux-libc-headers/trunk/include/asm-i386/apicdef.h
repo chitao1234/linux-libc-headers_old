@@ -372,6 +372,5 @@ struct local_apic {
 
 } __attribute__ ((packed));
 
-#undef u32
 
 #endif

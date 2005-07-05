@@ -83,8 +83,8 @@ static inline __u32 jhash(const void *key, __u32 length, __u32 initval)
 	return c;
 }
 
-/* A special optimized version that handles 1 or more of u32s.
- * The length parameter here is the number of u32s in the key.
+/* A special optimized version that handles 1 or more of __u32s.
+ * The length parameter here is the number of __u32s in the key.
  */
 static inline __u32 jhash2(__u32 *k, __u32 length, __u32 initval)
 {

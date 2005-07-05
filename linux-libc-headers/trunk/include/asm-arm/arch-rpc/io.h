@@ -128,9 +128,9 @@ static inline void *__ioaddr(unsigned int port)
 {
 	void *ret;
 	if (__PORT_PCIO(port))
-		ret = (void *)PCIO_BASE;
+		ret = PCIO_BASE;
 	else
-		ret = (void *)IO_BASE;
+		ret = IO_BASE;
 	return ret + (port << 2);
 }
 
@@ -230,8 +230,8 @@ DECLARE_IO(int,l,"")
 	result;									\
 })
 
-#define __ioaddrc(port)								\
-	((void *)(__PORT_PCIO((port)) ? PCIO_BASE : IO_BASE) + ((port) << 2))
+#define __ioaddrc(port)		\
+	((__PORT_PCIO(port) ? PCIO_BASE : IO_BASE) + ((port) << 2))
 
 #define inb(p)	 	(__builtin_constant_p((p)) ? __inbc(p)    : __inb(p))
 #define inw(p)	 	(__builtin_constant_p((p)) ? __inwc(p)    : __inw(p))

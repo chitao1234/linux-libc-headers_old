@@ -79,6 +79,12 @@ struct compat_rusage {
 	compat_long_t	ru_nivcsw;
 };
 
+struct compat_siginfo;
+
+extern asmlinkage long compat_sys_waitid(int, compat_pid_t,
+		struct compat_siginfo *, int,
+		struct compat_rusage *);
+
 struct compat_dirent {
 	__u32		d_ino;
 	compat_off_t	d_off;
@@ -91,12 +97,14 @@ typedef union compat_sigval {
 	compat_uptr_t	sival_ptr;
 } compat_sigval_t;
 
+#define COMPAT_SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int)) - 3)
+
 typedef struct compat_sigevent {
 	compat_sigval_t sigev_value;
 	compat_int_t sigev_signo;
 	compat_int_t sigev_notify;
 	union {
-		compat_int_t _pad[SIGEV_PAD_SIZE];
+		compat_int_t _pad[COMPAT_SIGEV_PAD_SIZE];
 		compat_int_t _tid;
 
 		struct {

@@ -226,7 +226,7 @@ static inline __u8 ddb_in8(__u32 offset)
  *  Physical Device Address Registers
  */
 
-extern u32
+extern __u32
 ddb_calc_pdar(__u32 phys, __u32 size, int width, int on_memory_bus, int pci_visible);
 extern void
 ddb_set_pdar(__u32 pdar, __u32 phys, __u32 size, int width,

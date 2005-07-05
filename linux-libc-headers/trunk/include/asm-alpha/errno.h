@@ -101,6 +101,8 @@
 #undef	EKEYEXPIRED
 #undef	EKEYREVOKED
 #undef	EKEYREJECTED
+#undef	EOWNERDEAD
+#undef	ENOTRECOVERABLE
 
 #define	EDEADLK		11	/* Resource deadlock would occur */
 #define	EAGAIN		35	/* Try again */
@@ -211,5 +213,10 @@
 #define	EKEYEXPIRED	133	/* Key has expired */
 #define	EKEYREVOKED	134	/* Key has been revoked */
 #define	EKEYREJECTED	135	/* Key was rejected by service */
+
+/* for robust mutexes */
+#define    EOWNERDEAD  136 /* Owner died */
+#define    ENOTRECOVERABLE 137 /* State not recoverable */
+
 
 #endif

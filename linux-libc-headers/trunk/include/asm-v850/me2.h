@@ -77,29 +77,29 @@ extern void me2_uart_pre_configure (unsigned chan,
 
 /* Select iRAM mode.  */
 #define ME2_IRAMM_ADDR			0xFFFFF80A
-#define ME2_IRAMM			(*(volatile u8*)ME2_IRAMM_ADDR)
+#define ME2_IRAMM			(*(volatile __u8*)ME2_IRAMM_ADDR)
 
 
 /* Interrupt edge-detection configuration.  INTF(n) and INTR(n) are only
    valid for n == 1, 2, or 5.  */
 #define ME2_INTF_ADDR(n)		(0xFFFFFC00 + (n) * 0x2)
-#define ME2_INTF(n)			(*(volatile u8*)ME2_INTF_ADDR(n))
+#define ME2_INTF(n)			(*(volatile __u8*)ME2_INTF_ADDR(n))
 #define ME2_INTR_ADDR(n)		(0xFFFFFC20 + (n) * 0x2)
-#define ME2_INTR(n)			(*(volatile u8*)ME2_INTR_ADDR(n))
+#define ME2_INTR(n)			(*(volatile __u8*)ME2_INTR_ADDR(n))
 #define ME2_INTFAL_ADDR			0xFFFFFC10
-#define ME2_INTFAL			(*(volatile u8*)ME2_INTFAL_ADDR)
+#define ME2_INTFAL			(*(volatile __u8*)ME2_INTFAL_ADDR)
 #define ME2_INTRAL_ADDR			0xFFFFFC30
-#define ME2_INTRAL			(*(volatile u8*)ME2_INTRAL_ADDR)
+#define ME2_INTRAL			(*(volatile __u8*)ME2_INTRAL_ADDR)
 #define ME2_INTFDH_ADDR			0xFFFFFC16
-#define ME2_INTFDH			(*(volatile u16*)ME2_INTFDH_ADDR)
+#define ME2_INTFDH			(*(volatile __u16*)ME2_INTFDH_ADDR)
 #define ME2_INTRDH_ADDR			0xFFFFFC36
-#define ME2_INTRDH			(*(volatile u16*)ME2_INTRDH_ADDR)
+#define ME2_INTRDH			(*(volatile __u16*)ME2_INTRDH_ADDR)
 #define ME2_SESC_ADDR(n)		(0xFFFFF609 + (n) * 0x10)
-#define ME2_SESC(n)			(*(volatile u8*)ME2_SESC_ADDR(n))
+#define ME2_SESC(n)			(*(volatile __u8*)ME2_SESC_ADDR(n))
 #define ME2_SESA10_ADDR			0xFFFFF5AD
-#define ME2_SESA10			(*(volatile u8*)ME2_SESA10_ADDR)
+#define ME2_SESA10			(*(volatile __u8*)ME2_SESA10_ADDR)
 #define ME2_SESA11_ADDR			0xFFFFF5DD
-#define ME2_SESA11			(*(volatile u8*)ME2_SESA11_ADDR)
+#define ME2_SESA11			(*(volatile __u8*)ME2_SESA11_ADDR)
 
 
 /* Port 1 */

@@ -68,23 +68,14 @@ void sort_main_extable(void);
 extern struct subsystem module_subsys;
 
 #ifdef MODULE
-#define ___module_cat(a,b) __mod_ ## a ## b
-#define __module_cat(a,b) ___module_cat(a,b)
-#define __MODULE_INFO(tag, name, info)					  \
-static const char __module_cat(name,__LINE__)[]				  \
-  __attribute__((section(".modinfo"),unused)) = __stringify(tag) "=" info
-
 #define MODULE_GENERIC_TABLE(gtype,name)			\
 extern const struct gtype##_id __mod_##gtype##_table		\
   __attribute__ ((unused, alias(__stringify(name))))
 
 extern struct module __this_module;
 #define THIS_MODULE (&__this_module)
-
 #else  /* !MODULE */
-
 #define MODULE_GENERIC_TABLE(gtype,name)
-#define __MODULE_INFO(tag, name, info)
 #define THIS_MODULE ((struct module *)0)
 #endif
 

@@ -36,7 +36,7 @@
 #endif
 
 /* Macro to access the CPU IO */
-#define CPU_IO(x) (*(volatile u32*)(x))
+#define CPU_IO(x) (*(volatile __u32*)(x))
 
 /* Macro to access general purpose regs (base, offset) */
 #define CPU_REG(x,y) CPU_IO(x+y)

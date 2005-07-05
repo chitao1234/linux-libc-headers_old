@@ -243,6 +243,7 @@ struct nfsd4_read {
 	__u32		rd_length;          /* request */
 	struct kvec	rd_iov[RPCSVC_MAXPAGES];
 	int		rd_vlen;
+	struct file     *rd_filp;
 	
 	struct svc_rqst *rd_rqstp;          /* response */
 	struct svc_fh * rd_fhp;             /* response */
