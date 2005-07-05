@@ -39,10 +39,5 @@
 #define L1_CACHE_BYTES		V850E_CACHE_LINE_SIZE
 
 
-#if defined(__KERNEL__) && !defined(__ASSEMBLY__)
-/* Set caching params via the BHC, ICC, and DCC registers.  */
-void v850e_cache_enable (__u16 bhc, __u16 icc, __u16 dcc);
-#endif /* __KERNEL__ && !__ASSEMBLY__ */
-
 
 #endif /* __V850_V850E_CACHE_H__ */
