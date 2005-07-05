@@ -7,13 +7,12 @@
  *	David Mosberger-Tang <davidm@hpl.hp.com>
  */
 
-
 #include <asm/intrinsics.h>
 #include <asm/types.h>
 #include <unistd.h>
 
 #define PAGE_SIZE (getpagesize())
-static inline int getpageshift()
+static __inline__ int getpageshift()
 {
     int pagesize = getpagesize();
 #if (__GNUC__ >= 4) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 4))
