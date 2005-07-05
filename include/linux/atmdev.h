@@ -29,9 +29,6 @@
 #define ATM_DS3_PCR	(8000*12)
 			/* DS3: 12 cells in a 125 usec time slot */
 
-#define atm_sk(__sk) ((struct atm_vcc *)(__sk)->sk_protinfo)
-#define ATM_SD(s)	(atm_sk((s)->sk))
-
 
 #define __AAL_STAT_ITEMS \
     __HANDLE_ITEM(tx);			/* TX okay */ \

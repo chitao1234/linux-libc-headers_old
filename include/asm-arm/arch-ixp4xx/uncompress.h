@@ -19,7 +19,7 @@
 
 #define TX_DONE (UART_LSR_TEMT|UART_LSR_THRE)
 
-static volatile u32* uart_base;
+static volatile __u32* uart_base;
 
 static __inline__ void putc(char c)
 {
@@ -49,9 +49,9 @@ static __inline__ void __arch_decomp_setup(unsigned long arch_id)
 	 * Coyote and gtwx5715 only have UART2 connected
 	 */
 	if (machine_is_adi_coyote() || machine_is_gtwx5715())
-		uart_base = (volatile u32*) IXP4XX_UART2_BASE_PHYS;
+		uart_base = (volatile __u32*) IXP4XX_UART2_BASE_PHYS;
 	else
-		uart_base = (volatile u32*) IXP4XX_UART1_BASE_PHYS;
+		uart_base = (volatile __u32*) IXP4XX_UART1_BASE_PHYS;
 }
 
 /*

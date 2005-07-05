@@ -108,7 +108,6 @@ extern int APIC_init_uniprocessor (void);
 extern void disable_APIC_timer(void);
 extern void enable_APIC_timer(void);
 
-extern int check_nmi_watchdog (void);
 extern void enable_NMI_through_LVT0 (void * dummy);
 
 extern unsigned int nmi_watchdog;

@@ -97,7 +97,7 @@ struct device_driver {
 	char			* name;
 	struct bus_type		* bus;
 
-	struct semaphore	unload_sem;
+	struct completion	unloaded;
 	struct kobject		kobj;
 	struct list_head	devices;
 
@@ -106,7 +106,7 @@ struct device_driver {
 	int	(*probe)	(struct device * dev);
 	int 	(*remove)	(struct device * dev);
 	void	(*shutdown)	(struct device * dev);
-	int	(*suspend)	(struct device * dev, __u32 state, __u32 level);
+	int	(*suspend)	(struct device * dev, pm_message_t state, __u32 level);
 	int	(*resume)	(struct device * dev, __u32 level);
 };
 
@@ -143,6 +143,7 @@ struct class {
 	struct subsystem	subsys;
 	struct list_head	children;
 	struct list_head	interfaces;
+	struct semaphore	sem;	/* locks both the children and interfaces lists */
 
 	struct class_attribute		* class_attrs;
 	struct class_device_attribute	* class_dev_attrs;
@@ -179,6 +180,7 @@ struct class_device {
 
 	struct kobject		kobj;
 	struct class		* class;	/* required */
+	dev_t			devt;		/* dev_t, creates the sysfs "dev" */
 	struct device		* dev;		/* not necessary, but nice to have */
 	void			* class_data;	/* class-specific data */
 
@@ -266,9 +268,6 @@ struct device {
 	void		*platform_data;	/* Platform specific data (e.g. ACPI,
 					   BIOS data relevant to device) */
 	struct dev_pm_info	power;
-
-	__u32		detach_state;	/* State to enter when device is
-					   detached from its driver. */
 
 	__u64		*dma_mask;	/* dma mask (if dma'able device) */
 	__u64		coherent_dma_mask;/* Like dma_mask, but for

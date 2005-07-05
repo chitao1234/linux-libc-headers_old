@@ -90,6 +90,7 @@ extern spinlock_t sal_lock;
 #define SAL_PCI_CONFIG_READ		0x01000010
 #define SAL_PCI_CONFIG_WRITE		0x01000011
 #define SAL_FREQ_BASE			0x01000012
+#define SAL_PHYSICAL_ID_INFO		0x01000013
 
 #define SAL_UPDATE_PAL			0x01000020
 
@@ -656,7 +657,7 @@ ia64_sal_freq_base (unsigned long which, unsigned long *ticks_per_second,
 }
 
 /* Flush all the processor and platform level instruction and/or data caches */
-static inline s64
+static inline __s64
 ia64_sal_cache_flush (__u64 cache_type)
 {
 	struct ia64_sal_retval isrv;
@@ -666,7 +667,7 @@ ia64_sal_cache_flush (__u64 cache_type)
 
 
 /* Initialize all the processor and platform level instruction and data caches */
-static inline s64
+static inline __s64
 ia64_sal_cache_init (void)
 {
 	struct ia64_sal_retval isrv;
@@ -678,7 +679,7 @@ ia64_sal_cache_init (void)
  * Clear the processor and platform information logged by SAL with respect to the machine
  * state at the time of MCA's, INITs, CMCs, or CPEs.
  */
-static inline s64
+static inline __s64
 ia64_sal_clear_state_info (__u64 sal_info_type)
 {
 	struct ia64_sal_retval isrv;
@@ -691,7 +692,7 @@ ia64_sal_clear_state_info (__u64 sal_info_type)
 /* Get the processor and platform information logged by SAL with respect to the machine
  * state at the time of the MCAs, INITs, CMCs, or CPEs.
  */
-static inline u64
+static inline __u64
 ia64_sal_get_state_info (__u64 sal_info_type, __u64 *sal_info)
 {
 	struct ia64_sal_retval isrv;
@@ -707,7 +708,7 @@ ia64_sal_get_state_info (__u64 sal_info_type, __u64 *sal_info)
  * Get the maximum size of the information logged by SAL with respect to the machine state
  * at the time of MCAs, INITs, CMCs, or CPEs.
  */
-static inline u64
+static inline __u64
 ia64_sal_get_state_info_size (__u64 sal_info_type)
 {
 	struct ia64_sal_retval isrv;
@@ -723,7 +724,7 @@ ia64_sal_get_state_info_size (__u64 sal_info_type)
  * the monarch processor.  Must not lock, because it will not return on any cpu until the
  * monarch processor sends a wake up.
  */
-static inline s64
+static inline __s64
 ia64_sal_mc_rendez (void)
 {
 	struct ia64_sal_retval isrv;
@@ -748,7 +749,7 @@ ia64_sal_mc_set_params (__u64 param_type, __u64 i_or_m, __u64 i_or_m_val, __u64 
 }
 
 /* Read from PCI configuration space */
-static inline s64
+static inline __s64
 ia64_sal_pci_config_read (__u64 pci_config_addr, int type, __u64 size, __u64 *value)
 {
 	struct ia64_sal_retval isrv;
@@ -759,7 +760,7 @@ ia64_sal_pci_config_read (__u64 pci_config_addr, int type, __u64 size, __u64 *va
 }
 
 /* Write to PCI configuration space */
-static inline s64
+static inline __s64
 ia64_sal_pci_config_write (__u64 pci_config_addr, int type, __u64 size, __u64 value)
 {
 	struct ia64_sal_retval isrv;
@@ -772,7 +773,7 @@ ia64_sal_pci_config_write (__u64 pci_config_addr, int type, __u64 size, __u64 va
  * Register physical addresses of locations needed by SAL when SAL procedures are invoked
  * in virtual mode.
  */
-static inline s64
+static inline __s64
 ia64_sal_register_physical_addr (__u64 phys_entry, __u64 phys_addr)
 {
 	struct ia64_sal_retval isrv;
@@ -786,7 +787,7 @@ ia64_sal_register_physical_addr (__u64 phys_entry, __u64 phys_addr)
  * entry points where SAL will pass control for the specified event. These event handlers
  * are for the bott rendezvous, MCAs and INIT scenarios.
  */
-static inline s64
+static inline __s64
 ia64_sal_set_vectors (__u64 vector_type,
 		      __u64 handler_addr1, __u64 gp1, __u64 handler_len1,
 		      __u64 handler_addr2, __u64 gp2, __u64 handler_len2)
@@ -800,7 +801,7 @@ ia64_sal_set_vectors (__u64 vector_type,
 }
 
 /* Update the contents of PAL block in the non-volatile storage device */
-static inline s64
+static inline __s64
 ia64_sal_update_pal (__u64 param_buf, __u64 scratch_buf, __u64 scratch_buf_size,
 		     __u64 *error_code, __u64 *scratch_buf_size_needed)
 {
@@ -811,6 +812,17 @@ ia64_sal_update_pal (__u64 param_buf, __u64 scratch_buf, __u64 scratch_buf_size,
 		*error_code = isrv.v0;
 	if (scratch_buf_size_needed)
 		*scratch_buf_size_needed = isrv.v1;
+	return isrv.status;
+}
+
+/* Get physical processor die mapping in the platform. */
+static inline __s64
+ia64_sal_physical_id_info(__u16 *splid)
+{
+	struct ia64_sal_retval isrv;
+	SAL_CALL(isrv, SAL_PHYSICAL_ID_INFO, 0, 0, 0, 0, 0, 0, 0);
+	if (splid)
+		*splid = isrv.v0;
 	return isrv.status;
 }
 
@@ -831,6 +843,44 @@ extern int ia64_sal_oemcall_nolock(struct ia64_sal_retval *, __u64, __u64, __u64
 				   __u64, __u64, __u64, __u64, __u64);
 extern int ia64_sal_oemcall_reentrant(struct ia64_sal_retval *, __u64, __u64, __u64,
 				      __u64, __u64, __u64, __u64, __u64);
+#ifdef CONFIG_HOTPLUG_CPU
+/*
+ * System Abstraction Layer Specification
+ * Section 3.2.5.1: OS_BOOT_RENDEZ to SAL return State.
+ * Note: region regs are stored first in head.S _start. Hence they must
+ * stay up front.
+ */
+struct sal_to_os_boot {
+	__u64 rr[8];		/* Region Registers */
+	__u64	br[6];		/* br0: return addr into SAL boot rendez routine */
+	__u64 gr1;		/* SAL:GP */
+	__u64 gr12;		/* SAL:SP */
+	__u64 gr13;		/* SAL: Task Pointer */
+	__u64 fpsr;
+	__u64	pfs;
+	__u64 rnat;
+	__u64 unat;
+	__u64 bspstore;
+	__u64 dcr;		/* Default Control Register */
+	__u64 iva;
+	__u64 pta;
+	__u64 itv;
+	__u64 pmv;
+	__u64 cmcv;
+	__u64 lrr[2];
+	__u64 gr[4];
+	__u64 pr;			/* Predicate registers */
+	__u64 lc;			/* Loop Count */
+	struct ia64_fpreg fp[20];
+};
+
+/*
+ * Global array allocated for NR_CPUS at boot time
+ */
+extern struct sal_to_os_boot sal_boot_rendez_state[NR_CPUS];
+
+extern void ia64_jump_to_sal(struct sal_to_os_boot *);
+#endif
 
 extern void ia64_sal_handler_init(void *entry_point, void *gpval);
 

@@ -100,6 +100,8 @@
 #undef	EKEYEXPIRED
 #undef	EKEYREVOKED
 #undef	EKEYREJECTED
+#undef	EOWNERDEAD
+#undef	ENOTRECOVERABLE
 
 
 #define	ENOMSG		35	/* No message of desired type */
@@ -214,5 +216,8 @@
 #define ENOTSUP		252	/* Function not implemented (POSIX.4 / HPUX) */
 #define ECANCELLED	253	/* aio request was canceled before complete (POSIX.4 / HPUX) */
 
+/* for robust mutexes */
+#define EOWNERDEAD 254 /* Owner died */
+#define ENOTRECOVERABLE    255 /* State not recoverable */
 
 #endif

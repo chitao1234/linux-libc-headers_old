@@ -64,10 +64,10 @@
 /*--- Obsolete. Kept for backw compatibility. ---*/
 /* Reads (or writes) a byte/uword/udword from the specified mode
    register. */
-#define IO_RD(reg) (*(volatile u32*)(reg))
-#define IO_RD_B(reg) (*(volatile u8*)(reg))
-#define IO_RD_W(reg) (*(volatile u16*)(reg))
-#define IO_RD_D(reg) (*(volatile u32*)(reg))
+#define IO_RD(reg) (*(volatile __u32*)(reg))
+#define IO_RD_B(reg) (*(volatile __u8*)(reg))
+#define IO_RD_W(reg) (*(volatile __u16*)(reg))
+#define IO_RD_D(reg) (*(volatile __u32*)(reg))
 
 /*------------------------------------------------------------
 !* Start addresses of the different memory areas.
@@ -97,12 +97,12 @@
 !*-----------------------------------------------------------*/
 
 #ifndef __ASSEMBLER__
-# define  IO_TYPECAST_UDWORD  (volatile u32*)
-# define  IO_TYPECAST_RO_UDWORD  (const volatile u32*)
-# define  IO_TYPECAST_UWORD  (volatile u16*)
-# define  IO_TYPECAST_RO_UWORD  (const volatile u16*)
-# define  IO_TYPECAST_BYTE  (volatile u8*)
-# define  IO_TYPECAST_RO_BYTE  (const volatile u8*)
+# define  IO_TYPECAST_UDWORD  (volatile __u32*)
+# define  IO_TYPECAST_RO_UDWORD  (const volatile __u32*)
+# define  IO_TYPECAST_UWORD  (volatile __u16*)
+# define  IO_TYPECAST_RO_UWORD  (const volatile __u16*)
+# define  IO_TYPECAST_BYTE  (volatile __u8*)
+# define  IO_TYPECAST_RO_BYTE  (const volatile __u8*)
 #else
 # define  IO_TYPECAST_UDWORD
 # define  IO_TYPECAST_RO_UDWORD

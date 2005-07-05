@@ -108,6 +108,8 @@
 #undef	EKEYEXPIRED
 #undef	EKEYREVOKED
 #undef	EKEYREJECTED
+#undef	EOWNERDEAD
+#undef	ENOTRECOVERABLE
 
 /*
  * These error numbers are intended to be MIPS ABI compatible
@@ -214,6 +216,10 @@
 #define	EKEYEXPIRED	162	/* Key has expired */
 #define	EKEYREVOKED	163	/* Key has been revoked */
 #define	EKEYREJECTED	164	/* Key was rejected by service */
+
+/* for robust mutexes */
+#define    EOWNERDEAD  165 /* Owner died */
+#define    ENOTRECOVERABLE 166 /* State not recoverable */
 
 #define EDQUOT		1133	/* Quota exceeded */
 

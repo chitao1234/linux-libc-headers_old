@@ -143,4 +143,6 @@ static inline unsigned long __xchg(unsigned long x, volatile void * ptr, int siz
         asm("jmp @@0");			\
 })
 
+#define arch_align_stack(x) (x)
+
 #endif /* _H8300_SYSTEM_H */

@@ -1,7 +1,6 @@
 #ifndef _I386_PGALLOC_H
 #define _I386_PGALLOC_H
 
-#include <asm/processor.h>
 #include <asm/fixmap.h>
 #include <linux/threads.h>
 

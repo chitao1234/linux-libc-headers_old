@@ -2,10 +2,8 @@
 
 
 __u32 scx200_gpio_configure(int index, __u32 set, __u32 clear);
-void scx200_gpio_dump(unsigned index);
 
 extern unsigned scx200_gpio_base;
-extern spinlock_t scx200_gpio_lock;
 extern long scx200_gpio_shadow[2];
 
 #define scx200_gpio_present() (scx200_gpio_base!=0)

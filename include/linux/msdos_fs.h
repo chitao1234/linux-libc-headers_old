@@ -49,8 +49,6 @@
 #define MSDOS_VALID_MODE (S_IFREG | S_IFDIR | S_IRWXU | S_IRWXG | S_IRWXO)
 /* Convert attribute bits and a mask to the UNIX mode. */
 #define MSDOS_MKMODE(a, m) (m & (a & ATTR_RO ? S_IRUGO|S_IXUGO : S_IRWXUGO))
-/* Convert the UNIX mode to MS-DOS attribute bits. */
-#define MSDOS_MKATTR(m)	((m & S_IWUGO) ? ATTR_NONE : ATTR_RO)
 
 #define MSDOS_NAME	11	/* maximum name length */
 #define MSDOS_LONGNAME	256	/* maximum name length */
@@ -77,15 +75,11 @@
 #define BAD_FAT12	0xFF7
 #define BAD_FAT16	0xFFF7
 #define BAD_FAT32	0x0FFFFFF7
-#define BAD_FAT(s)	(MSDOS_SB(s)->fat_bits == 32 ? BAD_FAT32 : \
-	MSDOS_SB(s)->fat_bits == 16 ? BAD_FAT16 : BAD_FAT12)
 
 /* standard EOF */
 #define EOF_FAT12	0xFFF
 #define EOF_FAT16	0xFFFF
 #define EOF_FAT32	0x0FFFFFFF
-#define EOF_FAT(s)	(MSDOS_SB(s)->fat_bits == 32 ? EOF_FAT32 : \
-	MSDOS_SB(s)->fat_bits == 16 ? EOF_FAT16 : EOF_FAT12)
 
 #define FAT_ENT_FREE	(0)
 #define FAT_ENT_BAD	(BAD_FAT32)
@@ -99,8 +93,11 @@
 /*
  * ioctl commands
  */
-#define	VFAT_IOCTL_READDIR_BOTH		_IOR('r', 1, struct dirent [2])
-#define	VFAT_IOCTL_READDIR_SHORT	_IOR('r', 2, struct dirent [2])
+#define VFAT_IOCTL_READDIR_BOTH		_IOR('r', 1, struct dirent [2])
+#define VFAT_IOCTL_READDIR_SHORT	_IOR('r', 2, struct dirent [2])
+/* <linux/videotext.h> has used 0x72 ('r') in collision, so skip a few */
+#define FAT_IOCTL_GET_ATTRIBUTES	_IOR('r', 0x10, __u32)
+#define FAT_IOCTL_SET_ATTRIBUTES	_IOW('r', 0x11, __u32)
 
 /*
  * vfat shortname flags
@@ -154,7 +151,7 @@ struct msdos_dir_entry {
 	__u8	name[8],ext[3];	/* name and extension */
 	__u8	attr;		/* attribute bits */
 	__u8    lcase;		/* Case for base and extension */
-	__u8	ctime_ms;	/* Creation time, milliseconds */
+	__u8	ctime_cs;	/* Creation time, centiseconds (0-199) */
 	__le16	ctime;		/* Creation time */
 	__le16	cdate;		/* Creation date */
 	__le16	adate;		/* Last access date */
@@ -175,10 +172,12 @@ struct msdos_dir_slot {
 	__u8    name11_12[4];	/* last 2 characters in name */
 };
 
-struct vfat_slot_info {
-	int long_slots;		/* number of long slots in filename */
-	loff_t longname_offset;	/* dir offset for longname start */
+struct fat_slot_info {
 	loff_t i_pos;		/* on-disk position of directory entry */
+	loff_t slot_off;	/* offset for slot or de start */
+	int nr_slots;		/* number of slots + 1(de) in filename */
+	struct msdos_dir_entry *de;
+	struct buffer_head *bh;
 };
 
 

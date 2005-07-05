@@ -39,22 +39,22 @@
  *  Memory definitions
  * ------------------------------------------------------------------------
  *  Integrator memory map
- * 
+ *
  */
 #define INTEGRATOR_BOOT_ROM_LO          0x00000000
 #define INTEGRATOR_BOOT_ROM_HI          0x20000000
 #define INTEGRATOR_BOOT_ROM_BASE        INTEGRATOR_BOOT_ROM_HI	 /*  Normal position */
 #define INTEGRATOR_BOOT_ROM_SIZE        SZ_512K
 
-/* 
+/*
  *  New Core Modules have different amounts of SSRAM, the amount of SSRAM
  *  fitted can be found in HDR_STAT.
- * 
+ *
  *  The symbol INTEGRATOR_SSRAM_SIZE is kept, however this now refers to
  *  the minimum amount of SSRAM fitted on any core module.
- * 
+ *
  *  New Core Modules also alias the SSRAM.
- * 
+ *
  */
 #define INTEGRATOR_SSRAM_BASE           0x00000000
 #define INTEGRATOR_SSRAM_ALIAS_BASE     0x10800000
@@ -66,9 +66,9 @@
 #define INTEGRATOR_MBRD_SSRAM_BASE      0x28000000
 #define INTEGRATOR_MBRD_SSRAM_SIZE      SZ_512K
 
-/* 
+/*
  *  SDRAM is a SIMM therefore the size is not known.
- * 
+ *
  */
 #define INTEGRATOR_SDRAM_BASE           0x00040000
 
@@ -78,9 +78,9 @@
 #define INTEGRATOR_HDR2_SDRAM_BASE      0xA0000000
 #define INTEGRATOR_HDR3_SDRAM_BASE      0xB0000000
 
-/* 
+/*
  *  Logic expansion modules
- * 
+ *
  */
 #define INTEGRATOR_LOGIC_MODULES_BASE   0xC0000000
 #define INTEGRATOR_LOGIC_MODULE0_BASE   0xC0000000
@@ -91,7 +91,7 @@
 /* ------------------------------------------------------------------------
  *  Integrator header card registers
  * ------------------------------------------------------------------------
- * 
+ *
  */
 #define INTEGRATOR_HDR_ID_OFFSET        0x00
 #define INTEGRATOR_HDR_PROC_OFFSET      0x04
@@ -184,12 +184,12 @@
 /* ------------------------------------------------------------------------
  *  Integrator system registers
  * ------------------------------------------------------------------------
- * 
+ *
  */
 
-/* 
+/*
  *  System Controller
- * 
+ *
  */
 #define INTEGRATOR_SC_ID_OFFSET         0x00
 #define INTEGRATOR_SC_OSC_OFFSET        0x04
@@ -229,11 +229,11 @@
 #define INTEGRATOR_SC_CTRL_URTS1        (1 << 6)
 #define INTEGRATOR_SC_CTRL_UDTR1        (1 << 7)
 
-/* 
+/*
  *  External Bus Interface
- * 
+ *
  */
-#define INTEGRATOR_EBI_BASE             0x12000000 
+#define INTEGRATOR_EBI_BASE             0x12000000
 
 #define INTEGRATOR_EBI_CSR0_OFFSET      0x00
 #define INTEGRATOR_EBI_CSR1_OFFSET      0x04
@@ -278,9 +278,9 @@
 #define INTEGRATOR_KBD_BASE             0x18000000	 /*  Keyboard */
 #define INTEGRATOR_MOUSE_BASE           0x19000000	 /*  Mouse */
 
-/* 
+/*
  *  LED's & Switches
- * 
+ *
  */
 #define INTEGRATOR_DBG_ALPHA_OFFSET     0x00
 #define INTEGRATOR_DBG_LEDS_OFFSET      0x04
@@ -292,14 +292,18 @@
 #define INTEGRATOR_DBG_SWITCH           (INTEGRATOR_DBG_BASE + INTEGRATOR_DBG_SWITCH_OFFSET)
 
 
+#if defined(CONFIG_ARCH_INTEGRATOR_AP)
 #define INTEGRATOR_GPIO_BASE            0x1B000000	 /*  GPIO */
+#elif defined(CONFIG_ARCH_INTEGRATOR_CP)
+#define INTEGRATOR_GPIO_BASE            0xC9000000	 /*  GPIO */
+#endif
 
 /* ------------------------------------------------------------------------
  *  KMI keyboard/mouse definitions
  * ------------------------------------------------------------------------
  */
 /* PS2 Keyboard interface */
-#define KMI0_BASE                       INTEGRATOR_KBD_BASE		
+#define KMI0_BASE                       INTEGRATOR_KBD_BASE
 
 /* PS2 Mouse interface */
 #define KMI1_BASE                       INTEGRATOR_MOUSE_BASE
@@ -312,7 +316,7 @@
  *  This represents a fairly liberal usage of address space.  Even though
  *  the V3 only has two windows (therefore we need to map stuff on the fly),
  *  we maintain the same addresses, even if they're not mapped.
- * 
+ *
  */
 #define PHYS_PCI_MEM_BASE               0x40000000   /* 512M to xxx */
 /*  unused 256M from A0000000-AFFFFFFF might be used for I2O ???
@@ -325,7 +329,7 @@
  */
 #define PHYS_PCI_V3_BASE                0x62000000
 
-#define PCI_DRAMSIZE                    INTEGRATOR_SSRAM_SIZE	
+#define PCI_DRAMSIZE                    INTEGRATOR_SSRAM_SIZE
 
 /* 'export' these to UHAL */
 #define UHAL_PCI_IO                     PCI_IO_BASE
@@ -333,7 +337,7 @@
 #define UHAL_PCI_ALLOC_IO_BASE          0x00004000
 #define UHAL_PCI_ALLOC_MEM_BASE         PCI_MEM_BASE
 #define UHAL_PCI_MAX_SLOT               20
-	
+
 /* ========================================================================
  *  Start of uHAL definitions
  * ========================================================================
@@ -342,17 +346,17 @@
 /* ------------------------------------------------------------------------
  *  Integrator Interrupt Controllers
  * ------------------------------------------------------------------------
- * 
- *  Offsets from interrupt controller base 
- * 
+ *
+ *  Offsets from interrupt controller base
+ *
  *  System Controller interrupt controller base is
- * 
+ *
  * 	INTEGRATOR_IC_BASE + (header_number << 6)
- * 
+ *
  *  Core Module interrupt controller base is
- * 
- * 	INTEGRATOR_HDR_IC 
- * 
+ *
+ * 	INTEGRATOR_HDR_IC
+ *
  */
 #define IRQ_STATUS                      0
 #define IRQ_RAW_STATUS                  0x04
@@ -373,22 +377,22 @@
 /* ------------------------------------------------------------------------
  *  Interrupts
  * ------------------------------------------------------------------------
- * 
- *  
+ *
+ *
  *  Each Core Module has two interrupts controllers, one on the core module
  *  itself and one in the system controller on the motherboard.  The
  *  READ_INT macro in target.s reads both interrupt controllers and returns
  *  a 32 bit bitmask, bits 0 to 23 are interrupts from the system controller
  *  and bits 24 to 31 are from the core module.
- *  
+ *
  *  The following definitions relate to the bitmask returned by READ_INT.
- * 
+ *
  */
 
 /* ------------------------------------------------------------------------
  *  LED's - The header LED is not accessible via the uHAL API
  * ------------------------------------------------------------------------
- * 
+ *
  */
 #define GREEN_LED                       0x01
 #define YELLOW_LED                      0x02
@@ -398,44 +402,44 @@
 
 #define LED_BANK                        INTEGRATOR_DBG_LEDS
 
-/* 
+/*
  *  Memory definitions - run uHAL out of SSRAM.
- * 
+ *
  */
 #define uHAL_MEMORY_SIZE                INTEGRATOR_SSRAM_SIZE
 
-/* 
+/*
  *  Application Flash
- * 
+ *
  */
 #define FLASH_BASE                      INTEGRATOR_FLASH_BASE
 #define FLASH_SIZE                      INTEGRATOR_FLASH_SIZE
 #define FLASH_END                       (FLASH_BASE + FLASH_SIZE - 1)
 #define FLASH_BLOCK_SIZE                SZ_128K
 
-/* 
+/*
  *  Boot Flash
- * 
+ *
  */
 #define EPROM_BASE                      INTEGRATOR_BOOT_ROM_HI
 #define EPROM_SIZE                      INTEGRATOR_BOOT_ROM_SIZE
 #define EPROM_END                       (EPROM_BASE + EPROM_SIZE - 1)
 
-/* 
+/*
  *  Clean base - dummy
- * 
+ *
  */
 #define CLEAN_BASE                      EPROM_BASE
 
-/* 
+/*
  *  Timer definitions
- * 
+ *
  *  Only use timer 1 & 2
  *  (both run at 24MHz and will need the clock divider set to 16).
- * 
+ *
  *  Timer 0 runs at bus frequency and therefore could vary and currently
  *  uHAL can't handle that.
- * 
+ *
  */
 
 #define INTEGRATOR_TIMER0_BASE          INTEGRATOR_CT_BASE
@@ -446,9 +450,9 @@
 #define MAX_PERIOD                      699050
 #define TICKS_PER_uSEC                  24
 
-/* 
- *  These are useconds NOT ticks.  
- * 
+/*
+ *  These are useconds NOT ticks.
+ *
  */
 #define mSEC_1                          1000
 #define mSEC_5                          (mSEC_1 * 5)

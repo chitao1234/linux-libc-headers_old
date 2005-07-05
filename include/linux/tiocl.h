@@ -23,7 +23,7 @@ struct tiocl_selection {
 
 #define TIOCL_SELLOADLUT	5
 	/* set characters to be considered alphabetic when selecting */
-	/* u32[8] bit array, 4 bytes-aligned with type */
+	/* __u32[8] bit array, 4 bytes-aligned with type */
 
 /* these two don't return a value: they write it back in the type */
 #define TIOCL_GETSHIFTSTATE	6	/* write shift state */

@@ -7,7 +7,8 @@
 #define NF_STOLEN 2
 #define NF_QUEUE 3
 #define NF_REPEAT 4
-#define NF_MAX_VERDICT NF_REPEAT
+#define NF_STOP 5
+#define NF_MAX_VERDICT NF_STOP
 
 /* Generic cache responses from hook functions.
    <= 0x2000 is used for protocol-flags. */

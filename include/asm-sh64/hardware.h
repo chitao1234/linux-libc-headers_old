@@ -17,29 +17,6 @@
 #define	PHYS_PERIPHERAL_BLOCK	0x09000000
 #define PHYS_DMAC_BLOCK		0x0e000000
 #define PHYS_PCI_BLOCK		0x60000000
-
-#ifndef __ASSEMBLY__
-#include <linux/types.h>
-#include <asm/io.h>
-
-struct vcr_info {
-	__u8	perr_flags;	/* P-port Error flags */
-	__u8	merr_flags;	/* Module Error flags */
-	__u16	mod_vers;	/* Module Version */
-	__u16	mod_id;		/* Module ID */
-	__u8	bot_mb;		/* Bottom Memory block */
-	__u8	top_mb;		/* Top Memory block */
-};
-
-static inline struct vcr_info sh64_get_vcr_info(unsigned long base)
-{
-	unsigned long long tmp;
-
-	tmp = sh64_in64(base);
-
-	return *((struct vcr_info *)&tmp);
-}
-
-#endif /* __ASSEMBLY__ */
+#define PHYS_EMI_BLOCK		0xff000000
 
 #endif /* __ASM_SH64_HARDWARE_H */

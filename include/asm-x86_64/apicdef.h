@@ -112,7 +112,7 @@
 
 #define APIC_BASE (fix_to_virt(FIX_APIC_BASE))
 
-#define MAX_IO_APICS 32
+#define MAX_IO_APICS 128
 
 /*
  * All x86-64 systems are xAPIC compatible.
@@ -384,7 +384,6 @@ struct local_apic {
 
 } __attribute__ ((packed));
 
-#undef u32
 
 #define BAD_APICID 0xFFu
 

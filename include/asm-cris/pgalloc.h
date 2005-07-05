@@ -1,7 +1,6 @@
 #ifndef _CRIS_PGALLOC_H
 #define _CRIS_PGALLOC_H
 
-#include <asm/page.h>
 #include <linux/threads.h>
 
 #define pmd_populate_kernel(mm, pmd, pte) pmd_set(pmd, pte)

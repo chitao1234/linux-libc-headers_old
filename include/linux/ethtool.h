@@ -42,7 +42,7 @@ struct ethtool_drvinfo {
 				/* For PCI devices, use pci_name(pci_dev). */
 	char	reserved1[32];
 	char	reserved2[16];
-	__u32	n_stats;	/* number of u64's from ETHTOOL_GSTATS */
+	__u32	n_stats;	/* number of __u64's from ETHTOOL_GSTATS */
 	__u32	testinfo_len;
 	__u32	eedump_len;	/* Size of data from ETHTOOL_GEEPROM (bytes) */
 	__u32	regdump_len;	/* Size of data from ETHTOOL_GREGS (bytes) */
@@ -248,7 +248,7 @@ struct ethtool_test {
 /* for dumping NIC-specific statistics */
 struct ethtool_stats {
 	__u32	cmd;		/* ETHTOOL_GSTATS */
-	__u32	n_stats;	/* number of u64's being returned */
+	__u32	n_stats;	/* number of __u64's being returned */
 	__u64	data[0];
 };
 
@@ -258,6 +258,7 @@ struct net_device;
 __u32 ethtool_op_get_link(struct net_device *dev);
 __u32 ethtool_op_get_tx_csum(struct net_device *dev);
 int ethtool_op_set_tx_csum(struct net_device *dev, __u32 data);
+int ethtool_op_set_tx_hw_csum(struct net_device *dev, __u32 data);
 __u32 ethtool_op_get_sg(struct net_device *dev);
 int ethtool_op_set_sg(struct net_device *dev, __u32 data);
 __u32 ethtool_op_get_tso(struct net_device *dev);
