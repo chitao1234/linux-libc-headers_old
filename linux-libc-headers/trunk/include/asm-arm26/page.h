@@ -6,7 +6,7 @@
 #define EXEC_PAGESIZE   32768
 
 #define PAGE_SIZE (getpagesize())
-static inline int getpageshift()
+static __inline__ int getpageshift()
 {
     int pagesize = getpagesize();
 #if (__GNUC__ >= 4) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 4))
