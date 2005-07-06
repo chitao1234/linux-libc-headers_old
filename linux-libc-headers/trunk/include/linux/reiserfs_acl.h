@@ -1,4 +1,4 @@
-#include <asm/types.h>
+#include <linux/types.h>
 
 #define REISERFS_ACL_VERSION	0x0001
 

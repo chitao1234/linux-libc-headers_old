@@ -19,7 +19,6 @@
 
 /* Endian macros. */
 #  include <endian.h>
-#endif
 
 #if defined(__BYTE_ORDER)
 #  if __BYTE_ORDER == __BIG_ENDIAN
