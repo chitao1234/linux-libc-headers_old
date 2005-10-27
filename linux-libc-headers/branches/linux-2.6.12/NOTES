@@ -1,0 +1,11 @@
+- in asm-sparc/page.h PAGE_SHIFT was set according to arch (it differed for
+  SUN4). This arch dependency was removed, so if you're using SUN4 you should
+  go look there and change the value
+- some archs should get 'subarch' separation like in eg. arm, so that 
+  files don't decide what to define based on the content of the (forbiden)
+  config.h, but instead include <asm/subarch/something.h> where subarch is
+  an appropriate link (should sun4 need more changes I just might do that for
+  sparc)
+- any changes to asm-generic/errno* (removed) should be reflected in
+  linux/errno.h and in errno.h for alpha, mips, parisc, sparc, sparc64
+
