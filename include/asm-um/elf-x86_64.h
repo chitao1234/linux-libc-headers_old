@@ -64,32 +64,13 @@ typedef struct { } elf_fpregset_t;
 	PT_REGS_R15(regs) = 0; \
 } while (0)
 
-#ifdef TIF_IA32 /* XXX */
-#error XXX, indeed
-        clear_thread_flag(TIF_IA32);
-#endif
-
 #define USE_ELF_CORE_DUMP
 #define ELF_EXEC_PAGESIZE 4096
 
 #define ELF_ET_DYN_BASE (2 * TASK_SIZE / 3)
-
-extern long elf_aux_hwcap;
-#define ELF_HWCAP (elf_aux_hwcap)
 
 #define ELF_PLATFORM "x86_64"
 
 #define SET_PERSONALITY(ex, ibcs2) do ; while(0)
 
 #endif
-
-/*
- * Overrides for Emacs so that we follow Linus's tabbing style.
- * Emacs will notice this stuff at the end of the file and automatically
- * adjust the settings for this buffer only.  This must remain at the end
- * of the file.
- * ---------------------------------------------------------------------------
- * Local variables:
- * c-file-style: "linux"
- * End:
- */
