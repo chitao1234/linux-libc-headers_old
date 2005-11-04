@@ -14,12 +14,4 @@ typedef struct {
 
 #include <linux/irq_cpustat.h>
 
-/* As this would be very strange for UML to get we BUG() after the
- * printk. */
-static inline void ack_bad_irq(unsigned int irq)
-{
-	printk(KERN_ERR "unexpected IRQ %02x\n", irq);
-	BUG();
-}
-
 #endif /* __ASM_UM_HARDIRQ_H */

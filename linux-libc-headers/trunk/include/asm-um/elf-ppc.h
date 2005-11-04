@@ -1,22 +1,11 @@
 #ifndef __UM_ELF_PPC_H
 #define __UM_ELF_PPC_H
 
-#include "linux/config.h"
-
-extern long elf_aux_hwcap;
-#define ELF_HWCAP (elf_aux_hwcap)
-
 #define SET_PERSONALITY(ex, ibcs2) do ; while(0)
 
 #define ELF_EXEC_PAGESIZE 4096
 
 #define elf_check_arch(x) (1)
-
-#ifdef CONFIG_64_BIT
-#define ELF_CLASS ELFCLASS64
-#else
-#define ELF_CLASS ELFCLASS32
-#endif
 
 #define USE_ELF_CORE_DUMP
 
