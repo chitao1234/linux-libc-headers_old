@@ -1,3 +1,4 @@
+/* $Id$ */
 #ifndef _ASM_SPARC64_IOCTLS_H
 #define _ASM_SPARC64_IOCTLS_H
 
@@ -110,6 +111,17 @@
 #define TIOCSERSETMULTI 0x545B /* Set multiport config */
 #define TIOCMIWAIT	0x545C /* Wait for change on serial input line(s) */
 #define TIOCGICOUNT	0x545D /* Read serial port inline interrupt counts */
+
+/* Kernel definitions */
+#ifdef __KERNEL__
+#define TIOCGETC __TIOCGETC
+#define TIOCGETP __TIOCGETP
+#define TIOCGLTC __TIOCGLTC
+#define TIOCSLTC __TIOCSLTC
+#define TIOCSETP __TIOCSETP
+#define TIOCSETN __TIOCSETN
+#define TIOCSETC __TIOCSETC
+#endif
 
 /* Used for packet mode */
 #define TIOCPKT_DATA		 0
